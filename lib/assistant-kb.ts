@@ -105,6 +105,12 @@ export async function streamAssistant(
   else signal?.addEventListener('abort', abort, { once: true });
   const timeout = setTimeout(abort, 30_000);
   let full = '';
+  const finish = (): string => {
+    const text = full.trim();
+    if (text) return text;
+    if (!signal?.aborted) onMode?.('fallback');
+    return answer(question, lang);
+  };
   try {
     const res = await fetch('/api/chat', {
       method: 'POST',
@@ -127,9 +133,9 @@ export async function streamAssistant(
       onToken(full);
     }
     full += decoder.decode();
-    return full.trim() || answer(question, lang);
+    return finish();
   } catch {
-    return full.trim() || answer(question, lang);
+    return finish();
   } finally {
     clearTimeout(timeout);
     signal?.removeEventListener('abort', abort);

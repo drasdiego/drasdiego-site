@@ -54,8 +54,8 @@ export function Nav({
   const controls = () => (
     <>
       <div className="lang-toggle" role="group" aria-label={lang === 'en' ? 'Language' : 'Idioma'}>
-        <button className={lang === 'pt' ? 'on' : ''} onClick={() => setLang('pt')} aria-pressed={lang === 'pt'} lang="pt-BR" aria-label="Português">PT</button>
-        <button className={lang === 'en' ? 'on' : ''} onClick={() => setLang('en')} aria-pressed={lang === 'en'} lang="en" aria-label="English">EN</button>
+        <button className={lang === 'pt' ? 'on' : ''} onClick={() => setLang('pt')} aria-pressed={lang === 'pt'} lang="pt-BR" aria-label="PT, Português">PT</button>
+        <button className={lang === 'en' ? 'on' : ''} onClick={() => setLang('en')} aria-pressed={lang === 'en'} lang="en" aria-label="EN, English">EN</button>
       </div>
       <button className="icon-btn" onClick={toggleTheme} aria-label={lang === 'en' ? (dark ? 'Use light theme' : 'Use dark theme') : (dark ? 'Usar tema claro' : 'Usar tema escuro')}>
         {dark ? (

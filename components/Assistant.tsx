@@ -219,8 +219,9 @@ export function Assistant({ t, lang }: { t: SiteContent; lang: Lang }) {
 
   function openAssistant() {
     if (!wasOpenRef.current) {
-      returnFocusRef.current = document.activeElement instanceof HTMLElement
-        ? document.activeElement
+      const active = document.activeElement;
+      returnFocusRef.current = active instanceof HTMLElement && active !== document.body
+        ? active
         : null;
     }
     openRef.current = true;
