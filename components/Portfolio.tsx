@@ -1,6 +1,6 @@
 'use client';
 
-import { useEffect, useState } from 'react';
+import { useEffect } from 'react';
 import type { Lang } from '@/types';
 import { CONTENT } from '@/lib/content';
 import { PRESENTATION } from '@/lib/presentation';
@@ -17,29 +17,9 @@ import { Contato } from './Contato';
 import { Footer } from './Footer';
 import { Assistant } from './Assistant';
 
-const LANG_KEY = 'diego_lang';
-
-export function Portfolio() {
+export function Portfolio({ initialLang }: { initialLang: Lang }) {
   const { tweaks, set } = useTweaks();
-  const [lang, setLang] = useState<Lang>('pt');
-
-  useEffect(() => {
-    try {
-      const stored = localStorage.getItem(LANG_KEY) as Lang | null;
-      if (stored === 'pt' || stored === 'en') setLang(stored);
-    } catch {
-      /* ignore */
-    }
-  }, []);
-
-  useEffect(() => {
-    try {
-      localStorage.setItem(LANG_KEY, lang);
-    } catch {
-      /* ignore */
-    }
-    document.documentElement.lang = lang === 'en' ? 'en' : 'pt-BR';
-  }, [lang]);
+  const lang = initialLang;
 
   useEffect(() => {
     const root = document.documentElement;
@@ -60,7 +40,7 @@ export function Portfolio() {
   return (
     <>
       <a className="skip-link" href="#conteudo">{d.skip}</a>
-      <Nav t={t} lang={lang} setLang={setLang} dark={tweaks.dark} toggleTheme={() => set('dark', !tweaks.dark)} sections={sections} />
+      <Nav t={t} lang={lang} dark={tweaks.dark} toggleTheme={() => set('dark', !tweaks.dark)} sections={sections} />
 
       <main id="conteudo">
         <Hero lang={lang} />

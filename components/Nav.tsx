@@ -1,6 +1,7 @@
 'use client';
 
 import { useEffect, useRef, useState } from 'react';
+import Link from 'next/link';
 import type { Lang } from '@/types';
 import type { SiteContent } from '@/lib/content';
 import { LINKS } from '@/lib/icons';
@@ -17,14 +18,12 @@ interface NavSection {
 export function Nav({
   t,
   lang,
-  setLang,
   dark,
   toggleTheme,
   sections,
 }: {
   t: SiteContent;
   lang: Lang;
-  setLang: (l: Lang) => void;
   dark: boolean;
   toggleTheme: () => void;
   sections: NavSection[];
@@ -54,8 +53,8 @@ export function Nav({
   const controls = () => (
     <>
       <div className="lang-toggle" role="group" aria-label={lang === 'en' ? 'Language' : 'Idioma'}>
-        <button className={lang === 'pt' ? 'on' : ''} onClick={() => setLang('pt')} aria-pressed={lang === 'pt'} lang="pt-BR" aria-label="PT, Português">PT</button>
-        <button className={lang === 'en' ? 'on' : ''} onClick={() => setLang('en')} aria-pressed={lang === 'en'} lang="en" aria-label="EN, English">EN</button>
+        <Link href="/" hrefLang="pt-BR" lang="pt-BR" className={lang === 'pt' ? 'on' : ''} aria-current={lang === 'pt' ? 'true' : undefined} aria-label="PT, Português">PT</Link>
+        <Link href="/en" hrefLang="en" lang="en" className={lang === 'en' ? 'on' : ''} aria-current={lang === 'en' ? 'true' : undefined} aria-label="EN, English">EN</Link>
       </div>
       <button className="icon-btn" onClick={toggleTheme} aria-label={lang === 'en' ? (dark ? 'Use light theme' : 'Use dark theme') : (dark ? 'Usar tema claro' : 'Usar tema escuro')}>
         {dark ? (
