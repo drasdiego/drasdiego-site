@@ -25,7 +25,7 @@ export interface SiteContent {
     acadTitle: string; academic: AcademicItem[];
     profTitle: string; profSub: string;
     totalLabel: string; catsLabel: string; searchPlaceholder: string; allLabel: string; clearLabel: string;
-    expandAll: string; collapseAll: string;
+    expandAll: string; collapseAll: string; recentLabel: string;
     liveLabel: string; loadingLabel: string; fallbackLabel: string; emptyLabel: string;
     viewCert: string; metaLabels: { inst: string; date: string; cat: string };
     catNames: Record<CategoryId, string>;
@@ -138,7 +138,7 @@ const PT: SiteContent = {
     searchPlaceholder: 'Buscar por curso ou instituição…', allLabel: 'Todas', clearLabel: 'Limpar filtros',
     expandAll: 'Expandir todas', collapseAll: 'Recolher todas',
     liveLabel: 'Sincronizado com Google Sheets', loadingLabel: 'Carregando da planilha…',
-    fallbackLabel: 'Base local', emptyLabel: 'Nenhuma formação encontrada para esse filtro.',
+    fallbackLabel: 'Base local', emptyLabel: 'Nenhuma formação encontrada para esse filtro.', recentLabel: 'Mais recentes',
     viewCert: 'Ver certificado',
     metaLabels: { inst: 'Instituição', date: 'Emissão', cat: 'Categoria' },
     catNames: { tech: 'Tech & Data', ia: 'IA & Analytics', agile: 'Agilidade & Produtos', lideranca: 'Liderança & Comunicação', negocios: 'Negócios & Operações' },
@@ -254,7 +254,7 @@ const EN: SiteContent = {
     searchPlaceholder: 'Search by course or institution…', allLabel: 'All', clearLabel: 'Clear filters',
     expandAll: 'Expand all', collapseAll: 'Collapse all',
     liveLabel: 'Synced with Google Sheets', loadingLabel: 'Loading from sheet…',
-    fallbackLabel: 'Local data', emptyLabel: 'No courses found for this filter.',
+    fallbackLabel: 'Local data', emptyLabel: 'No courses found for this filter.', recentLabel: 'Most recent',
     viewCert: 'View certificate',
     metaLabels: { inst: 'Institution', date: 'Issued', cat: 'Category' },
     catNames: { tech: 'Tech & Data', ia: 'AI & Analytics', agile: 'Agile & Products', lideranca: 'Leadership & Communication', negocios: 'Business & Operations' },

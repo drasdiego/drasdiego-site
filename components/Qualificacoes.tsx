@@ -22,11 +22,11 @@ function QualRow({
   metaLabels: MetaLabels;
 }) {
   return (
-    <div className={`qrow open ${q.featured ? 'feat' : ''}`}>
+    <li className={`qrow open ${q.featured ? 'feat' : ''}`}>
       <div className="qrow-head qrow-head-static">
         <span className="qrow-cat">{catLabel}</span>
         <div className="qrow-main">
-          <h3 className="qrow-title">{q.titulo}</h3>
+          <p className="qrow-title">{q.titulo}</p>
           <span className="qrow-inst">{q.instituicao || '·'}</span>
         </div>
         <span className="qrow-aside">
@@ -63,7 +63,7 @@ function QualRow({
           </div>
         </div>
       </div>
-    </div>
+    </li>
   );
 }
 
@@ -87,26 +87,29 @@ export function Qualificacoes({ t }: { t: SiteContent }) {
     return c;
   }, [items]);
 
-  const filtered = useMemo(() => {
-    const q = norm(query.trim());
+  const sorted = useMemo(() => {
     const yearOf = (it: Qualification) => {
       const m = String(it.dataEmissao || '').match(/(19|20)\d{2}/);
       return m ? parseInt(m[0], 10) : -1;
     };
-    return items
-      .filter((it) => {
-        if (active !== null && it.categoria !== active) return false;
-        if (q && !norm(`${it.titulo} ${it.instituicao}`).includes(q)) return false;
-        return true;
-      })
-      .slice()
-      .sort((a, b) => {
-        const ya = yearOf(a);
-        const yb = yearOf(b);
-        if (yb !== ya) return yb - ya;
-        return a.titulo.localeCompare(b.titulo);
-      });
-  }, [items, active, query]);
+    return items.slice().sort((a, b) => {
+      const ya = yearOf(a);
+      const yb = yearOf(b);
+      if (yb !== ya) return yb - ya;
+      return a.titulo.localeCompare(b.titulo);
+    });
+  }, [items]);
+
+  const filtered = useMemo(() => {
+    const q = norm(query.trim());
+    return sorted.filter((it) => {
+      if (active !== null && it.categoria !== active) return false;
+      if (q && !norm(`${it.titulo} ${it.instituicao}`).includes(q)) return false;
+      return true;
+    });
+  }, [sorted, active, query]);
+
+  const recent = useMemo(() => sorted.slice(0, 6), [sorted]);
 
   const catName = (id: CategoryId) => d.catNames[id] || id;
 
@@ -191,11 +194,26 @@ export function Qualificacoes({ t }: { t: SiteContent }) {
           </div>
         </Reveal>
 
+        {recent.length > 0 && !listShown ? (
+          <div className="qual-summary">
+            <p className="qual-summary-label">{d.recentLabel}</p>
+            <ul className="qual-summary-list">
+              {recent.map((q) => (
+                <li key={q.id}>
+                  {q.titulo}
+                  {q.instituicao ? ` · ${q.instituicao}` : ''}
+                  {q.dataEmissao ? ` · ${q.dataEmissao}` : ''}
+                </li>
+              ))}
+            </ul>
+          </div>
+        ) : null}
+
         <div id="qualifications-list" hidden={!listShown} aria-live="polite">
           {filtered.length === 0 ? (
             <div className="qual-empty">{d.emptyLabel}</div>
           ) : (
-            <div className="qual-list">
+            <ul className="qual-list">
               {filtered.map((q) => (
                 <QualRow
                   key={q.id}
@@ -205,7 +223,7 @@ export function Qualificacoes({ t }: { t: SiteContent }) {
                   metaLabels={d.metaLabels}
                 />
               ))}
-            </div>
+            </ul>
           )}
         </div>
       </div>
