@@ -197,7 +197,7 @@ export function Qualificacoes({ t }: { t: SiteContent }) {
         {recent.length > 0 && !listShown ? (
           <div className="qual-summary">
             <p className="qual-summary-label">{d.recentLabel}</p>
-            <ul className="qual-summary-list">
+            <ul className="qual-summary-list" role="list">
               {recent.map((q) => (
                 <li key={q.id}>
                   {q.titulo}
@@ -213,7 +213,7 @@ export function Qualificacoes({ t }: { t: SiteContent }) {
           {filtered.length === 0 ? (
             <div className="qual-empty">{d.emptyLabel}</div>
           ) : (
-            <ul className="qual-list">
+            <ul className="qual-list" role="list">
               {filtered.map((q) => (
                 <QualRow
                   key={q.id}
