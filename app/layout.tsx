@@ -16,7 +16,15 @@ export const metadata: Metadata = {
   description: SITE_DESCRIPTION,
   keywords: ['Diego Arruda', 'Dados', 'Data Science', 'Inteligência Artificial', 'Analytics', 'Engenharia de Software', 'Power BI', 'SQL', 'Python'],
   authors: [{ name: 'Diego Arruda', url: 'https://www.linkedin.com/in/drasdiego/' }],
-  icons: { icon: '/favicon.svg' },
+  icons: {
+    icon: [
+      { url: '/favicon.ico', sizes: '32x32 48x48' },
+      { url: '/favicon.svg', type: 'image/svg+xml' },
+      { url: '/icon-192.png', sizes: '192x192', type: 'image/png' },
+      { url: '/icon-512.png', sizes: '512x512', type: 'image/png' },
+    ],
+    apple: [{ url: '/apple-touch-icon.png', sizes: '180x180', type: 'image/png' }],
+  },
   alternates: { canonical: 'https://www.drasdiego.com.br' },
   openGraph: {
     title: SITE_TITLE,
