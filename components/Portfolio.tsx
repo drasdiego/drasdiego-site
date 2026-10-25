@@ -18,14 +18,15 @@ import { Footer } from './Footer';
 import { Assistant } from './Assistant';
 
 export function Portfolio({ initialLang }: { initialLang: Lang }) {
-  const { tweaks, set } = useTweaks();
+  const { tweaks, set, hydrated } = useTweaks();
   const lang = initialLang;
 
   useEffect(() => {
+    if (!hydrated) return;
     const root = document.documentElement;
     root.setAttribute('data-theme', tweaks.dark ? 'dark' : 'light');
     root.setAttribute('data-density', tweaks.density);
-  }, [tweaks.dark, tweaks.density]);
+  }, [hydrated, tweaks.dark, tweaks.density]);
 
   const t = CONTENT[lang];
   const d = PRESENTATION[lang];
