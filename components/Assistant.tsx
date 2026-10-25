@@ -1,6 +1,6 @@
 'use client';
 
-import { useEffect, useId, useRef, useState } from 'react';
+import { Fragment, useEffect, useId, useRef, useState } from 'react';
 import type { Lang } from '@/types';
 import type { SiteContent } from '@/lib/content';
 import { ICONS } from '@/lib/icons';
@@ -58,6 +58,7 @@ export function Assistant({ t, lang }: { t: SiteContent; lang: Lang }) {
   const [input, setInput] = useState('');
   const [typing, setTyping] = useState(false);
   const [msgs, setMsgs] = useState<Message[]>([{ role: 'bot', text: A.greet }]);
+  const panelRef = useRef<HTMLDivElement | null>(null);
   const bodyRef = useRef<HTMLDivElement | null>(null);
   const inputRef = useRef<HTMLInputElement | null>(null);
   const fabRef = useRef<HTMLButtonElement | null>(null);
@@ -247,8 +248,30 @@ export function Assistant({ t, lang }: { t: SiteContent; lang: Lang }) {
 
   useEffect(() => {
     const esc = (e: KeyboardEvent) => {
+      if (!openRef.current) return;
       if (e.key === 'Escape') {
         closeAssistant();
+        return;
+      }
+      if (e.key !== 'Tab') return;
+      const panel = panelRef.current;
+      if (!panel) return;
+      const items = Array.from(
+        panel.querySelectorAll<HTMLElement>('button:not([disabled]), input:not([disabled]), [href], [tabindex]:not([tabindex="-1"])'),
+      );
+      if (items.length === 0) return;
+      const first = items[0];
+      const last = items[items.length - 1];
+      const active = document.activeElement;
+      if (!(active instanceof Node) || !panel.contains(active)) {
+        e.preventDefault();
+        (e.shiftKey ? last : first).focus();
+      } else if (e.shiftKey && active === first) {
+        e.preventDefault();
+        last.focus();
+      } else if (!e.shiftKey && active === last) {
+        e.preventDefault();
+        first.focus();
       }
     };
     window.addEventListener('keydown', esc);
@@ -436,7 +459,7 @@ export function Assistant({ t, lang }: { t: SiteContent; lang: Lang }) {
       )}
 
       {open && (
-        <div className="asst-panel" role="dialog" aria-labelledby={titleId}>
+        <div className="asst-panel" ref={panelRef} role="dialog" aria-modal="true" aria-labelledby={titleId}>
           <div className="asst-head">
             <div className="asst-ava" dangerouslySetInnerHTML={{ __html: ICONS.bot }} />
             <div>
@@ -460,30 +483,32 @@ export function Assistant({ t, lang }: { t: SiteContent; lang: Lang }) {
               const listenLabel = lang === 'en' ? 'Listen' : 'Ouvir';
               const stopLabel = lang === 'en' ? 'Stop' : 'Parar';
               return (
-                <div key={i} className={`msg ${m.role}`}>
-                  {m.text}
-                  {m.role === 'bot' && m.text.trim() !== '' && (
-                    <button
-                      className={`msg-tts${status === 'playing' ? ' is-playing' : ''}`}
-                      onClick={() => { primeAudio(); toggleSpeak(i, m.text); }}
-                      disabled={status === 'loading' || (typing && i === msgs.length - 1)}
-                      aria-label={status === 'playing' ? stopLabel : listenLabel}
-                    >
-                      <span
-                        className={status === 'loading' ? 'spin' : undefined}
-                        dangerouslySetInnerHTML={{
-                          __html: status === 'playing' ? ICONS.stop : ICONS.volume,
-                        }}
-                        style={{ display: 'flex', width: 13, height: 13 }}
-                      />
-                      {status === 'loading' ? '…' : status === 'playing' ? stopLabel : listenLabel}
-                    </button>
-                  )}
-                </div>
+                <Fragment key={i}>
+                  <div className={`msg ${m.role}`}>
+                    {m.text}
+                    {m.role === 'bot' && m.text.trim() !== '' && (
+                      <button
+                        className={`msg-tts${status === 'playing' ? ' is-playing' : ''}`}
+                        onClick={() => { primeAudio(); toggleSpeak(i, m.text); }}
+                        disabled={status === 'loading' || (typing && i === msgs.length - 1)}
+                        aria-label={status === 'playing' ? stopLabel : listenLabel}
+                      >
+                        <span
+                          className={status === 'loading' ? 'spin' : undefined}
+                          dangerouslySetInnerHTML={{
+                            __html: status === 'playing' ? ICONS.stop : ICONS.volume,
+                          }}
+                          style={{ display: 'flex', width: 13, height: 13 }}
+                        />
+                        {status === 'loading' ? '…' : status === 'playing' ? stopLabel : listenLabel}
+                      </button>
+                    )}
+                  </div>
+                </Fragment>
               );
             })}
             {typing && (
-              <div className="asst-typing" aria-label={lang === 'en' ? 'Preparing answer' : 'Preparando resposta'}>
+              <div className="asst-typing" role="status" aria-label={lang === 'en' ? 'Preparing answer' : 'Preparando resposta'}>
                 <i />
                 <i />
                 <i />
@@ -554,16 +579,16 @@ export function Assistant({ t, lang }: { t: SiteContent; lang: Lang }) {
               </svg>
             </button>
           </div>
+          <div
+            role="status"
+            aria-live="polite"
+            aria-atomic="true"
+            style={{ position: 'absolute', width: 1, height: 1, padding: 0, margin: -1, overflow: 'hidden', clipPath: 'inset(50%)', whiteSpace: 'nowrap', border: 0 }}
+          >
+            {announcement}
+          </div>
         </div>
       )}
-      <div
-        role="status"
-        aria-live="polite"
-        aria-atomic="true"
-        style={{ position: 'absolute', width: 1, height: 1, padding: 0, margin: -1, overflow: 'hidden', clipPath: 'inset(50%)', whiteSpace: 'nowrap', border: 0 }}
-      >
-        {announcement}
-      </div>
     </>
   );
 }
