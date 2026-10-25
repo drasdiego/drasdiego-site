@@ -1,0 +1,9 @@
+.env*
+.git
+.next
+node_modules
+lib/diego-context.ts
+*.tsbuildinfo
+*.tar.gz
+.escritorio
+.curriculo-sync/
