@@ -1,7 +1,7 @@
 export const PRESENTATION = {
   pt: {
     title: 'Software e operação.',
-    lead: 'Sou Diego Arruda. Minha experiência em operações, suporte e análise de problemas orienta o que construo com código.',
+    lead: 'Minha experiência em operações, suporte e análise de problemas orienta o que construo com código.',
     context: 'Meu foco atual é Engenharia de Software. Dados, automação e IA fazem parte desse trabalho.',
     origin: 'De onde vem meu olhar', career: '18 anos de carreira em operações e negócios.',
     background: 'Uma trajetória entre atendimento, liderança, indicadores e investigação de causas.',
@@ -31,7 +31,7 @@ export const PRESENTATION = {
   },
   en: {
     title: 'Software meets operations.',
-    lead: 'I’m Diego Arruda. My experience in operations, support and problem analysis informs what I build with code.',
+    lead: 'My experience in operations, support and problem analysis informs what I build with code.',
     context: 'My current focus is Software Engineering. Data, automation and AI are part of that work.',
     origin: 'Where my perspective comes from', career: '18 years of experience in operations and business.',
     background: 'A career spanning customer support, leadership, metrics and root-cause analysis.',
