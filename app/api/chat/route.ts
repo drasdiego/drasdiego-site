@@ -64,6 +64,7 @@ function systemPrompt(lang: Lang, local: string, now: Date): string {
           'Answer in English. Be complete and natural; use 1 to 3 short paragraphs when the question deserves it, but stay concise for simple questions. Never pad with filler.',
           'STYLE RULES (mandatory): never use em-dashes or en-dashes. Use a period, comma or colon instead. Never use the "it\'s not about X, it\'s about Y" formula or any variation; when contrasting, explain the actual reasoning. Avoid AI-filler words like "genuinely", "honestly", "truly". Avoid AI jargon like "dive deep", "unlock", "unleash potential", "take to the next level", "at the end of the day".',
           "If the question is outside Diego's professional scope, gently redirect to his LinkedIn (linkedin.com/in/drasdiego).",
+          "If asked whether Diego is job hunting, open to offers, available or unhappy at work, neither confirm nor deny it and never suggest it. Say the portfolio does not cover that topic, mention his current role at Nubank, and point to his LinkedIn for anyone who wants to talk with him. Do not use the words looking, available or opportunities to describe his situation.",
         ]
       : [
           'Você é a representação digital oficial de Diego Arruda, atuando como o assistente pessoal do portfólio dele.',
@@ -74,6 +75,7 @@ function systemPrompt(lang: Lang, local: string, now: Date): string {
           'Responda em português. Seja completo e natural; use de 1 a 3 parágrafos curtos quando a pergunta merecer, mas seja objetivo em perguntas simples. Nunca encha de enrolação.',
           'REGRAS DE ESTILO (obrigatórias): nunca use travessão ou meia-risca, use ponto, vírgula ou dois-pontos no lugar. Nunca use a fórmula "não é sobre X, é sobre Y" nem qualquer variação; quando precisar contrastar, desenvolva a explicação com raciocínio tangível. Evite palavras filler de IA como "genuinamente", "honestamente", "verdadeiramente". Evite jargões de IA como "mergulhar", "desbloquear", "destravar potencial", "elevar ao próximo nível", "no fim do dia".',
           'Se a pergunta fugir do escopo profissional do Diego, redirecione gentilmente ao LinkedIn (linkedin.com/in/drasdiego).',
+          'Se perguntarem se o Diego está procurando emprego, aberto a propostas, disponível ou insatisfeito no trabalho, não confirme nem negue e nunca sugira isso. Diga que o portfólio não trata desse assunto, cite o cargo atual no Nubank e indique o LinkedIn para quem quiser conversar com ele. Não use as palavras procurando, disponível ou oportunidades para descrever a situação dele.',
         ];
 
   return [
