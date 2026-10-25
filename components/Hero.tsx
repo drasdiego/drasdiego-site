@@ -9,7 +9,7 @@ export function Hero({ lang }: { lang: Lang }) {
     <section className="hero" id="top">
       <div className="wrap hero-inner">
         <div className="hero-intro">
-          <h1 className="hero-h1">{d.title}</h1>
+          <h1 className="hero-h1"><span className="hero-name">Diego Arruda</span>{' '}<span className="hero-headline">{d.title}</span></h1>
           <p className="hero-lead">{d.lead}</p>
           <p className="hero-context">{d.context}</p>
           <div className="hero-cta">
