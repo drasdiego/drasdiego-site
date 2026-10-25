@@ -75,7 +75,7 @@ export function Portfolio() {
           </details>
         </div>
         <Qualificacoes t={{ ...t, quals: { ...t.quals, title: d.educationTitle, sub: d.educationSub } }} />
-        <Contato t={{ ...t, contact: { ...t.contact, h2: d.contactTitle, p: d.contactDescription } }} />
+        <Contato lang={lang} t={{ ...t, contact: { ...t.contact, h2: d.contactTitle, p: d.contactDescription } }} />
       </main>
 
       <Footer t={{ ...t, footer: { ...t.footer, rights: d.footer } }} />
