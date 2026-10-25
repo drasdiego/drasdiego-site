@@ -1,6 +1,6 @@
 # Diego Arruda | Portfólio
 
-Código do meu portfólio profissional, publicado em [www.drasdiego.com.br](https://www.drasdiego.com.br). O site apresenta minha trajetória, experiência, formação e projetos em Dados, Inteligência Artificial e Engenharia de Software.
+Código do portfólio profissional de Diego Arruda, publicado em [www.drasdiego.com.br](https://www.drasdiego.com.br). O site apresenta a trajetória, a experiência, a formação e os projetos dele em Dados, Inteligência Artificial e Engenharia de Software.
 
 ## O que o site tem
 
