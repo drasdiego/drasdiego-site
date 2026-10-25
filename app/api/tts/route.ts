@@ -14,11 +14,11 @@ const MODEL = 'gemini-2.5-flash-preview-tts';
    'Orus' (firmer), 'Enceladus' (softer). */
 const VOICE = 'Algieba';
 
-const MAX_CHARS = 2000;
+const MAX_CHARS = 1200;
 const MAX_BODY_BYTES = 64_000;
 const FIRST_AUDIO_TIMEOUT_MS = 15_000;
 const TOTAL_TIMEOUT_MS = 45_000;
-const RATE_LIMIT = 20;
+const RATE_LIMIT = 12;
 const RATE_WINDOW_MS = 10 * 60 * 1000;
 
 /* Style direction prepended to the text. This is the Gemini TTS mechanism

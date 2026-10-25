@@ -38,3 +38,6 @@ next-env.d.ts.bak
 lib/diego-context.ts
 .curriculo-sync/
 !.env.example
+
+# local workspace
+/.escritorio/

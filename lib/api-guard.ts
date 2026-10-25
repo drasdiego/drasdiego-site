@@ -48,6 +48,8 @@ export function normalizeIp(ip: string): string {
 }
 
 export function clientKey(req: Request): string {
+  const platform = req.headers.get('x-vercel-forwarded-for');
+  if (platform) return normalizeIp(platform.split(',')[0]);
   const real = req.headers.get('x-real-ip');
   if (real) return normalizeIp(real);
   const forwarded = req.headers.get('x-forwarded-for');
