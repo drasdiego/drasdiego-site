@@ -6,24 +6,27 @@ const inter = Inter({ subsets: ['latin'], variable: '--font-inter', display: 'sw
 const spaceGrotesk = Space_Grotesk({ subsets: ['latin'], variable: '--font-space-grotesk', display: 'swap' });
 const fontVars = `${inter.variable} ${spaceGrotesk.variable}`;
 
+const SITE_TITLE = 'Diego Arruda | Engenharia de Software, Dados e IA';
+const SITE_DESCRIPTION =
+  'Desenvolvimento de software com visão de operação. Trajetória, projetos e formação de Diego Arruda em engenharia de software, dados e IA aplicada.';
+
 export const metadata: Metadata = {
   metadataBase: new URL('https://www.drasdiego.com.br'),
-  title: 'Diego Arruda | Engenharia de Software',
-  description:
-    'Desenvolvimento de software com visão de operação. Conheça a trajetória, os projetos e a formação de Diego Arruda em Engenharia de Software, dados e IA aplicada.',
+  title: SITE_TITLE,
+  description: SITE_DESCRIPTION,
   keywords: ['Diego Arruda', 'Dados', 'Data Science', 'Inteligência Artificial', 'Analytics', 'Engenharia de Software', 'Power BI', 'SQL', 'Python'],
   authors: [{ name: 'Diego Arruda', url: 'https://www.linkedin.com/in/drasdiego/' }],
   icons: { icon: '/favicon.svg' },
   alternates: { canonical: 'https://www.drasdiego.com.br' },
   openGraph: {
-    title: 'Diego Arruda | Engenharia de Software',
-    description: 'Desenvolvimento de software com visão de operação. Projetos, experiência, dados e IA aplicada.',
+    title: SITE_TITLE,
+    description: SITE_DESCRIPTION,
     type: 'website',
     locale: 'pt_BR',
     url: 'https://www.drasdiego.com.br',
     siteName: 'Diego Arruda',
   },
-  twitter: { card: 'summary_large_image', title: 'Diego Arruda | Engenharia de Software' },
+  twitter: { card: 'summary_large_image', title: SITE_TITLE, description: SITE_DESCRIPTION },
 };
 
 export const viewport: Viewport = {
