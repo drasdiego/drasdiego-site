@@ -64,7 +64,7 @@ const PT: SiteContent = {
   },
   traj: {
     idx: '01', eyebrow: 'Trajetória',
-    title: 'Uma evolução intencional. Da operação ao código.',
+    title: 'Trajetória de operações a engenharia de software, dados e IA.',
     sub: 'Minha transição para dados não começou do zero. É o resultado de anos resolvendo problemas reais com processos, indicadores e decisões críticas.',
     growthTitle: 'Foco profissional', growthSpan: 'operação → dados & IA',
     growthLegend: ['Operações & negócio', 'Dados, IA & engenharia'],
@@ -94,7 +94,7 @@ const PT: SiteContent = {
   },
   data: {
     idx: '03', eyebrow: 'Dados & Inteligência Artificial',
-    title: 'O ponto onde negócio vira inteligência.',
+    title: 'Dados e IA: onde o negócio vira inteligência.',
     sub: 'Acredito que dados servem para resolver problemas reais de pessoas. Uno visão operacional, análise técnica e IA para gerar decisões melhores.',
     caps: [
       { ic: 'db', h: 'Engenharia de dados aplicada', p: 'SQL, PostgreSQL e modelagem para transformar dados brutos em base confiável.' },
@@ -116,7 +116,7 @@ const PT: SiteContent = {
   },
   tech: {
     idx: '05', eyebrow: 'Tecnologias',
-    title: 'Ferramentas que uso para construir.',
+    title: 'Tecnologias de dados, código e IA que uso para construir.',
     sub: 'Um stack em expansão constante, centrado em dados, código e inteligência artificial.',
     cats: techCatsPT,
     allLabel: 'Todas as Ferramentas',
@@ -180,7 +180,7 @@ const EN: SiteContent = {
   },
   traj: {
     idx: '01', eyebrow: 'Journey',
-    title: 'An intentional evolution. From operations to code.',
+    title: 'Career path from operations to software engineering, data and AI.',
     sub: "My move into data didn't start from zero. It's the result of years solving real problems with processes, metrics and critical decisions.",
     growthTitle: 'Professional focus', growthSpan: 'operations → data & AI',
     growthLegend: ['Operations & business', 'Data, AI & engineering'],
@@ -210,7 +210,7 @@ const EN: SiteContent = {
   },
   data: {
     idx: '03', eyebrow: 'Data & Artificial Intelligence',
-    title: 'Where business becomes intelligence.',
+    title: 'Data and AI: where business becomes intelligence.',
     sub: 'I believe data exists to solve real human problems. I blend operational insight, technical analysis and AI to drive better decisions.',
     caps: [
       { ic: 'db', h: 'Applied data engineering', p: 'SQL, PostgreSQL and modeling to turn raw data into a reliable foundation.' },
@@ -232,7 +232,7 @@ const EN: SiteContent = {
   },
   tech: {
     idx: '05', eyebrow: 'Stack',
-    title: 'The tools I build with.',
+    title: 'Data, code and AI technologies I build with.',
     sub: 'A constantly expanding stack centered on data, code and artificial intelligence.',
     cats: techCatsEN,
     allLabel: 'All Tools',
