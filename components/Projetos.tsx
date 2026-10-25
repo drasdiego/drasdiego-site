@@ -16,7 +16,7 @@ export function Projetos({ lang }: { lang: Lang }) {
             <h3>{d.projectName}</h3><p>{d.projectDescription}</p>
             <dl className="project-facts">
               <div><dt>{d.application}</dt><dd>{d.applicationDescription}</dd></div>
-              <div><dt>{d.technologies}</dt><dd>Next.js, TypeScript, Gemini API</dd></div>
+              <div><dt>{d.technologies}</dt><dd>Next.js, TypeScript, Claude API</dd></div>
             </dl>
             <details className="project-decisions">
               <summary>{d.decisions}<span aria-hidden="true">+</span></summary>

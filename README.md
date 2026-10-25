@@ -5,7 +5,7 @@ Código do portfólio profissional de Diego Arruda, publicado em [www.drasdiego.
 ## O que o site tem
 
 - Versões em português e inglês, com tema claro como padrão e opção de alternar para o escuro.
-- Assistente de carreira com IA, por texto (Claude, com Gemini como reserva) e por voz (Google Gemini). Quando a IA está indisponível, ele responde a partir de uma base de conhecimento local, sem quebrar a conversa.
+- Assistente de carreira com IA, por texto (Claude, com Gemini como reserva opcional), com entrada de perguntas por microfone no navegador. Quando a IA está indisponível, ele responde a partir de uma base de conhecimento local, sem quebrar a conversa.
 - Qualificações e certificados lidos de uma planilha pública do Google Sheets, com uma lista local como reserva.
 - Metadados para busca e compartilhamento: `sitemap`, `robots` e imagem Open Graph.
 
@@ -21,7 +21,7 @@ Código do portfólio profissional de Diego Arruda, publicado em [www.drasdiego.
 
 | Pasta | Conteúdo |
 |---|---|
-| `app/` | Páginas e rotas. `app/api/chat` e `app/api/tts` conectam o assistente ao Gemini. |
+| `app/` | Páginas e rotas. `app/api/chat` conecta o assistente ao Claude, com o Gemini como reserva opcional. |
 | `components/` | Seções do site e o painel do assistente. |
 | `hooks/` | Hooks de interface (seção ativa, rolagem, qualificações). |
 | `lib/` | Conteúdo, base de conhecimento do assistente e proteções das rotas de IA. |
@@ -37,7 +37,7 @@ cp .env.example .env.local
 npm run dev
 ```
 
-O site abre em `http://localhost:3000`. Sem chave do Gemini, o assistente funciona com a base local.
+O site abre em `http://localhost:3000`. Sem chaves de IA, o assistente funciona com a base local.
 
 Verificações:
 
@@ -57,10 +57,10 @@ npm run build
 
 ## Segurança das rotas de IA
 
-As rotas públicas de chat e voz podem gerar custo e consumir cota, por isso têm proteções:
+A rota pública do chat pode gerar custo e consumir cota, por isso têm proteções:
 
 - Aceitam apenas requisições vindas do domínio do site.
-- Limite por IP: 20 perguntas e 20 pedidos de voz a cada 10 minutos.
+- Limite por IP: 20 perguntas a cada 10 minutos.
 - Limites de tamanho da pergunta, do histórico, da resposta e do corpo da requisição.
 - Prazo máximo por tentativa, com troca automática de modelo e, no fim, resposta da base local.
 - Logs sem o texto das perguntas e sem a chave.

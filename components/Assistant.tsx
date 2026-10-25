@@ -4,16 +4,13 @@ import { Fragment, useEffect, useId, useRef, useState } from 'react';
 import type { Lang } from '@/types';
 import type { SiteContent } from '@/lib/content';
 import { ICONS } from '@/lib/icons';
-import { MAX_HISTORY_ITEM_CHARS, MAX_QUESTION_CHARS, answer, primeAudio, stripInterruptedNote, streamAssistant, streamSpeech } from '@/lib/assistant-kb';
-import type { SpeechController } from '@/lib/assistant-kb';
+import { MAX_HISTORY_ITEM_CHARS, MAX_QUESTION_CHARS, answer, stripInterruptedNote, streamAssistant } from '@/lib/assistant-kb';
 
 interface Message {
   role: 'bot' | 'user';
   text: string;
   fallback?: boolean;
 }
-
-type AudioStatus = 'idle' | 'loading' | 'playing';
 
 /* Minimal typings for the Web Speech API. The standard DOM lib does not
    ship these, and the API is exposed as SpeechRecognition (standard) or
@@ -61,7 +58,6 @@ export function Assistant({ t, lang }: { t: SiteContent; lang: Lang }) {
   const A = t.asst;
   const [open, setOpen] = useState(false);
   const openRef = useRef(false);
-  const playbackSessionRef = useRef(0);
   const [input, setInput] = useState('');
   const [typing, setTyping] = useState(false);
   const [msgs, setMsgs] = useState<Message[]>([{ role: 'bot', text: A.greet }]);
@@ -81,28 +77,16 @@ export function Assistant({ t, lang }: { t: SiteContent; lang: Lang }) {
   const titleId = useId();
   currentLangRef.current = lang;
 
-  // Voice playback state. `audioIdx` is the index of the message being
-  // spoken; `audioStatus` tracks loading vs playing for that message.
-  const [audioIdx, setAudioIdx] = useState<number | null>(null);
-  const [audioStatus, setAudioStatus] = useState<AudioStatus>('idle');
-  // Streaming audio player for the current answer. A token invalidates stale
-  // callbacks (from a playback that has since been stopped or superseded).
-  const audioPlayerRef = useRef<SpeechController | null>(null);
-  const playTokenRef = useRef(0);
-
   // Voice input (speech-to-text) state.
   const [sttSupported, setSttSupported] = useState(false);
   const [recording, setRecording] = useState(false);
   const recognitionRef = useRef<SpeechRecognitionLike | null>(null);
-  // When a question comes from voice, we auto-play the spoken answer.
-  // This holds the text of the answer pending auto-play.
-  const [pendingSpeak, setPendingSpeak] = useState<{ text: string; lang: Lang; token: number; session: number } | null>(null);
 
   // Set when the current capture should be discarded (the user tapped the mic
   // to cancel), so onend does not send a half-spoken question.
   const cancelledRef = useRef(false);
 
-  // Discreet, self-dismissing status message (mic permission, audio failure).
+  // Discreet, self-dismissing status message (mic permission).
   const [notice, setNotice] = useState<string | null>(null);
   const noticeTimerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
 
@@ -112,54 +96,6 @@ export function Assistant({ t, lang }: { t: SiteContent; lang: Lang }) {
     noticeTimerRef.current = setTimeout(() => setNotice(null), 4500);
   }
 
-  function stopAudio() {
-    playTokenRef.current += 1; // invalidate any in-flight playback callbacks
-    if (audioPlayerRef.current) {
-      audioPlayerRef.current.stop();
-      audioPlayerRef.current = null;
-    }
-    setAudioIdx(null);
-    setAudioStatus('idle');
-  }
-
-  // Streams the answer as a single synthesis played gaplessly: audio starts as
-  // soon as the first bytes arrive, with one continuous, consistent voice.
-  // `onDone` fires when playback finished or could not play (re-arms the mic in
-  // voice mode). A manual "Listen" click passes no callback.
-  function toggleSpeak(i: number, text: string, onDone?: () => void) {
-    if (!openRef.current) return;
-    // Clicking the active message toggles it off.
-    if (audioIdx === i && (audioStatus === 'playing' || audioStatus === 'loading')) {
-      stopAudio();
-      return;
-    }
-
-    stopAudio();
-    const token = playTokenRef.current;
-    setAudioIdx(i);
-    setAudioStatus('loading');
-
-    const finish = () => {
-      if (token !== playTokenRef.current) return;
-      audioPlayerRef.current = null;
-      setAudioIdx(null);
-      setAudioStatus('idle');
-      onDone?.();
-    };
-
-    audioPlayerRef.current = streamSpeech(stripInterruptedNote(text), lang, {
-      onPlaying: () => {
-        if (token === playTokenRef.current) setAudioStatus('playing');
-      },
-      onEnded: finish,
-      onError: () => {
-        if (token !== playTokenRef.current) return;
-        notify(lang === 'en' ? 'Audio is unavailable right now.' : 'Áudio indisponível no momento.');
-        finish();
-      },
-    });
-  }
-
   // reset greeting when language changes
   useEffect(() => {
     requestTokenRef.current += 1;
@@ -167,18 +103,16 @@ export function Assistant({ t, lang }: { t: SiteContent; lang: Lang }) {
     requestControllerRef.current = null;
     sendingRef.current = false;
     setTyping(false);
-    setPendingSpeak(null);
     setAnnouncement('');
     setInput('');
     setNotice(null);
     if (noticeTimerRef.current) clearTimeout(noticeTimerRef.current);
     setMsgs([{ role: 'bot', text: t.asst.greet }]);
-    stopAudio();
     stopVoice();
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [lang]);
 
-  // Release audio and microphone resources when the component unmounts.
+  // Release microphone resources when the component unmounts.
   useEffect(() => {
     mountedRef.current = true;
     return () => {
@@ -186,9 +120,7 @@ export function Assistant({ t, lang }: { t: SiteContent; lang: Lang }) {
       requestTokenRef.current += 1;
       requestControllerRef.current?.abort();
       requestControllerRef.current = null;
-      playTokenRef.current += 1;
       cancelledRef.current = true;
-      audioPlayerRef.current?.stop();
       const recognition = recognitionRef.current;
       if (recognition) {
         recognition.onresult = null;
@@ -230,9 +162,6 @@ export function Assistant({ t, lang }: { t: SiteContent; lang: Lang }) {
 
   function closeAssistant() {
     openRef.current = false;
-    playbackSessionRef.current += 1;
-    setPendingSpeak(null);
-    stopAudio();
     stopVoice();
     setOpen(false);
   }
@@ -242,10 +171,7 @@ export function Assistant({ t, lang }: { t: SiteContent; lang: Lang }) {
       openAssistant();
       const question = event instanceof CustomEvent ? event.detail?.question : undefined;
       if (typeof question === 'string' && question.trim()) {
-        playbackSessionRef.current += 1;
         stopVoice();
-        stopAudio();
-        setPendingSpeak(null);
         setInput(question.slice(0, MAX_QUESTION_CHARS));
         inputRef.current?.focus();
       }
@@ -299,12 +225,11 @@ export function Assistant({ t, lang }: { t: SiteContent; lang: Lang }) {
     });
   }
 
-  async function send(q?: string, speak = false) {
+  async function send(q?: string) {
     const question = (q ?? input).trim().slice(0, MAX_QUESTION_CHARS);
     if (!question || sendingRef.current) return;
     sendingRef.current = true;
     const token = ++requestTokenRef.current;
-    const playbackSession = playbackSessionRef.current;
     const controller = new AbortController();
     requestControllerRef.current = controller;
     const requestLang = lang;
@@ -312,8 +237,6 @@ export function Assistant({ t, lang }: { t: SiteContent; lang: Lang }) {
       && token === requestTokenRef.current
       && currentLangRef.current === requestLang;
     stopVoice();
-    stopAudio();
-    setPendingSpeak(null);
     setAnnouncement('');
     // Recent history gives the assistant memory of the conversation so far.
     const history = msgs.slice(-8).map((m) => ({ role: m.role, text: stripInterruptedNote(m.text).slice(0, MAX_HISTORY_ITEM_CHARS) }));
@@ -339,14 +262,11 @@ export function Assistant({ t, lang }: { t: SiteContent; lang: Lang }) {
       full = answer(question, lang);
       fromLocal = true;
     }
-    // Normalize the bot bubble to the final text (so auto-play can match it).
+    // Normalize the bot bubble to the final text .
     upsertBotMessage(full, fromLocal);
     sendingRef.current = false;
     setTyping(false);
     setAnnouncement(fromLocal ? `${full} ${fallbackNote(lang)}` : full);
-    if (speak && full && openRef.current && playbackSession === playbackSessionRef.current) {
-      setPendingSpeak({ text: full, lang: requestLang, token, session: playbackSession });
-    }
   }
 
   // Feature-detect speech recognition on mount (client-only) to avoid
@@ -354,20 +274,6 @@ export function Assistant({ t, lang }: { t: SiteContent; lang: Lang }) {
   useEffect(() => {
     setSttSupported(getSpeechRecognition() !== null);
   }, []);
-
-  // Auto-play the spoken answer once the matching bot message is in the list.
-  // Playback just happens; the mic is never re-armed automatically.
-  useEffect(() => {
-    if (pendingSpeak == null || !openRef.current || pendingSpeak.session !== playbackSessionRef.current
-      || pendingSpeak.lang !== lang || pendingSpeak.token !== requestTokenRef.current) return;
-    const idx = msgs.length - 1;
-    const last = msgs[idx];
-    if (last && last.role === 'bot' && last.text === pendingSpeak.text) {
-      toggleSpeak(idx, pendingSpeak.text);
-      setPendingSpeak(null);
-    }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [msgs, pendingSpeak]);
 
   // Cancel the current capture (if any) and stop showing it as recording.
   function stopVoice() {
@@ -388,8 +294,6 @@ export function Assistant({ t, lang }: { t: SiteContent; lang: Lang }) {
   function startListening() {
     const SR = getSpeechRecognition();
     if (!SR || recognitionRef.current || sendingRef.current) return;
-    // Stop any answer that is playing so the mic does not capture it.
-    stopAudio();
     cancelledRef.current = false;
 
     const rec = new SR();
@@ -438,7 +342,7 @@ export function Assistant({ t, lang }: { t: SiteContent; lang: Lang }) {
         return;
       }
       const q = (finalText || lastInterim).trim();
-      if (q) send(q, true);
+      if (q) send(q);
     };
 
     recognitionRef.current = rec;
@@ -452,9 +356,8 @@ export function Assistant({ t, lang }: { t: SiteContent; lang: Lang }) {
   }
 
   // Mic button: tap to talk. While recording, a tap cancels. Otherwise a tap
-  // starts one capture (stopping any answer that is currently playing).
+  // starts one capture.
   function micTap() {
-    primeAudio(); // unlock audio on this user gesture
     if (recording) {
       stopVoice();
       setInput('');
@@ -492,31 +395,10 @@ export function Assistant({ t, lang }: { t: SiteContent; lang: Lang }) {
 
           <div className="asst-body" ref={bodyRef} role="region" aria-label={lang === 'en' ? 'Conversation' : 'Conversa'} aria-busy={typing}>
             {msgs.map((m, i) => {
-              const isActive = audioIdx === i;
-              const status: AudioStatus = isActive ? audioStatus : 'idle';
-              const listenLabel = lang === 'en' ? 'Listen' : 'Ouvir';
-              const stopLabel = lang === 'en' ? 'Stop' : 'Parar';
               return (
                 <Fragment key={i}>
                   <div className={`msg ${m.role}`}>
                     {m.text}
-                    {m.role === 'bot' && m.text.trim() !== '' && (
-                      <button
-                        className={`msg-tts${status === 'playing' ? ' is-playing' : ''}`}
-                        onClick={() => { primeAudio(); toggleSpeak(i, m.text); }}
-                        disabled={status === 'loading' || (typing && i === msgs.length - 1)}
-                        aria-label={status === 'playing' ? stopLabel : listenLabel}
-                      >
-                        <span
-                          className={status === 'loading' ? 'spin' : undefined}
-                          dangerouslySetInnerHTML={{
-                            __html: status === 'playing' ? ICONS.stop : ICONS.volume,
-                          }}
-                          style={{ display: 'flex', width: 13, height: 13 }}
-                        />
-                        {status === 'loading' ? '…' : status === 'playing' ? stopLabel : listenLabel}
-                      </button>
-                    )}
                   </div>
                   {m.role === 'bot' && m.fallback && m.text.trim() !== '' && !(typing && i === msgs.length - 1) && (
                     <div className="msg-note">{fallbackNote(lang)}</div>

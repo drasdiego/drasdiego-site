@@ -31,9 +31,9 @@ const CODE_SAMPLES: Record<number, Token[][]> = {
     ['out = kpi[kpi.sla > kpi.sla.', ['c-fn', 'quantile'], '(', ['c-num', '0.95'], ')]'],
   ],
   2: [
-    [['c-com', '// assistente de IA (Gemini)']],
+    [['c-com', '// assistente de IA (Claude)']],
     [['c-key', 'const'], ' res = ', ['c-key', 'await'], ' ai.', ['c-fn', 'generate'], '({'],
-    ['  model: ', ['c-str', "'gemini'"], ','],
+    ['  model: ', ['c-str', "'claude'"], ','],
     ['  context: perfilDiego,'],
     ['  query: pergunta,'],
     ['})'],
