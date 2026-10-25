@@ -269,3 +269,12 @@ export async function fetchQualifications(signal?: AbortSignal): Promise<Qualifi
   const text = await res.text();
   return parseGviz(text);
 }
+
+export async function fetchQualificationsServer(revalidateSeconds = 600): Promise<Qualification[]> {
+  const url = `https://docs.google.com/spreadsheets/d/${SHEET_ID}/gviz/tq?tqx=out:json&headers=1&gid=${SHEET_GID}`;
+  const res = await fetch(url, { next: { revalidate: revalidateSeconds }, signal: AbortSignal.timeout(8000) });
+  if (!res.ok) throw new Error(`sheet request failed: ${res.status}`);
+  const declared = Number(res.headers.get('content-length') || 0);
+  if (declared > MAX_PAYLOAD_CHARS * 2) throw new Error('gviz payload too large');
+  return parseGviz(await res.text());
+}

@@ -1,11 +1,11 @@
 import { useEffect, useState } from 'react';
 import type { Qualification, SheetStatus } from '@/types';
 import { fetchQualifications, QUAL_SEED } from '@/services/sheets';
+import { useInitialQualifications } from './qualificationsContext';
 
-/** Live qualifications from the public Google Sheet, with a local fallback.
-    Re-fetches on every mount (cache-busted) so sheet edits appear without a redeploy. */
 export function useQualifications(): { items: Qualification[]; status: SheetStatus } {
-  const [items, setItems] = useState<Qualification[]>(QUAL_SEED);
+  const initial = useInitialQualifications();
+  const [items, setItems] = useState<Qualification[]>(initial && initial.length ? initial : QUAL_SEED);
   const [status, setStatus] = useState<SheetStatus>('loading');
 
   useEffect(() => {
@@ -20,15 +20,11 @@ export function useQualifications(): { items: Qualification[]; status: SheetStat
           setItems(data);
           setStatus('live');
         } else {
-          setItems(QUAL_SEED);
           setStatus('fallback');
         }
       })
       .catch(() => {
-        if (alive) {
-          setItems(QUAL_SEED);
-          setStatus('fallback');
-        }
+        if (alive) setStatus('fallback');
       })
       .finally(() => clearTimeout(timeout));
 
