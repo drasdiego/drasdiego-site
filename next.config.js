@@ -30,6 +30,9 @@ const nextConfig = {
     // Lint runs via `npm run lint`; don't block production builds on warnings.
     ignoreDuringBuilds: true,
   },
+  experimental: {
+    globalNotFound: true,
+  },
   async headers() {
     return [{ source: '/:path*', headers: securityHeaders }];
   },
