@@ -38,7 +38,7 @@ const NORMAL_FINISH = new Set(['STOP', 'end_turn', 'stop_sequence']);
 const MAX_HISTORY = 8;
 const MAX_BODY_CHARS = 64_000;
 const MAX_BODY_BYTES = 192_000;
-const MAX_OUTPUT_TOKENS = 1500;
+const MAX_OUTPUT_TOKENS = 900;
 const FIRST_TOKEN_TIMEOUT_MS = 8_000;
 const TOTAL_TIMEOUT_MS = 28_000;
 const RATE_LIMIT = 20;
@@ -90,6 +90,7 @@ function systemPrompt(lang: Lang, local: string, now: Date): string {
 }
 
 function textResponse(text: string, reason?: string): Response {
+  if (reason && reason !== 'no_question') console.info('Portfolio chat local answer', { reason });
   const stream = new ReadableStream<Uint8Array>({
     start(controller) {
       controller.enqueue(new TextEncoder().encode(text));
@@ -101,7 +102,6 @@ function textResponse(text: string, reason?: string): Response {
     'Cache-Control': 'no-store',
     'X-Assistant-Mode': 'fallback',
   };
-  if (reason) headers['X-Assistant-Reason'] = reason;
   return new Response(stream, { headers });
 }
 
@@ -153,6 +153,9 @@ export async function POST(req: Request) {
   if (!isAllowedOrigin(req)) {
     return errorResponse(403, 'origin_not_allowed');
   }
+  if (!(req.headers.get('content-type') ?? '').toLowerCase().startsWith('application/json')) {
+    return errorResponse(415, 'unsupported_media_type');
+  }
 
   let question = '';
   let lang: Lang = 'pt';
@@ -163,7 +166,7 @@ export async function POST(req: Request) {
       return errorResponse(413, 'payload_too_large');
     }
     const body = JSON.parse(raw);
-    question = String(body?.question ?? '').slice(0, MAX_QUESTION_CHARS).trim();
+    question = (typeof body?.question === 'string' ? body.question : '').slice(0, MAX_QUESTION_CHARS).trim();
     lang = body?.lang === 'en' ? 'en' : 'pt';
     if (Array.isArray(body?.history)) {
       history = body.history
@@ -390,7 +393,6 @@ export async function POST(req: Request) {
       'Content-Type': 'text/plain; charset=utf-8',
       'Cache-Control': 'no-store',
       'X-Assistant-Mode': 'hybrid',
-      'X-Assistant-Model': usedModel,
     },
   });
 }

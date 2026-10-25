@@ -59,13 +59,14 @@ npm run build
 
 A rota pública do chat pode gerar custo e consumir cota, por isso têm proteções:
 
-- Aceitam apenas requisições vindas do domínio do site.
+- Conferem os cabeçalhos Origin e Referer, o que bloqueia o uso a partir de outros sites em navegadores. Scripts fora do navegador podem forjar esses cabeçalhos, então o controle real contra abuso é a regra de limite de requisições do firewall da hospedagem e o limite mensal de gasto na conta do provedor de IA.
+- Aceitam apenas requisições com Content-Type JSON.
 - Limite por IP: 20 perguntas a cada 10 minutos.
 - Limites de tamanho da pergunta, do histórico, da resposta e do corpo da requisição.
 - Prazo máximo por tentativa, com troca automática de modelo e, no fim, resposta da base local.
 - Logs sem o texto das perguntas e sem a chave.
 
-O limite por IP vale por instância do servidor e não substitui uma regra de rate limit no firewall da hospedagem.
+O limite por IP no código vale por instância do servidor e não substitui a regra de rate limit no firewall da hospedagem.
 
 ## Autor
 

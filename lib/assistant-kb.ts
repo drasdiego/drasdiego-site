@@ -83,7 +83,7 @@ export function stripInterruptedNote(text: string): string {
 }
 
 export const MAX_QUESTION_CHARS = 800;
-export const MAX_HISTORY_ITEM_CHARS = 3000;
+export const MAX_HISTORY_ITEM_CHARS = 1500;
 
 export interface ChatTurn {
   role: 'user' | 'bot';

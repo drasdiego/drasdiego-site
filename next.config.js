@@ -5,7 +5,6 @@ const contentSecurityPolicy = [
   "style-src 'self' 'unsafe-inline'",
   "img-src 'self' data: blob:",
   "font-src 'self' data:",
-  "media-src 'self' blob:",
   "connect-src 'self' https://docs.google.com",
   "frame-src 'none'",
   "object-src 'none'",
@@ -24,6 +23,7 @@ const securityHeaders = [
 
 const nextConfig = {
   reactStrictMode: true,
+  poweredByHeader: false,
   // Course/qualification data is fetched at runtime from Google Sheets,
   // so content updates never require a rebuild or redeploy.
   eslint: {

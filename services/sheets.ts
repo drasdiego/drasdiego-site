@@ -90,15 +90,23 @@ function buildColMap(cols: GVizCol[]): ColMap {
   return map;
 }
 
+const MAX_CELL_CHARS = 600;
+const MAX_ROWS = 300;
+const MAX_PAYLOAD_CHARS = 1_000_000;
+
+function clip(value: string): string {
+  return value.length > MAX_CELL_CHARS ? value.slice(0, MAX_CELL_CHARS) : value;
+}
+
 function cellVal(c: GVizCell | null | undefined): string {
   if (!c) return '';
-  if (c.f != null && c.f !== '') return String(c.f).trim();
+  if (c.f != null && c.f !== '') return clip(String(c.f)).trim();
   if (c.v == null) return '';
   if (typeof c.v === 'string' && /^Date\(/.test(c.v)) {
     const m = c.v.match(/Date\((\d+),(\d+),(\d+)/);
     if (m) return `${m[3]}/${parseInt(m[2], 10) + 1}/${m[1]}`;
   }
-  return String(c.v).trim();
+  return clip(String(c.v)).trim();
 }
 
 /* Normalize a free-text date to just the issue/completion YEAR.
@@ -106,12 +114,12 @@ function cellVal(c: GVizCell | null | undefined): string {
    "15/01/2026" → 2026, "Emitido em out de 2024 · Expira em out de 2027" → 2024. */
 export function normalizeDate(raw: string | null | undefined): string {
   if (raw == null) return '';
-  let s = String(raw).trim();
+  let s = clip(String(raw)).trim();
   if (!s) return '';
   s = s.replace(/[·•|–-]?\s*(expira\w*|expires?|v[áa]lid\w*|expira[çc][ãa]o)\b[\s\S]*$/i, '');
   const ym = s.match(/\b(19|20)\d{2}\b/);
   if (ym) return ym[0];
-  return String(raw).trim();
+  return clip(String(raw)).trim();
 }
 
 const HEADER_TITLES = ['curso', 'título', 'titulo', 'course', 'formação', 'formacao', 'nome', 'qualificação', 'qualificacao'];
@@ -139,12 +147,13 @@ export function safeCertificateUrl(raw: string | null | undefined): string {
 }
 
 export function parseGviz(text: string): Qualification[] {
+  if (text.length > MAX_PAYLOAD_CHARS) throw new Error('gviz payload too large');
   const start = text.indexOf('{');
   const end = text.lastIndexOf('}');
   if (start === -1 || end === -1) throw new Error('invalid gviz payload');
   const json = JSON.parse(text.slice(start, end + 1)) as GVizResponse;
   const cols = json.table?.cols ?? [];
-  const rows = json.table?.rows ?? [];
+  const rows = (json.table?.rows ?? []).slice(0, MAX_ROWS);
   const map = buildColMap(cols);
   const out: Qualification[] = [];
   rows.forEach((r, i) => {
