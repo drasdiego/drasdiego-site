@@ -83,11 +83,11 @@ const PT: SiteContent = {
   exp: {
     idx: '02', eyebrow: 'Experiência',
     title: 'Setores regulados, decisões de alto impacto.',
-    sub: 'Saúde, telecom, logística, varejo, marketplace, EdTech, fintech e SaaS. Sempre conectando estratégia, operação e dados.',
+    sub: 'Saúde, logística, marketplace, fintech e SaaS. Sempre conectando estratégia, operação e dados.',
     rows: [
       { yr: 'dez/2024 · atual', role: 'Analista de Ouvidoria (Ombudsman Analyst)', co: 'Nubank', desc: 'Acompanho manifestações públicas e canais regulatórios, com foco na resolução de casos complexos, rastreabilidade e conformidade. Investigo causas raiz e falhas de processo com outras áreas. Produzo análises e relatórios a partir de indicadores e feedbacks de clientes para apoiar melhorias na operação.', tag: 'Fintech' },
       { yr: 'fev/2024 · dez/2024', role: 'Analista de Suporte Financeiro', co: 'RD Station', desc: 'Analisei dados financeiros e operacionais para identificar padrões, inconsistências e recorrências. Desenvolvi e acompanhei dashboards e indicadores. Em squads com finanças, operações e tecnologia, usei essas análises para melhorar fluxos e a rastreabilidade das tratativas.', tag: 'SaaS' },
-      { yr: 'jul/2023 · fev/2024', role: 'Analista de Operações · temporário', co: 'isaac', desc: 'Coletei e organizei dados operacionais para relatórios e acompanhamento de SLAs e KPIs. Identifiquei gargalos e recorrências para apoiar ações preventivas. Dei suporte analítico às rotinas financeiras e operacionais, consolidando informações em planilhas e relatórios.', tag: 'EdTech' },
+      { yr: 'jul/2023 · fev/2024', role: 'Analista de Operações · temporário', co: 'isaac', desc: 'Coletei e organizei dados operacionais para relatórios e acompanhamento de SLAs e KPIs. Identifiquei gargalos e recorrências para apoiar ações preventivas. Dei suporte analítico às rotinas financeiras e operacionais, consolidando informações em planilhas e relatórios.', tag: 'Financeiro' },
       { yr: 'jun/2020 · out/2022', role: 'Supervisor de Operações', co: 'MadeiraMadeira', desc: 'Usei SQL, Excel e Google Sheets para acompanhar backlog, SLA, FCR, resolutividade e TMA. Desenvolvi dashboards e relatórios gerenciais e liderei equipe remota com feedbacks, monitorias de qualidade e PDIs. Participei dos projetos Madeira Decora e Iguanafix, apoiando melhorias nos fluxos operacionais.', tag: 'Marketplace' },
       { yr: '2008 · 2020', role: 'Qualidade & operações', co: 'Electrolux · Saúde · Rumo', desc: 'Pós-venda, fiscal, auditorias, indicadores, SAP e gestão da qualidade em ambientes regulados.', tag: 'Multi-setor' },
     ],
@@ -199,11 +199,11 @@ const EN: SiteContent = {
   exp: {
     idx: '02', eyebrow: 'Experience',
     title: 'Regulated sectors, high-impact decisions.',
-    sub: 'Healthcare, telecom, logistics, retail, marketplace, EdTech, fintech and SaaS. Always connecting strategy, operations and data.',
+    sub: 'Healthcare, logistics, marketplace, fintech and SaaS. Always connecting strategy, operations and data.',
     rows: [
       { yr: 'Dec 2024 · present', role: 'Ombudsman Analyst', co: 'Nubank', desc: 'I handle complaints on public platforms and regulatory channels, focusing on complex cases, traceability and compliance. I investigate root causes and process failures with other teams. I use metrics and customer feedback to produce analyses and reports that support operational improvements.', tag: 'Fintech' },
       { yr: 'Feb 2024 · Dec 2024', role: 'Financial Support Analyst', co: 'RD Station', desc: 'I analyzed financial and operational data to identify patterns, inconsistencies and recurring issues. I developed and tracked dashboards and metrics. Working with finance, operations and technology squads, I used these analyses to improve workflows and case traceability.', tag: 'SaaS' },
-      { yr: 'Jul 2023 · Feb 2024', role: 'Operations Analyst · temporary', co: 'isaac', desc: 'I collected and organized operational data for reports and SLA and KPI monitoring. I identified bottlenecks and recurring issues to support preventive action. I provided analytical support for financial and operational routines, consolidating information in spreadsheets and reports.', tag: 'EdTech' },
+      { yr: 'Jul 2023 · Feb 2024', role: 'Operations Analyst · temporary', co: 'isaac', desc: 'I collected and organized operational data for reports and SLA and KPI monitoring. I identified bottlenecks and recurring issues to support preventive action. I provided analytical support for financial and operational routines, consolidating information in spreadsheets and reports.', tag: 'Finance' },
       { yr: 'Jun 2020 · Oct 2022', role: 'Operations Supervisor', co: 'MadeiraMadeira', desc: 'I used SQL, Excel and Google Sheets to track backlog, SLA, FCR, resolution rates and AHT. I developed dashboards and management reports and led a remote team through feedback, quality reviews and individual development plans. I contributed to Madeira Decora and Iguanafix, supporting operational workflow improvements.', tag: 'Marketplace' },
       { yr: '2008 · 2020', role: 'Quality & operations', co: 'Electrolux · Healthcare · Rumo', desc: 'After-sales, fiscal, audits, metrics, SAP and quality management in regulated environments.', tag: 'Multi-sector' },
     ],
