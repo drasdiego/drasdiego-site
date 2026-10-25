@@ -1,6 +1,7 @@
 import type { Lang } from '@/types';
 import { MAX_HISTORY_ITEM_CHARS, MAX_QUESTION_CHARS, answer, interruptedNote } from '@/lib/assistant-kb';
 import { DIEGO_CONTEXT } from '@/lib/public-context';
+import { careerTimeBlock } from '@/lib/career-time';
 import { isAllowedOrigin, readBodyLimited, takeToken } from '@/lib/api-guard';
 
 export const runtime = 'nodejs';
@@ -35,7 +36,7 @@ interface HistoryItem {
 /* The system prompt now also carries the knowledge base and the most relevant
    local answer for the current question, so the conversation turns themselves
    stay as the natural user/model dialogue (which gives the model memory). */
-function systemPrompt(lang: Lang, local: string): string {
+function systemPrompt(lang: Lang, local: string, now: Date): string {
   const base =
     lang === 'en'
       ? [
@@ -61,6 +62,8 @@ function systemPrompt(lang: Lang, local: string): string {
 
   return [
     base.join(' '),
+    '',
+    careerTimeBlock(now, lang),
     '',
     'BASE DE CONHECIMENTO (Diego Arruda):',
     DIEGO_CONTEXT,
@@ -156,7 +159,7 @@ export async function POST(req: Request) {
   }
 
   const requestBody = JSON.stringify({
-    systemInstruction: { parts: [{ text: systemPrompt(lang, local) }] },
+    systemInstruction: { parts: [{ text: systemPrompt(lang, local, new Date()) }] },
     contents: [
       ...history.map((h) => ({
         role: h.role === 'user' ? 'user' : 'model',
