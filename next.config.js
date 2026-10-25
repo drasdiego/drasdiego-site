@@ -33,6 +33,9 @@ const nextConfig = {
   experimental: {
     globalNotFound: true,
   },
+  async redirects() {
+    return [{ source: '/opengraph-image', destination: '/opengraph-image-35ziq1', permanent: false }];
+  },
   async headers() {
     return [{ source: '/:path*', headers: securityHeaders }];
   },
