@@ -212,6 +212,8 @@ export async function POST(req: Request) {
     model: claudeModel(),
     max_tokens: MAX_OUTPUT_TOKENS,
     stream: true,
+    thinking: { type: 'disabled' },
+    output_config: { effort: 'low' },
     system,
     messages: [
       ...history.map((h) => ({
