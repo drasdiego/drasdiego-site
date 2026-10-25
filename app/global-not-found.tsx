@@ -1,3 +1,4 @@
+import Link from 'next/link';
 import './globals.css';
 import { fontVars } from '@/lib/fonts';
 
@@ -9,7 +10,7 @@ export default function GlobalNotFound() {
       <body>
         <main className="wrap" style={{ padding: '96px 0' }}>
           <h1>Página não encontrada</h1>
-          <p><a href="/">Voltar ao início</a></p>
+          <p><Link href="/">Voltar ao início</Link></p>
         </main>
       </body>
     </html>
