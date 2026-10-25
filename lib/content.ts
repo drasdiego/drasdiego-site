@@ -52,7 +52,7 @@ const PT: SiteContent = {
   nav: { traj: 'Trajetória', exp: 'Experiência', data: 'Dados & IA', proj: 'Projetos', tech: 'Tecnologias', cert: 'Formação', contact: 'Contato' },
   cta: { talk: 'Vamos conversar', resume: 'Trajetória', linkedin: 'LinkedIn', whatsapp: 'WhatsApp', github: 'GitHub' },
   hero: {
-    status: 'Disponível para Dados, IA & Engenharia',
+    status: 'Engenharia de Software, Dados & IA',
     h1a: 'Dos dados à', h1b: 'inteligência', h1c: 'que decide.',
     lead: 'Sou <strong>Diego Arruda</strong>, com 18 anos transformando operação e negócio em decisão. Hoje construo soluções em <strong>Dados, Inteligência Artificial e Engenharia de Software</strong>.',
     metrics: [
@@ -146,7 +146,7 @@ const PT: SiteContent = {
   contact: {
     idx: '07', eyebrow: 'Contato',
     h2: 'Boas ideias começam com boas conexões.',
-    p: 'Construindo minha trajetória em Dados, Inteligência Artificial e Engenharia de Software. Estou sempre disponível para conexões, trocas de conhecimento e aprendizado contínuo.',
+    p: 'Construindo minha trajetória em Dados, Inteligência Artificial e Engenharia de Software. Para conexões profissionais e conversas sobre desenvolvimento, dados e IA aplicada.',
     lk: 'LinkedIn', wa: 'WhatsApp', gh: 'GitHub',
     lines: [
       { ic: 'pin', k: 'Localização', v: 'Balneário Camboriú · SC' },
@@ -168,7 +168,7 @@ const EN: SiteContent = {
   nav: { traj: 'Journey', exp: 'Experience', data: 'Data & AI', proj: 'Projects', tech: 'Stack', cert: 'Education', contact: 'Contact' },
   cta: { talk: "Let's talk", resume: 'Journey', linkedin: 'LinkedIn', whatsapp: 'WhatsApp', github: 'GitHub' },
   hero: {
-    status: 'Open to Data, AI & Engineering roles',
+    status: 'Software Engineering, Data & AI',
     h1a: 'From data to', h1b: 'intelligence', h1c: 'that decides.',
     lead: "I'm <strong>Diego Arruda</strong>, with 18 years turning operations and business into decisions. Today I build solutions across <strong>Data, Artificial Intelligence and Software Engineering</strong>.",
     metrics: [
@@ -262,7 +262,7 @@ const EN: SiteContent = {
   contact: {
     idx: '07', eyebrow: 'Contact',
     h2: 'Great ideas start with great connections.',
-    p: 'For opportunities, partnerships or conversations about data, AI and software engineering. I would love to chat.',
+    p: 'For professional connections and conversations about development, data and applied AI. I would love to chat.',
     lk: 'LinkedIn', wa: 'WhatsApp', gh: 'GitHub',
     lines: [
       { ic: 'pin', k: 'Location', v: 'Balneário Camboriú · Brazil' },

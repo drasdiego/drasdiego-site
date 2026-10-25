@@ -26,7 +26,7 @@ export const PRESENTATION = {
     assistantNote: 'As respostas são geradas por IA e podem conter imprecisões. Os canais de contato estão logo abaixo.',
     experienceTitle: 'Experiência que orienta o código.', experienceSub: 'Entender processos, investigar problemas e trabalhar com decisões que afetam pessoas.',
     moreBackground: 'Ver trajetória e competências', educationTitle: 'Formação acadêmica.', educationSub: 'Aprofundamento técnico apoiado pela experiência profissional.',
-    contactTitle: 'Vamos conversar.', contactDescription: 'Para oportunidades, conexões profissionais ou uma conversa sobre desenvolvimento, dados e IA aplicada.',
+    contactTitle: 'Vamos conversar.', contactDescription: 'Para conexões profissionais ou uma conversa sobre desenvolvimento, dados e IA aplicada.',
     footer: 'Engenharia de Software, dados e IA aplicada.', skip: 'Ir para o conteúdo',
   },
   en: {
@@ -56,7 +56,7 @@ export const PRESENTATION = {
     assistantNote: 'AI-generated answers may contain inaccuracies. Direct contact options are available below.',
     experienceTitle: 'Experience that shapes my code.', experienceSub: 'Understanding processes, investigating problems and working with decisions that affect people.',
     moreBackground: 'Explore my journey and skills', educationTitle: 'Academic background.', educationSub: 'Technical learning grounded in professional experience.',
-    contactTitle: 'Let’s talk.', contactDescription: 'For opportunities, professional connections or a conversation about development, data and applied AI.',
+    contactTitle: 'Let’s talk.', contactDescription: 'For professional connections or a conversation about development, data and applied AI.',
     footer: 'Software Engineering, data and applied AI.', skip: 'Skip to content',
   },
 };

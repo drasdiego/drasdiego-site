@@ -29,7 +29,7 @@
 .asst-body::-webkit-scrollbar { width: 6px; }
 .asst-body::-webkit-scrollbar-thumb { background: var(--border-strong); border-radius: 10px; }
 .msg { max-width: 86%; font-size: 14px; line-height: 1.55; padding: 12px 15px; border-radius: 16px; animation: none; }
-.msg.bot { align-self: flex-start; background: var(--bg-2); border: 1px solid var(--border); border-bottom-left-radius: 5px; color: var(--text); display: flex; flex-direction: column; align-items: flex-start; }
+.msg.bot { white-space: pre-wrap; overflow-wrap: anywhere; min-width: 0; align-self: flex-start; background: var(--bg-2); border: 1px solid var(--border); border-bottom-left-radius: 5px; color: var(--text); display: flex; flex-direction: column; align-items: flex-start; }
 .msg.user { align-self: flex-end; background: var(--accent); color: var(--on-accent); border-bottom-right-radius: 5px; }
 .msg-note { align-self: flex-start; max-width: 86%; margin-top: -8px; padding: 0 4px; font-size: 12px; line-height: 1.45; color: var(--text-3); }
 .asst-typing { align-self: flex-start; display: flex; gap: 4px; padding: 14px 16px; background: var(--bg-2); border: 1px solid var(--border); border-radius: 16px; }
