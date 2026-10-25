@@ -97,6 +97,7 @@ export async function streamAssistant(
   history: ChatTurn[],
   onToken: (soFar: string) => void,
   signal?: AbortSignal,
+  onMode?: (mode: string | null) => void,
 ): Promise<string> {
   const controller = new AbortController();
   const abort = () => controller.abort();
@@ -111,7 +112,11 @@ export async function streamAssistant(
       body: JSON.stringify({ question, lang, history }),
       signal: controller.signal,
     });
-    if (!res.ok || !res.body) return answer(question, lang);
+    if (!res.ok || !res.body) {
+      onMode?.('fallback');
+      return answer(question, lang);
+    }
+    onMode?.(res.headers.get('X-Assistant-Mode'));
 
     const reader = res.body.getReader();
     const decoder = new TextDecoder();

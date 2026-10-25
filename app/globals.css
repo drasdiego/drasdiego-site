@@ -31,6 +31,7 @@
 .msg { max-width: 86%; font-size: 14px; line-height: 1.55; padding: 12px 15px; border-radius: 16px; animation: none; }
 .msg.bot { align-self: flex-start; background: var(--bg-2); border: 1px solid var(--border); border-bottom-left-radius: 5px; color: var(--text); display: flex; flex-direction: column; align-items: flex-start; }
 .msg.user { align-self: flex-end; background: var(--accent); color: var(--on-accent); border-bottom-right-radius: 5px; }
+.msg-note { align-self: flex-start; max-width: 86%; margin-top: -8px; padding: 0 4px; font-size: 12px; line-height: 1.45; color: var(--text-3); }
 .msg-tts { margin-top: 9px; display: inline-flex; align-items: center; gap: 6px; min-height: 44px; padding: 0 10px; border-radius: 13px; border: 1px solid var(--border); background: transparent; color: var(--text-3); font-family: var(--font-body); font-size: 12px; cursor: pointer; transition: color 160ms ease, border-color 160ms ease, transform 120ms var(--ease); }
 .msg-tts:hover { border-color: var(--accent-line); color: var(--accent); }
 .msg-tts:disabled { cursor: default; }

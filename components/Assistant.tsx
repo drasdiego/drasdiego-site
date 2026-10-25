@@ -10,6 +10,7 @@ import type { SpeechController } from '@/lib/assistant-kb';
 interface Message {
   role: 'bot' | 'user';
   text: string;
+  fallback?: boolean;
 }
 
 type AudioStatus = 'idle' | 'loading' | 'playing';
@@ -40,6 +41,12 @@ interface SpeechRecognitionLike {
   stop: () => void;
 }
 type SpeechRecognitionClass = new () => SpeechRecognitionLike;
+
+function fallbackNote(lang: Lang): string {
+  return lang === 'en'
+    ? "Answer from the site's local knowledge base. The AI is unavailable right now."
+    : 'Resposta da base local do site. A IA está indisponível agora.';
+}
 
 function getSpeechRecognition(): SpeechRecognitionClass | null {
   if (typeof window === 'undefined') return null;
@@ -279,15 +286,15 @@ export function Assistant({ t, lang }: { t: SiteContent; lang: Lang }) {
   });
 
   // Replace (or append) the streaming bot message at the end of the list.
-  function upsertBotMessage(text: string) {
+  function upsertBotMessage(text: string, fallback = false) {
     setMsgs((m) => {
       const last = m[m.length - 1];
       if (last && last.role === 'bot') {
         const next = m.slice();
-        next[next.length - 1] = { role: 'bot', text };
+        next[next.length - 1] = { role: 'bot', text, fallback };
         return next;
       }
-      return [...m, { role: 'bot', text }];
+      return [...m, { role: 'bot', text, fallback }];
     });
   }
 
@@ -314,22 +321,28 @@ export function Assistant({ t, lang }: { t: SiteContent; lang: Lang }) {
     setTyping(true);
 
     let full = '';
+    let fromLocal = false;
     try {
       full = await streamAssistant(question, lang, history, (soFar) => {
-        if (isCurrent()) upsertBotMessage(soFar);
-      }, controller.signal);
+        if (isCurrent()) upsertBotMessage(soFar, fromLocal);
+      }, controller.signal, (mode) => {
+        fromLocal = mode === 'fallback';
+      });
     } catch {
       full = '';
     }
 
     if (!isCurrent()) return;
     requestControllerRef.current = null;
-    if (!full) full = answer(question, lang);
+    if (!full) {
+      full = answer(question, lang);
+      fromLocal = true;
+    }
     // Normalize the bot bubble to the final text (so auto-play can match it).
-    upsertBotMessage(full);
+    upsertBotMessage(full, fromLocal);
     sendingRef.current = false;
     setTyping(false);
-    setAnnouncement(full);
+    setAnnouncement(fromLocal ? `${full} ${fallbackNote(lang)}` : full);
     if (speak && full && openRef.current && playbackSession === playbackSessionRef.current) {
       setPendingSpeak({ text: full, lang: requestLang, token, session: playbackSession });
     }
@@ -504,6 +517,9 @@ export function Assistant({ t, lang }: { t: SiteContent; lang: Lang }) {
                       </button>
                     )}
                   </div>
+                  {m.role === 'bot' && m.fallback && m.text.trim() !== '' && !(typing && i === msgs.length - 1) && (
+                    <div className="msg-note">{fallbackNote(lang)}</div>
+                  )}
                 </Fragment>
               );
             })}
