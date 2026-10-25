@@ -93,5 +93,6 @@ export function fillCareerTime(text: string, now: Date, lang: Lang): string {
     .replace('{nubank}', spans.nubank)
     .replace('{rd}', spans.rd)
     .replace('{isaac}', spans.isaac)
-    .replace('{mm}', spans.mm);
+    .replace('{mm}', spans.mm)
+    .replace('{hoje}', dateLabel(now, lang));
 }
