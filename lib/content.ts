@@ -17,7 +17,7 @@ export interface SiteContent {
     bars: TrajBar[]; milestones: Milestone[];
   };
   exp: { idx: string; eyebrow: string; title: string; sub: string; rows: ExpRow[] };
-  data: { idx: string; eyebrow: string; title: string; sub: string; caps: Capability[]; tabs: string[] };
+  data: { idx: string; eyebrow: string; title: string; sub: string; caps: Capability[] };
   proj: { idx: string; eyebrow: string; title: string; sub: string; items: ProjectItem[] };
   tech: { idx: string; eyebrow: string; title: string; sub: string; cats: TechCat[]; allLabel: string; allDesc: string };
   quals: {
@@ -102,7 +102,6 @@ const PT: SiteContent = {
       { ic: 'brain', h: 'Inteligência Artificial', p: 'IA generativa e assistentes próprios com a API do Claude, como o deste site.' },
       { ic: 'flow', h: 'Automação de processos', p: 'Fluxos que eliminam trabalho manual e elevam a eficiência operacional.' },
     ],
-    tabs: ['analise.sql', 'pipeline.py', 'assistant.tsx'],
   },
   proj: {
     idx: '04', eyebrow: 'Projetos',
@@ -218,7 +217,6 @@ const EN: SiteContent = {
       { ic: 'brain', h: 'Artificial Intelligence', p: 'Generative AI and custom assistants with the Claude API, like the one on this site.' },
       { ic: 'flow', h: 'Process automation', p: 'Flows that remove manual work and raise operational efficiency.' },
     ],
-    tabs: ['analysis.sql', 'pipeline.py', 'assistant.tsx'],
   },
   proj: {
     idx: '04', eyebrow: 'Projects',
