@@ -229,6 +229,13 @@ export function Assistant({ t, lang }: { t: SiteContent; lang: Lang }) {
     const question = (q ?? input).trim().slice(0, MAX_QUESTION_CHARS);
     if (!question || sendingRef.current) return;
     sendingRef.current = true;
+    const active = document.activeElement;
+    let restoreFocus = false;
+    try {
+      restoreFocus = active instanceof HTMLElement && active !== inputRef.current && active.matches(':focus-visible');
+    } catch {
+      restoreFocus = false;
+    }
     const token = ++requestTokenRef.current;
     const controller = new AbortController();
     requestControllerRef.current = controller;
@@ -267,6 +274,11 @@ export function Assistant({ t, lang }: { t: SiteContent; lang: Lang }) {
     sendingRef.current = false;
     setTyping(false);
     setAnnouncement(fromLocal ? `${full} ${fallbackNote(lang)}` : full);
+    if (restoreFocus && openRef.current) {
+      setTimeout(() => {
+        if (openRef.current && document.activeElement === document.body) inputRef.current?.focus();
+      }, 0);
+    }
   }
 
   // Feature-detect speech recognition on mount (client-only) to avoid
@@ -285,6 +297,7 @@ export function Assistant({ t, lang }: { t: SiteContent; lang: Lang }) {
       recognition.onend = null;
       recognitionRef.current = null;
       recognition.stop();
+      setInput('');
     }
     setRecording(false);
   }
@@ -393,7 +406,7 @@ export function Assistant({ t, lang }: { t: SiteContent; lang: Lang }) {
             </button>
           </div>
 
-          <div className="asst-body" ref={bodyRef} role="region" aria-label={lang === 'en' ? 'Conversation' : 'Conversa'} aria-busy={typing}>
+          <div className="asst-body" ref={bodyRef} tabIndex={0} role="region" aria-label={lang === 'en' ? 'Conversation' : 'Conversa'} aria-busy={typing}>
             {msgs.map((m, i) => {
               return (
                 <Fragment key={i}>

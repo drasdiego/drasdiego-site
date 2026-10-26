@@ -1,6 +1,6 @@
 'use client';
 
-import { useMemo, useState } from 'react';
+import { useMemo, useRef, useState } from 'react';
 import type { CategoryId, Qualification } from '@/types';
 import type { SiteContent } from '@/lib/content';
 import { QUAL_CATS, isAcademicDegree } from '@/services/sheets';
@@ -75,6 +75,7 @@ export function Qualificacoes({ t }: { t: SiteContent }) {
   const items = useMemo(() => allItems.filter((it) => !isAcademicDegree(it.titulo)), [allItems]);
   const [active, setActive] = useState<CategoryId | null>(null);
   const [query, setQuery] = useState('');
+  const searchRef = useRef<HTMLInputElement | null>(null);
   const [revealedAll, setRevealedAll] = useState(false);
 
   function selectFilter(id: CategoryId) {
@@ -190,9 +191,9 @@ export function Qualificacoes({ t }: { t: SiteContent }) {
               <circle cx="11" cy="11" r="7" />
               <path d="m21 21-4.3-4.3" />
             </svg>
-            <input type="search" value={query} onChange={(e) => setQuery(e.target.value)} placeholder={d.searchPlaceholder} aria-label={d.searchPlaceholder} aria-controls="qualifications-list" />
+            <input ref={searchRef} type="search" value={query} onChange={(e) => setQuery(e.target.value)} placeholder={d.searchPlaceholder} aria-label={d.searchPlaceholder} aria-controls="qualifications-list" />
             {query ? (
-              <button className="qsearch-clear" onClick={() => setQuery('')} aria-label={d.searchPlaceholder.toLowerCase().includes('search') ? 'Clear search' : 'Limpar busca'}>
+              <button className="qsearch-clear" onClick={() => { setQuery(''); searchRef.current?.focus(); }} aria-label={d.searchPlaceholder.toLowerCase().includes('search') ? 'Clear search' : 'Limpar busca'}>
                 ×
               </button>
             ) : null}

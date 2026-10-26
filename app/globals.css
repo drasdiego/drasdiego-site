@@ -44,6 +44,9 @@
 .asst-input { padding: 14px; border-top: 1px solid var(--border); display: flex; gap: 10px; background: var(--bg-2); }
 .asst-input input { flex: 1; background: var(--surface); border: 1px solid var(--border); border-radius: 11px; padding: 11px 14px; color: var(--text); font-family: inherit; font-size: 14px; outline: none; transition: border-color 0.2s; }
 .asst-input input:focus { border-color: var(--accent-line); }
+.asst-input input::placeholder { color: var(--text-2); }
+section[tabindex="-1"]:focus { outline: none; }
+.asst-body:focus-visible { outline-offset: -2px; }
 .asst-input button { width: 42px; height: 42px; flex: none; border-radius: 11px; border: none; background: var(--accent); color: var(--on-accent); display: flex; align-items: center; justify-content: center; transition: background-color 160ms ease, transform 120ms var(--ease); }
 .asst-input button:hover { transform: translateY(-1px); }
 .asst-input button svg { width: 17px; height: 17px; }

@@ -48,6 +48,11 @@ export function Nav({
     e.preventDefault();
     setMenu(false);
     scrollToId(id, 76);
+    const target = id === 'top' ? null : document.getElementById(id);
+    if (target) {
+      if (!target.hasAttribute('tabindex')) target.setAttribute('tabindex', '-1');
+      target.focus({ preventScroll: true });
+    }
   };
 
   const controls = () => (
