@@ -21,5 +21,6 @@ export const ICONS: Record<string, string> = {
 export const LINKS = {
   linkedin: 'https://www.linkedin.com/in/drasdiego/',
   github: 'https://github.com/drasdiego',
+  repo: 'https://github.com/drasdiego/drasdiego-site',
   whatsapp: 'https://wa.me/5547991710813',
 };

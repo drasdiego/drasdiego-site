@@ -3,6 +3,7 @@
 import type { Lang } from '@/types';
 import { PRESENTATION } from '@/lib/presentation';
 import { Icon } from './Icon';
+import { LINKS } from '@/lib/icons';
 
 export function Projetos({ lang }: { lang: Lang }) {
   const d = PRESENTATION[lang];
@@ -17,6 +18,7 @@ export function Projetos({ lang }: { lang: Lang }) {
             <dl className="project-facts">
               <div><dt>{d.application}</dt><dd>{d.applicationDescription}</dd></div>
               <div><dt>{d.technologies}</dt><dd>Next.js, TypeScript, Claude API</dd></div>
+              <div><dt>{d.code}</dt><dd><a className="text-link" href={LINKS.repo} target="_blank" rel="noreferrer">{d.codeLabel}</a></dd></div>
             </dl>
             <details className="project-decisions">
               <summary>{d.decisions}<span aria-hidden="true">+</span></summary>
