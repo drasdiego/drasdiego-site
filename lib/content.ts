@@ -86,8 +86,8 @@ const PT: SiteContent = {
   },
   tech: {
     idx: '05', eyebrow: 'Tecnologias',
-    title: 'Tecnologias de dados, código e IA que uso para construir.',
-    sub: 'Um stack em expansão constante, centrado em dados, código e inteligência artificial.',
+    title: 'Tecnologias que uso e que estudo.',
+    sub: 'Organizadas pelo lugar onde entram: trabalho, operação, estudo e este site.',
     cats: techCatsPT,
     allLabel: 'Todas as Ferramentas',
     allDesc: 'Visualização completa do stack.',
@@ -176,8 +176,8 @@ const EN: SiteContent = {
   },
   tech: {
     idx: '05', eyebrow: 'Stack',
-    title: 'Data, code and AI technologies I build with.',
-    sub: 'A constantly expanding stack centered on data, code and artificial intelligence.',
+    title: 'Technologies I use and study.',
+    sub: 'Grouped by where they come in: work, operations, study and this site.',
     cats: techCatsEN,
     allLabel: 'All Tools',
     allDesc: 'Full stack view.',
