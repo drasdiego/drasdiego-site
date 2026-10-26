@@ -2,6 +2,7 @@ import type { Lang } from '@/types';
 import { MAX_HISTORY_ITEM_CHARS, MAX_QUESTION_CHARS, fallbackAnswer, interruptedNote, localMatch } from '@/lib/assistant-kb';
 import { contextFor } from '@/lib/public-context';
 import { careerTimeBlock } from '@/lib/career-time';
+import { degreeCountPt, educationBullets } from '@/lib/education';
 import { isAllowedOrigin, readBodyLimited, takeToken } from '@/lib/api-guard';
 
 export const runtime = 'nodejs';
@@ -80,10 +81,8 @@ Para pedidos fora do escopo da carreira do Diego (assuntos gerais, programação
     `<exemplos>
 <exemplo>
 <pergunta>Qual é a formação dele?</pergunta>
-<resposta>O Diego tem três frentes acadêmicas:
-- Tecnólogo em Processos Gerenciais pela Estácio, concluído em 2025
-- Bacharelado em Engenharia de Software pela Uninter, em andamento
-- MBA em Data Science, Inteligência Artificial e Analytics na USP/ESALQ, em andamento desde outubro de 2026</resposta>
+<resposta>O Diego tem ${degreeCountPt()} frentes acadêmicas:
+${educationBullets('pt')}</resposta>
 </exemplo>
 <exemplo>
 <pergunta>O Diego está pensando em mudar de empresa?</pergunta>

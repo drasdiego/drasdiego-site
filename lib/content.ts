@@ -1,4 +1,5 @@
 import type { Lang, AcademicItem, ContactLine, CategoryId } from '@/types';
+import { academicFor, milestoneFor } from './education';
 
 export interface TechCat { key: string; name: string; desc: string; items: string[] }
 export interface Milestone { yr: string; role: string; co: string; now: boolean }
@@ -54,7 +55,7 @@ const PT: SiteContent = {
     growthTitle: 'Foco profissional', growthSpan: 'operação → dados & IA',
     growthLegend: ['Operações & negócio', 'Dados, IA & engenharia'],
     milestones: [
-      { yr: 'out/2026 · agora', role: 'MBA em Data Science, IA e Analytics', co: 'USP/ESALQ · em andamento', now: false },
+      milestoneFor('mba', 'pt'),
       { yr: 'dez/2024 · agora', role: 'Analista de Ouvidoria', co: 'Nubank · causa raiz e melhoria de processos', now: true },
       { yr: '2023 · 2024', role: 'Analista de Operações & Suporte Financeiro', co: 'isaac · RD Station', now: false },
       { yr: '2020 · 2022', role: 'Supervisor de Operações', co: 'MadeiraMadeira · liderança & qualidade', now: false },
@@ -97,11 +98,7 @@ const PT: SiteContent = {
     title: 'Formação sólida, aprendizado contínuo.',
     sub: 'Uma base acadêmica em construção, somada a mais de 50 formações e certificações sempre voltadas a Dados, IA, Engenharia, Operações e Liderança.',
     acadTitle: 'Formação Acadêmica',
-    academic: [
-      { name: 'Bacharelado em Engenharia de Software', org: 'Uninter', period: 'Em andamento', status: 'Cursando', done: false, ic: 'code' },
-      { name: 'MBA em Data Science, Inteligência Artificial e Analytics', org: 'USP/ESALQ', period: 'Em andamento desde outubro de 2026', status: 'Cursando', done: false, ic: 'brain' },
-      { name: 'Tecnólogo em Processos Gerenciais', org: 'Estácio', period: 'Concluído em 2025', status: 'Concluído', done: true, ic: 'layers' },
-    ],
+    academic: academicFor('pt'),
     profTitle: 'Qualificações Profissionais',
     profSub: 'Certificações, cursos, especializações e capacitações.',
     totalLabel: 'formações & certificações', catsLabel: 'categorias',
@@ -144,7 +141,7 @@ const EN: SiteContent = {
     growthTitle: 'Professional focus', growthSpan: 'operations → data & AI',
     growthLegend: ['Operations & business', 'Data, AI & engineering'],
     milestones: [
-      { yr: 'Oct 2026 · now', role: 'MBA in Data Science, AI & Analytics', co: 'USP/ESALQ · in progress', now: false },
+      milestoneFor('mba', 'en'),
       { yr: 'Dec 2024 · now', role: 'Ombudsman Analyst', co: 'Nubank · root-cause analysis and process improvement', now: true },
       { yr: '2023 · 2024', role: 'Operations & Financial Support Analyst', co: 'isaac · RD Station', now: false },
       { yr: '2020 · 2022', role: 'Operations Supervisor', co: 'MadeiraMadeira · leadership & quality', now: false },
@@ -187,11 +184,7 @@ const EN: SiteContent = {
     title: 'Solid foundation, continuous learning.',
     sub: 'An academic base in progress, plus 50+ courses and certifications focused on Data, AI, Engineering, Operations and Leadership.',
     acadTitle: 'Academic Background',
-    academic: [
-      { name: "Bachelor's in Software Engineering", org: 'Uninter', period: 'In progress', status: 'Ongoing', done: false, ic: 'code' },
-      { name: 'MBA in Data Science, AI & Analytics', org: 'USP/ESALQ', period: 'In progress since October 2026', status: 'Ongoing', done: false, ic: 'brain' },
-      { name: 'Technologist in Management Processes', org: 'Estácio', period: 'Completed in 2025', status: 'Completed', done: true, ic: 'layers' },
-    ],
+    academic: academicFor('en'),
     profTitle: 'Professional Qualifications',
     profSub: 'Certifications, courses, specializations and training.',
     totalLabel: 'courses & certifications', catsLabel: 'categories',

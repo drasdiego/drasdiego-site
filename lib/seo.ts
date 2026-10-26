@@ -1,5 +1,6 @@
 import type { Metadata } from 'next';
 import type { Lang } from '@/types';
+import { completedOrgs } from './education';
 
 export const SITE_URL = 'https://www.drasdiego.com.br';
 
@@ -98,7 +99,7 @@ export function buildStructuredData(lang: Lang) {
         worksFor: { '@type': 'Organization', name: 'Nubank' },
         knowsAbout: [...s.knowsAbout],
         address: { '@type': 'PostalAddress', addressLocality: 'Balneário Camboriú', addressRegion: 'SC', addressCountry: 'BR' },
-        alumniOf: { '@type': 'EducationalOrganization', name: 'Estácio' },
+        alumniOf: completedOrgs().map(name => ({ '@type': 'EducationalOrganization', name })),
         sameAs: ['https://www.linkedin.com/in/drasdiego/', 'https://github.com/drasdiego'],
       },
       {
