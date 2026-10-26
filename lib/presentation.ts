@@ -1,8 +1,8 @@
 export const PRESENTATION = {
   pt: {
-    title: 'Software e operação.',
-    lead: 'Minha experiência em operações, suporte e análise de problemas orienta o que construo com código.',
-    context: 'Meu foco atual é Engenharia de Software. Dados, automação e IA fazem parte desse trabalho.',
+    title: 'Software para operações.',
+    lead: 'Estudo Engenharia de Software e atuo como Analista de Ouvidoria no Nubank. Em 18 anos de operações, aprendi quais problemas vale a pena resolver com código.',
+    context: 'Aplico dados, automação e IA a processos reais. Este site, com seu assistente de carreira, é um exemplo.',
     origin: 'De onde vem meu olhar', career: '18 anos de carreira em operações e negócios.',
     background: 'Uma trajetória entre atendimento, liderança, indicadores e investigação de causas.',
     experience: 'Conheça minha experiência', projectLink: 'Conheça o projeto', talk: 'Vamos conversar',
@@ -30,9 +30,9 @@ export const PRESENTATION = {
     footer: 'Engenharia de Software, dados e IA aplicada.', skip: 'Ir para o conteúdo',
   },
   en: {
-    title: 'Software meets operations.',
-    lead: 'My experience in operations, support and problem analysis informs what I build with code.',
-    context: 'My current focus is Software Engineering. Data, automation and AI are part of that work.',
+    title: 'Software for operations.',
+    lead: 'I study Software Engineering and work as an Ombudsman Analyst at Nubank. Eighteen years in operations taught me which problems are worth solving with code.',
+    context: 'I apply data, automation and AI to real processes. This site, with its career assistant, is an example.',
     origin: 'Where my perspective comes from', career: '18 years of experience in operations and business.',
     background: 'A career spanning customer support, leadership, metrics and root-cause analysis.',
     experience: 'Explore my experience', projectLink: 'Explore the project', talk: 'Let’s talk',
