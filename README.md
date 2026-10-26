@@ -5,7 +5,7 @@ Código do portfólio profissional de Diego Arruda, publicado em [www.drasdiego.
 ## O que o site tem
 
 - Versões em português e inglês, com tema claro como padrão e opção de alternar para o escuro.
-- Assistente de carreira com IA, por texto (Claude, com Gemini como reserva opcional), com entrada de perguntas por microfone no navegador. Quando a IA está indisponível, ele responde a partir de uma base de conhecimento local, sem quebrar a conversa.
+- Assistente de carreira com IA, por texto (Claude), com entrada de perguntas por microfone no navegador. Quando a IA está indisponível, ele responde a partir de uma base de conhecimento local, sem quebrar a conversa.
 - Qualificações e certificados lidos de uma planilha pública do Google Sheets, com uma lista local como reserva.
 - Metadados para busca e compartilhamento: `sitemap`, `robots` e imagem Open Graph.
 
@@ -13,7 +13,7 @@ Código do portfólio profissional de Diego Arruda, publicado em [www.drasdiego.
 
 - Next.js 15 (App Router), React 18 e TypeScript
 - Tailwind CSS
-- Anthropic API (Claude) e Google Gemini API, usadas somente no servidor
+- Anthropic API (Claude), usada somente no servidor
 - Google Sheets, lido pelo navegador
 - Hospedagem na Vercel
 
@@ -21,7 +21,7 @@ Código do portfólio profissional de Diego Arruda, publicado em [www.drasdiego.
 
 | Pasta | Conteúdo |
 |---|---|
-| `app/` | Páginas e rotas. `app/api/chat` conecta o assistente ao Claude, com o Gemini como reserva opcional. |
+| `app/` | Páginas e rotas. `app/api/chat` conecta o assistente ao Claude. |
 | `components/` | Seções do site e o painel do assistente. |
 | `hooks/` | Hooks de interface (seção ativa, rolagem, qualificações). |
 | `lib/` | Conteúdo, base de conhecimento do assistente e proteções das rotas de IA. |
@@ -50,9 +50,7 @@ npm run build
 
 | Variável | Uso |
 |---|---|
-| `GEMINI_API_KEY` | Chave da API do Gemini. Opcional. Fica só no servidor e nunca é enviada ao navegador. |
-| `GEMINI_CHAT_MODELS` | Modelos do chat em ordem de preferência, separados por vírgula (até 3). Opcional. |
-| `ANTHROPIC_API_KEY` | Chave da API da Anthropic (Claude). Opcional. Quando existe, o chat tenta o Claude primeiro e usa o Gemini e a base local como reserva. Fica só no servidor. |
+| `ANTHROPIC_API_KEY` | Chave da API da Anthropic (Claude). Opcional. Quando existe, o chat usa o Claude e, se ele falhar, responde pela base local. Fica só no servidor e nunca é enviada ao navegador. |
 | `CLAUDE_CHAT_MODEL` | Modelo do chat no Claude. Opcional. O padrão é `claude-haiku-5-5`. |
 
 ## Segurança das rotas de IA
