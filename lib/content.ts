@@ -1,24 +1,20 @@
-import type { Lang, Metric, AcademicItem, ContactLine, CategoryId } from '@/types';
+import type { Lang, AcademicItem, ContactLine, CategoryId } from '@/types';
 
 export interface TechCat { key: string; name: string; desc: string; items: string[] }
 export interface Milestone { yr: string; role: string; co: string; now: boolean }
-export interface TrajBar { yr: string; ops: number; data: number }
-export interface ExpRow { yr: string; role: string; co: string; desc: string; tag: string }
+export interface ExpRow { yr: string; role: string; co: string; desc: string }
 export interface Capability { ic: string; h: string; p: string }
-export interface ProjectItem { ic: string; status: 'wip' | 'live'; statusLabel: string; h: string; p: string; tags: string[] }
 
 export interface SiteContent {
   nav: { traj: string; exp: string; data: string; proj: string; tech: string; cert: string; contact: string };
   cta: { talk: string; resume: string; linkedin: string; whatsapp: string; github: string };
-  hero: { status: string; h1a: string; h1b: string; h1c: string; lead: string; metrics: Metric[]; termTitle: string };
   traj: {
     idx: string; eyebrow: string; title: string; sub: string;
     growthTitle: string; growthSpan: string; growthLegend: string[];
-    bars: TrajBar[]; milestones: Milestone[];
+    milestones: Milestone[];
   };
   exp: { idx: string; eyebrow: string; title: string; sub: string; rows: ExpRow[] };
   data: { idx: string; eyebrow: string; title: string; sub: string; caps: Capability[] };
-  proj: { idx: string; eyebrow: string; title: string; sub: string; items: ProjectItem[] };
   tech: { idx: string; eyebrow: string; title: string; sub: string; cats: TechCat[]; allLabel: string; allDesc: string };
   quals: {
     idx: string; eyebrow: string; title: string; sub: string;
@@ -51,27 +47,12 @@ const techCatsEN: TechCat[] = [
 const PT: SiteContent = {
   nav: { traj: 'Trajetória', exp: 'Experiência', data: 'Dados & IA', proj: 'Projetos', tech: 'Tecnologias', cert: 'Formação', contact: 'Contato' },
   cta: { talk: 'Vamos conversar', resume: 'Trajetória', linkedin: 'LinkedIn', whatsapp: 'WhatsApp', github: 'GitHub' },
-  hero: {
-    status: 'Engenharia de Software, Dados & IA',
-    h1a: 'Dos dados à', h1b: 'inteligência', h1c: 'que decide.',
-    lead: 'Sou <strong>Diego Arruda</strong>, com 18 anos transformando operação e negócio em decisão. Hoje construo soluções em <strong>Dados, Inteligência Artificial e Engenharia de Software</strong>.',
-    metrics: [
-      { n: 18, suf: '+', label: 'anos de carreira' },
-      { n: 50, suf: '+', label: 'qualificações' },
-      { text: 'MBA', label: 'em andamento', sub: 'Data Science, IA & Analytics • USP/ESALQ' },
-    ],
-    termTitle: 'diego@arruda ~ perfil',
-  },
   traj: {
     idx: '01', eyebrow: 'Trajetória',
     title: 'Trajetória de operações a engenharia de software, dados e IA.',
     sub: 'Minha transição para dados não começou do zero. É o resultado de anos resolvendo problemas reais com processos, indicadores e decisões críticas.',
     growthTitle: 'Foco profissional', growthSpan: 'operação → dados & IA',
     growthLegend: ['Operações & negócio', 'Dados, IA & engenharia'],
-    bars: [
-      { yr: '’08', ops: 90, data: 8 }, { yr: '’14', ops: 80, data: 16 }, { yr: '’20', ops: 62, data: 34 },
-      { yr: '’23', ops: 45, data: 58 }, { yr: '’25', ops: 28, data: 82 }, { yr: 'now', ops: 18, data: 96 },
-    ],
     milestones: [
       { yr: 'out/2026 · agora', role: 'MBA em Data Science, IA e Analytics', co: 'USP/ESALQ · em andamento', now: false },
       { yr: 'dez/2024 · agora', role: 'Analista de Ouvidoria', co: 'Nubank · causa raiz e melhoria de processos', now: true },
@@ -85,11 +66,11 @@ const PT: SiteContent = {
     title: 'Setores regulados, decisões de alto impacto.',
     sub: 'Saúde, logística, marketplace, fintech e SaaS. Sempre conectando estratégia, operação e dados.',
     rows: [
-      { yr: 'dez/2024 · atual', role: 'Analista de Ouvidoria (Ombudsman Analyst)', co: 'Nubank', desc: 'Acompanho manifestações públicas e canais regulatórios, com foco na resolução de casos complexos, rastreabilidade e conformidade. Investigo causas raiz e falhas de processo com outras áreas. Produzo análises e relatórios a partir de indicadores e feedbacks de clientes para apoiar melhorias na operação.', tag: 'Fintech' },
-      { yr: 'fev/2024 · dez/2024', role: 'Analista de Suporte Financeiro', co: 'RD Station', desc: 'Analisei dados financeiros e operacionais para identificar padrões, inconsistências e recorrências. Desenvolvi e acompanhei dashboards e indicadores. Em squads com finanças, operações e tecnologia, usei essas análises para melhorar fluxos e a rastreabilidade das tratativas.', tag: 'SaaS' },
-      { yr: 'jul/2023 · fev/2024', role: 'Analista de Operações · temporário', co: 'isaac', desc: 'Coletei e organizei dados operacionais para relatórios e acompanhamento de SLAs e KPIs. Identifiquei gargalos e recorrências para apoiar ações preventivas. Dei suporte analítico às rotinas financeiras e operacionais, consolidando informações em planilhas e relatórios.', tag: 'Financeiro' },
-      { yr: 'jun/2020 · out/2022', role: 'Supervisor de Operações', co: 'MadeiraMadeira', desc: 'Usei SQL, Excel e Google Sheets para acompanhar backlog, SLA, FCR, resolutividade e TMA. Desenvolvi dashboards e relatórios gerenciais e liderei equipe remota com feedbacks, monitorias de qualidade e PDIs. Participei dos projetos Madeira Decora e Iguanafix, apoiando melhorias nos fluxos operacionais.', tag: 'Marketplace' },
-      { yr: '2008 · 2020', role: 'Qualidade & operações', co: 'Electrolux · Saúde · Rumo', desc: 'Pós-venda, fiscal, auditorias, indicadores, SAP e gestão da qualidade em ambientes regulados.', tag: 'Multi-setor' },
+      { yr: 'dez/2024 · atual', role: 'Analista de Ouvidoria (Ombudsman Analyst)', co: 'Nubank', desc: 'Acompanho manifestações públicas e canais regulatórios, com foco na resolução de casos complexos, rastreabilidade e conformidade. Investigo causas raiz e falhas de processo com outras áreas. Produzo análises e relatórios a partir de indicadores e feedbacks de clientes para apoiar melhorias na operação.' },
+      { yr: 'fev/2024 · dez/2024', role: 'Analista de Suporte Financeiro', co: 'RD Station', desc: 'Analisei dados financeiros e operacionais para identificar padrões, inconsistências e recorrências. Desenvolvi e acompanhei dashboards e indicadores. Em squads com finanças, operações e tecnologia, usei essas análises para melhorar fluxos e a rastreabilidade das tratativas.' },
+      { yr: 'jul/2023 · fev/2024', role: 'Analista de Operações · temporário', co: 'isaac', desc: 'Coletei e organizei dados operacionais para relatórios e acompanhamento de SLAs e KPIs. Identifiquei gargalos e recorrências para apoiar ações preventivas. Dei suporte analítico às rotinas financeiras e operacionais, consolidando informações em planilhas e relatórios.' },
+      { yr: 'jun/2020 · out/2022', role: 'Supervisor de Operações', co: 'MadeiraMadeira', desc: 'Usei SQL, Excel e Google Sheets para acompanhar backlog, SLA, FCR, resolutividade e TMA. Desenvolvi dashboards e relatórios gerenciais e liderei equipe remota com feedbacks, monitorias de qualidade e PDIs. Participei dos projetos Madeira Decora e Iguanafix, apoiando melhorias nos fluxos operacionais.' },
+      { yr: '2008 · 2020', role: 'Qualidade & operações', co: 'Electrolux · Saúde · Rumo', desc: 'Pós-venda, fiscal, auditorias, indicadores, SAP e gestão da qualidade em ambientes regulados.' },
     ],
   },
   data: {
@@ -101,16 +82,6 @@ const PT: SiteContent = {
       { ic: 'chart', h: 'Analytics & visualização', p: 'Power BI, Metabase e Python para revelar padrões, anomalias e oportunidades.' },
       { ic: 'brain', h: 'Inteligência Artificial', p: 'IA generativa e assistentes próprios com a API do Claude, como o deste site.' },
       { ic: 'flow', h: 'Automação de processos', p: 'Fluxos que eliminam trabalho manual e elevam a eficiência operacional.' },
-    ],
-  },
-  proj: {
-    idx: '04', eyebrow: 'Projetos',
-    title: 'Construindo na prática.',
-    sub: 'Aprendizado contínuo aplicado em produtos reais. Dados, IA e automação.',
-    items: [
-      { ic: 'bot', status: 'live', statusLabel: 'No ar', h: 'Assistente de IA', p: 'É o assistente deste site. Conversa sobre minha trajetória a partir de uma base de conhecimento própria, com respostas geradas pela API do Claude, memória da conversa e perguntas por microfone.', tags: ['Next.js', 'Claude API', 'Microfone'] },
-      { ic: 'code', status: 'live', statusLabel: 'No ar', h: 'Suporte Interativo CSS', p: 'Projeto de interface interativa focado em experiência e clareza visual.', tags: ['HTML', 'CSS', 'UX'] },
-      { ic: 'spark', status: 'wip', statusLabel: 'Próximo', h: 'Produtos de dados', p: 'Projetos futuros em dados, IA e automação com foco em escala e impacto real.', tags: ['Python', 'IA', 'Automação'] },
     ],
   },
   tech: {
@@ -166,27 +137,12 @@ const PT: SiteContent = {
 const EN: SiteContent = {
   nav: { traj: 'Journey', exp: 'Experience', data: 'Data & AI', proj: 'Projects', tech: 'Stack', cert: 'Education', contact: 'Contact' },
   cta: { talk: "Let's talk", resume: 'Journey', linkedin: 'LinkedIn', whatsapp: 'WhatsApp', github: 'GitHub' },
-  hero: {
-    status: 'Software Engineering, Data & AI',
-    h1a: 'From data to', h1b: 'intelligence', h1c: 'that decides.',
-    lead: "I'm <strong>Diego Arruda</strong>, with 18 years turning operations and business into decisions. Today I build solutions across <strong>Data, Artificial Intelligence and Software Engineering</strong>.",
-    metrics: [
-      { n: 18, suf: '+', label: 'years of career' },
-      { n: 50, suf: '+', label: 'qualifications' },
-      { text: 'MBA', label: 'in progress', sub: 'Data Science, AI & Analytics • USP/ESALQ' },
-    ],
-    termTitle: 'diego@arruda ~ profile',
-  },
   traj: {
     idx: '01', eyebrow: 'Journey',
     title: 'Career path from operations to software engineering, data and AI.',
     sub: "My move into data didn't start from zero. It's the result of years solving real problems with processes, metrics and critical decisions.",
     growthTitle: 'Professional focus', growthSpan: 'operations → data & AI',
     growthLegend: ['Operations & business', 'Data, AI & engineering'],
-    bars: [
-      { yr: '’08', ops: 90, data: 8 }, { yr: '’14', ops: 80, data: 16 }, { yr: '’20', ops: 62, data: 34 },
-      { yr: '’23', ops: 45, data: 58 }, { yr: '’25', ops: 28, data: 82 }, { yr: 'now', ops: 18, data: 96 },
-    ],
     milestones: [
       { yr: 'Oct 2026 · now', role: 'MBA in Data Science, AI & Analytics', co: 'USP/ESALQ · in progress', now: false },
       { yr: 'Dec 2024 · now', role: 'Ombudsman Analyst', co: 'Nubank · root-cause analysis and process improvement', now: true },
@@ -200,11 +156,11 @@ const EN: SiteContent = {
     title: 'Regulated sectors, high-impact decisions.',
     sub: 'Healthcare, logistics, marketplace, fintech and SaaS. Always connecting strategy, operations and data.',
     rows: [
-      { yr: 'Dec 2024 · present', role: 'Ombudsman Analyst', co: 'Nubank', desc: 'I handle complaints on public platforms and regulatory channels, focusing on complex cases, traceability and compliance. I investigate root causes and process failures with other teams. I use metrics and customer feedback to produce analyses and reports that support operational improvements.', tag: 'Fintech' },
-      { yr: 'Feb 2024 · Dec 2024', role: 'Financial Support Analyst', co: 'RD Station', desc: 'I analyzed financial and operational data to identify patterns, inconsistencies and recurring issues. I developed and tracked dashboards and metrics. Working with finance, operations and technology squads, I used these analyses to improve workflows and case traceability.', tag: 'SaaS' },
-      { yr: 'Jul 2023 · Feb 2024', role: 'Operations Analyst · temporary', co: 'isaac', desc: 'I collected and organized operational data for reports and SLA and KPI monitoring. I identified bottlenecks and recurring issues to support preventive action. I provided analytical support for financial and operational routines, consolidating information in spreadsheets and reports.', tag: 'Finance' },
-      { yr: 'Jun 2020 · Oct 2022', role: 'Operations Supervisor', co: 'MadeiraMadeira', desc: 'I used SQL, Excel and Google Sheets to track backlog, SLA, FCR, resolution rates and AHT. I developed dashboards and management reports and led a remote team through feedback, quality reviews and individual development plans. I contributed to Madeira Decora and Iguanafix, supporting operational workflow improvements.', tag: 'Marketplace' },
-      { yr: '2008 · 2020', role: 'Quality & operations', co: 'Electrolux · Healthcare · Rumo', desc: 'After-sales, fiscal, audits, metrics, SAP and quality management in regulated environments.', tag: 'Multi-sector' },
+      { yr: 'Dec 2024 · present', role: 'Ombudsman Analyst', co: 'Nubank', desc: 'I handle complaints on public platforms and regulatory channels, focusing on complex cases, traceability and compliance. I investigate root causes and process failures with other teams. I use metrics and customer feedback to produce analyses and reports that support operational improvements.' },
+      { yr: 'Feb 2024 · Dec 2024', role: 'Financial Support Analyst', co: 'RD Station', desc: 'I analyzed financial and operational data to identify patterns, inconsistencies and recurring issues. I developed and tracked dashboards and metrics. Working with finance, operations and technology squads, I used these analyses to improve workflows and case traceability.' },
+      { yr: 'Jul 2023 · Feb 2024', role: 'Operations Analyst · temporary', co: 'isaac', desc: 'I collected and organized operational data for reports and SLA and KPI monitoring. I identified bottlenecks and recurring issues to support preventive action. I provided analytical support for financial and operational routines, consolidating information in spreadsheets and reports.' },
+      { yr: 'Jun 2020 · Oct 2022', role: 'Operations Supervisor', co: 'MadeiraMadeira', desc: 'I used SQL, Excel and Google Sheets to track backlog, SLA, FCR, resolution rates and AHT. I developed dashboards and management reports and led a remote team through feedback, quality reviews and individual development plans. I contributed to Madeira Decora and Iguanafix, supporting operational workflow improvements.' },
+      { yr: '2008 · 2020', role: 'Quality & operations', co: 'Electrolux · Healthcare · Rumo', desc: 'After-sales, fiscal, audits, metrics, SAP and quality management in regulated environments.' },
     ],
   },
   data: {
@@ -216,16 +172,6 @@ const EN: SiteContent = {
       { ic: 'chart', h: 'Analytics & visualization', p: 'Power BI, Metabase and Python to reveal patterns, anomalies and opportunities.' },
       { ic: 'brain', h: 'Artificial Intelligence', p: 'Generative AI and custom assistants with the Claude API, like the one on this site.' },
       { ic: 'flow', h: 'Process automation', p: 'Flows that remove manual work and raise operational efficiency.' },
-    ],
-  },
-  proj: {
-    idx: '04', eyebrow: 'Projects',
-    title: 'Building, in practice.',
-    sub: 'Continuous learning applied to real products. Data, AI and automation.',
-    items: [
-      { ic: 'bot', status: 'live', statusLabel: 'Live', h: 'AI assistant', p: 'The assistant on this site. It talks about my career from a custom knowledge base, with answers generated by the Claude API, conversation memory and questions by microphone.', tags: ['Next.js', 'Claude API', 'Microphone'] },
-      { ic: 'code', status: 'live', statusLabel: 'Live', h: 'Interactive CSS Support', p: 'Interactive interface project focused on experience and visual clarity.', tags: ['HTML', 'CSS', 'UX'] },
-      { ic: 'spark', status: 'wip', statusLabel: 'Next', h: 'Data products', p: 'Upcoming projects in data, AI and automation focused on scale and real impact.', tags: ['Python', 'AI', 'Automation'] },
     ],
   },
   tech: {

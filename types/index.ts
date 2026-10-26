@@ -19,14 +19,6 @@ export interface Qualification {
 
 export type SheetStatus = 'loading' | 'live' | 'fallback';
 
-export interface Metric {
-  n?: number;
-  suf?: string;
-  text?: string;
-  label: string;
-  sub?: string;
-}
-
 export interface AcademicItem {
   name: string;
   org: string;
