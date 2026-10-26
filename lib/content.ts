@@ -78,10 +78,10 @@ const PT: SiteContent = {
     title: 'Dados e IA: onde o negócio vira inteligência.',
     sub: 'Acredito que dados servem para resolver problemas reais de pessoas. Uno visão operacional, análise técnica e IA para gerar decisões melhores.',
     caps: [
-      { ic: 'db', h: 'Engenharia de dados aplicada', p: 'SQL, PostgreSQL e modelagem para transformar dados brutos em base confiável.' },
-      { ic: 'chart', h: 'Analytics & visualização', p: 'Power BI, Metabase e Python para revelar padrões, anomalias e oportunidades.' },
-      { ic: 'brain', h: 'Inteligência Artificial', p: 'IA generativa e assistentes próprios com a API do Claude, como o deste site.' },
-      { ic: 'flow', h: 'Automação de processos', p: 'Fluxos que eliminam trabalho manual e elevam a eficiência operacional.' },
+      { ic: 'db', h: 'Dados no trabalho', p: 'SQL, Excel e Google Sheets para acompanhar indicadores e montar relatórios.' },
+      { ic: 'chart', h: 'Analytics e visualização', p: 'Estudo Power BI, Metabase e Python para analisar dados e apresentar resultados.' },
+      { ic: 'brain', h: 'Inteligência Artificial', p: 'IA generativa e um assistente próprio com a API do Claude, como o deste site.' },
+      { ic: 'flow', h: 'Automação de processos', p: 'Estudo e aplico automação para reduzir trabalho manual em rotinas operacionais.' },
     ],
   },
   tech: {
@@ -168,10 +168,10 @@ const EN: SiteContent = {
     title: 'Data and AI: where business becomes intelligence.',
     sub: 'I believe data exists to solve real human problems. I blend operational insight, technical analysis and AI to drive better decisions.',
     caps: [
-      { ic: 'db', h: 'Applied data engineering', p: 'SQL, PostgreSQL and modeling to turn raw data into a reliable foundation.' },
-      { ic: 'chart', h: 'Analytics & visualization', p: 'Power BI, Metabase and Python to reveal patterns, anomalies and opportunities.' },
-      { ic: 'brain', h: 'Artificial Intelligence', p: 'Generative AI and custom assistants with the Claude API, like the one on this site.' },
-      { ic: 'flow', h: 'Process automation', p: 'Flows that remove manual work and raise operational efficiency.' },
+      { ic: 'db', h: 'Data at work', p: 'SQL, Excel and Google Sheets to track metrics and build reports.' },
+      { ic: 'chart', h: 'Analytics and visualization', p: 'I study Power BI, Metabase and Python to analyze data and present results.' },
+      { ic: 'brain', h: 'Artificial Intelligence', p: 'Generative AI and my own assistant built with the Claude API, like the one on this site.' },
+      { ic: 'flow', h: 'Process automation', p: 'I study and apply automation to reduce manual work in operational routines.' },
     ],
   },
   tech: {
