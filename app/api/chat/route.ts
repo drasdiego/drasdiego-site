@@ -8,17 +8,6 @@ export const runtime = 'nodejs';
 export const dynamic = 'force-dynamic';
 export const maxDuration = 60;
 
-const DEFAULT_MODELS = ['gemini-3.6-flash', 'gemini-3.1-flash-lite'];
-
-function chatModels(): string[] {
-  const parsed = (process.env.GEMINI_CHAT_MODELS ?? '')
-    .split(',')
-    .map((name) => name.trim())
-    .filter((name) => /^[a-z0-9][a-z0-9._-]*$/i.test(name));
-  const unique = [...new Set(parsed)].slice(0, 3);
-  return unique.length > 0 ? unique : DEFAULT_MODELS;
-}
-
 const CLAUDE_DEFAULT_MODEL = 'claude-haiku-5-5';
 
 function claudeModel(): string {
@@ -26,14 +15,11 @@ function claudeModel(): string {
   return /^[a-z0-9][a-z0-9._-]*$/i.test(name) ? name : CLAUDE_DEFAULT_MODEL;
 }
 
-type Provider = 'claude' | 'gemini';
-
 interface Candidate {
-  provider: Provider;
   model: string;
 }
 
-const NORMAL_FINISH = new Set(['STOP', 'end_turn', 'stop_sequence']);
+const NORMAL_FINISH = new Set(['end_turn', 'stop_sequence']);
 
 const MAX_HISTORY = 8;
 const MAX_BODY_CHARS = 64_000;
@@ -182,25 +168,9 @@ function parseClaudeChunk(payload: string): ParsedChunk {
   return { text: '', finish: null };
 }
 
-function parseGeminiChunk(payload: string): ParsedChunk {
-  let json: {
-    error?: unknown;
-    candidates?: { finishReason?: string; content?: { parts?: { text?: string }[] } }[];
-  };
-  try {
-    json = JSON.parse(payload);
-  } catch {
-    return { text: '', finish: null };
-  }
-  if (json?.error) throw new Error('upstream_event_error');
-  const candidate = json?.candidates?.[0];
-  const parts = candidate?.content?.parts ?? [];
-  return { text: parts.map((p) => p.text ?? '').join(''), finish: candidate?.finishReason ?? null };
-}
-
 type OpenResult =
   | { ok: true; model: string; first: string; nextText: () => Promise<string | null>; finish: () => string | null }
-  | { ok: false; reason: string; final?: boolean };
+  | { ok: false; reason: string };
 
 export async function POST(req: Request) {
   if (!isAllowedOrigin(req)) {
@@ -236,9 +206,8 @@ export async function POST(req: Request) {
 
   const matched = localMatch(question, lang);
   const local = matched ?? fallbackAnswer(lang);
-  const geminiKey = process.env.GEMINI_API_KEY;
   const claudeKey = process.env.ANTHROPIC_API_KEY;
-  const noKey = !geminiKey && !claudeKey;
+  const noKey = !claudeKey;
 
   if (noKey || !question) {
     return textResponse(local, noKey ? 'no_key' : 'no_question');
@@ -249,18 +218,6 @@ export async function POST(req: Request) {
   }
 
   const system = systemPrompt(lang, matched, new Date());
-
-  const geminiBody = JSON.stringify({
-    systemInstruction: { parts: [{ text: system }] },
-    contents: [
-      ...history.map((h) => ({
-        role: h.role === 'user' ? 'user' : 'model',
-        parts: [{ text: h.text.slice(0, MAX_HISTORY_ITEM_CHARS) }],
-      })),
-      { role: 'user', parts: [{ text: question }] },
-    ],
-    generationConfig: { temperature: 0.55, topP: 0.9, maxOutputTokens: MAX_OUTPUT_TOKENS },
-  });
 
   const claudeBody = JSON.stringify({
     model: claudeModel(),
@@ -291,7 +248,7 @@ export async function POST(req: Request) {
     req.signal.removeEventListener('abort', onClientAbort);
   };
 
-  const open = async ({ provider, model }: Candidate): Promise<OpenResult> => {
+  const open = async ({ model }: Candidate): Promise<OpenResult> => {
     const attempt = new AbortController();
     current = attempt;
     if (req.signal.aborted) attempt.abort();
@@ -302,32 +259,23 @@ export async function POST(req: Request) {
     }, FIRST_TOKEN_TIMEOUT_MS);
 
     try {
-      const res =
-        provider === 'claude'
-          ? await fetch('https://api.anthropic.com/v1/messages', {
-              method: 'POST',
-              headers: {
-                'Content-Type': 'application/json',
-                'x-api-key': claudeKey ?? '',
-                'anthropic-version': '2023-06-01',
-              },
-              body: claudeBody,
-              cache: 'no-store',
-              signal: attempt.signal,
-            })
-          : await fetch(`https://generativelanguage.googleapis.com/v1beta/models/${model}:streamGenerateContent?alt=sse`, {
-              method: 'POST',
-              headers: { 'Content-Type': 'application/json', 'x-goog-api-key': geminiKey ?? '' },
-              body: geminiBody,
-              cache: 'no-store',
-              signal: attempt.signal,
-            });
+      const res = await fetch('https://api.anthropic.com/v1/messages', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          'x-api-key': claudeKey ?? '',
+          'anthropic-version': '2023-06-01',
+        },
+        body: claudeBody,
+        cache: 'no-store',
+        signal: attempt.signal,
+      });
 
       if (!res.ok || !res.body) {
         clearTimeout(firstTokenTimer);
-        console.warn('Portfolio chat model failed', { reason: 'upstream_status', status: res.status, provider, model });
+        console.warn('Portfolio chat model failed', { reason: 'upstream_status', status: res.status, provider: 'claude', model });
         res.body?.cancel().catch(() => undefined);
-        return { ok: false, reason: 'upstream_status', final: provider === 'gemini' && [400, 401, 403].includes(res.status) };
+        return { ok: false, reason: 'upstream_status' };
       }
 
       const reader = res.body.getReader();
@@ -348,7 +296,7 @@ export async function POST(req: Request) {
             if (!trimmed.startsWith('data:')) continue;
             const payload = trimmed.slice(5).trim();
             if (!payload || payload === '[DONE]') continue;
-            const chunk = provider === 'claude' ? parseClaudeChunk(payload) : parseGeminiChunk(payload);
+            const chunk = parseClaudeChunk(payload);
             text += chunk.text;
             if (chunk.finish) finish = chunk.finish;
           }
@@ -367,7 +315,7 @@ export async function POST(req: Request) {
       if (first === null) {
         attempt.abort();
         const reason = attemptTimedOut || timedOut ? 'upstream_timeout' : 'upstream_empty';
-        if (!req.signal.aborted) console.warn('Portfolio chat model failed', { reason, provider, model });
+        if (!req.signal.aborted) console.warn('Portfolio chat model failed', { reason, provider: 'claude', model });
         return { ok: false, reason };
       }
 
@@ -375,17 +323,14 @@ export async function POST(req: Request) {
     } catch {
       clearTimeout(firstTokenTimer);
       const reason = attemptTimedOut || timedOut ? 'upstream_timeout' : 'upstream_error';
-      if (!req.signal.aborted) console.warn('Portfolio chat model failed', { reason, provider, model });
+      if (!req.signal.aborted) console.warn('Portfolio chat model failed', { reason, provider: 'claude', model });
       return { ok: false, reason };
     }
   };
 
   let opened: Extract<OpenResult, { ok: true }> | null = null;
   let lastReason = 'upstream_error';
-  const candidates: Candidate[] = [
-    ...(claudeKey ? [{ provider: 'claude' as const, model: claudeModel() }] : []),
-    ...(geminiKey ? chatModels().map((model) => ({ provider: 'gemini' as const, model })) : []),
-  ];
+  const candidates: Candidate[] = claudeKey ? [{ model: claudeModel() }] : [];
   for (const candidate of candidates) {
     if (req.signal.aborted || timedOut) break;
     const result = await open(candidate);
@@ -394,7 +339,6 @@ export async function POST(req: Request) {
       break;
     }
     lastReason = result.reason;
-    if (result.final) break;
   }
 
   if (!opened) {

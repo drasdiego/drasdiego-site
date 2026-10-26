@@ -4,7 +4,7 @@ import { fillCareerTime } from './career-time';
 /* ============================================================
    ASSISTANT KNOWLEDGE BASE
    Keyword-matched canned answers about Diego's career. Runs fully
-   client-side (no API key). To wire a real LLM (e.g. Gemini), replace
+   client-side (no API key). To wire a real LLM, replace
    `answer()` with a fetch to your /api route, the UI stays the same.
    ============================================================ */
 
@@ -112,7 +112,7 @@ export interface ChatTurn {
   text: string;
 }
 
-/** Streamed hybrid answer: asks the /api/chat route (local KB + Gemini) and
+/** Streamed hybrid answer: asks the /api/chat route (local KB + Claude) and
     reports the text as it arrives via `onToken`. Sends recent history so the
     assistant understands follow-up questions. Falls back to the local answer
     if the network fails. Resolves with the complete text. */
