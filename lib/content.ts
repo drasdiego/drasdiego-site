@@ -36,16 +36,16 @@ export interface SiteContent {
 }
 
 const techCatsPT: TechCat[] = [
-  { key: 'data', name: 'Dados & Analytics', desc: 'Extração, modelagem e análise', items: ['SQL', 'PostgreSQL', 'Python', 'Pandas', 'NumPy', 'Power BI', 'Metabase', 'Looker', 'Kibana', 'Excel', 'Google Sheets'] },
-  { key: 'eng', name: 'Engenharia & Código', desc: 'Construção e versionamento', items: ['Python', 'JavaScript', 'TypeScript', 'React', 'Next.js', 'HTML', 'Git/GitHub', 'Modelagem de Dados'] },
-  { key: 'ai', name: 'IA & Automação', desc: 'Inteligência aplicada', items: ['Google AI Studio', 'Gemini', 'Prompt Engineering', 'Automação de Processos', 'IA Generativa'] },
-  { key: 'ops', name: 'Plataformas & Ops', desc: 'Ferramentas operacionais', items: ['Salesforce', 'Zendesk', 'Five9', 'Google Workspace'] },
+  { key: 'work', name: 'Uso profissional', desc: 'Ferramentas do meu trabalho com dados e relatórios', items: ['SQL', 'Excel', 'Google Sheets'] },
+  { key: 'ops', name: 'Plataformas e operação', desc: 'Plataformas de atendimento e operação', items: ['Salesforce', 'Zendesk', 'Five9', 'Google Workspace', 'Automação de Processos'] },
+  { key: 'study', name: 'Estudo e ferramentas complementares', desc: 'Aprendidas em cursos e projetos', items: ['PostgreSQL', 'Power BI', 'Python', 'Pandas', 'NumPy', 'Metabase', 'Looker', 'Kibana', 'JavaScript', 'HTML', 'Modelagem de Dados'] },
+  { key: 'site', name: 'Construído neste site', desc: 'Usadas neste portfólio e no assistente', items: ['TypeScript', 'React', 'Next.js', 'Git/GitHub', 'Claude API', 'Prompt Engineering', 'IA Generativa'] },
 ];
 const techCatsEN: TechCat[] = [
-  { key: 'data', name: 'Data & Analytics', desc: 'Extraction, modeling & analysis', items: ['SQL', 'PostgreSQL', 'Python', 'Pandas', 'NumPy', 'Power BI', 'Metabase', 'Looker', 'Kibana', 'Excel', 'Google Sheets'] },
-  { key: 'eng', name: 'Engineering & Code', desc: 'Building & versioning', items: ['Python', 'JavaScript', 'TypeScript', 'React', 'Next.js', 'HTML', 'Git/GitHub', 'Data Modeling'] },
-  { key: 'ai', name: 'AI & Automation', desc: 'Applied intelligence', items: ['Google AI Studio', 'Gemini', 'Prompt Engineering', 'Process Automation', 'Generative AI'] },
-  { key: 'ops', name: 'Platforms & Ops', desc: 'Operational tooling', items: ['Salesforce', 'Zendesk', 'Five9', 'Google Workspace'] },
+  { key: 'work', name: 'Professional use', desc: 'Tools from my data and reporting work', items: ['SQL', 'Excel', 'Google Sheets'] },
+  { key: 'ops', name: 'Platforms and operations', desc: 'Support and operations platforms', items: ['Salesforce', 'Zendesk', 'Five9', 'Google Workspace', 'Process Automation'] },
+  { key: 'study', name: 'Study and complementary tools', desc: 'Learned through courses and projects', items: ['PostgreSQL', 'Power BI', 'Python', 'Pandas', 'NumPy', 'Metabase', 'Looker', 'Kibana', 'JavaScript', 'HTML', 'Data Modeling'] },
+  { key: 'site', name: 'Built on this site', desc: 'Used in this portfolio and its assistant', items: ['TypeScript', 'React', 'Next.js', 'Git/GitHub', 'Claude API', 'Prompt Engineering', 'Generative AI'] },
 ];
 
 const PT: SiteContent = {
