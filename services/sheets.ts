@@ -65,7 +65,7 @@ const FEATURED_RULES: FeaturedRule[] = [
   { titles: ['Git e GitHub: compartilhando e colaborando em projetos'], institution: 'Alura' },
   { titles: ['PostgreSQL'], institution: 'Alura' },
   { titles: ['Modelagem de banco de dados relacional: modelagem lógica e física'], institution: 'Alura' },
-  { titles: ['Power BI Desktop: construindo dashboard'], institution: 'Alura' },
+  { titles: ['Power BI Desktop: construindo dashboard', 'Power BI Desktop: construindo dashboards'], institution: 'Alura' },
   { titles: ['SQL: a linguagem dos bancos de dado', 'SQL: a linguagem dos bancos de dados'], institution: 'Escola Conquer' },
   { titles: ['Metabase'], institution: 'Udemy' },
 ];
