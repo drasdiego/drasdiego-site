@@ -1,4 +1,5 @@
 import type { CategoryId, Qualification } from '@/types';
+import { norm } from '@/lib/utils';
 
 /* ============================================================
    GOOGLE SHEETS SERVICE
@@ -52,6 +53,46 @@ export function categorize(raw: string): CategoryId {
     if (score > bestScore) { bestScore = score; best = id; }
   });
   return best ?? 'negocios';
+}
+
+interface FeaturedRule { titles: string[]; institution: string }
+
+const FEATURED_RULES: FeaturedRule[] = [
+  { titles: ['Análise de dados como suporte à tomada de decisão'], institution: 'Enap' },
+  { titles: ['Aprendendo com Python'], institution: 'Enap' },
+  { titles: ['Certificação em Ouvidoria'], institution: 'ABBC' },
+  { titles: ['Scrum Foundation Professional Certification - SFPC'], institution: 'Certiprof' },
+  { titles: ['Git e GitHub: compartilhando e colaborando em projetos'], institution: 'Alura' },
+  { titles: ['PostgreSQL'], institution: 'Alura' },
+  { titles: ['Modelagem de banco de dados relacional: modelagem lógica e física'], institution: 'Alura' },
+  { titles: ['Power BI Desktop: construindo dashboard'], institution: 'Alura' },
+  { titles: ['SQL: a linguagem dos bancos de dado', 'SQL: a linguagem dos bancos de dados'], institution: 'Escola Conquer' },
+  { titles: ['Metabase'], institution: 'Udemy' },
+];
+
+const featuredKey = (s: string): string => norm(s).replace(/[^a-z0-9]+/g, ' ').trim();
+
+const FEATURED_TITLE_KEYS = new Map<string, string[]>();
+for (const r of FEATURED_RULES) {
+  for (const t of r.titles) {
+    const k = featuredKey(t);
+    FEATURED_TITLE_KEYS.set(k, [...(FEATURED_TITLE_KEYS.get(k) ?? []), featuredKey(r.institution)]);
+  }
+}
+
+function sameInstitution(actual: string, expected: string): boolean {
+  return actual === expected || actual.startsWith(expected + ' ');
+}
+
+export function isFeaturedQualification(titulo: string, instituicao: string): boolean {
+  const insts = FEATURED_TITLE_KEYS.get(featuredKey(titulo));
+  if (!insts) return false;
+  const inst = featuredKey(instituicao);
+  return insts.some((expected) => sameInstitution(inst, expected));
+}
+
+export function markFeatured(list: Qualification[]): Qualification[] {
+  return list.map((q) => ({ ...q, featured: isFeaturedQualification(q.titulo, q.instituicao) }));
 }
 
 /* ---- gviz JSON parsing with tolerant column mapping ---- */
@@ -172,11 +213,11 @@ export function parseGviz(text: string): Qualification[] {
       categoria: categorize(cellVal(map.categoria != null ? c[map.categoria] : null) || titulo + ' ' + inst),
     });
   });
-  return out;
+  return markFeatured(out);
 }
 
 /* ---- Local fallback (real courses; used only if the sheet is unreachable) ---- */
-type SeedTuple = [string, string, string?, string?, boolean?, string?];
+type SeedTuple = [string, string, string?, string?, string?];
 function mk(arr: SeedTuple[], cat: CategoryId): Qualification[] {
   return arr.map((a, i) => ({
     id: `${cat}-${i}`,
@@ -184,13 +225,12 @@ function mk(arr: SeedTuple[], cat: CategoryId): Qualification[] {
     instituicao: a[1],
     dataEmissao: a[2] || '',
     urlCertificado: a[3] || '',
-    featured: !!a[4],
-    descricao: a[5] || '',
+    descricao: a[4] || '',
     categoria: cat,
   }));
 }
 
-export const QUAL_SEED: Qualification[] = [
+export const QUAL_SEED: Qualification[] = markFeatured([
   ...mk([
     ['Análise de Dados como Suporte à Tomada de Decisão', 'ENAP', '2026'],
     ['Aprendendo com Python', 'ENAP', '2026'],
@@ -221,14 +261,14 @@ export const QUAL_SEED: Qualification[] = [
     ['Agilidade de Aprendizagem', 'LinkedIn Learning', '2023'],
   ], 'ia'),
   ...mk([
-    ['Scrum Foundation Professional Certification (SFPC)', 'CertiProf', '2024', '', true, 'Certificação internacional em fundamentos de Scrum e metodologias ágeis para gestão de produtos e entrega contínua de valor. Validade 2024 a 2027.'],
+    ['Scrum Foundation Professional Certification (SFPC)', 'CertiProf', '2024', '', 'Certificação internacional em fundamentos de Scrum e metodologias ágeis para gestão de produtos e entrega contínua de valor. Validade 2024 a 2027.'],
     ['Construção de Backlog', 'Noble Work Foundation', '2023'],
     ['Papéis de Product Owner e Scrum Master', 'Noble Work Foundation', '2023'],
     ['Metodologias Ágeis', 'Noble Work Foundation', '2023'],
     ['Metodologias Ágeis e Introdução à Estatística', 'Wise Hands', '2023'],
   ], 'agile'),
   ...mk([
-    ['Introdução à Liderança Lean', 'Fundação Bradesco', '2023', '', true, 'Princípios de liderança Lean com foco em eliminação de desperdícios, melhoria contínua e gestão eficiente de equipes e processos.'],
+    ['Introdução à Liderança Lean', 'Fundação Bradesco', '2023', '', 'Princípios de liderança Lean com foco em eliminação de desperdícios, melhoria contínua e gestão eficiente de equipes e processos.'],
     ['Produtividade, Gestão do Tempo e Propósito', 'PUCRS', '2022'],
     ['Liderança Saudável', 'PUCRS', '2022'],
     ['Liderança, Capacidade de Aprender e Resiliência', 'PUCRS', '2022'],
@@ -246,7 +286,7 @@ export const QUAL_SEED: Qualification[] = [
     ['Gestão de Performance', 'LinkedIn Learning', '2022'],
   ], 'lideranca'),
   ...mk([
-    ['Certificação em Ouvidoria', 'ABBC', '2025', '', true, 'Certificação profissional em Ouvidoria pela Associação Brasileira de Bancos, voltada à gestão de manifestações, mediação de conflitos e relação com o consumidor. Validade 2025 a 2029.'],
+    ['Certificação em Ouvidoria', 'ABBC', '2025', '', 'Certificação profissional em Ouvidoria pela Associação Brasileira de Bancos, voltada à gestão de manifestações, mediação de conflitos e relação com o consumidor. Validade 2025 a 2029.'],
     ['Fundamentos da Gestão da Qualidade', 'FM2S', '2021'],
     ['Fundamentos da Excelência Operacional', 'FM2S', '2021'],
     ['Metodologias para Excelência Operacional', 'FM2S', '2021'],
@@ -258,7 +298,7 @@ export const QUAL_SEED: Qualification[] = [
     ['Google Guides', 'MyMovit', '2020'],
     ['RD Station Marketing Basic', 'RD Station', '2024'],
   ], 'negocios'),
-];
+]);
 
 /* Fetch + parse the live sheet. Cache-busted so edits show up without a redeploy. */
 export async function fetchQualifications(signal?: AbortSignal): Promise<Qualification[]> {

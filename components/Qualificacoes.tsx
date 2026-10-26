@@ -14,11 +14,13 @@ function QualRow({
   q,
   catLabel,
   viewCertLabel,
+  badgeLabel,
   metaLabels,
 }: {
   q: Qualification;
   catLabel: string;
   viewCertLabel: string;
+  badgeLabel: string;
   metaLabels: MetaLabels;
 }) {
   return (
@@ -30,7 +32,7 @@ function QualRow({
           <span className="qrow-inst">{q.instituicao || '·'}</span>
         </div>
         <span className="qrow-aside">
-          {q.featured ? <span className="qrow-badge">cert</span> : null}
+          {q.featured ? <span className="qrow-badge">{badgeLabel}</span> : null}
           {q.dataEmissao ? <span className="qrow-date">{q.dataEmissao}</span> : null}
         </span>
       </div>
@@ -95,6 +97,7 @@ export function Qualificacoes({ t }: { t: SiteContent }) {
     return items.slice().sort((a, b) => {
       const ya = yearOf(a);
       const yb = yearOf(b);
+      if (!!a.featured !== !!b.featured) return a.featured ? -1 : 1;
       if (yb !== ya) return yb - ya;
       return a.titulo.localeCompare(b.titulo);
     });
@@ -109,7 +112,9 @@ export function Qualificacoes({ t }: { t: SiteContent }) {
     });
   }, [sorted, active, query]);
 
-  const recent = useMemo(() => sorted.slice(0, 6), [sorted]);
+  const featuredItems = useMemo(() => sorted.filter((it) => it.featured).slice(0, 10), [sorted]);
+  const summary = featuredItems.length > 0 ? featuredItems : sorted.slice(0, 6);
+  const summaryLabel = featuredItems.length > 0 ? d.featuredLabel : d.recentLabel;
 
   const catName = (id: CategoryId) => d.catNames[id] || id;
 
@@ -194,11 +199,11 @@ export function Qualificacoes({ t }: { t: SiteContent }) {
           </div>
         </Reveal>
 
-        {recent.length > 0 && !listShown ? (
+        {summary.length > 0 && !listShown ? (
           <div className="qual-summary">
-            <p className="qual-summary-label">{d.recentLabel}</p>
+            <p className="qual-summary-label">{summaryLabel}</p>
             <ul className="qual-summary-list" role="list">
-              {recent.map((q) => (
+              {summary.map((q) => (
                 <li key={q.id}>
                   {q.titulo}
                   {q.instituicao ? ` · ${q.instituicao}` : ''}
@@ -220,6 +225,7 @@ export function Qualificacoes({ t }: { t: SiteContent }) {
                   q={q}
                   catLabel={catName(q.categoria)}
                   viewCertLabel={d.viewCert}
+                  badgeLabel={d.featuredBadge}
                   metaLabels={d.metaLabels}
                 />
               ))}
