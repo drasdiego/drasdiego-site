@@ -13,7 +13,7 @@ import { norm } from '@/lib/utils';
    ============================================================ */
 
 export const SHEET_ID = '1e0Ly1xwVEOk4mZAD9YE1gjWRBHKkFVKSUW_JcE1tAV4';
-export const SHEET_GID = '0';
+export const SHEET_GID = '544183403';
 
 export interface QualCategory { id: CategoryId; ic: string }
 
@@ -242,13 +242,13 @@ export const QUAL_SEED: Qualification[] = markFeatured([
     ['PostgreSQL', 'Alura', '2024'],
     ['PostgreSQL: Views, Subconsultas e Funções', 'Alura', '2025'],
     ['Modelagem de Banco de Dados: entidades e relacionamentos', 'Alura', '2024'],
-    ['Modelagem de Banco de Dados Relacional', 'Alura', '2024'],
+    ['Modelagem de banco de dados relacional: modelagem lógica e física', 'Alura', '2024'],
     ['Power BI Desktop: construindo dashboards', 'Alura', '2024'],
     ['Power BI Desktop: tratamento no Power Query', 'Alura', '2024'],
-    ['Git e GitHub: compartilhando e colaborando', 'Alura', '2025'],
+    ['Git e GitHub: compartilhando e colaborando em projetos', 'Alura', '2025'],
     ['Lógica de Programação com JavaScript', 'Alura', '2025'],
     ['JavaScript e HTML', 'Alura', '2025'],
-    ['SQL: linguagem de bancos de dados', 'Escola Conquer', '2024'],
+    ['SQL: a linguagem dos bancos de dados', 'Escola Conquer', '2024'],
     ['Metabase', 'Udemy', '2024'],
     ['Lógica de Programação e Algoritmos', 'Udemy', '2023'],
     ['Lógica de Programação', 'Wise Hands', '2023'],
