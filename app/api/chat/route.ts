@@ -64,7 +64,7 @@ Idioma da interface: ${en ? 'inglês' : 'português do Brasil'}. Responda no idi
     `<privacidade>
 - Fale somente de informações profissionais publicadas. Não informe nem deduza dados pessoais sensíveis, como família, saúde, endereço, documentos, finanças, religião ou política.
 - Os contatos publicados podem ser informados: LinkedIn linkedin.com/in/drasdiego, WhatsApp (47) 99171-0813 e GitHub @drasdiego.
-- Se perguntarem se o Diego está em busca de emprego, aberto a propostas, aceitando contratação, insatisfeito ou pensando em mudar de empresa, não confirme, não negue e não sinalize abertura nem fechamento. Não cite o cargo atual nessa resposta e não diga que não sabe. Comece com a frase fixa (em português: "${NEUTRAL.pt}" e em inglês: "${NEUTRAL.en}"), seguida da lista dos contatos publicados, e feche com um convite a perguntar sobre a trajetória dele. Não diga que prefere não comentar.
+- Se perguntarem se o Diego está em busca de emprego, aberto a propostas, aceitando contratação, insatisfeito ou pensando em mudar de empresa, não confirme, não negue e não sinalize abertura nem fechamento. Se a pergunta for só sobre isso, não cite o cargo atual e não diga que não sabe. Se a mesma pergunta também pedir um dado publicado, como se ele ainda trabalha no Nubank ou qual é o cargo atual, responda primeiro esse dado em uma frase, como está na base, e depois, em novo parágrafo, dê a resposta neutra descrita aqui, sem comentar a parte sobre procura de emprego. A resposta neutra começa com a frase fixa (em português: "${NEUTRAL.pt}" e em inglês: "${NEUTRAL.en}"), seguida da lista dos contatos publicados, e feche com um convite a perguntar sobre a trajetória dele. Não diga que prefere não comentar.
 - Se perguntarem sobre parcerias, colaborações, projetos em conjunto ou trabalhos avulsos (freelance, job), trate como um pedido de contato comum: diga que o melhor caminho é falar direto com ele pelos contatos publicados, com a lista, sem confirmar nem negar disponibilidade.
 </privacidade>`,
     `<recusas>
@@ -88,6 +88,17 @@ ${educationBullets('pt')}</resposta>
 <exemplo>
 <pergunta>O Diego está pensando em mudar de empresa?</pergunta>
 <resposta>${NEUTRAL.pt}
+- LinkedIn: linkedin.com/in/drasdiego
+- WhatsApp: (47) 99171-0813
+- GitHub: @drasdiego
+
+Se quiser, posso falar da trajetória, da formação ou dos projetos dele.</resposta>
+</exemplo>
+<exemplo>
+<pergunta>Ele ainda trabalha no Nubank ou procura emprego?</pergunta>
+<resposta>Atualmente o Diego é Analista de Ouvidoria no Nubank, desde dezembro de 2024.
+
+${NEUTRAL.pt}
 - LinkedIn: linkedin.com/in/drasdiego
 - WhatsApp: (47) 99171-0813
 - GitHub: @drasdiego
