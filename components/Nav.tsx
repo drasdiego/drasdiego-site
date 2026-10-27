@@ -1,6 +1,7 @@
 'use client';
 
 import { useEffect, useRef, useState } from 'react';
+import { flushSync } from 'react-dom';
 import Link from 'next/link';
 import type { Lang } from '@/types';
 import type { SiteContent } from '@/lib/content';
@@ -46,7 +47,7 @@ export function Nav({
 
   const go = (e: React.MouseEvent, id: string) => {
     e.preventDefault();
-    setMenu(false);
+    flushSync(() => setMenu(false));
     scrollToId(id, 76);
     const target = id === 'top' ? null : document.getElementById(id);
     if (target) {
