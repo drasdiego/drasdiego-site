@@ -37,8 +37,8 @@ interface HistoryItem {
 }
 
 const NEUTRAL: Record<Lang, string> = {
-  pt: 'Esse tipo de conversa é melhor direto com o Diego, pelos contatos publicados:',
-  en: 'That kind of conversation is best had directly with Diego, through his published contacts:',
+  pt: 'Quem melhor responde isso é o próprio Diego. Você pode falar com ele pelos contatos publicados:',
+  en: 'The best person to answer that is Diego himself. You can reach him through his published contacts:',
 };
 
 function systemPrompt(lang: Lang, local: string | null, now: Date): string {
