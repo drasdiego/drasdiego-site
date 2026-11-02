@@ -16,7 +16,7 @@ export function DataAI({ t }: { t: SiteContent }) {
                 <Icon name={c.ic} />
               </div>
               <div>
-                <h4>{c.h}</h4>
+                <h3>{c.h}</h3>
                 <p>{c.p}</p>
               </div>
             </div>
