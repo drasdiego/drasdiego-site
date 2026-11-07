@@ -1,0 +1,5 @@
+:root{--sp-section:88px;--sp-head:32px;--sp-item:20px}
+.section{padding-block:var(--sp-section) 0}
+.section-head{margin-bottom:var(--sp-head)}
+@media(max-width:900px){:root{--sp-section:72px}}
+@media(max-width:760px){:root{--sp-section:56px;--sp-head:24px;--sp-item:16px}}

@@ -14,7 +14,7 @@ export function RecentGuides({ lang }: { lang: Lang }) {
   return (
     <section className="section recent-guides" id="guias" aria-labelledby="guides-title">
       <div className="wrap">
-        <div className="guides-head">
+        <div className="section-headline">
           <div>
             <h2 className="section-title" id="guides-title">{d.blogTitle}</h2>
             <p className="section-sub">{BLOG_UI[lang].indexLead}</p>

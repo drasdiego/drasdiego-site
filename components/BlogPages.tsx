@@ -3,6 +3,7 @@ import type { Lang } from '@/types';
 import { BLOG_UI, CATEGORIES, GUIDES, blogRoot, blogStructuredData, formatDate, guidesIn, sortGuides } from '@/lib/blog';
 import type { Block, Category, Guide, Section } from '@/lib/blog';
 import '@/app/blog.css';
+import '@/app/espaco.css';
 import { CopyButton } from './CopyButton';
 import { GuideCard } from './GuideCard';
 import { GuideToc } from './GuideToc';

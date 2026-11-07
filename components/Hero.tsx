@@ -2,6 +2,7 @@ import Link from 'next/link';
 import type { Lang } from '@/types';
 import { PRESENTATION } from '@/lib/presentation';
 import { projetosPath, sobrePath } from '@/lib/site-nav';
+import '@/app/espaco.css';
 import '@/app/home.css';
 
 export function Hero({ lang }: { lang: Lang }) {

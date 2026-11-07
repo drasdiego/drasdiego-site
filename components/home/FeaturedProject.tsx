@@ -3,8 +3,10 @@
 import Link from 'next/link';
 import type { Lang } from '@/types';
 import { PRESENTATION } from '@/lib/presentation';
-import { pagePath } from '@/lib/site-nav';
+import { pagePath, projetosPath } from '@/lib/site-nav';
 import { Icon } from '../Icon';
+
+const ALL_PROJECTS = { pt: 'Ver todos os projetos', en: 'See all projects' } as const;
 
 export function FeaturedProject({ lang }: { lang: Lang }) {
   const d = PRESENTATION[lang];
@@ -12,10 +14,13 @@ export function FeaturedProject({ lang }: { lang: Lang }) {
   return (
     <section className="section featured" id="projetos" aria-labelledby="featured-title">
       <div className="wrap">
+        <div className="section-headline">
+          <h2 className="section-title" id="featured-title">{d.featuredLabel}</h2>
+          <Link className="text-link" href={projetosPath(lang)}>{ALL_PROJECTS[lang]}</Link>
+        </div>
         <article className="featured-card">
           <div className="featured-main">
-            <p className="featured-label">{d.featuredLabel}</p>
-            <h2 className="featured-title" id="featured-title">{d.projectName}</h2>
+            <h3 className="featured-title">{d.projectName}</h3>
             <p className="featured-desc">{d.projectDescription}</p>
             <p className="featured-stack"><span>{d.technologies}</span>{d.projectStack}</p>
             <div className="featured-actions">
@@ -24,7 +29,7 @@ export function FeaturedProject({ lang }: { lang: Lang }) {
             </div>
           </div>
           <div className="featured-panel" data-ui>
-            <div className="featured-panel-head"><Icon name="bot" /><h3>{d.assistantTitle}</h3></div>
+            <div className="featured-panel-head"><Icon name="bot" /><h4>{d.assistantTitle}</h4></div>
             <p className="featured-panel-intro">{d.assistantIntro}</p>
             <div className="featured-questions">
               {d.assistantQuestions.map(item => (
