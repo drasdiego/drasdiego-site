@@ -10,12 +10,12 @@ export default function GlobalNotFound() {
     <html lang="pt-BR" data-theme="dark" suppressHydrationWarning className={fontVars}>
       <body>
         <script dangerouslySetInnerHTML={{ __html: themeScript }} />
-        <main className="wrap" style={{ padding: '96px 0' }}>
+        <main className="wrap" style={{ paddingBlock: 96 }}>
           <h1>Página não encontrada</h1>
-          <p><Link href="/">Voltar ao início</Link></p>
+          <p><Link className="inline-link" href="/">Voltar ao início</Link></p>
           <div lang="en" style={{ marginTop: 32 }}>
             <h2>Page not found</h2>
-            <p><Link href="/en">Back to home</Link></p>
+            <p><Link className="inline-link" href="/en">Back to home</Link></p>
           </div>
         </main>
       </body>

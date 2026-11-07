@@ -64,6 +64,7 @@ export function Assistant({ t, lang }: { t: SiteContent; lang: Lang }) {
   const panelRef = useRef<HTMLDivElement | null>(null);
   const bodyRef = useRef<HTMLDivElement | null>(null);
   const inputRef = useRef<HTMLInputElement | null>(null);
+  const titleRef = useRef<HTMLDivElement | null>(null);
   const fabRef = useRef<HTMLButtonElement | null>(null);
   const returnFocusRef = useRef<HTMLElement | null>(null);
   const wasOpenRef = useRef(false);
@@ -139,7 +140,10 @@ export function Assistant({ t, lang }: { t: SiteContent; lang: Lang }) {
   useEffect(() => {
     if (open) {
       wasOpenRef.current = true;
-      const id = setTimeout(() => inputRef.current?.focus(), 80);
+      const id = setTimeout(() => {
+        const fine = typeof window.matchMedia === 'function' && window.matchMedia('(pointer: fine)').matches;
+        (fine ? inputRef.current : titleRef.current)?.focus();
+      }, 80);
       return () => clearTimeout(id);
     }
     if (wasOpenRef.current) {
@@ -197,7 +201,7 @@ export function Assistant({ t, lang }: { t: SiteContent; lang: Lang }) {
       const first = items[0];
       const last = items[items.length - 1];
       const active = document.activeElement;
-      if (!(active instanceof Node) || !panel.contains(active)) {
+      if (!(active instanceof HTMLElement) || !items.includes(active)) {
         e.preventDefault();
         (e.shiftKey ? last : first).focus();
       } else if (e.shiftKey && active === first) {
@@ -393,7 +397,7 @@ export function Assistant({ t, lang }: { t: SiteContent; lang: Lang }) {
           <div className="asst-head">
             <div className="asst-ava" dangerouslySetInnerHTML={{ __html: ICONS.bot }} />
             <div>
-              <div className="ti" id={titleId}>{A.title}</div>
+              <div className="ti" id={titleId} ref={titleRef} tabIndex={-1}>{A.title}</div>
               <div className="su">
                 <i />
                 {A.sub}

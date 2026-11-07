@@ -6,6 +6,7 @@ import { CONTENT } from '@/lib/content';
 import { NAV_UI } from '@/lib/site-nav';
 import type { BlogMenuData } from '@/lib/blog-menu';
 import { useTweaks } from '@/hooks/useTweaks';
+import { watchThemeColor } from '@/lib/theme';
 import { Nav } from './Nav';
 import { Footer } from './Footer';
 import { Assistant } from './Assistant';
@@ -30,6 +31,7 @@ export function SiteChrome({
     const root = document.documentElement;
     root.setAttribute('data-theme', tweaks.dark ? 'dark' : 'light');
     root.setAttribute('data-density', tweaks.density);
+    return watchThemeColor(tweaks.dark);
   }, [hydrated, tweaks.dark, tweaks.density]);
 
   return (

@@ -3,11 +3,12 @@ import '../globals.css';
 import { RootShell } from '@/components/RootShell';
 import { SiteShell } from '@/components/SiteShell';
 import { buildMetadata } from '@/lib/seo';
+import { THEME_COLORS } from '@/lib/theme';
 
 export const metadata: Metadata = buildMetadata('pt');
 
 export const viewport: Viewport = {
-  themeColor: '#101214',
+  themeColor: THEME_COLORS.dark,
   width: 'device-width',
   initialScale: 1,
   viewportFit: 'cover',
