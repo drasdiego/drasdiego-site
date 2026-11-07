@@ -1,17 +1,15 @@
 import Link from 'next/link';
 import type { Lang } from '@/types';
-import { BLOG_UI, GUIDES, blogRoot, formatDate } from '@/lib/blog';
+import { BLOG_UI, GUIDES, blogRoot, sortGuides } from '@/lib/blog';
 import { PRESENTATION } from '@/lib/presentation';
+import { GuideCard } from '../GuideCard';
 
 const LIMIT = 3;
 
 export function RecentGuides({ lang }: { lang: Lang }) {
   const d = PRESENTATION[lang];
   const root = blogRoot(lang);
-  const guides = GUIDES.map((guide, index) => ({ guide, index }))
-    .sort((a, b) => (a.guide.published < b.guide.published ? 1 : a.guide.published > b.guide.published ? -1 : a.index - b.index))
-    .slice(0, LIMIT)
-    .map(item => item.guide);
+  const guides = sortGuides(GUIDES).slice(0, LIMIT);
   if (guides.length === 0) return null;
   return (
     <section className="section recent-guides" id="guias" aria-labelledby="guides-title">
@@ -25,13 +23,7 @@ export function RecentGuides({ lang }: { lang: Lang }) {
         </div>
         <ul className="guides-grid">
           {guides.map(guide => (
-            <li key={`${guide.category}/${guide.slug}`}>
-              <Link className="guide-card" href={`${root}/${guide.category}/${guide.slug}`}>
-                <h3>{guide[lang].title}</h3>
-                <p>{guide[lang].lead}</p>
-                <span className="guide-card-date">{formatDate(guide.published, lang)}</span>
-              </Link>
-            </li>
+            <li key={`${guide.category}/${guide.slug}`}><GuideCard lang={lang} guide={guide} /></li>
           ))}
         </ul>
       </div>

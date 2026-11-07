@@ -1,6 +1,7 @@
 import Link from 'next/link';
 import type { Lang } from '@/types';
 import '../app/paginas.css';
+import '../app/blog.css';
 import { BLOG_UI } from '@/lib/blog';
 import { PROJETOS, PROJETOS_INTRO, projetoStructuredData } from '@/lib/projetos';
 import type { Projeto, ProjetoBlock, ProjetoFact, ProjetoSection } from '@/lib/projetos';

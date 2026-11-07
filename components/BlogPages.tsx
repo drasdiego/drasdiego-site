@@ -1,8 +1,11 @@
 import Link from 'next/link';
 import type { Lang } from '@/types';
-import { BLOG_UI, CATEGORIES, blogRoot, blogStructuredData, formatDate, guidesIn } from '@/lib/blog';
-import type { Block, Category, Guide } from '@/lib/blog';
+import { BLOG_UI, CATEGORIES, GUIDES, blogRoot, blogStructuredData, formatDate, guidesIn, sortGuides } from '@/lib/blog';
+import type { Block, Category, Guide, Section } from '@/lib/blog';
+import '@/app/blog.css';
 import { CopyButton } from './CopyButton';
+import { GuideCard } from './GuideCard';
+import { GuideToc } from './GuideToc';
 
 function Inline({ text }: { text: string }) {
   const parts = text.split(/(`[^`]+`|\[[^\]]+\]\([^)]+\))/g).filter(Boolean);
@@ -108,6 +111,37 @@ function Blocks({ blocks, lang }: { blocks: Block[]; lang: Lang }) {
   );
 }
 
+function CategoryNav({ lang, current }: { lang: Lang; current?: string }) {
+  const ui = BLOG_UI[lang];
+  const root = blogRoot(lang);
+  return (
+    <nav className="blog-cats" aria-label={ui.categoriesTitle}>
+      <ul>
+        <li><Link href={root} aria-current={current === undefined ? 'page' : undefined}>{ui.allGuides}</Link></li>
+        {CATEGORIES.map((cat) => (
+          <li key={cat.slug}>
+            <Link href={`${root}/${cat.slug}`} aria-current={current === cat.slug ? 'page' : undefined}>{cat[lang].name}</Link>
+          </li>
+        ))}
+      </ul>
+    </nav>
+  );
+}
+
+function GuideCards({ lang, guides }: { lang: Lang; guides: Guide[] }) {
+  const ui = BLOG_UI[lang];
+  return (
+    <section className="blog-list" aria-labelledby="guias">
+      <h2 id="guias" className="sr-only">{ui.guidesTitle}</h2>
+      <ul className="guides-grid">
+        {guides.map((g) => (
+          <li key={`${g.category}/${g.slug}`}><GuideCard lang={lang} guide={g} /></li>
+        ))}
+      </ul>
+    </section>
+  );
+}
+
 export function BlogHomePage({ lang }: { lang: Lang }) {
   const ui = BLOG_UI[lang];
   const name = ui.blog;
@@ -121,19 +155,8 @@ export function BlogHomePage({ lang }: { lang: Lang }) {
           <h1 className="blog-title">{ui.indexTitle}</h1>
           <p className="blog-lead">{ui.indexLead}</p>
         </div>
-        <section className="blog-list" aria-labelledby="categorias">
-          <h2 id="categorias" className="blog-list-title">{ui.categoriesTitle}</h2>
-          {CATEGORIES.map((cat) => {
-            const c = cat[lang];
-            return (
-              <Link key={cat.slug} className="blog-card" href={`${blogRoot(lang)}/${cat.slug}`}>
-                <h3>{c.name}</h3>
-                <p>{c.desc}</p>
-                <span className="blog-card-meta">{ui.guideCount(guidesIn(cat.slug).length)}</span>
-              </Link>
-            );
-          })}
-        </section>
+        <CategoryNav lang={lang} />
+        <GuideCards lang={lang} guides={sortGuides(GUIDES)} />
       </div>
     </>
   );
@@ -142,7 +165,7 @@ export function BlogHomePage({ lang }: { lang: Lang }) {
 export function BlogCategoryPage({ lang, category }: { lang: Lang; category: Category }) {
   const ui = BLOG_UI[lang];
   const c = category[lang];
-  const guides = guidesIn(category.slug);
+  const guides = sortGuides(guidesIn(category.slug));
   const json = blogStructuredData(lang, [{ name: ui.blog, sub: '' }, { name: c.name, sub: `/${category.slug}` }]);
   return (
     <>
@@ -153,19 +176,17 @@ export function BlogCategoryPage({ lang, category }: { lang: Lang; category: Cat
           <h1 className="blog-title">{c.name}</h1>
           <p className="blog-lead">{c.desc}</p>
         </div>
-        <section className="blog-list" aria-labelledby="guias">
-          <h2 id="guias" className="blog-list-title">{ui.guidesTitle}</h2>
-          {guides.map((g) => (
-            <Link key={g.slug} className="blog-card" href={`${blogRoot(lang)}/${category.slug}/${g.slug}`}>
-              <h3>{g[lang].title}</h3>
-              <p>{g[lang].lead}</p>
-              <span className="blog-card-meta">{ui.published} {formatDate(g.published, lang)}</span>
-            </Link>
-          ))}
-        </section>
+        <CategoryNav lang={lang} current={category.slug} />
+        <GuideCards lang={lang} guides={guides} />
       </div>
     </>
   );
+}
+
+function sectionNumber(section: Section): string | undefined {
+  if (section.n === undefined) return undefined;
+  const value = Number(section.n);
+  return Number.isInteger(value) ? String(value + 1) : section.n;
 }
 
 export function BlogGuidePage({ lang, category, guide }: { lang: Lang; category: Category; guide: Guide }) {
@@ -190,26 +211,22 @@ export function BlogGuidePage({ lang, category, guide }: { lang: Lang; category:
           </ul>
           <p className="blog-date">{ui.published} <time dateTime={guide.published}>{formatDate(guide.published, lang)}</time></p>
         </header>
-        <nav className="blog-col guide-toc" aria-labelledby="guide-toc-title">
-          <h2 id="guide-toc-title">{ui.toc}</h2>
-          <ol>
+        <div className="guide-layout">
+          <GuideToc
+            title={ui.toc}
+            items={g.sections.map((s, idx) => ({ id: `sec-${idx}`, label: s.title, num: sectionNumber(s) ?? '•' }))}
+          />
+          <div className="guide">
             {g.sections.map((s, idx) => (
-              <li key={s.title}>
-                <a href={`#sec-${idx}`}><span aria-hidden="true">{s.n ?? '•'}</span>{s.title}</a>
-              </li>
+              <section key={s.title} className={`guide-step${s.note ? ' guide-note' : ''}`} aria-labelledby={`sec-${idx}`}>
+                {s.n !== undefined && <span className="guide-num" aria-hidden="true">{sectionNumber(s)}</span>}
+                <div className="guide-body">
+                  <h2 id={`sec-${idx}`}>{s.title}</h2>
+                  <Blocks blocks={s.blocks} lang={lang} />
+                </div>
+              </section>
             ))}
-          </ol>
-        </nav>
-        <div className="blog-col guide">
-          {g.sections.map((s, idx) => (
-            <section key={s.title} className={`guide-step${s.note ? ' guide-note' : ''}`} aria-labelledby={`sec-${idx}`}>
-              {s.n !== undefined && <span className="guide-num" aria-hidden="true">{s.n}</span>}
-              <div className="guide-body">
-                <h2 id={`sec-${idx}`}>{s.title}</h2>
-                <Blocks blocks={s.blocks} lang={lang} />
-              </div>
-            </section>
-          ))}
+          </div>
         </div>
       </article>
     </>

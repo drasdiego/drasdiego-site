@@ -81,6 +81,7 @@ export const BLOG_UI = {
     indexTitle: 'Blog',
     indexLead: 'Guias e notas sobre ferramentas de IA e desenvolvimento de software. Conteúdo educativo e independente.',
     categoriesTitle: 'Categorias',
+    allGuides: 'Todos',
     guidesTitle: 'Guias',
     guideCount: (n: number) => (n === 1 ? '1 guia' : `${n} guias`),
     published: 'Publicado em',
@@ -113,6 +114,7 @@ export const BLOG_UI = {
     indexTitle: 'Blog',
     indexLead: 'Guides and notes on AI tools and software development. Independent educational content.',
     categoriesTitle: 'Categories',
+    allGuides: 'All',
     guidesTitle: 'Guides',
     guideCount: (n: number) => (n === 1 ? '1 guide' : `${n} guides`),
     published: 'Published on',
@@ -149,6 +151,13 @@ export function findCategory(slug: string): Category | undefined {
 
 export function guidesIn(category: string): Guide[] {
   return GUIDES.filter((g) => g.category === category);
+}
+
+export function sortGuides(list: Guide[]): Guide[] {
+  return list
+    .map((guide, index) => ({ guide, index }))
+    .sort((a, b) => (a.guide.published < b.guide.published ? 1 : a.guide.published > b.guide.published ? -1 : a.index - b.index))
+    .map((item) => item.guide);
 }
 
 export function findGuide(category: string, slug: string): Guide | undefined {

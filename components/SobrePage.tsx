@@ -1,6 +1,7 @@
 import Link from 'next/link';
 import type { Lang, Qualification } from '@/types';
 import '../app/paginas.css';
+import '../app/blog.css';
 import { QualificationsProvider } from '@/hooks/qualificationsContext';
 import { CONTENT } from '@/lib/content';
 import { PRESENTATION } from '@/lib/presentation';
