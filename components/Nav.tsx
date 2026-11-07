@@ -95,7 +95,18 @@ export function Nav({
     <Link key="contato" href={contactPath(lang)} onClick={() => setMenu(false)}>{ui.contato}</Link>
   );
 
+  const homeLink = (
+    <Link key="inicio" href={home} className={`nav-home ${isHome ? 'active' : ''}`} aria-current={isHome ? 'page' : undefined} onClick={(e) => { if (isHome) goHere(e, 'top'); else setMenu(false); }}>
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.7" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+        <path d="M3 10.2a2 2 0 0 1 .7-1.5l7-6a2 2 0 0 1 2.6 0l7 6a2 2 0 0 1 .7 1.5V19a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2Z" />
+        <path d="M9.5 21v-6.5a1 1 0 0 1 1-1h3a1 1 0 0 1 1 1V21" />
+      </svg>
+      <span className="nav-home-label">{ui.inicio}</span>
+    </Link>
+  );
+
   const navLinks = () => [
+    homeLink,
     pageLink('projetos', projetosPath(lang)),
     <BlogMenu key="blog" data={blogMenu} active={active === 'blog'} />,
     pageLink('sobre', sobrePath(lang)),
@@ -105,7 +116,7 @@ export function Nav({
   return (
     <header className={`nav ${scrolled ? 'scrolled' : ''}`}>
       <div className="nav-inner">
-        <Link className="brand" href={home} aria-current={isHome ? 'page' : undefined} onClick={(e) => { if (isHome) goHere(e, 'top'); else setMenu(false); }}>
+        <Link className="brand" href={home} onClick={(e) => { if (isHome) goHere(e, 'top'); else setMenu(false); }}>
           <span className="bt">
             <span>Diego Arruda</span>
             <small>{ui.brandRole}</small>

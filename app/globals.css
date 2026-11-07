@@ -92,3 +92,6 @@ a,button,summary{touch-action:manipulation}button,.btn,summary{transition:backgr
 @media(max-width:560px){.split{grid-template-columns:minmax(0,1fr)}}
 
 main[tabindex="-1"]:focus{outline:none}
+.nav-home{gap:10px;color:var(--text-2);transition:color .15s ease}.nav-home svg{width:19px;height:19px;flex:none}.nav-home:hover,.nav-home.active{color:var(--accent)}.nav-links .nav-home{justify-content:center}.nav-links .nav-home-label{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}.nav-links a.nav-home.active{text-decoration:none;box-shadow:inset 0 -1px 0 var(--accent)}
+.mobile-nav-links .nav-home{display:flex;align-items:center}
+.mobile-nav-links .nav-home:not(.active){color:inherit}

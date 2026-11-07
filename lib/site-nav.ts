@@ -4,6 +4,7 @@ export type NavKey = 'projetos' | 'blog' | 'sobre' | 'contato';
 
 export const NAV_UI = {
   pt: {
+    inicio: 'Início',
     projetos: 'Projetos',
     sobre: 'Sobre',
     contato: 'Contato',
@@ -20,6 +21,7 @@ export const NAV_UI = {
     backToTop: 'Voltar ao topo',
   },
   en: {
+    inicio: 'Home',
     projetos: 'Projects',
     sobre: 'About',
     contato: 'Contact',
