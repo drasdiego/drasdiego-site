@@ -1,13 +1,15 @@
 import Link from 'next/link';
 import './globals.css';
 import { fontVars } from '@/lib/fonts';
+import { themeScript } from '@/components/RootShell';
 
 export const metadata = { title: '404 | Diego Arruda' };
 
 export default function GlobalNotFound() {
   return (
-    <html lang="pt-BR" data-theme="light" className={fontVars}>
+    <html lang="pt-BR" data-theme="dark" suppressHydrationWarning className={fontVars}>
       <body>
+        <script dangerouslySetInnerHTML={{ __html: themeScript }} />
         <main className="wrap" style={{ padding: '96px 0' }}>
           <h1>Página não encontrada</h1>
           <p><Link href="/">Voltar ao início</Link></p>

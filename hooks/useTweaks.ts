@@ -4,7 +4,7 @@ import type { Tweaks } from '@/types';
 export const DEFAULT_TWEAKS: Tweaks = {
   accent: '#7b5cff',
   fontPair: 'Grotesk',
-  dark: false,
+  dark: true,
   density: 'regular',
 };
 
@@ -16,7 +16,7 @@ export function useTweaks() {
 
   useEffect(() => {
     try {
-      if (sessionStorage.getItem(THEME_KEY) === 'dark') setTweaks((t) => ({ ...t, dark: true }));
+      if (sessionStorage.getItem(THEME_KEY) === 'light') setTweaks((t) => ({ ...t, dark: false }));
     } catch {}
     setHydrated(true);
   }, []);
