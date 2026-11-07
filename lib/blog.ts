@@ -2,6 +2,7 @@ import type { Metadata } from 'next';
 import type { Lang } from '@/types';
 import { SEO, SITE_URL } from './seo';
 import { TRIBUNAL } from './blog-tribunal';
+import type { BlogMenuData } from './blog-menu';
 
 export type Block =
   | { k: 'p'; v: string; muted?: boolean }
@@ -57,7 +58,10 @@ export const BLOG_UI = {
     blog: 'Blog',
     menu: 'Blog',
     allGuides: 'Todos os guias',
-    home: 'Início',
+    mobileNav: 'Navegação móvel',
+    menuWord: 'Menu',
+    openMenu: 'Abrir menu',
+    closeMenu: 'Fechar menu',
     skip: 'Pular para o conteúdo',
     crumbs: 'Trilha de navegação',
     mainNav: 'Navegação principal',
@@ -82,7 +86,10 @@ export const BLOG_UI = {
     blog: 'Blog',
     menu: 'Blog',
     allGuides: 'All guides',
-    home: 'Home',
+    mobileNav: 'Mobile navigation',
+    menuWord: 'Menu',
+    openMenu: 'Open menu',
+    closeMenu: 'Close menu',
     skip: 'Skip to content',
     crumbs: 'Breadcrumb',
     mainNav: 'Main navigation',
@@ -111,6 +118,20 @@ export function blogRoot(lang: Lang): string {
 
 export function blogPaths(sub: string): { pt: string; en: string } {
   return { pt: `/blog${sub}`, en: `/en/blog${sub}` };
+}
+
+export function buildBlogMenu(lang: Lang): BlogMenuData {
+  const root = blogRoot(lang);
+  return {
+    label: BLOG_UI[lang].menu,
+    allGuides: BLOG_UI[lang].allGuides,
+    rootHref: root,
+    categories: CATEGORIES.map((cat) => ({
+      name: cat[lang].name,
+      href: `${root}/${cat.slug}`,
+      guides: guidesIn(cat.slug).map((g) => ({ title: g[lang].title, href: `${root}/${cat.slug}/${g.slug}` })),
+    })),
+  };
 }
 
 export function findCategory(slug: string): Category | undefined {

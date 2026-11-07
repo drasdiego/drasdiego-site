@@ -2,6 +2,7 @@ import { Portfolio } from '@/components/Portfolio';
 import { QualificationsProvider } from '@/hooks/qualificationsContext';
 import { QUAL_SEED, fetchQualificationsServer } from '@/services/sheets';
 import { buildStructuredData } from '@/lib/seo';
+import { buildBlogMenu } from '@/lib/blog';
 import type { Lang, Qualification } from '@/types';
 
 const REVALIDATE = 600;
@@ -19,7 +20,7 @@ export async function SitePage({ lang }: { lang: Lang }) {
     <>
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: structuredDataJson }} />
       <QualificationsProvider initial={initial}>
-        <Portfolio initialLang={lang} />
+        <Portfolio initialLang={lang} blogMenu={buildBlogMenu(lang)} />
       </QualificationsProvider>
     </>
   );

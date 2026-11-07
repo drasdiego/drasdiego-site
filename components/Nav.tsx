@@ -5,16 +5,14 @@ import { flushSync } from 'react-dom';
 import Link from 'next/link';
 import type { Lang } from '@/types';
 import type { SiteContent } from '@/lib/content';
+import type { BlogMenuData } from '@/lib/blog-menu';
+import type { NavSection } from '@/lib/site-nav';
 import { LINKS } from '@/lib/icons';
 import { Icon } from './Icon';
+import { BlogMenu } from './BlogMenu';
 import { useScrolled } from '@/hooks/useScrolled';
 import { useActiveSection } from '@/hooks/useActiveSection';
 import { scrollToId } from '@/lib/utils';
-
-interface NavSection {
-  id: string;
-  label: string;
-}
 
 export function Nav({
   t,
@@ -22,12 +20,14 @@ export function Nav({
   dark,
   toggleTheme,
   sections,
+  blogMenu,
 }: {
   t: SiteContent;
   lang: Lang;
   dark: boolean;
   toggleTheme: () => void;
   sections: NavSection[];
+  blogMenu: BlogMenuData;
 }) {
   const scrolled = useScrolled(14);
   const active = useActiveSection(sections.map((s) => s.id));
@@ -77,13 +77,11 @@ export function Nav({
     </>
   );
 
-  const blogHref = lang === 'en' ? '/en/blog' : '/blog';
-
   const sectionLinks = () => [...sections.map((s) => (
     <a key={s.id} href={`#${s.id}`} onClick={(e) => go(e, s.id)} className={active === s.id ? 'active' : ''} aria-current={active === s.id ? 'location' : undefined}>
       {s.label}
     </a>
-  )), <Link key="blog" href={blogHref} className="nav-blog">Blog</Link>];
+  )), <BlogMenu key="blog" data={blogMenu} />];
 
   return (
     <header className={`nav ${scrolled ? 'scrolled' : ''}`}>

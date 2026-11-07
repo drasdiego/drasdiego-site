@@ -4,6 +4,8 @@ import { useEffect } from 'react';
 import type { Lang } from '@/types';
 import { CONTENT } from '@/lib/content';
 import { PRESENTATION } from '@/lib/presentation';
+import type { BlogMenuData } from '@/lib/blog-menu';
+import { siteSections } from '@/lib/site-nav';
 import { useTweaks } from '@/hooks/useTweaks';
 import { Nav } from './Nav';
 import { Hero } from './Hero';
@@ -17,7 +19,7 @@ import { Contato } from './Contato';
 import { Footer } from './Footer';
 import { Assistant } from './Assistant';
 
-export function Portfolio({ initialLang }: { initialLang: Lang }) {
+export function Portfolio({ initialLang, blogMenu }: { initialLang: Lang; blogMenu: BlogMenuData }) {
   const { tweaks, set, hydrated } = useTweaks();
   const lang = initialLang;
 
@@ -31,17 +33,12 @@ export function Portfolio({ initialLang }: { initialLang: Lang }) {
   const t = CONTENT[lang];
   const d = PRESENTATION[lang];
 
-  const sections = [
-    { id: 'projetos', label: lang === 'en' ? 'Project' : 'Projeto' },
-    { id: 'experiencia', label: t.nav.exp },
-    { id: 'formacao', label: t.nav.cert },
-    { id: 'contato', label: t.nav.contact },
-  ];
+  const sections = siteSections(lang);
 
   return (
     <>
       <a className="skip-link" href="#conteudo">{d.skip}</a>
-      <Nav t={t} lang={lang} dark={tweaks.dark} toggleTheme={() => set('dark', !tweaks.dark)} sections={sections} />
+      <Nav t={t} lang={lang} dark={tweaks.dark} toggleTheme={() => set('dark', !tweaks.dark)} sections={sections} blogMenu={blogMenu} />
 
       <main id="conteudo">
         <Hero lang={lang} />
