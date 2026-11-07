@@ -110,6 +110,14 @@ function Block({ block }: { block: ProjetoBlock }) {
   switch (block.k) {
     case 'p':
       return <p>{block.v}</p>;
+    case 'list':
+      return (
+        <ul className="caso-lista">
+          {block.items.map((item) => (
+            <li key={item}>{item}</li>
+          ))}
+        </ul>
+      );
     case 'steps':
       return (
         <ol className="caso-passos">

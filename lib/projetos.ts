@@ -23,6 +23,7 @@ export interface ProjetoLink {
 
 export type ProjetoBlock =
   | { k: 'p'; v: string }
+  | { k: 'list'; items: string[] }
   | { k: 'steps'; items: ProjetoItem[] }
   | { k: 'decisions'; items: ProjetoItem[] }
   | { k: 'links'; items: ProjetoLink[] };
@@ -223,18 +224,36 @@ const FORA_DO_DIGITAL: Record<Lang, ProjetoText> = {
         ],
       },
       {
+        id: 'o-que-o-painel-mostra',
+        title: 'O que o painel mostra',
+        blocks: [
+          {
+            k: 'list',
+            items: [
+              'Indicadores principais com tendência: pessoas que usaram a internet, pessoas sem internet (em milhões e em percentual), domicílios com internet, pessoas com celular para uso pessoal e pessoas de 60 anos ou mais online.',
+              'Evolução do uso da internet nas áreas urbana e rural.',
+              'Recortes de 2025 por região, área, idade, instrução, sexo e cor ou raça, um de cada vez.',
+              'Motivos para não usar a internet, de pessoas e de domicílios, e motivos para não ter celular.',
+              'Finalidades de uso da internet e equipamentos usados para acessar.',
+              'Destaque com o rendimento médio mensal real per capita dos domicílios com e sem internet. A renda aparece só nesse destaque, não como recorte.',
+              'Simulador "Sua base de clientes", tabela alternativa em cada gráfico e download dos dados em CSV.',
+            ],
+          },
+        ],
+      },
+      {
         id: 'fonte-dos-dados',
         title: 'Fonte dos dados',
         blocks: [
           { k: 'p', v: 'Os dados são oficiais e vêm da PNAD Contínua (Pesquisa Nacional por Amostra de Domicílios Contínua), a pesquisa do IBGE (Instituto Brasileiro de Geografia e Estatística) que mede o acesso à internet. O painel usa o módulo TIC (Tecnologia da Informação e Comunicação), a partir dos informativos de 2024 e 2025.' },
           { k: 'p', v: 'Os números foram transcritos dos informativos para um arquivo de dados, e cada série, recorte e bloco aponta para a fonte de onde veio. Os dados pertencem ao IBGE.' },
+          { k: 'p', v: 'O projeto usa somente publicações do IBGE como fonte.' },
         ],
       },
       {
         id: 'como-foi-construido',
         title: 'Como foi construído',
         blocks: [
-          { k: 'p', v: 'O painel mostra indicadores (KPIs, os números principais) com tendência; recortes por região, área urbana e rural, idade, instrução, sexo e cor ou raça, um de cada vez; os motivos para não usar a internet, de pessoas e de domicílios; as finalidades de uso e os equipamentos usados para acessar; e um destaque que compara o rendimento médio per capita dos domicílios com e sem internet. A renda aparece só nesse destaque, não como recorte.' },
           {
             k: 'steps',
             items: [
@@ -276,7 +295,7 @@ const FORA_DO_DIGITAL: Record<Lang, ProjetoText> = {
               { title: 'Repetir no CI', text: 'A validação contínua, feita com GitHub Actions (o serviço do GitHub que roda verificações automáticas), repete esses passos e confere, com a opção --check, se o arquivo gerado está atualizado.' },
             ],
           },
-          { k: 'p', v: 'Limitações: a PNAD Contínua é uma pesquisa por amostra, então os percentuais têm margem de erro. O IBGE revisa a série a cada divulgação, e por isso pontos vindos do informativo de 2024 podem diferir da série revisada. Os anos sem dado não são interpolados. Os recortes são mostrados um de cada vez, porque não dá para combinar perfis sem os microdados. As leituras para atendimento são recomendações do projeto, não resultados da pesquisa.' },
+          { k: 'p', v: 'Limitações: a PNAD Contínua é uma pesquisa por amostra, então os percentuais têm margem de erro. O IBGE revisa a série a cada divulgação: os pontos de 2016 (urbano e rural) e de 2023 vêm do informativo de 2024 e podem diferir da série revisada. Os anos sem dado não são interpolados. Os recortes são mostrados um de cada vez, porque não dá para combinar perfis sem os microdados. As leituras para atendimento são recomendações do projeto, não resultados da pesquisa.' },
         ],
       },
       {
@@ -331,18 +350,36 @@ const FORA_DO_DIGITAL: Record<Lang, ProjetoText> = {
         ],
       },
       {
+        id: 'o-que-o-painel-mostra',
+        title: 'What the dashboard shows',
+        blocks: [
+          {
+            k: 'list',
+            items: [
+              'Headline indicators with trends: people who used the internet, people without internet (in millions and as a percentage), households with internet, people with a mobile phone for personal use and people aged 60 or over who are online.',
+              'How internet use has changed in urban and rural areas.',
+              '2025 breakdowns by region, area, age, education, sex and color or race, one at a time.',
+              'Reasons for not using the internet, for people and for households, and reasons for not having a mobile phone.',
+              'What the internet is used for and which devices are used to get online.',
+              'A highlight with the real average monthly per capita income of households with and without internet. Income appears only in that highlight, not as a breakdown.',
+              'A "Sua base de clientes" (your customer base) simulator, an alternative table for every chart and a CSV download of the data.',
+            ],
+          },
+        ],
+      },
+      {
         id: 'fonte-dos-dados',
         title: 'Data source',
         blocks: [
           { k: 'p', v: 'The data is official and comes from the PNAD Contínua (the Continuous National Household Sample Survey), the IBGE (Brazilian Institute of Geography and Statistics) survey that measures internet access. The dashboard uses the ICT (Information and Communication Technology) module, from the 2024 and 2025 reports.' },
           { k: 'p', v: 'The figures were transcribed from the reports into a data file, and every series, breakdown and block points to the source it came from. The data belongs to IBGE.' },
+          { k: 'p', v: 'The project uses only IBGE publications as sources.' },
         ],
       },
       {
         id: 'como-foi-construido',
         title: 'How it was built',
         blocks: [
-          { k: 'p', v: 'The dashboard shows indicators (KPIs, the headline figures) with trends; breakdowns by region, urban and rural area, age, education, sex and color or race, one at a time; the reasons for not using the internet, for people and for households; what the internet is used for and which devices are used to get online; and a highlight comparing the average per capita income of households with and without internet. Income appears only in that highlight, not as a breakdown.' },
           {
             k: 'steps',
             items: [
@@ -384,7 +421,7 @@ const FORA_DO_DIGITAL: Record<Lang, ProjetoText> = {
               { title: 'Repeat in CI', text: 'Continuous validation, run with GitHub Actions (the GitHub service that runs automated checks), repeats these steps and uses the --check option to confirm the generated file is up to date.' },
             ],
           },
-          { k: 'p', v: 'Limitations: the PNAD Contínua is a sample survey, so the percentages have a margin of error. IBGE revises the series with each release, so points taken from the 2024 report may differ from the revised series. Years without data are not interpolated. Breakdowns are shown one at a time, because profiles cannot be combined without the microdata. The readings for customer service are recommendations from the project, not survey results.' },
+          { k: 'p', v: 'Limitations: the PNAD Contínua is a sample survey, so the percentages have a margin of error. IBGE revises the series with each release: the 2016 points (urban and rural) and the 2023 points come from the 2024 report and may differ from the revised series. Years without data are not interpolated. Breakdowns are shown one at a time, because profiles cannot be combined without the microdata. The readings for customer service are recommendations from the project, not survey results.' },
         ],
       },
       {
