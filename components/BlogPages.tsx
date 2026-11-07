@@ -34,7 +34,23 @@ function Crumbs({ lang, items }: { lang: Lang; items: { name: string; href?: str
   );
 }
 
+const CALLOUT_ICON: Record<'tip' | 'warn' | 'note' | 'example', string> = {
+  tip: 'M9 18h6M10 21h4M12 3a6 6 0 0 0-3.5 10.9c.6.5 1 1.2 1 2V16h5v-.1c0-.8.4-1.5 1-2A6 6 0 0 0 12 3Z',
+  warn: 'M12 3 2.5 20h19L12 3ZM12 10v4.5M12 17.5v.01',
+  note: 'M12 21a9 9 0 1 0 0-18 9 9 0 0 0 0 18ZM12 11v5M12 7.5v.01',
+  example: 'm8 8-4 4 4 4M16 8l4 4-4 4M13.5 5.5l-3 13',
+};
+
+function Glyph({ d }: { d: string }) {
+  return (
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+      <path d={d} />
+    </svg>
+  );
+}
+
 function Blocks({ blocks, lang }: { blocks: Block[]; lang: Lang }) {
+  const ui = BLOG_UI[lang];
   return (
     <>
       {blocks.map((b, i) => {
@@ -55,6 +71,26 @@ function Blocks({ blocks, lang }: { blocks: Block[]; lang: Lang }) {
                   <CopyButton text={b.text} label={b.label} lang={lang} />
                 </div>
                 <pre><code>{b.text}</code></pre>
+              </div>
+            );
+          case 'callout':
+            return (
+              <div key={i} className={`callout callout-${b.tone}`} role="note">
+                <p className="callout-label"><Glyph d={CALLOUT_ICON[b.tone]} />{ui[b.tone]}</p>
+                <p><Inline text={b.v} /></p>
+              </div>
+            );
+          case 'split':
+            return (
+              <div key={i} className="split">
+                <div className="split-col split-yes">
+                  <h3><Glyph d="m5 12.5 4.5 4.5L19 7.5" />{b.yes.title}</h3>
+                  <ul>{b.yes.items.map((item) => <li key={item}><span><Inline text={item} /></span></li>)}</ul>
+                </div>
+                <div className="split-col split-no">
+                  <h3><Glyph d="M6 6l12 12M18 6 6 18" />{b.no.title}</h3>
+                  <ul>{b.no.items.map((item) => <li key={item}><span><Inline text={item} /></span></li>)}</ul>
+                </div>
               </div>
             );
           case 'opts':
@@ -156,6 +192,16 @@ export function BlogGuidePage({ lang, category, guide }: { lang: Lang; category:
           </ul>
           <p className="blog-date">{ui.published} <time dateTime={guide.published}>{formatDate(guide.published, lang)}</time></p>
         </header>
+        <nav className="blog-col guide-toc" aria-labelledby="guide-toc-title">
+          <h2 id="guide-toc-title">{ui.toc}</h2>
+          <ol>
+            {g.sections.map((s, idx) => (
+              <li key={s.title}>
+                <a href={`#sec-${idx}`}><span aria-hidden="true">{s.n ?? '•'}</span>{s.title}</a>
+              </li>
+            ))}
+          </ol>
+        </nav>
         <div className="blog-col guide">
           {g.sections.map((s, idx) => (
             <section key={s.title} className={`guide-step${s.note ? ' guide-note' : ''}`} aria-labelledby={`sec-${idx}`}>

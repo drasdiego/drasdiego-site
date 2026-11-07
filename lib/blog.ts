@@ -2,6 +2,7 @@ import type { Metadata } from 'next';
 import type { Lang } from '@/types';
 import { SEO, SITE_URL } from './seo';
 import { TRIBUNAL } from './blog-tribunal';
+import { REWIND } from './blog-rewind';
 import type { BlogMenuData } from './blog-menu';
 
 export type Block =
@@ -9,7 +10,9 @@ export type Block =
   | { k: 'h3'; v: string }
   | { k: 'ul' | 'ol'; items: string[] }
   | { k: 'code'; label: string; text: string }
-  | { k: 'opts'; items: { c: string; v: string }[] };
+  | { k: 'opts'; items: { c: string; v: string }[] }
+  | { k: 'callout'; tone: 'tip' | 'warn' | 'note' | 'example'; v: string }
+  | { k: 'split'; yes: { title: string; items: string[] }; no: { title: string; items: string[] } };
 
 export interface Section {
   n?: string;
@@ -51,7 +54,7 @@ export const CATEGORIES: Category[] = [
   },
 ];
 
-export const GUIDES: Guide[] = [TRIBUNAL];
+export const GUIDES: Guide[] = [TRIBUNAL, REWIND];
 
 export const BLOG_UI = {
   pt: {
@@ -68,6 +71,11 @@ export const BLOG_UI = {
     lightTheme: 'Mudar para o tema claro',
     darkTheme: 'Mudar para o tema escuro',
     copy: 'Copiar',
+    tip: 'Dica',
+    warn: 'Atenção',
+    note: 'Nota',
+    example: 'Exemplo',
+    toc: 'Neste guia',
     copied: 'Copiado',
     copyFail: 'Não foi possível copiar',
     indexTitle: 'Blog',
@@ -95,6 +103,11 @@ export const BLOG_UI = {
     lightTheme: 'Switch to light theme',
     darkTheme: 'Switch to dark theme',
     copy: 'Copy',
+    tip: 'Tip',
+    warn: 'Caution',
+    note: 'Note',
+    example: 'Example',
+    toc: 'In this guide',
     copied: 'Copied',
     copyFail: 'Could not copy',
     indexTitle: 'Blog',

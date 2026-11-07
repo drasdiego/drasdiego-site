@@ -17,7 +17,7 @@ export const TRIBUNAL: Guide = {
         blocks: [
           { k: 'p', v: 'O Claude costuma concordar com tudo que você fala. A skill `/court` muda isso: um Claude defende que a ideia vai dar errado, outro defende que vai dar certo, jurados votam em separado e um Claude juiz resume o veredito.' },
           { k: 'ul', items: ['Claude Code instalado no seu computador.', 'Python 3, que a skill usa para organizar os votos.', 'Um plano do Claude com uso suficiente, porque cada julgamento consome várias chamadas.'] },
-          { k: 'p', muted: true, v: 'Não precisa de chave de API, cadastro nem conexão com nenhuma conta.' },
+          { k: 'callout', tone: 'note', v: 'Não precisa de chave de API, cadastro nem conexão com nenhuma conta.' },
         ],
       },
       {
@@ -33,7 +33,7 @@ export const TRIBUNAL: Guide = {
           { k: 'code', label: 'terminal', text: 'git clone https://github.com/alexyc9381/court-skill.git\ncp -r court-skill/skills/court ~/.claude/skills/' },
           { k: 'h3', v: 'Opção D: como plugin' },
           { k: 'code', label: 'dentro do Claude Code', text: '/plugin marketplace add alexyc9381/court-skill\n/plugin install court-skill@court-skill' },
-          { k: 'p', muted: true, v: 'Instalada como plugin, a skill aparece como `/court-skill:court`.' },
+          { k: 'callout', tone: 'note', v: 'Instalada como plugin, a skill aparece como `/court-skill:court`.' },
         ],
       },
       {
@@ -41,7 +41,7 @@ export const TRIBUNAL: Guide = {
         title: 'Abra o Claude Code na pasta certa',
         blocks: [
           { k: 'p', v: 'Entre na pasta do seu projeto e abra o Claude Code por lá. O julgamento cria uma pasta chamada `.court` dentro dela e, segundo o repositório, não mexe nos seus outros arquivos.' },
-          { k: 'p', muted: true, v: 'Dica do repositório: ative o modo de aceitar edições com Shift+Tab, para não precisar aprovar cada arquivo.' },
+          { k: 'callout', tone: 'tip', v: 'O repositório sugere ativar o modo de aceitar edições com Shift+Tab, para não precisar aprovar cada arquivo.' },
         ],
       },
       {
@@ -59,7 +59,7 @@ export const TRIBUNAL: Guide = {
               { c: '--seed S', v: 'Fixa quais jurados participam quando o júri é menor.' },
             ],
           },
-          { k: 'p', muted: true, v: 'Um julgamento completo usa 17 chamadas de sub-agentes, e o modo rápido usa 11. Todas contam no uso do seu plano.' },
+          { k: 'callout', tone: 'warn', v: 'Um julgamento completo usa 17 chamadas de sub-agentes, e o modo rápido usa 11. Todas contam no uso do seu plano.' },
         ],
       },
       {
@@ -68,7 +68,7 @@ export const TRIBUNAL: Guide = {
         blocks: [
           { k: 'p', v: 'O resultado fica no arquivo `VERDICT.md`, dentro da pasta `.court`. Nele você encontra:' },
           { k: 'ol', items: ['A contagem dos votos, por exemplo culpado por 9 a 3.', 'O motivo de cada jurado em uma linha.', 'As mudanças que valem a pena fazer antes de tentar de novo.', 'A parte do juiz: as acusações que pegaram, o que a defesa acertou e as condições para a ideia ser absolvida.'] },
-          { k: 'p', muted: true, v: 'O repositório traz um exemplo pronto em `examples/candles/VERDICT.md`.' },
+          { k: 'callout', tone: 'note', v: 'O repositório traz um exemplo pronto em `examples/candles/VERDICT.md`.' },
         ],
       },
       {
@@ -99,7 +99,7 @@ export const TRIBUNAL: Guide = {
         blocks: [
           { k: 'p', v: 'Claude tends to agree with everything you say. The `/court` skill changes that: one Claude argues that the idea will fail, another argues that it will work, jurors vote independently, and a Claude acting as judge summarizes the verdict.' },
           { k: 'ul', items: ['Claude Code installed on your computer.', 'Python 3, which the skill uses to organize the votes.', 'A Claude plan with enough usage, because each trial makes several calls.'] },
-          { k: 'p', muted: true, v: 'No API key, sign-up or account connection is needed.' },
+          { k: 'callout', tone: 'note', v: 'No API key, sign-up or account connection is needed.' },
         ],
       },
       {
@@ -115,7 +115,7 @@ export const TRIBUNAL: Guide = {
           { k: 'code', label: 'terminal', text: 'git clone https://github.com/alexyc9381/court-skill.git\ncp -r court-skill/skills/court ~/.claude/skills/' },
           { k: 'h3', v: 'Option D: as a plugin' },
           { k: 'code', label: 'inside Claude Code', text: '/plugin marketplace add alexyc9381/court-skill\n/plugin install court-skill@court-skill' },
-          { k: 'p', muted: true, v: 'When installed as a plugin, the skill appears as `/court-skill:court`.' },
+          { k: 'callout', tone: 'note', v: 'When installed as a plugin, the skill appears as `/court-skill:court`.' },
         ],
       },
       {
@@ -123,7 +123,7 @@ export const TRIBUNAL: Guide = {
         title: 'Open Claude Code in the right folder',
         blocks: [
           { k: 'p', v: 'Go to your project folder and open Claude Code from there. The trial creates a folder called `.court` inside it and, according to the repository, leaves your other files alone.' },
-          { k: 'p', muted: true, v: 'Tip from the repository: turn on accept-edits mode with Shift+Tab, so you do not have to approve every file.' },
+          { k: 'callout', tone: 'tip', v: 'The repository suggests turning on accept-edits mode with Shift+Tab, so you do not have to approve every file.' },
         ],
       },
       {
@@ -141,7 +141,7 @@ export const TRIBUNAL: Guide = {
               { c: '--seed S', v: 'Locks in which jurors sit on the jury when it is smaller.' },
             ],
           },
-          { k: 'p', muted: true, v: 'A full trial makes 17 sub-agent calls, and quick mode makes 11. All of them count toward your plan usage.' },
+          { k: 'callout', tone: 'warn', v: 'A full trial makes 17 sub-agent calls, and quick mode makes 11. All of them count toward your plan usage.' },
         ],
       },
       {
@@ -150,7 +150,7 @@ export const TRIBUNAL: Guide = {
         blocks: [
           { k: 'p', v: 'The result is saved in the `VERDICT.md` file, inside the `.court` folder. It contains:' },
           { k: 'ol', items: ['The vote count, for example a 9 to 3 guilty verdict.', 'Each juror’s reason in one line.', 'The changes worth making before you try again.', 'The judge’s section: the charges that stuck, what the defense got right, and the conditions under which the idea would be acquitted.'] },
-          { k: 'p', muted: true, v: 'The repository includes a ready-made example at `examples/candles/VERDICT.md`.' },
+          { k: 'callout', tone: 'note', v: 'The repository includes a ready-made example at `examples/candles/VERDICT.md`.' },
         ],
       },
       {
