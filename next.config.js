@@ -6,7 +6,7 @@ const contentSecurityPolicy = [
   "img-src 'self' data: blob:",
   "font-src 'self' data:",
   "connect-src 'self' https://docs.google.com",
-  "frame-src 'none'",
+  "frame-src https://drasdiego.github.io",
   "object-src 'none'",
   "base-uri 'self'",
   "form-action 'self'",
