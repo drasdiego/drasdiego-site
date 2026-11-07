@@ -132,11 +132,11 @@ export function Qualificacoes({ t }: { t: SiteContent }) {
   }
 
   return (
-    <section className="section section-hairline" id="formacao">
+    <section className="section section-hairline" id="formacao" aria-labelledby="formacao-titulo">
       <div className="wrap">
         <Reveal className="section-head">
           <span className="eyebrow">{d.eyebrow}</span>
-          <h2 className="section-title">{d.title}</h2>
+          <h2 className="section-title" id="formacao-titulo">{d.title}</h2>
           <p className="section-sub">{d.sub}</p>
         </Reveal>
 

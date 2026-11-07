@@ -1,14 +1,16 @@
 import type { SiteContent } from '@/lib/content';
 import { Icon } from './Icon';
 import { Reveal } from './Reveal';
-import { SectionHead } from './SectionHead';
 
 export function DataAI({ t }: { t: SiteContent }) {
   const d = t.data;
   return (
-    <section className="section section-hairline dataai" id="dados">
+    <section className="section section-hairline dataai" id="dados" aria-labelledby="dados-titulo">
       <div className="wrap">
-        <SectionHead idx={d.idx} eyebrow={d.eyebrow} title={d.title} sub={d.sub} />
+        <Reveal className="section-head">
+          <h2 className="section-title" id="dados-titulo">{d.title}</h2>
+          <p className="section-sub">{d.sub}</p>
+        </Reveal>
         <Reveal className="cap-list">
           {d.caps.map((c, i) => (
             <div className="cap" key={i}>

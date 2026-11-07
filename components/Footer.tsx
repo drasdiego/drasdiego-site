@@ -1,16 +1,33 @@
 'use client';
 
-import type { SiteContent } from '@/lib/content';
+import { usePathname } from 'next/navigation';
+import type { Lang } from '@/types';
 import { LINKS } from '@/lib/icons';
+import { PRESENTATION } from '@/lib/presentation';
+import { NAV_UI, activeNavKey } from '@/lib/site-nav';
 
-export function Footer({ t }: { t: SiteContent }) {
+export function Footer({ lang, blogNote }: { lang: Lang; blogNote: { note: string; handle: string } }) {
+  const ui = NAV_UI[lang];
+  const isBlog = activeNavKey(usePathname() ?? '/') === 'blog';
   return (
-    <footer className="footer"><div className="wrap footer-inner">
-      <div><p className="footer-name">Diego Arruda</p><p>{t.footer.rights}</p></div>
-      <nav className="footer-links" aria-label={t.nav.contact}>
-        <a href={LINKS.linkedin} target="_blank" rel="noreferrer">LinkedIn</a><a href={LINKS.whatsapp} target="_blank" rel="noreferrer">WhatsApp</a><a href={LINKS.github} target="_blank" rel="noreferrer">GitHub</a>
-        <a href="#top" aria-label={t.nav.contact === 'Contact' ? 'Back to top' : 'Voltar ao início'}>↑</a>
-      </nav>
-    </div></footer>
+    <footer className={`footer${isBlog ? ' blog-footer' : ''}`}>
+      <div className="wrap footer-inner">
+        <div>
+          <p className="footer-name">Diego Arruda</p>
+          <p>{PRESENTATION[lang].footer}</p>
+          {isBlog && <p className="footer-note">{blogNote.note}</p>}
+          {isBlog && <p className="blog-handle">{blogNote.handle}</p>}
+        </div>
+        <div className="footer-contact">
+          <p className="footer-contact-label">{ui.contato}</p>
+          <nav className="footer-links" aria-label={ui.contato}>
+            <a href={LINKS.linkedin} target="_blank" rel="noreferrer">LinkedIn</a>
+            <a href={LINKS.whatsapp} target="_blank" rel="noreferrer">WhatsApp</a>
+            <a href={LINKS.github} target="_blank" rel="noreferrer">GitHub</a>
+            <a href="#top" aria-label={ui.backToTop}>↑</a>
+          </nav>
+        </div>
+      </div>
+    </footer>
   );
 }

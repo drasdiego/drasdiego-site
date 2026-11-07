@@ -4,7 +4,7 @@ Código do portfólio profissional de Diego Arruda, publicado em [www.drasdiego.
 
 ## O que o site tem
 
-- Versões em português e inglês, com tema claro como padrão e opção de alternar para o escuro.
+- Versões em português e inglês, com tema escuro como padrão e opção de alternar para o claro.
 - Assistente de carreira com IA, por texto (Claude), com entrada de perguntas por microfone no navegador. Quando a IA está indisponível, ele responde a partir de uma base de conhecimento local, sem quebrar a conversa.
 - Qualificações e certificados lidos de uma planilha pública do Google Sheets, com uma lista local como reserva.
 - Metadados para busca e compartilhamento: `sitemap`, `robots` e imagem Open Graph.
@@ -23,7 +23,7 @@ Código do portfólio profissional de Diego Arruda, publicado em [www.drasdiego.
 |---|---|
 | `app/` | Páginas e rotas. `app/api/chat` conecta o assistente ao Claude. |
 | `components/` | Seções do site e o painel do assistente. |
-| `hooks/` | Hooks de interface (seção ativa, rolagem, qualificações). |
+| `hooks/` | Hooks de interface (tema, rolagem, qualificações). |
 | `lib/` | Conteúdo, base de conhecimento do assistente e proteções das rotas de IA. |
 | `services/` | Leitura da planilha de qualificações. |
 

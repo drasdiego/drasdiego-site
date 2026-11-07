@@ -3,7 +3,6 @@
 import { useMemo, useState } from 'react';
 import type { SiteContent } from '@/lib/content';
 import { Reveal } from './Reveal';
-import { SectionHead } from './SectionHead';
 
 const ALL = 'all' as const;
 type ActiveKey = typeof ALL | string;
@@ -32,9 +31,12 @@ export function Tecnologias({ t }: { t: SiteContent }) {
   const description = activeCat ? activeCat.desc : d.allDesc;
 
   return (
-    <section className="section section-hairline" id="tecnologias">
+    <section className="section section-hairline" id="tecnologias" aria-labelledby="tecnologias-titulo">
       <div className="wrap">
-        <SectionHead idx={d.idx} eyebrow={d.eyebrow} title={d.title} sub={d.sub} />
+        <Reveal className="section-head">
+          <h2 className="section-title" id="tecnologias-titulo">{d.title}</h2>
+          <p className="section-sub">{d.sub}</p>
+        </Reveal>
 
         <Reveal className="tech-pills">
           <button

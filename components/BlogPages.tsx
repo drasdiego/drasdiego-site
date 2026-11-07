@@ -1,9 +1,7 @@
 import Link from 'next/link';
 import type { Lang } from '@/types';
-import { BLOG_UI, CATEGORIES, blogPaths, blogRoot, blogStructuredData, buildBlogMenu, formatDate, guidesIn } from '@/lib/blog';
-import { siteSections } from '@/lib/site-nav';
+import { BLOG_UI, CATEGORIES, blogRoot, blogStructuredData, formatDate, guidesIn } from '@/lib/blog';
 import type { Block, Category, Guide } from '@/lib/blog';
-import { BlogShell } from './BlogShell';
 import { CopyButton } from './CopyButton';
 
 function Inline({ text }: { text: string }) {
@@ -115,7 +113,7 @@ export function BlogHomePage({ lang }: { lang: Lang }) {
   const name = ui.blog;
   const json = blogStructuredData(lang, [{ name, sub: '' }]);
   return (
-    <BlogShell lang={lang} paths={blogPaths('')} sections={siteSections(lang)} menu={buildBlogMenu(lang)}>
+    <>
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: json }} />
       <div className="wrap blog-page">
         <Crumbs lang={lang} items={[{ name }]} />
@@ -137,7 +135,7 @@ export function BlogHomePage({ lang }: { lang: Lang }) {
           })}
         </section>
       </div>
-    </BlogShell>
+    </>
   );
 }
 
@@ -147,7 +145,7 @@ export function BlogCategoryPage({ lang, category }: { lang: Lang; category: Cat
   const guides = guidesIn(category.slug);
   const json = blogStructuredData(lang, [{ name: ui.blog, sub: '' }, { name: c.name, sub: `/${category.slug}` }]);
   return (
-    <BlogShell lang={lang} paths={blogPaths(`/${category.slug}`)} sections={siteSections(lang)} menu={buildBlogMenu(lang)}>
+    <>
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: json }} />
       <div className="wrap blog-page">
         <Crumbs lang={lang} items={[{ name: ui.blog, href: blogRoot(lang) }, { name: c.name }]} />
@@ -166,7 +164,7 @@ export function BlogCategoryPage({ lang, category }: { lang: Lang; category: Cat
           ))}
         </section>
       </div>
-    </BlogShell>
+    </>
   );
 }
 
@@ -180,7 +178,7 @@ export function BlogGuidePage({ lang, category, guide }: { lang: Lang; category:
     { headline: g.title, description: g.description, published: guide.published },
   );
   return (
-    <BlogShell lang={lang} paths={blogPaths(`/${category.slug}/${guide.slug}`)} sections={siteSections(lang)} menu={buildBlogMenu(lang)}>
+    <>
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: json }} />
       <article className="wrap blog-page">
         <Crumbs lang={lang} items={[{ name: ui.blog, href: blogRoot(lang) }, { name: c.name, href: `${blogRoot(lang)}/${category.slug}` }, { name: g.short }]} />
@@ -214,6 +212,6 @@ export function BlogGuidePage({ lang, category, guide }: { lang: Lang; category:
           ))}
         </div>
       </article>
-    </BlogShell>
+    </>
   );
 }

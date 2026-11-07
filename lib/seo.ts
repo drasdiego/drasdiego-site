@@ -8,9 +8,9 @@ export const SEO = {
   pt: {
     htmlLang: 'pt-BR',
     path: '',
-    title: 'Diego Arruda | Engenharia de Software, Dados e IA',
+    title: 'Diego Arruda | Dados e IA para operações reais',
     description:
-      'Desenvolvimento de software com visão de operação. Trajetória, projetos e formação de Diego Arruda em engenharia de software, dados e IA aplicada.',
+      'Estudo Engenharia de Software e atuo como Analista de Ouvidoria no Nubank. Dados, automação e IA aplicados a operações reais, com 18 anos de experiência.',
     keywords: ['Diego Arruda', 'Dados', 'Data Science', 'Inteligência Artificial', 'Analytics', 'Engenharia de Software', 'Power BI', 'SQL', 'Python'],
     locale: 'pt_BR',
     personDescription: 'Engenharia de software, dados e IA aplicada, com 18 anos de carreira em operações e negócios.',
@@ -20,9 +20,9 @@ export const SEO = {
   en: {
     htmlLang: 'en',
     path: '/en',
-    title: 'Diego Arruda | Software Engineering, Data and AI',
+    title: 'Diego Arruda | Data and AI for real operations',
     description:
-      'Software development with an operations perspective. Career, projects and education of Diego Arruda in software engineering, data and applied AI.',
+      'I study Software Engineering and work as an Ombudsman Analyst at Nubank. Data, automation and AI applied to real operations, backed by 18 years of experience.',
     keywords: ['Diego Arruda', 'Data', 'Data Science', 'Artificial Intelligence', 'Analytics', 'Software Engineering', 'Power BI', 'SQL', 'Python'],
     locale: 'en_US',
     personDescription: 'Software engineering, data and applied AI, with 18 years of experience in operations and business.',
@@ -70,6 +70,39 @@ export function buildMetadata(lang: Lang): Metadata {
       siteName: 'Diego Arruda',
     },
     twitter: { card: 'summary_large_image', title: s.title, description: s.description },
+  };
+}
+
+export function pagePathUrl(lang: Lang, sub: string): string {
+  return lang === 'en' ? `${SITE_URL}/en${sub}` : `${SITE_URL}${sub}`;
+}
+
+export function pageAlternates(sub: string) {
+  return {
+    'pt-BR': pagePathUrl('pt', sub),
+    en: pagePathUrl('en', sub),
+    'x-default': pagePathUrl('pt', sub),
+  };
+}
+
+export function buildPageMetadata(lang: Lang, sub: string, title: string, description: string, type: 'website' | 'article' = 'website'): Metadata {
+  const s = SEO[lang];
+  const fullTitle = `${title} | Diego Arruda`;
+  const url = pagePathUrl(lang, sub);
+  return {
+    title: fullTitle,
+    description,
+    alternates: { canonical: url, languages: pageAlternates(sub) },
+    openGraph: {
+      title: fullTitle,
+      description,
+      type,
+      locale: s.locale,
+      alternateLocale: lang === 'pt' ? 'en_US' : 'pt_BR',
+      url,
+      siteName: 'Diego Arruda',
+    },
+    twitter: { card: 'summary_large_image', title: fullTitle, description },
   };
 }
 

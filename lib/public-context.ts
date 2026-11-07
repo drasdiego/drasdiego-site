@@ -17,6 +17,14 @@ const LABELS = {
       'Não há métricas quantitativas confirmadas de impacto, volumes ou tamanho de equipe. Projetos pessoais de software e IA não são projetos dos empregadores.',
     contacts: 'CONTATOS PROFISSIONAIS PUBLICADOS',
     site: 'Portfólio: https://www.drasdiego.com.br',
+    map: 'MAPA DO SITE',
+    mapLines: [
+      'Início (/): apresentação, projeto em destaque, guias recentes do blog e contato.',
+      'Projetos (/projetos): estudos de caso. O primeiro é o assistente de carreira (/projetos/assistente-de-carreira).',
+      'Blog (/blog): guias sobre ferramentas de IA e desenvolvimento de software.',
+      'Sobre (/sobre): resumo, experiência profissional, formação, trajetória, dados e IA e tecnologias.',
+      'Contato: LinkedIn, WhatsApp e GitHub, no rodapé de todas as páginas e na seção de contato do Início.',
+    ],
     scope:
       'Esta base contém apenas informações profissionais publicadas no portfólio. Não inferir ou fornecer informações pessoais sensíveis.',
   },
@@ -34,6 +42,14 @@ const LABELS = {
       'There are no confirmed quantitative metrics on impact, volumes or team size. Personal software and AI projects are not projects of his employers.',
     contacts: 'PUBLISHED PROFESSIONAL CONTACTS',
     site: 'Portfolio: https://www.drasdiego.com.br',
+    map: 'SITE MAP',
+    mapLines: [
+      'Home (/en): introduction, featured project, recent blog guides and contact.',
+      'Projects (/en/projetos): case studies. The first is the career assistant (/en/projetos/assistente-de-carreira).',
+      'Blog (/en/blog): guides on AI tools and software development.',
+      'About (/en/sobre): summary, professional experience, education, journey, data and AI, and technologies.',
+      'Contact: LinkedIn, WhatsApp and GitHub, in the footer of every page and in the contact section of the home page.',
+    ],
     scope:
       'This base contains only professional information published on the portfolio. Do not infer or provide sensitive personal information.',
   },
@@ -46,6 +62,7 @@ export function contextFor(lang: Lang): string {
   const profile = PRESENTATION[l];
   return [
     text.name,
+    profile.lead,
     profile.context,
     profile.career,
     text.years,
@@ -64,6 +81,8 @@ export function contextFor(lang: Lang): string {
     text.contacts,
     ...site.contact.lines.map(item => `${item.k}: ${item.v}.`),
     text.site,
+    text.map,
+    ...text.mapLines,
     text.scope,
   ].join('\n');
 }

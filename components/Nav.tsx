@@ -3,15 +3,15 @@
 import { useEffect, useRef, useState } from 'react';
 import { flushSync } from 'react-dom';
 import Link from 'next/link';
+import { usePathname } from 'next/navigation';
 import type { Lang } from '@/types';
 import type { SiteContent } from '@/lib/content';
 import type { BlogMenuData } from '@/lib/blog-menu';
-import type { NavSection } from '@/lib/site-nav';
+import { NAV_UI, activeNavKey, contactPath, homePath, projetosPath, sobrePath, switchLangPath } from '@/lib/site-nav';
 import { LINKS } from '@/lib/icons';
 import { Icon } from './Icon';
 import { BlogMenu } from './BlogMenu';
 import { useScrolled } from '@/hooks/useScrolled';
-import { useActiveSection } from '@/hooks/useActiveSection';
 import { scrollToId } from '@/lib/utils';
 
 export function Nav({
@@ -19,20 +19,26 @@ export function Nav({
   lang,
   dark,
   toggleTheme,
-  sections,
   blogMenu,
 }: {
   t: SiteContent;
   lang: Lang;
   dark: boolean;
   toggleTheme: () => void;
-  sections: NavSection[];
   blogMenu: BlogMenuData;
 }) {
+  const ui = NAV_UI[lang];
   const scrolled = useScrolled(14);
-  const active = useActiveSection(sections.map((s) => s.id));
+  const pathname = usePathname() ?? '/';
   const [menu, setMenu] = useState(false);
   const menuButton = useRef<HTMLButtonElement>(null);
+  const home = homePath(lang);
+  const isHome = pathname === home;
+  const active = activeNavKey(pathname);
+
+  useEffect(() => {
+    setMenu(false);
+  }, [pathname]);
 
   useEffect(() => {
     if (!menu) return;
@@ -45,7 +51,7 @@ export function Nav({
     return () => document.removeEventListener('keydown', onKeyDown);
   }, [menu]);
 
-  const go = (e: React.MouseEvent, id: string) => {
+  const goHere = (e: React.MouseEvent, id: string) => {
     e.preventDefault();
     flushSync(() => setMenu(false));
     scrollToId(id, 76);
@@ -58,11 +64,11 @@ export function Nav({
 
   const controls = () => (
     <>
-      <div className="lang-toggle" role="group" aria-label={lang === 'en' ? 'Language' : 'Idioma'}>
-        <Link href="/" hrefLang="pt-BR" lang="pt-BR" className={lang === 'pt' ? 'on' : ''} aria-current={lang === 'pt' ? 'true' : undefined} aria-label="PT, Português">PT</Link>
-        <Link href="/en" hrefLang="en" lang="en" className={lang === 'en' ? 'on' : ''} aria-current={lang === 'en' ? 'true' : undefined} aria-label="EN, English">EN</Link>
+      <div className="lang-toggle" role="group" aria-label={ui.language}>
+        <Link href={switchLangPath(pathname, 'pt')} hrefLang="pt-BR" lang="pt-BR" className={lang === 'pt' ? 'on' : ''} aria-current={lang === 'pt' ? 'true' : undefined} aria-label="PT, Português">PT</Link>
+        <Link href={switchLangPath(pathname, 'en')} hrefLang="en" lang="en" className={lang === 'en' ? 'on' : ''} aria-current={lang === 'en' ? 'true' : undefined} aria-label="EN, English">EN</Link>
       </div>
-      <button className="icon-btn" onClick={toggleTheme} aria-label={lang === 'en' ? (dark ? 'Use light theme' : 'Use dark theme') : (dark ? 'Usar tema claro' : 'Usar tema escuro')}>
+      <button type="button" className="icon-btn" onClick={toggleTheme} aria-label={dark ? ui.lightTheme : ui.darkTheme}>
         {dark ? (
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.7" aria-hidden="true">
             <circle cx="12" cy="12" r="4.5" />
@@ -77,34 +83,47 @@ export function Nav({
     </>
   );
 
-  const sectionLinks = () => [...sections.map((s) => (
-    <a key={s.id} href={`#${s.id}`} onClick={(e) => go(e, s.id)} className={active === s.id ? 'active' : ''} aria-current={active === s.id ? 'location' : undefined}>
-      {s.label}
-    </a>
-  )), <BlogMenu key="blog" data={blogMenu} />];
+  const pageLink = (key: 'projetos' | 'sobre', href: string) => (
+    <Link key={key} href={href} className={active === key ? 'active' : ''} aria-current={active === key ? 'page' : undefined} onClick={() => setMenu(false)}>
+      {ui[key]}
+    </Link>
+  );
+
+  const contactLink = isHome ? (
+    <a key="contato" href="#contato" onClick={(e) => goHere(e, 'contato')}>{ui.contato}</a>
+  ) : (
+    <Link key="contato" href={contactPath(lang)} onClick={() => setMenu(false)}>{ui.contato}</Link>
+  );
+
+  const navLinks = () => [
+    pageLink('projetos', projetosPath(lang)),
+    <BlogMenu key="blog" data={blogMenu} active={active === 'blog'} />,
+    pageLink('sobre', sobrePath(lang)),
+    contactLink,
+  ];
 
   return (
     <header className={`nav ${scrolled ? 'scrolled' : ''}`}>
       <div className="nav-inner">
-        <a className="brand" href="#top" onClick={(e) => go(e, 'top')}>
+        <Link className="brand" href={home} aria-current={isHome ? 'page' : undefined} onClick={(e) => { if (isHome) goHere(e, 'top'); else setMenu(false); }}>
           <span className="bt">
             <span>Diego Arruda</span>
-            <small>{lang === 'en' ? 'Software Engineering' : 'Engenharia de Software'}</small>
+            <small>{ui.brandRole}</small>
           </span>
-        </a>
-        <nav className="nav-links" aria-label={lang === 'en' ? 'Main navigation' : 'Navegação principal'}>{sectionLinks()}</nav>
+        </Link>
+        <nav className="nav-links" aria-label={ui.mainNav}>{navLinks()}</nav>
         <div className="nav-tools">
           <div className="nav-desktop-controls">{controls()}</div>
         </div>
-        <button ref={menuButton} className="icon-btn nav-burger" onClick={() => setMenu((open) => !open)} aria-expanded={menu} aria-controls="mobile-navigation" aria-label={lang === 'en' ? (menu ? 'Close menu' : 'Open menu') : (menu ? 'Fechar menu' : 'Abrir menu')}>
-          <span>Menu</span>
+        <button ref={menuButton} type="button" className="icon-btn nav-burger" onClick={() => setMenu((open) => !open)} aria-expanded={menu} aria-controls="mobile-navigation" aria-label={menu ? ui.closeMenu : ui.openMenu}>
+          <span>{ui.menuWord}</span>
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.7" aria-hidden="true">
             <path d={menu ? 'M6 6l12 12M6 18 18 6' : 'M3 6h18M3 12h18M3 18h18'} />
           </svg>
         </button>
       </div>
       <div id="mobile-navigation" className="mobile-nav" hidden={!menu}>
-        <nav className="mobile-nav-links" aria-label={lang === 'en' ? 'Mobile navigation' : 'Navegação móvel'}>{sectionLinks()}</nav>
+        <nav className="mobile-nav-links" aria-label={ui.mobileNav}>{navLinks()}</nav>
         <div className="mobile-controls">
           {controls()}
           <a className="icon-btn soc-li" href={LINKS.linkedin} target="_blank" rel="noreferrer" aria-label={t.cta.linkedin} onClick={() => setMenu(false)}><Icon name="linkedin" /></a>

@@ -1,5 +1,3 @@
-'use client';
-
 import type { SiteContent } from '@/lib/content';
 import { LINKS } from '@/lib/icons';
 

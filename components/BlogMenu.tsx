@@ -5,7 +5,7 @@ import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import type { BlogMenuData } from '@/lib/blog-menu';
 
-export function BlogMenu({ data }: { data: BlogMenuData }) {
+export function BlogMenu({ data, active = false }: { data: BlogMenuData; active?: boolean }) {
   const pathname = usePathname();
   const panelId = useId();
   const [open, setOpen] = useState(false);
@@ -44,7 +44,7 @@ export function BlogMenu({ data }: { data: BlogMenuData }) {
         if (open && !box.current?.contains(event.relatedTarget as Node | null)) setOpen(false);
       }}
     >
-      <button ref={button} type="button" className="blog-menu-btn" aria-expanded={open} aria-controls={panelId} onClick={() => setOpen((v) => !v)}>
+      <button ref={button} type="button" className={`blog-menu-btn${active ? ' active' : ''}`} aria-current={active ? 'page' : undefined} aria-expanded={open} aria-controls={panelId} onClick={() => setOpen((v) => !v)}>
         <span>{data.label}</span>
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.7" aria-hidden="true" className={open ? 'open' : undefined}>
           <path d="m6 9 6 6 6-6" />
