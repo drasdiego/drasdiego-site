@@ -51,7 +51,6 @@ export function BlogMenu({ data }: { data: BlogMenuData }) {
         </svg>
       </button>
       <div id={panelId} className="blog-menu-panel" hidden={!open}>
-        <Link href={data.rootHref} className="blog-menu-all">{data.allGuides}</Link>
         {data.categories.map((cat) => (
           <div key={cat.href} className="blog-menu-cat">
             <Link href={cat.href}>{cat.name}</Link>

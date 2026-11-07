@@ -57,7 +57,6 @@ export const BLOG_UI = {
   pt: {
     blog: 'Blog',
     menu: 'Blog',
-    allGuides: 'Todos os guias',
     mobileNav: 'Navegação móvel',
     menuWord: 'Menu',
     openMenu: 'Abrir menu',
@@ -85,7 +84,6 @@ export const BLOG_UI = {
   en: {
     blog: 'Blog',
     menu: 'Blog',
-    allGuides: 'All guides',
     mobileNav: 'Mobile navigation',
     menuWord: 'Menu',
     openMenu: 'Open menu',
@@ -124,8 +122,6 @@ export function buildBlogMenu(lang: Lang): BlogMenuData {
   const root = blogRoot(lang);
   return {
     label: BLOG_UI[lang].menu,
-    allGuides: BLOG_UI[lang].allGuides,
-    rootHref: root,
     categories: CATEGORIES.map((cat) => ({
       name: cat[lang].name,
       href: `${root}/${cat.slug}`,
