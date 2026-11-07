@@ -53,7 +53,7 @@ export function Portfolio({ initialLang, blogMenu }: { initialLang: Lang; blogMe
           </details>
         </div>
         <Qualificacoes t={{ ...t, quals: { ...t.quals, title: d.educationTitle, sub: d.educationSub } }} />
-        <Contato lang={lang} t={{ ...t, contact: { ...t.contact, h2: d.contactTitle, p: d.contactDescription } }} />
+        <Contato t={{ ...t, contact: { ...t.contact, h2: d.contactTitle, p: d.contactDescription } }} />
       </main>
 
       <Footer t={{ ...t, footer: { ...t.footer, rights: d.footer } }} />
