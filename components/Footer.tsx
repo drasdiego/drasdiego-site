@@ -13,7 +13,7 @@ export function Footer({ lang, blogNote }: { lang: Lang; blogNote: { note: strin
     <footer className={`footer${isBlog ? ' blog-footer' : ''}`}>
       <div className="wrap footer-inner">
         <div>
-          <p className="footer-name">Diego Arruda</p>
+          <p className="footer-name" translate="no">Diego Arruda</p>
           <p>{PRESENTATION[lang].footer}</p>
           {isBlog && <p className="footer-note">{blogNote.note}</p>}
           {isBlog && <p className="blog-handle">{blogNote.handle}</p>}

@@ -1,6 +1,5 @@
 export type Lang = 'pt' | 'en';
 export type Theme = 'dark' | 'light';
-export type Density = 'compact' | 'regular' | 'comfy';
 export type FontPair = 'Grotesk' | 'Serif' | 'Bricolage';
 
 export type CategoryId = 'tech' | 'ia' | 'agile' | 'lideranca' | 'negocios';
@@ -39,5 +38,4 @@ export interface Tweaks {
   accent: string;
   fontPair: FontPair;
   dark: boolean;
-  density: Density;
 }

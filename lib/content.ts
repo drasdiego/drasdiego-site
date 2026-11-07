@@ -21,7 +21,7 @@ export interface SiteContent {
     idx: string; eyebrow: string; title: string; sub: string;
     acadTitle: string; academic: AcademicItem[];
     profTitle: string; profSub: string;
-    totalLabel: string; catsLabel: string; searchPlaceholder: string; allLabel: string; clearLabel: string;
+    totalLabel: string; catsLabel: string; searchPlaceholder: string; clearSearch: string; allLabel: string; clearLabel: string;
     expandAll: string; collapseAll: string; recentLabel: string; featuredLabel: string; featuredBadge: string;
     liveLabel: string; loadingLabel: string; fallbackLabel: string; emptyLabel: string;
     viewCert: string; metaLabels: { inst: string; date: string; cat: string };
@@ -102,7 +102,7 @@ const PT: SiteContent = {
     profTitle: 'Qualificações Profissionais',
     profSub: 'Certificações, cursos, especializações e capacitações.',
     totalLabel: 'formações & certificações', catsLabel: 'categorias',
-    searchPlaceholder: 'Buscar por curso ou instituição…', allLabel: 'Todas', clearLabel: 'Limpar filtros',
+    searchPlaceholder: 'Buscar por curso ou instituição…', clearSearch: 'Limpar busca', allLabel: 'Todas', clearLabel: 'Limpar filtros',
     expandAll: 'Expandir todas', collapseAll: 'Recolher todas',
     liveLabel: 'Sincronizado com Google Sheets', loadingLabel: 'Carregando da planilha…',
     fallbackLabel: 'Base local', emptyLabel: 'Nenhuma formação encontrada para esse filtro.', recentLabel: 'Mais recentes', featuredLabel: 'Em destaque', featuredBadge: 'Destaque',
@@ -133,11 +133,11 @@ const PT: SiteContent = {
 
 const EN: SiteContent = {
   nav: { traj: 'Journey', exp: 'Experience', data: 'Data & AI', proj: 'Projects', tech: 'Stack', cert: 'Education', contact: 'Contact' },
-  cta: { talk: "Let's talk", resume: 'Journey', linkedin: 'LinkedIn', whatsapp: 'WhatsApp', github: 'GitHub' },
+  cta: { talk: "Let’s talk", resume: 'Journey', linkedin: 'LinkedIn', whatsapp: 'WhatsApp', github: 'GitHub' },
   traj: {
     idx: '01', eyebrow: 'Journey',
     title: 'Career path from operations to software engineering, data and AI.',
-    sub: "My move into data didn't start from zero. It's the result of years solving real problems with processes, metrics and critical decisions.",
+    sub: "My move into data didn’t start from zero. It’s the result of years solving real problems with processes, metrics and critical decisions.",
     growthTitle: 'Professional focus', growthSpan: 'operations → data & AI',
     growthLegend: ['Operations & business', 'Data, AI & engineering'],
     milestones: [
@@ -188,7 +188,7 @@ const EN: SiteContent = {
     profTitle: 'Professional Qualifications',
     profSub: 'Certifications, courses, specializations and training.',
     totalLabel: 'courses & certifications', catsLabel: 'categories',
-    searchPlaceholder: 'Search by course or institution…', allLabel: 'All', clearLabel: 'Clear filters',
+    searchPlaceholder: 'Search by course or institution…', clearSearch: 'Clear search', allLabel: 'All', clearLabel: 'Clear filters',
     expandAll: 'Expand all', collapseAll: 'Collapse all',
     liveLabel: 'Synced with Google Sheets', loadingLabel: 'Loading from sheet…',
     fallbackLabel: 'Local data', emptyLabel: 'No courses found for this filter.', recentLabel: 'Most recent', featuredLabel: 'Featured', featuredBadge: 'Featured',
@@ -210,9 +210,9 @@ const EN: SiteContent = {
   },
   footer: { tag: 'Data · AI · Software Engineering', rights: 'Built with a focus on clarity, structure and purpose.' },
   asst: {
-    title: "Diego's Assistant", sub: 'AI · answers about his career',
+    title: "Diego’s Assistant", sub: 'AI · answers about his career',
     placeholder: 'Ask about experience, projects…',
-    greet: "Hi! I'm Diego's assistant. I can talk about his journey, experience, technologies and projects. What would you like to know?",
+    greet: "Hi! I’m Diego’s assistant. I can talk about his journey, experience, technologies and projects. What would you like to know?",
     chips: ['Data experience?', 'Where does he work now?', 'Which technologies?', 'AI projects'],
   },
 };

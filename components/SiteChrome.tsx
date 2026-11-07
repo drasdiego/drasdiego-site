@@ -30,9 +30,8 @@ export function SiteChrome({
     if (!hydrated) return;
     const root = document.documentElement;
     root.setAttribute('data-theme', tweaks.dark ? 'dark' : 'light');
-    root.setAttribute('data-density', tweaks.density);
     return watchThemeColor(tweaks.dark);
-  }, [hydrated, tweaks.dark, tweaks.density]);
+  }, [hydrated, tweaks.dark]);
 
   return (
     <>

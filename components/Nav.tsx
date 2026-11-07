@@ -118,7 +118,7 @@ export function Nav({
       <div className="nav-inner">
         <Link className="brand" href={home} onClick={(e) => { if (isHome) goHere(e, 'top'); else setMenu(false); }}>
           <span className="bt">
-            <span>Diego Arruda</span>
+            <span translate="no">Diego Arruda</span>
             <small>{ui.brandRole}</small>
           </span>
         </Link>

@@ -56,7 +56,7 @@ function QualRow({
             </div>
             {q.urlCertificado ? (
               <a className="qrow-cert" href={q.urlCertificado} target="_blank" rel="noreferrer">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" aria-hidden="true">
                   <path d="M7 17 17 7M7 7h10v10" />
                 </svg>
                 {viewCertLabel}
@@ -180,20 +180,20 @@ export function Qualificacoes({ t }: { t: SiteContent }) {
               </button>
             ))}
             <button className={`fpill ftoggle ${listShown ? 'on' : ''}`} onClick={toggleAll} aria-expanded={listShown} aria-controls="qualifications-list">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" style={{ width: 13, height: 13, transform: listShown ? 'rotate(180deg)' : 'none', transition: 'transform 0.3s' }}>
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" aria-hidden="true" style={{ width: 13, height: 13, transform: listShown ? 'rotate(180deg)' : 'none', transition: 'transform 0.3s' }}>
                 <path d="m6 9 6 6 6-6" />
               </svg>
               {listShown ? d.collapseAll : d.expandAll}
             </button>
           </div>
           <div className="qual-search">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" aria-hidden="true">
               <circle cx="11" cy="11" r="7" />
               <path d="m21 21-4.3-4.3" />
             </svg>
-            <input ref={searchRef} type="search" value={query} onChange={(e) => setQuery(e.target.value)} placeholder={d.searchPlaceholder} aria-label={d.searchPlaceholder} aria-controls="qualifications-list" />
+            <input ref={searchRef} type="search" name="busca" autoComplete="off" spellCheck={false} value={query} onChange={(e) => setQuery(e.target.value)} placeholder={d.searchPlaceholder} aria-label={d.searchPlaceholder} aria-controls="qualifications-list" />
             {query ? (
-              <button className="qsearch-clear" onClick={() => { setQuery(''); searchRef.current?.focus(); }} aria-label={d.searchPlaceholder.toLowerCase().includes('search') ? 'Clear search' : 'Limpar busca'}>
+              <button className="qsearch-clear" onClick={() => { setQuery(''); searchRef.current?.focus(); }} aria-label={d.clearSearch}>
                 ×
               </button>
             ) : null}

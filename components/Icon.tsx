@@ -14,6 +14,7 @@ export function Icon({
   return (
     <span
       className={className}
+      aria-hidden="true"
       style={{ display: 'inline-flex', ...style }}
       dangerouslySetInnerHTML={{ __html: svg }}
     />

@@ -1,9 +1,9 @@
 export const PRESENTATION = {
   pt: {
     title: 'Dados e IA para operações reais.',
-    lead: 'Estudo Engenharia de Software e atuo como Analista de Ouvidoria no Nubank. Em 18 anos de operações, aprendi quais problemas vale a pena resolver com dados, automação e IA.',
+    lead: 'Estudo Engenharia de Software e atuo como Analista de Ouvidoria no Nubank. Em 18\u00a0anos de operações, aprendi quais problemas vale a pena resolver com dados, automação e IA.',
     context: 'Este site, com seu assistente de carreira, é um exemplo.',
-    origin: 'De onde vem meu olhar', career: '18 anos de carreira em operações e negócios.',
+    origin: 'De onde vem meu olhar', career: '18\u00a0anos de carreira em operações e negócios.',
     background: 'Uma trajetória entre atendimento, liderança, indicadores e investigação de causas.',
     experience: 'Conheça minha experiência', projectLink: 'Conheça o projeto', talk: 'Vamos conversar',
     viewProjects: 'Ver projetos', aboutLink: 'Conheça minha trajetória',
@@ -37,7 +37,7 @@ export const PRESENTATION = {
     title: 'Data and AI for real operations.',
     lead: 'I study Software Engineering and work as an Ombudsman Analyst at Nubank. Eighteen years in operations taught me which problems are worth solving with data, automation and AI.',
     context: 'This site, with its career assistant, is an example.',
-    origin: 'Where my perspective comes from', career: '18 years of experience in operations and business.',
+    origin: 'Where my perspective comes from', career: '18\u00a0years of experience in operations and business.',
     background: 'A career spanning customer support, leadership, metrics and root-cause analysis.',
     experience: 'Explore my experience', projectLink: 'Explore the project', talk: 'Let’s talk',
     viewProjects: 'See projects', aboutLink: 'Explore my background',

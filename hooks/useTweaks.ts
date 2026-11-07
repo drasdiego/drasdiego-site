@@ -5,7 +5,6 @@ export const DEFAULT_TWEAKS: Tweaks = {
   accent: '#7b5cff',
   fontPair: 'Grotesk',
   dark: true,
-  density: 'regular',
 };
 
 export const THEME_KEY = 'diego_theme';

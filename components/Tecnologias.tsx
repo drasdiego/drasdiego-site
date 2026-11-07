@@ -66,8 +66,8 @@ export function Tecnologias({ t }: { t: SiteContent }) {
         </Reveal>
 
         <Reveal className="tech-pool" delay={1} key={`pool-${active}`}>
-          {items.map((it, i) => (
-            <span className="chip" key={it} style={{ animationDelay: `${i * 30}ms` }}>
+          {items.map((it) => (
+            <span className="chip" key={it}>
               <span className="dot" />
               {it}
             </span>

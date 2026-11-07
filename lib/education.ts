@@ -21,7 +21,7 @@ const DEGREES: Degree[] = [
     by: 'pela',
     ic: 'code',
     done: false,
-    name: { pt: 'Bacharelado em Engenharia de Software', en: "Bachelor's in Software Engineering" },
+    name: { pt: 'Bacharelado em Engenharia de Software', en: "Bachelor’s in Software Engineering" },
     short: { pt: 'Engenharia de Software', en: 'Software Engineering' },
   },
   {

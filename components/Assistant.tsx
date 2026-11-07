@@ -41,7 +41,7 @@ type SpeechRecognitionClass = new () => SpeechRecognitionLike;
 
 function fallbackNote(lang: Lang): string {
   return lang === 'en'
-    ? "Answer from the site's local knowledge base. The AI is unavailable right now."
+    ? "Answer from the site’s local knowledge base. The AI is unavailable right now."
     : 'Resposta da base local do site. A IA está indisponível agora.';
 }
 
@@ -387,7 +387,7 @@ export function Assistant({ t, lang }: { t: SiteContent; lang: Lang }) {
     <>
       {!open && (
         <button ref={fabRef} className="asst-fab" onClick={openAssistant} aria-label={A.title} aria-haspopup="dialog">
-          <span dangerouslySetInnerHTML={{ __html: ICONS.bot }} style={{ display: 'flex', width: 19, height: 19 }} />
+          <span aria-hidden="true" dangerouslySetInnerHTML={{ __html: ICONS.bot }} style={{ display: 'flex', width: 19, height: 19 }} />
           <span className="asst-fab-label">{lang === 'en' ? 'Assistant' : 'Assistente'}</span>
         </button>
       )}
@@ -395,7 +395,7 @@ export function Assistant({ t, lang }: { t: SiteContent; lang: Lang }) {
       {open && (
         <div className="asst-panel" ref={panelRef} role="dialog" aria-modal="true" aria-labelledby={titleId}>
           <div className="asst-head">
-            <div className="asst-ava" dangerouslySetInnerHTML={{ __html: ICONS.bot }} />
+            <div className="asst-ava" aria-hidden="true" dangerouslySetInnerHTML={{ __html: ICONS.bot }} />
             <div>
               <div className="ti" id={titleId} ref={titleRef} tabIndex={-1}>{A.title}</div>
               <div className="su">
@@ -404,7 +404,7 @@ export function Assistant({ t, lang }: { t: SiteContent; lang: Lang }) {
               </div>
             </div>
             <button className="asst-close" onClick={closeAssistant} aria-label={lang === 'en' ? 'Close assistant' : 'Fechar assistente'}>
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" aria-hidden="true">
                 <path d="M18 6 6 18M6 6l12 12" />
               </svg>
             </button>
@@ -444,7 +444,7 @@ export function Assistant({ t, lang }: { t: SiteContent; lang: Lang }) {
 
           {notice && (
             <div className="asst-notice" role="status">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" style={{ width: 14, height: 14, flex: 'none' }}>
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" aria-hidden="true" style={{ width: 14, height: 14, flex: 'none' }}>
                 <circle cx="12" cy="12" r="9" />
                 <path d="M12 8v5M12 16h.01" />
               </svg>
@@ -474,6 +474,10 @@ export function Assistant({ t, lang }: { t: SiteContent; lang: Lang }) {
             <input
               id={inputId}
               ref={inputRef}
+              name="pergunta"
+              autoComplete="off"
+              spellCheck
+              enterKeyHint="send"
               aria-label={lang === 'en' ? 'Your question about Diego' : 'Sua pergunta sobre o Diego'}
               value={input}
               maxLength={MAX_QUESTION_CHARS}
@@ -486,11 +490,21 @@ export function Assistant({ t, lang }: { t: SiteContent; lang: Lang }) {
               }
               onChange={(e) => setInput(e.target.value)}
               onKeyDown={(e) => {
-                if (e.key === 'Enter') send();
+                if (e.key === 'Enter' && !e.nativeEvent.isComposing && e.keyCode !== 229) send();
               }}
             />
-            <button onClick={() => send()} disabled={typing || !input.trim()} aria-label={lang === 'en' ? 'Send question' : 'Enviar pergunta'}>
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+            <button
+              onClick={() => {
+                if (!input.trim()) {
+                  inputRef.current?.focus();
+                  return;
+                }
+                send();
+              }}
+              disabled={typing}
+              aria-label={lang === 'en' ? 'Send question' : 'Enviar pergunta'}
+            >
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" aria-hidden="true">
                 <path d="m5 12 14 0M13 6l6 6-6 6" />
               </svg>
             </button>
