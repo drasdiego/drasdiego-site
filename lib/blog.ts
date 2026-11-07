@@ -55,6 +55,8 @@ export const GUIDES: Guide[] = [TRIBUNAL];
 export const BLOG_UI = {
   pt: {
     blog: 'Blog',
+    menu: 'Blog',
+    allGuides: 'Todos os guias',
     home: 'Início',
     skip: 'Pular para o conteúdo',
     crumbs: 'Trilha de navegação',
@@ -78,6 +80,8 @@ export const BLOG_UI = {
   },
   en: {
     blog: 'Blog',
+    menu: 'Blog',
+    allGuides: 'All guides',
     home: 'Home',
     skip: 'Skip to content',
     crumbs: 'Breadcrumb',

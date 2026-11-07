@@ -1,11 +1,74 @@
 'use client';
 
-import { useEffect } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import Link from 'next/link';
+import { usePathname } from 'next/navigation';
 import type { Lang } from '@/types';
-import { BLOG_HANDLE, BLOG_UI, blogRoot } from '@/lib/blog';
+import { BLOG_HANDLE, BLOG_UI, CATEGORIES, blogRoot, guidesIn } from '@/lib/blog';
 import { LINKS } from '@/lib/icons';
 import { useTweaks } from '@/hooks/useTweaks';
+
+function BlogMenu({ lang }: { lang: Lang }) {
+  const ui = BLOG_UI[lang];
+  const pathname = usePathname();
+  const [open, setOpen] = useState(false);
+  const box = useRef<HTMLDivElement>(null);
+  const button = useRef<HTMLButtonElement>(null);
+
+  useEffect(() => {
+    setOpen(false);
+  }, [pathname]);
+
+  useEffect(() => {
+    if (!open) return;
+    const onKeyDown = (event: KeyboardEvent) => {
+      if (event.key !== 'Escape') return;
+      setOpen(false);
+      button.current?.focus();
+    };
+    const onPointer = (event: MouseEvent | TouchEvent) => {
+      if (box.current && !box.current.contains(event.target as Node)) setOpen(false);
+    };
+    document.addEventListener('keydown', onKeyDown);
+    document.addEventListener('mousedown', onPointer);
+    document.addEventListener('touchstart', onPointer);
+    return () => {
+      document.removeEventListener('keydown', onKeyDown);
+      document.removeEventListener('mousedown', onPointer);
+      document.removeEventListener('touchstart', onPointer);
+    };
+  }, [open]);
+
+  return (
+    <div
+      ref={box}
+      className="blog-menu"
+      onBlur={(event) => {
+        if (open && !box.current?.contains(event.relatedTarget as Node | null)) setOpen(false);
+      }}
+    >
+      <button ref={button} type="button" className="blog-menu-btn" aria-expanded={open} aria-controls="blog-menu-panel" onClick={() => setOpen((v) => !v)}>
+        <span>{ui.menu}</span>
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.7" aria-hidden="true" className={open ? 'open' : undefined}>
+          <path d="m6 9 6 6 6-6" />
+        </svg>
+      </button>
+      <div id="blog-menu-panel" className="blog-menu-panel" hidden={!open}>
+        <Link href={blogRoot(lang)} className="blog-menu-all">{ui.allGuides}</Link>
+        {CATEGORIES.map((cat) => (
+          <div key={cat.slug} className="blog-menu-cat">
+            <Link href={`${blogRoot(lang)}/${cat.slug}`}>{cat[lang].name}</Link>
+            <ul>
+              {guidesIn(cat.slug).map((g) => (
+                <li key={g.slug}><Link href={`${blogRoot(lang)}/${cat.slug}/${g.slug}`}>{g[lang].title}</Link></li>
+              ))}
+            </ul>
+          </div>
+        ))}
+      </div>
+    </div>
+  );
+}
 
 export function BlogShell({ lang, paths, children }: { lang: Lang; paths: { pt: string; en: string }; children: React.ReactNode }) {
   const ui = BLOG_UI[lang];
@@ -22,7 +85,7 @@ export function BlogShell({ lang, paths, children }: { lang: Lang; paths: { pt: 
   return (
     <>
       <a className="skip-link" href="#conteudo">{ui.skip}</a>
-      <header className="nav">
+      <header className="nav blog-header">
         <div className="nav-inner">
           <Link className="brand" href={home}>
             <span className="bt">
@@ -32,7 +95,7 @@ export function BlogShell({ lang, paths, children }: { lang: Lang; paths: { pt: 
           </Link>
           <nav className="blog-nav-links" aria-label={ui.mainNav}>
             <Link href={home}>{ui.home}</Link>
-            <Link href={blogRoot(lang)} aria-current={paths[lang] === blogRoot(lang) ? 'page' : undefined} className="active">{ui.blog}</Link>
+            <BlogMenu lang={lang} />
           </nav>
           <div className="blog-tools">
             <div className="lang-toggle" role="group" aria-label={ui.language}>
