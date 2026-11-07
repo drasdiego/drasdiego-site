@@ -18,7 +18,7 @@
 .featured-questions svg{width:16px;height:16px;color:var(--text-2)}
 .featured-note{font-size:12px;line-height:1.6;color:var(--text-2);margin-top:18px;max-width:48ch}
 .recent-guides{padding-block:var(--section-pad) 0}
-.guides-head{display:flex;align-items:flex-end;justify-content:space-between;gap:12px 32px;flex-wrap:wrap;margin-bottom:28px}
+.guides-head{display:flex;align-items:baseline;justify-content:space-between;gap:12px 32px;flex-wrap:wrap;margin-bottom:28px}
 .guides-head .section-sub{margin-top:10px}
 .guides-grid{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,280px),1fr));gap:16px}
 .guide-card{display:flex;flex-direction:column;height:100%;padding:24px;border:1px solid var(--border);border-radius:var(--radius-lg);background:var(--bg-2)}
@@ -26,12 +26,18 @@
 .guide-card p{font-size:15px;color:var(--text-2);margin-top:10px}
 .guide-card-date{font-size:13px;color:var(--accent);margin-top:auto;padding-top:18px}
 .guide-card:hover{text-decoration:none}
+.contact-card{display:grid;grid-template-columns:minmax(0,1fr) auto;align-items:center;gap:28px 56px;padding:40px;border:1px solid var(--border);border-radius:var(--radius-lg);background:var(--bg-2)}
+.contact-card .section-title{max-width:30ch}
+.contact-card .section-sub{max-width:56ch}
+.contact-card .contact-actions{margin-top:0;justify-content:flex-end}
 @media(hover:hover) and (pointer:fine){
 .featured-questions button:hover{background:var(--accent-soft);border-color:var(--accent-line)}
 .guide-card:hover{border-color:var(--accent-line)}
 .guide-card:hover h3{color:var(--accent)}
 }
 @media(max-width:900px){
+.contact-card{grid-template-columns:minmax(0,1fr)}
+.contact-card .contact-actions{justify-content:flex-start}
 .featured-card{grid-template-columns:minmax(0,1fr)}
 .featured-panel{border-left:0;border-top:1px solid var(--border)}
 }
@@ -42,4 +48,6 @@
 .featured-actions .btn{flex:1 1 100%}
 .guide-card{padding:20px}
 .guides-head{margin-bottom:22px}
+.contact-card{grid-template-columns:minmax(0,1fr);padding:28px 22px}
+.contact-card .contact-actions{justify-content:flex-start}
 }
