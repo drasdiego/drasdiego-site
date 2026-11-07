@@ -77,11 +77,13 @@ export function Nav({
     </>
   );
 
-  const sectionLinks = () => sections.map((s) => (
+  const blogHref = lang === 'en' ? '/en/blog' : '/blog';
+
+  const sectionLinks = () => [...sections.map((s) => (
     <a key={s.id} href={`#${s.id}`} onClick={(e) => go(e, s.id)} className={active === s.id ? 'active' : ''} aria-current={active === s.id ? 'location' : undefined}>
       {s.label}
     </a>
-  ));
+  )), <Link key="blog" href={blogHref} className="nav-blog">Blog</Link>];
 
   return (
     <header className={`nav ${scrolled ? 'scrolled' : ''}`}>
