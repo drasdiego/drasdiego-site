@@ -106,6 +106,11 @@ function Fact({ fact }: { fact: ProjetoFact }) {
   );
 }
 
+function splitLead(text: string): { first: string; rest: string } {
+  const m = /^(.+?[.!?])\s+(?=\p{Lu})/u.exec(text);
+  return m ? { first: m[1], rest: text.slice(m[0].length) } : { first: '', rest: text };
+}
+
 function Block({ block }: { block: ProjetoBlock }) {
   switch (block.k) {
     case 'p':
@@ -174,6 +179,7 @@ export function ProjetoDetalhe({ lang, projeto }: { lang: Lang; projeto: Projeto
   const rootName = NAV_UI[lang].projetos;
   const json = projetoStructuredData(lang, projeto, rootName);
   const tryIt = p.tryIt;
+  const lead = splitLead(p.lead);
   return (
     <>
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: json }} />
@@ -184,9 +190,12 @@ export function ProjetoDetalhe({ lang, projeto }: { lang: Lang; projeto: Projeto
             <li><span aria-current="page">{p.title}</span></li>
           </ol>
         </nav>
-        <header className="blog-col">
-          <h1 className="blog-title">{p.title}</h1>
-          <p className="blog-lead">{p.lead}</p>
+        <header className="blog-col caso-head">
+          <div className="caso-head-main">
+            <h1 className="blog-title">{p.title}</h1>
+            {lead.first ? <p className="blog-lead">{lead.first}</p> : null}
+          </div>
+          <p className="blog-lead caso-head-aside">{lead.rest}</p>
         </header>
         {p.media ? <Painel lang={lang} media={p.media} image={projeto.image} /> : null}
         <dl className="caso-ficha">
