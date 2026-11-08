@@ -19,6 +19,7 @@ export const NAV_UI = {
     lightTheme: 'Usar tema claro',
     darkTheme: 'Usar tema escuro',
     backToTop: 'Voltar ao topo',
+    privacidade: 'Privacidade',
   },
   en: {
     inicio: 'Home',
@@ -36,6 +37,7 @@ export const NAV_UI = {
     lightTheme: 'Use light theme',
     darkTheme: 'Use dark theme',
     backToTop: 'Back to top',
+    privacidade: 'Privacy',
   },
 } as const;
 
@@ -56,7 +58,11 @@ export function projetosPath(lang: Lang): string {
 }
 
 export function contactPath(lang: Lang): string {
-  return `${homePath(lang)}#contato`;
+  return pagePath(lang, '/contato');
+}
+
+export function privacyPath(lang: Lang): string {
+  return pagePath(lang, '/privacidade');
 }
 
 export function splitLocale(pathname: string): { lang: Lang; rest: string } {
@@ -74,7 +80,7 @@ export function switchLangPath(pathname: string, target: Lang): string {
 export function activeNavKey(pathname: string): NavKey | null {
   const { rest } = splitLocale(pathname);
   const first = rest.split('/')[1];
-  if (first === 'projetos' || first === 'sobre' || first === 'blog') return first;
+  if (first === 'projetos' || first === 'sobre' || first === 'blog' || first === 'contato') return first;
   return null;
 }
 

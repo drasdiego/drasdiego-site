@@ -13,10 +13,10 @@ export default function sitemap(): MetadataRoute.Sitemap {
       { url: `${SITE_URL}/en/blog${sub}`, lastModified, changeFrequency: 'monthly' as const, priority: sub ? 0.6 : 0.7, alternates },
     ];
   });
-  const pageSubs = ['/sobre', '/projetos', ...PROJETOS.map((p) => `/projetos/${p.slug}`)];
+  const pageSubs = ['/sobre', '/projetos', ...PROJETOS.map((p) => `/projetos/${p.slug}`), '/contato', '/privacidade'];
   const pages: MetadataRoute.Sitemap = pageSubs.flatMap((sub) => {
     const alternates = { languages: pageAlternates(sub) };
-    const priority = sub === '/projetos' || sub === '/sobre' ? 0.9 : 0.8;
+    const priority = sub === '/projetos' || sub === '/sobre' ? 0.9 : sub === '/privacidade' ? 0.3 : 0.8;
     return [
       { url: pagePathUrl('pt', sub), lastModified, changeFrequency: 'monthly' as const, priority, alternates },
       { url: pagePathUrl('en', sub), lastModified, changeFrequency: 'monthly' as const, priority, alternates },

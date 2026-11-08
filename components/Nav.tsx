@@ -83,16 +83,10 @@ export function Nav({
     </>
   );
 
-  const pageLink = (key: 'projetos' | 'sobre', href: string) => (
+  const pageLink = (key: 'projetos' | 'sobre' | 'contato', href: string) => (
     <Link key={key} href={href} className={active === key ? 'active' : ''} aria-current={active === key ? 'page' : undefined} onClick={() => setMenu(false)}>
       {ui[key]}
     </Link>
-  );
-
-  const contactLink = isHome ? (
-    <a key="contato" href="#contato" onClick={(e) => goHere(e, 'contato')}>{ui.contato}</a>
-  ) : (
-    <Link key="contato" href={contactPath(lang)} onClick={() => setMenu(false)}>{ui.contato}</Link>
   );
 
   const homeLink = (
@@ -110,7 +104,7 @@ export function Nav({
     pageLink('projetos', projetosPath(lang)),
     <BlogMenu key="blog" data={blogMenu} active={active === 'blog'} />,
     pageLink('sobre', sobrePath(lang)),
-    contactLink,
+    pageLink('contato', contactPath(lang)),
   ];
 
   return (

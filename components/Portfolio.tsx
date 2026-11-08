@@ -16,7 +16,7 @@ export function Portfolio({ initialLang }: { initialLang: Lang }) {
       <Hero lang={lang} />
       <FeaturedProject lang={lang} />
       <RecentGuides lang={lang} />
-      <Contato t={{ ...t, contact: { ...t.contact, h2: d.contactTitle, p: d.contactDescription } }} />
+      <Contato lang={lang} t={{ ...t, contact: { ...t.contact, h2: d.contactTitle, p: d.contactDescription } }} />
     </>
   );
 }

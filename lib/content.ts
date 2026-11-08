@@ -27,7 +27,7 @@ export interface SiteContent {
     viewCert: string; metaLabels: { inst: string; date: string; cat: string };
     catNames: Record<CategoryId, string>;
   };
-  contact: { idx: string; eyebrow: string; h2: string; p: string; lk: string; wa: string; gh: string; lines: ContactLine[] };
+  contact: { idx: string; eyebrow: string; h2: string; p: string; send: string; lk: string; wa: string; gh: string; lines: ContactLine[] };
   footer: { tag: string; rights: string };
   asst: { title: string; sub: string; placeholder: string; greet: string; chips: string[] };
 }
@@ -114,7 +114,7 @@ const PT: SiteContent = {
     idx: '07', eyebrow: 'Contato',
     h2: 'Boas ideias começam com boas conexões.',
     p: 'Construindo minha trajetória em Dados, Inteligência Artificial e Engenharia de Software. Para conexões profissionais e conversas sobre desenvolvimento, dados e IA aplicada.',
-    lk: 'LinkedIn', wa: 'WhatsApp', gh: 'GitHub',
+    send: 'Enviar mensagem', lk: 'LinkedIn', wa: 'WhatsApp', gh: 'GitHub',
     lines: [
       { ic: 'pin', k: 'Localização', v: 'Balneário Camboriú · SC' },
       { ic: 'whatsapp', k: 'WhatsApp', v: '(47) 99171-0813', href: 'https://wa.me/5547991710813' },
@@ -200,7 +200,7 @@ const EN: SiteContent = {
     idx: '07', eyebrow: 'Contact',
     h2: 'Great ideas start with great connections.',
     p: 'For professional connections and conversations about development, data and applied AI. I would love to chat.',
-    lk: 'LinkedIn', wa: 'WhatsApp', gh: 'GitHub',
+    send: 'Send a message', lk: 'LinkedIn', wa: 'WhatsApp', gh: 'GitHub',
     lines: [
       { ic: 'pin', k: 'Location', v: 'Balneário Camboriú · Brazil' },
       { ic: 'whatsapp', k: 'WhatsApp', v: '+55 47 99171-0813', href: 'https://wa.me/5547991710813' },

@@ -16,6 +16,7 @@ const LABELS = {
     limitsMetrics:
       'Não há métricas quantitativas confirmadas de impacto, volumes ou tamanho de equipe. Projetos pessoais de software e IA não são projetos dos empregadores.',
     contacts: 'CONTATOS PROFISSIONAIS PUBLICADOS',
+    contactPage: 'Página de contato: drasdiego.com.br/contato.',
     site: 'Portfólio: https://www.drasdiego.com.br',
     map: 'MAPA DO SITE',
     mapLines: [
@@ -23,7 +24,8 @@ const LABELS = {
       'Projetos (/projetos): estudos de caso. O primeiro é o assistente de carreira (/projetos/assistente-de-carreira).',
       'Blog (/blog): guias sobre ferramentas de IA e desenvolvimento de software.',
       'Sobre (/sobre): resumo, experiência profissional, formação, trajetória, dados e IA e tecnologias.',
-      'Contato: LinkedIn, WhatsApp e GitHub, no rodapé de todas as páginas e na seção de contato do Início.',
+      'Contato (/contato): formulário para enviar uma mensagem, com resposta pelo e-mail informado, além de LinkedIn, WhatsApp e GitHub. Os mesmos canais aparecem no rodapé de todas as páginas e na seção de contato do Início.',
+      'Privacidade (/privacidade): aviso de privacidade do site.',
     ],
     scope:
       'Esta base contém apenas informações profissionais publicadas no portfólio. Não inferir ou fornecer informações pessoais sensíveis.',
@@ -41,6 +43,7 @@ const LABELS = {
     limitsMetrics:
       'There are no confirmed quantitative metrics on impact, volumes or team size. Personal software and AI projects are not projects of his employers.',
     contacts: 'PUBLISHED PROFESSIONAL CONTACTS',
+    contactPage: 'Contact page: drasdiego.com.br/en/contato.',
     site: 'Portfolio: https://www.drasdiego.com.br',
     map: 'SITE MAP',
     mapLines: [
@@ -48,7 +51,8 @@ const LABELS = {
       'Projects (/en/projetos): case studies. The first is the career assistant (/en/projetos/assistente-de-carreira).',
       'Blog (/en/blog): guides on AI tools and software development.',
       'About (/en/sobre): summary, professional experience, education, journey, data and AI, and technologies.',
-      'Contact: LinkedIn, WhatsApp and GitHub, in the footer of every page and in the contact section of the home page.',
+      'Contact (/en/contato): form to send a message, with a reply to the email provided, plus LinkedIn, WhatsApp and GitHub. The same channels appear in the footer of every page and in the contact section of the home page.',
+      'Privacy (/en/privacidade): the website privacy notice.',
     ],
     scope:
       'This base contains only professional information published on the portfolio. Do not infer or provide sensitive personal information.',
@@ -80,6 +84,7 @@ export function contextFor(lang: Lang): string {
     text.limitsMetrics,
     text.contacts,
     ...site.contact.lines.map(item => `${item.k}: ${item.v}.`),
+    text.contactPage,
     text.site,
     text.map,
     ...text.mapLines,

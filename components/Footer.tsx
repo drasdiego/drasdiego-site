@@ -1,10 +1,11 @@
 'use client';
 
+import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import type { Lang } from '@/types';
 import { LINKS } from '@/lib/icons';
 import { PRESENTATION } from '@/lib/presentation';
-import { NAV_UI, activeNavKey } from '@/lib/site-nav';
+import { NAV_UI, activeNavKey, privacyPath } from '@/lib/site-nav';
 
 export function Footer({ lang, blogNote }: { lang: Lang; blogNote: { note: string; handle: string } }) {
   const ui = NAV_UI[lang];
@@ -17,6 +18,7 @@ export function Footer({ lang, blogNote }: { lang: Lang; blogNote: { note: strin
           <p>{PRESENTATION[lang].footer}</p>
           {isBlog && <p className="footer-note">{blogNote.note}</p>}
           {isBlog && <p className="blog-handle">{blogNote.handle}</p>}
+          <p className="footer-legal"><Link href={privacyPath(lang)}>{ui.privacidade}</Link></p>
         </div>
         <div className="footer-contact">
           <p className="footer-contact-label">{ui.contato}</p>

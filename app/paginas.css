@@ -94,3 +94,45 @@
 }
 .caso-lista{display:grid;gap:10px;margin:0;padding-left:1.25em;max-width:72ch;list-style:disc}.caso-lista li{padding-left:4px;line-height:1.6}.caso-lista li::marker{color:var(--text-2)}
 .caso-corpo,.caso-ficha,.caso>.blog-col{max-width:none}.caso>.blog-col .blog-lead,.caso-sec>p,.caso-lista,.caso-passos p{max-width:none}.caso>.blog-col .blog-lead,.caso-sec>p,.caso-lista li,.caso-passos p,.caso-decisoes p{text-align:justify;-webkit-hyphens:auto;hyphens:auto}@media(min-width:1024px){.caso-ficha{grid-template-columns:repeat(3,minmax(0,1fr))}}
+
+.contato-layout{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,300px);gap:48px;align-items:start;margin-top:var(--sp-head);max-width:1040px}
+.contato-form-card{padding:28px;border:1px solid var(--border);border-radius:var(--radius-lg);background:var(--surface)}
+.contato-form{position:relative;display:grid;gap:22px}
+.contato-campo{display:grid;gap:8px}
+.contato-campo label{font-size:14px;font-weight:500;color:var(--text)}
+.contato-dica{font-size:13px;color:var(--text-2);margin-top:-4px}
+.contato-campo input,.contato-campo textarea{width:100%;min-height:48px;padding:12px 14px;border:1px solid var(--border-strong);border-radius:6px;background:var(--bg);color:var(--text);font:inherit;font-size:16px;line-height:1.5}
+.contato-campo textarea{min-height:176px;resize:vertical}
+.contato-campo input:focus-visible,.contato-campo textarea:focus-visible{outline:2px solid var(--accent);outline-offset:2px;border-color:var(--accent)}
+.contato-campo [aria-invalid="true"]{border-color:var(--no)}
+.contato-erro{font-size:13px;line-height:1.5;color:var(--no)}
+.contato-armadilha{position:absolute;left:-10000px;top:0;width:1px;height:1px;overflow:hidden}
+.contato-enviar{display:flex;flex-wrap:wrap;align-items:center;gap:12px 20px}
+.contato-enviar .btn{min-height:48px;min-width:180px}
+.contato-status{font-size:14px;line-height:1.5;color:var(--text-2)}
+.contato-status:empty{display:none}
+.contato-status.is-ok{color:var(--ok)}
+.contato-status.is-error{color:var(--no)}
+.contato-nota{font-size:13px;line-height:1.6;color:var(--text-2);max-width:60ch}
+.contato-canais h2{font-size:17px;letter-spacing:-.01em}
+.contato-canais ul{list-style:none;margin:14px 0 0;padding:0;border-top:1px solid var(--border)}
+.contato-canais a{display:grid;grid-template-columns:20px minmax(0,1fr);gap:2px 14px;align-items:center;min-height:60px;padding:12px 0;border-bottom:1px solid var(--border);color:var(--text)}
+.contato-canais a>span:first-child{grid-row:1/3;color:var(--text-2)}
+.contato-canal-k{font-size:15px}
+.contato-canal-v{font-size:13px;color:var(--text-2);overflow-wrap:anywhere}
+.privacidade-data{font-size:13px;color:var(--text-2);margin-top:16px}
+.privacidade-assinatura{padding-top:var(--sp-section);font-family:var(--font-display);font-size:20px;letter-spacing:-.02em}
+
+@media(hover:hover) and (pointer:fine){
+.contato-canais a:hover{text-decoration:none;color:var(--accent)}
+.contato-canais a:hover>span:first-child{color:var(--accent)}
+}
+
+@media(max-width:860px){
+.contato-layout{grid-template-columns:minmax(0,1fr);gap:40px}
+}
+
+@media(max-width:520px){
+.contato-form-card{padding:20px}
+.contato-enviar .btn{width:100%}
+}
