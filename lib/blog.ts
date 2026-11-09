@@ -4,6 +4,7 @@ import { SEO, SITE_URL } from './seo';
 import { TRIBUNAL } from './blog-tribunal';
 import { REWIND } from './blog-rewind';
 import { JOIN_SOMA } from './blog-join';
+import { CHAVE_VAZADA } from './blog-chave';
 import type { BlogMenuData } from './blog-menu';
 
 export type Block =
@@ -66,9 +67,22 @@ export const CATEGORIES: Category[] = [
     pt: { name: 'SQL', desc: 'Guias práticos de SQL para análise de dados, com exemplos testados.', note: 'Guia por Diego Arruda. Conteúdo educativo e independente.' },
     en: { name: 'SQL', desc: 'Practical SQL guides for data analysis, with tested examples.', note: 'Guide by Diego Arruda. Educational and independent content.' },
   },
+  {
+    slug: 'github',
+    pt: {
+      name: 'GitHub',
+      desc: 'Guias práticos de GitHub e Git para proteger o seu código e as suas chaves, com base na documentação oficial.',
+      note: 'Guia por Diego Arruda. Conteúdo educativo e independente, sem vínculo com o GitHub.',
+    },
+    en: {
+      name: 'GitHub',
+      desc: 'Practical GitHub and Git guides to protect your code and your keys, based on the official documentation.',
+      note: 'Guide by Diego Arruda. Educational and independent content, not affiliated with GitHub.',
+    },
+  },
 ];
 
-export const GUIDES: Guide[] = [TRIBUNAL, REWIND, JOIN_SOMA];
+export const GUIDES: Guide[] = [TRIBUNAL, REWIND, JOIN_SOMA, CHAVE_VAZADA];
 
 export const BLOG_UI = {
   pt: {
@@ -93,7 +107,7 @@ export const BLOG_UI = {
     copied: 'Copiado',
     copyFail: 'Não foi possível copiar',
     indexTitle: 'Guias',
-    indexLead: 'Guias práticos sobre ferramentas de IA, desenvolvimento de software e SQL. Conteúdo educativo e independente.',
+    indexLead: 'Guias práticos sobre ferramentas de IA, desenvolvimento de software, SQL e GitHub. Conteúdo educativo e independente.',
     categoriesTitle: 'Categorias',
     allGuides: 'Todos',
     guidesTitle: 'Lista de guias',
@@ -126,7 +140,7 @@ export const BLOG_UI = {
     copied: 'Copied',
     copyFail: 'Could not copy',
     indexTitle: 'Guides',
-    indexLead: 'Practical guides on AI tools, software development and SQL. Independent educational content.',
+    indexLead: 'Practical guides on AI tools, software development, SQL and GitHub. Independent educational content.',
     categoriesTitle: 'Categories',
     allGuides: 'All',
     guidesTitle: 'Guide list',
