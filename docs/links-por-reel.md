@@ -1,0 +1,92 @@
+# Links por reel
+
+Link de cada guia para colar no ManyChat, no story e na bio do @drasdiegotech.
+
+Regras:
+- Só estes quatro parâmetros: utm_source, utm_medium, utm_campaign e utm_content.
+- utm_content é o último trecho do caminho do guia.
+- utm_medium muda só pela origem: dm, story ou bio.
+- Nunca colocar na URL nome, usuário do Instagram, e-mail, ID do contato nem variável do ManyChat.
+- O site não grava, não repassa e não repete esses parâmetros em links internos, formulários ou eventos próprios. O Vercel Web Analytics registra os parâmetros de campanha da URL de forma anônima, mas o plano Hobby não mostra relatório de UTM.
+
+## Chave vazada no GitHub
+
+dm:
+
+```
+https://www.drasdiego.com.br/guias/github/chave-vazada?utm_source=instagram&utm_medium=dm&utm_campaign=guias&utm_content=chave-vazada
+```
+
+story:
+
+```
+https://www.drasdiego.com.br/guias/github/chave-vazada?utm_source=instagram&utm_medium=story&utm_campaign=guias&utm_content=chave-vazada
+```
+
+bio:
+
+```
+https://www.drasdiego.com.br/guias/github/chave-vazada?utm_source=instagram&utm_medium=bio&utm_campaign=guias&utm_content=chave-vazada
+```
+
+## JOIN que multiplica a soma
+
+dm:
+
+```
+https://www.drasdiego.com.br/guias/sql/join-multiplica-a-soma?utm_source=instagram&utm_medium=dm&utm_campaign=guias&utm_content=join-multiplica-a-soma
+```
+
+story:
+
+```
+https://www.drasdiego.com.br/guias/sql/join-multiplica-a-soma?utm_source=instagram&utm_medium=story&utm_campaign=guias&utm_content=join-multiplica-a-soma
+```
+
+bio:
+
+```
+https://www.drasdiego.com.br/guias/sql/join-multiplica-a-soma?utm_source=instagram&utm_medium=bio&utm_campaign=guias&utm_content=join-multiplica-a-soma
+```
+
+## Esc duas vezes não desfaz tudo
+
+dm:
+
+```
+https://www.drasdiego.com.br/guias/claude-code/rewind?utm_source=instagram&utm_medium=dm&utm_campaign=guias&utm_content=rewind
+```
+
+story:
+
+```
+https://www.drasdiego.com.br/guias/claude-code/rewind?utm_source=instagram&utm_medium=story&utm_campaign=guias&utm_content=rewind
+```
+
+bio:
+
+```
+https://www.drasdiego.com.br/guias/claude-code/rewind?utm_source=instagram&utm_medium=bio&utm_campaign=guias&utm_content=rewind
+```
+
+## Tribunal de 12 Claudes
+
+dm:
+
+```
+https://www.drasdiego.com.br/guias/claude-code/tribunal?utm_source=instagram&utm_medium=dm&utm_campaign=guias&utm_content=tribunal
+```
+
+story:
+
+```
+https://www.drasdiego.com.br/guias/claude-code/tribunal?utm_source=instagram&utm_medium=story&utm_campaign=guias&utm_content=tribunal
+```
+
+bio:
+
+```
+https://www.drasdiego.com.br/guias/claude-code/tribunal?utm_source=instagram&utm_medium=bio&utm_campaign=guias&utm_content=tribunal
+```
+
+Atualizado em 09/11/2026. Ao publicar um guia novo, acrescente o bloco dele seguindo o mesmo padrão.

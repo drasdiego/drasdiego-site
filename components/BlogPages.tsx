@@ -7,6 +7,8 @@ import '@/app/espaco.css';
 import { CopyButton } from './CopyButton';
 import { GuideCard } from './GuideCard';
 import { GuideToc } from './GuideToc';
+import { GUIDE_CLOSING } from '@/lib/blog-closing';
+import { GuideClosing } from './GuideClosing';
 
 function Inline({ text }: { text: string }) {
   const parts = text.split(/(`[^`]+`|\[[^\]]+\]\([^)]+\))/g).filter(Boolean);
@@ -194,6 +196,7 @@ export function BlogGuidePage({ lang, category, guide }: { lang: Lang; category:
   const ui = BLOG_UI[lang];
   const c = category[lang];
   const g = guide[lang];
+  const closing = GUIDE_CLOSING[guide.slug];
   const json = blogStructuredData(
     lang,
     [{ name: ui.blog, sub: '' }, { name: c.name, sub: `/${category.slug}` }, { name: g.short, sub: `/${category.slug}/${guide.slug}` }],
@@ -227,6 +230,7 @@ export function BlogGuidePage({ lang, category, guide }: { lang: Lang; category:
                 </div>
               </section>
             ))}
+            {closing && <GuideClosing lang={lang} path={`${blogRoot(lang)}/${category.slug}/${guide.slug}`} data={closing} />}
           </div>
         </div>
       </article>

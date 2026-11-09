@@ -1,4 +1,5 @@
 import type { Lang } from '@/types';
+import { Analytics } from '@vercel/analytics/next';
 import { SEO } from '@/lib/seo';
 import { fontVars } from '@/lib/fonts';
 import { THEME_COLORS } from '@/lib/theme';
@@ -11,6 +12,7 @@ export function RootShell({ lang, children }: { lang: Lang; children: React.Reac
       <body>
         <script dangerouslySetInnerHTML={{ __html: themeScript }} />
         {children}
+        <Analytics />
       </body>
     </html>
   );

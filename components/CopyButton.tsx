@@ -4,7 +4,7 @@ import { useEffect, useRef, useState } from 'react';
 import type { Lang } from '@/types';
 import { BLOG_UI } from '@/lib/blog';
 
-export function CopyButton({ text, label, lang }: { text: string; label: string; lang: Lang }) {
+export function CopyButton({ text, label, lang, idle }: { text: string; label: string; lang: Lang; idle?: string }) {
   const ui = BLOG_UI[lang];
   const [state, setState] = useState<'idle' | 'done' | 'fail'>('idle');
   const timer = useRef<ReturnType<typeof setTimeout> | null>(null);
@@ -41,11 +41,11 @@ export function CopyButton({ text, label, lang }: { text: string; label: string;
     }
   };
 
-  const visible = state === 'done' ? ui.copied : state === 'fail' ? ui.copyFail : ui.copy;
+  const visible = state === 'done' ? ui.copied : state === 'fail' ? ui.copyFail : idle ?? ui.copy;
 
   return (
     <>
-      <button type="button" className="copy-btn" onClick={copy} aria-label={`${ui.copy}: ${label}`}>
+      <button type="button" className="copy-btn" onClick={copy} aria-label={idle ?? `${ui.copy}: ${label}`}>
         {visible}
       </button>
       <span className="sr-only" role="status" aria-live="polite">{state === 'idle' ? '' : visible}</span>
