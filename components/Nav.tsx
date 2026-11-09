@@ -102,7 +102,7 @@ export function Nav({
   const navLinks = () => [
     homeLink,
     pageLink('projetos', projetosPath(lang)),
-    <BlogMenu key="blog" data={blogMenu} active={active === 'blog'} />,
+    <BlogMenu key="guias" data={blogMenu} active={active === 'guias'} />,
     pageLink('sobre', sobrePath(lang)),
     pageLink('contato', contactPath(lang)),
   ];

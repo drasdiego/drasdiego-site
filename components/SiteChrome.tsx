@@ -4,7 +4,7 @@ import { useEffect } from 'react';
 import type { Lang } from '@/types';
 import { CONTENT } from '@/lib/content';
 import { NAV_UI } from '@/lib/site-nav';
-import type { BlogMenuData } from '@/lib/blog-menu';
+import type { BlogMenuData, GuideNoteData } from '@/lib/blog-menu';
 import { useTweaks } from '@/hooks/useTweaks';
 import { watchThemeColor } from '@/lib/theme';
 import { Nav } from './Nav';
@@ -20,7 +20,7 @@ export function SiteChrome({
 }: {
   lang: Lang;
   menu: BlogMenuData;
-  blogNote: { note: string; handle: string };
+  blogNote: GuideNoteData;
   children: React.ReactNode;
 }) {
   const { tweaks, set, hydrated } = useTweaks();

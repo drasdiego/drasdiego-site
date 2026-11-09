@@ -34,7 +34,13 @@ const nextConfig = {
     globalNotFound: true,
   },
   async redirects() {
-    return [{ source: '/opengraph-image', destination: '/opengraph-image-35ziq1', permanent: false }];
+    return [
+      { source: '/opengraph-image', destination: '/opengraph-image-35ziq1', permanent: false },
+      { source: '/blog', destination: '/guias', permanent: true },
+      { source: '/blog/:path*', destination: '/guias/:path*', permanent: true },
+      { source: '/en/blog', destination: '/en/guias', permanent: true },
+      { source: '/en/blog/:path*', destination: '/en/guias/:path*', permanent: true },
+    ];
   },
   async headers() {
     return [{ source: '/:path*', headers: securityHeaders }];

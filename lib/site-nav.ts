@@ -1,6 +1,6 @@
 import type { Lang } from '@/types';
 
-export type NavKey = 'projetos' | 'blog' | 'sobre' | 'contato';
+export type NavKey = 'projetos' | 'guias' | 'sobre' | 'contato';
 
 export const NAV_UI = {
   pt: {
@@ -80,7 +80,7 @@ export function switchLangPath(pathname: string, target: Lang): string {
 export function activeNavKey(pathname: string): NavKey | null {
   const { rest } = splitLocale(pathname);
   const first = rest.split('/')[1];
-  if (first === 'projetos' || first === 'sobre' || first === 'blog' || first === 'contato') return first;
+  if (first === 'projetos' || first === 'sobre' || first === 'guias' || first === 'contato') return first;
   return null;
 }
 

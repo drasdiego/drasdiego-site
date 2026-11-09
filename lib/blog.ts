@@ -3,6 +3,7 @@ import type { Lang } from '@/types';
 import { SEO, SITE_URL } from './seo';
 import { TRIBUNAL } from './blog-tribunal';
 import { REWIND } from './blog-rewind';
+import { JOIN_SOMA } from './blog-join';
 import type { BlogMenuData } from './blog-menu';
 
 export type Block =
@@ -40,8 +41,8 @@ export interface Guide {
 
 export interface Category {
   slug: string;
-  pt: { name: string; desc: string };
-  en: { name: string; desc: string };
+  pt: { name: string; desc: string; note: string };
+  en: { name: string; desc: string; note: string };
 }
 
 export const BLOG_HANDLE = '@drasdiegotech';
@@ -49,17 +50,30 @@ export const BLOG_HANDLE = '@drasdiegotech';
 export const CATEGORIES: Category[] = [
   {
     slug: 'claude-code',
-    pt: { name: 'Claude Code', desc: 'Guias práticos para usar o Claude Code, a ferramenta de linha de comando da Anthropic para programar com IA.' },
-    en: { name: 'Claude Code', desc: 'Practical guides for using Claude Code, Anthropic’s command-line tool for coding with AI.' },
+    pt: {
+      name: 'Claude Code',
+      desc: 'Guias práticos para usar o Claude Code, a ferramenta de linha de comando da Anthropic para programar com IA.',
+      note: 'Guia por Diego Arruda. Conteúdo educativo e independente, sem vínculo com a Anthropic.',
+    },
+    en: {
+      name: 'Claude Code',
+      desc: 'Practical guides for using Claude Code, Anthropic’s command-line tool for coding with AI.',
+      note: 'Guide by Diego Arruda. Educational and independent content, not affiliated with Anthropic.',
+    },
+  },
+  {
+    slug: 'sql',
+    pt: { name: 'SQL', desc: 'Guias práticos de SQL para análise de dados, com exemplos testados.', note: 'Guia por Diego Arruda. Conteúdo educativo e independente.' },
+    en: { name: 'SQL', desc: 'Practical SQL guides for data analysis, with tested examples.', note: 'Guide by Diego Arruda. Educational and independent content.' },
   },
 ];
 
-export const GUIDES: Guide[] = [TRIBUNAL, REWIND];
+export const GUIDES: Guide[] = [TRIBUNAL, REWIND, JOIN_SOMA];
 
 export const BLOG_UI = {
   pt: {
-    blog: 'Blog',
-    menu: 'Blog',
+    blog: 'Guias',
+    menu: 'Guias',
     mobileNav: 'Navegação móvel',
     menuWord: 'Menu',
     openMenu: 'Abrir menu',
@@ -78,21 +92,21 @@ export const BLOG_UI = {
     toc: 'Neste guia',
     copied: 'Copiado',
     copyFail: 'Não foi possível copiar',
-    indexTitle: 'Blog',
-    indexLead: 'Guias e notas sobre ferramentas de IA e desenvolvimento de software. Conteúdo educativo e independente.',
+    indexTitle: 'Guias',
+    indexLead: 'Guias práticos sobre ferramentas de IA, desenvolvimento de software e SQL. Conteúdo educativo e independente.',
     categoriesTitle: 'Categorias',
     allGuides: 'Todos',
-    guidesTitle: 'Guias',
+    guidesTitle: 'Lista de guias',
     guideCount: (n: number) => (n === 1 ? '1 guia' : `${n} guias`),
     published: 'Publicado em',
-    footer: 'Guia por Diego Arruda. Conteúdo educativo e independente, sem vínculo com a Anthropic.',
+    footer: 'Guias por Diego Arruda. Conteúdo educativo e independente.',
     footerNav: 'Contato',
     backHome: 'Voltar ao site',
     locale: 'pt-BR',
   },
   en: {
-    blog: 'Blog',
-    menu: 'Blog',
+    blog: 'Guides',
+    menu: 'Guides',
     mobileNav: 'Mobile navigation',
     menuWord: 'Menu',
     openMenu: 'Open menu',
@@ -111,14 +125,14 @@ export const BLOG_UI = {
     toc: 'In this guide',
     copied: 'Copied',
     copyFail: 'Could not copy',
-    indexTitle: 'Blog',
-    indexLead: 'Guides and notes on AI tools and software development. Independent educational content.',
+    indexTitle: 'Guides',
+    indexLead: 'Practical guides on AI tools, software development and SQL. Independent educational content.',
     categoriesTitle: 'Categories',
     allGuides: 'All',
-    guidesTitle: 'Guides',
+    guidesTitle: 'Guide list',
     guideCount: (n: number) => (n === 1 ? '1 guide' : `${n} guides`),
     published: 'Published on',
-    footer: 'Guide by Diego Arruda. Educational and independent content, not affiliated with Anthropic.',
+    footer: 'Guides by Diego Arruda. Educational and independent content.',
     footerNav: 'Contact',
     backHome: 'Back to the site',
     locale: 'en-US',
@@ -126,11 +140,11 @@ export const BLOG_UI = {
 } as const;
 
 export function blogRoot(lang: Lang): string {
-  return lang === 'en' ? '/en/blog' : '/blog';
+  return lang === 'en' ? '/en/guias' : '/guias';
 }
 
 export function blogPaths(sub: string): { pt: string; en: string } {
-  return { pt: `/blog${sub}`, en: `/en/blog${sub}` };
+  return { pt: `/guias${sub}`, en: `/en/guias${sub}` };
 }
 
 export function buildBlogMenu(lang: Lang): BlogMenuData {
@@ -143,6 +157,10 @@ export function buildBlogMenu(lang: Lang): BlogMenuData {
       guides: guidesIn(cat.slug).map((g) => ({ title: g[lang].title, href: `${root}/${cat.slug}/${g.slug}` })),
     })),
   };
+}
+
+export function guideNotes(lang: Lang): { index: string; byCategory: Record<string, string> } {
+  return { index: BLOG_UI[lang].footer, byCategory: Object.fromEntries(CATEGORIES.map((c) => [c.slug, c[lang].note])) };
 }
 
 export function findCategory(slug: string): Category | undefined {
@@ -170,7 +188,7 @@ export function formatDate(iso: string, lang: Lang): string {
 }
 
 function absoluteUrl(lang: Lang, sub: string): string {
-  return lang === 'en' ? `${SITE_URL}/en/blog${sub}` : `${SITE_URL}/blog${sub}`;
+  return lang === 'en' ? `${SITE_URL}/en/guias${sub}` : `${SITE_URL}/guias${sub}`;
 }
 
 export function blogMetadata(lang: Lang, sub: string, title: string, description: string, type: 'website' | 'article'): Metadata {

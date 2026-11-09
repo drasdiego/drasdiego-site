@@ -1,10 +1,10 @@
 import type { Lang } from '@/types';
-import { BLOG_HANDLE, BLOG_UI, buildBlogMenu } from '@/lib/blog';
+import { BLOG_HANDLE, buildBlogMenu, guideNotes } from '@/lib/blog';
 import { SiteChrome } from './SiteChrome';
 
 export function SiteShell({ lang, children }: { lang: Lang; children: React.ReactNode }) {
   return (
-    <SiteChrome lang={lang} menu={buildBlogMenu(lang)} blogNote={{ note: BLOG_UI[lang].footer, handle: BLOG_HANDLE }}>
+    <SiteChrome lang={lang} menu={buildBlogMenu(lang)} blogNote={{ ...guideNotes(lang), handle: BLOG_HANDLE }}>
       {children}
     </SiteChrome>
   );

@@ -5,18 +5,22 @@ import { usePathname } from 'next/navigation';
 import type { Lang } from '@/types';
 import { LINKS } from '@/lib/icons';
 import { PRESENTATION } from '@/lib/presentation';
-import { NAV_UI, activeNavKey, privacyPath } from '@/lib/site-nav';
+import type { GuideNoteData } from '@/lib/blog-menu';
+import { NAV_UI, activeNavKey, privacyPath, splitLocale } from '@/lib/site-nav';
 
-export function Footer({ lang, blogNote }: { lang: Lang; blogNote: { note: string; handle: string } }) {
+export function Footer({ lang, blogNote }: { lang: Lang; blogNote: GuideNoteData }) {
   const ui = NAV_UI[lang];
-  const isBlog = activeNavKey(usePathname() ?? '/') === 'blog';
+  const pathname = usePathname() ?? '/';
+  const isBlog = activeNavKey(pathname) === 'guias';
+  const category = splitLocale(pathname).rest.split('/')[2];
+  const note = (category && blogNote.byCategory[category]) || blogNote.index;
   return (
     <footer className={`footer${isBlog ? ' blog-footer' : ''}`}>
       <div className="wrap footer-inner">
         <div>
           <p className="footer-name" translate="no">Diego Arruda</p>
           <p>{PRESENTATION[lang].footer}</p>
-          {isBlog && <p className="footer-note">{blogNote.note}</p>}
+          {isBlog && <p className="footer-note">{note}</p>}
           {isBlog && <p className="blog-handle">{blogNote.handle}</p>}
           <p className="footer-legal"><Link href={privacyPath(lang)}>{ui.privacidade}</Link></p>
         </div>

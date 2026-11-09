@@ -1,6 +1,7 @@
 import type { Lang } from '@/types';
 import { CONTENT } from './content';
 import { PRESENTATION } from './presentation';
+import { CATEGORIES, blogRoot, guidesIn, sortGuides } from './blog';
 
 const LABELS = {
   pt: {
@@ -19,10 +20,11 @@ const LABELS = {
     contactPage: 'Página de contato: drasdiego.com.br/contato.',
     site: 'Portfólio: https://www.drasdiego.com.br',
     map: 'MAPA DO SITE',
+    guides: 'GUIAS PUBLICADOS',
     mapLines: [
-      'Início (/): apresentação, projeto em destaque, guias recentes do blog e contato.',
+      'Início (/): apresentação, projeto em destaque, guias recentes e contato.',
       'Projetos (/projetos): estudos de caso. O primeiro é o assistente de carreira (/projetos/assistente-de-carreira).',
-      'Blog (/blog): guias sobre ferramentas de IA e desenvolvimento de software.',
+      'Guias (/guias): guias práticos e educativos escritos pelo Diego, organizados por categoria. Não são experiência profissional.',
       'Sobre (/sobre): resumo, experiência profissional, formação, trajetória, dados e IA e tecnologias.',
       'Contato (/contato): formulário para enviar uma mensagem, com resposta pelo e-mail informado, além de LinkedIn, WhatsApp e GitHub. Os mesmos canais aparecem no rodapé de todas as páginas e na seção de contato do Início.',
       'Privacidade (/privacidade): aviso de privacidade do site.',
@@ -46,10 +48,11 @@ const LABELS = {
     contactPage: 'Contact page: drasdiego.com.br/en/contato.',
     site: 'Portfolio: https://www.drasdiego.com.br',
     map: 'SITE MAP',
+    guides: 'PUBLISHED GUIDES',
     mapLines: [
-      'Home (/en): introduction, featured project, recent blog guides and contact.',
+      'Home (/en): introduction, featured project, latest guides and contact.',
       'Projects (/en/projetos): case studies. The first is the career assistant (/en/projetos/assistente-de-carreira).',
-      'Blog (/en/blog): guides on AI tools and software development.',
+      'Guides (/en/guias): practical, educational guides written by Diego, organized by category. They are not professional experience.',
       'About (/en/sobre): summary, professional experience, education, journey, data and AI, and technologies.',
       'Contact (/en/contato): form to send a message, with a reply to the email provided, plus LinkedIn, WhatsApp and GitHub. The same channels appear in the footer of every page and in the contact section of the home page.',
       'Privacy (/en/privacidade): the website privacy notice.',
@@ -58,6 +61,14 @@ const LABELS = {
       'This base contains only professional information published on the portfolio. Do not infer or provide sensitive personal information.',
   },
 } as const;
+
+function guideLines(lang: Lang): string[] {
+  const root = blogRoot(lang);
+  return CATEGORIES.flatMap((cat) => [
+    `${cat[lang].name} (${root}/${cat.slug}): ${cat[lang].desc}`,
+    ...sortGuides(guidesIn(cat.slug)).map((g) => `${g[lang].title} (${root}/${cat.slug}/${g.slug}), ${g.published}: ${g[lang].description}`),
+  ]);
+}
 
 export function contextFor(lang: Lang): string {
   const l = lang === 'en' ? 'en' : 'pt';
@@ -88,6 +99,8 @@ export function contextFor(lang: Lang): string {
     text.site,
     text.map,
     ...text.mapLines,
+    text.guides,
+    ...guideLines(l),
     text.scope,
   ].join('\n');
 }
