@@ -20,24 +20,28 @@ export const GUIDE_CLOSING: Record<string, GuideClosingData> = {
       pt: 'Agora você consegue instalar a skill /court e colocar uma ideia em julgamento no Claude Code antes de investir tempo nela.',
       en: 'You can now install the /court skill and put an idea on trial in Claude Code before you invest time in it.',
     },
+    next: { word: 'DESFAZER', title: { pt: 'Esc duas vezes não desfaz tudo', en: 'Double Esc does not undo everything' }, category: 'claude-code', slug: 'rewind' },
   },
   rewind: {
     result: {
       pt: 'Agora você sabe o que o rewind do Claude Code desfaz, o que ele não desfaz e qual hábito protege o seu projeto.',
       en: 'You now know what Claude Code’s rewind undoes, what it does not, and which habit protects your project.',
     },
+    next: { word: 'JOIN', title: { pt: 'JOIN que multiplica a soma', en: 'The JOIN that multiplies the sum' }, category: 'sql', slug: 'join-multiplica-a-soma' },
   },
   'join-multiplica-a-soma': {
     result: {
       pt: 'Agora você consegue perceber quando um JOIN infla a soma e corrigir com agregação antes do JOIN, EXISTS ou LEFT JOIN.',
       en: 'You can now spot when a JOIN inflates a sum and fix it by aggregating before the JOIN, with EXISTS or with a LEFT JOIN.',
     },
+    next: { word: 'CHAVE', title: { pt: 'Chave vazada no GitHub', en: 'Leaked key on GitHub' }, category: 'github', slug: 'chave-vazada' },
   },
   'chave-vazada': {
     result: {
       pt: 'Agora você sabe tirar uma chave do código, resolver um envio bloqueado e o que fazer, na ordem certa, se ela vazar.',
       en: 'You now know how to keep a key out of your code, resolve a blocked push and what to do, in the right order, if it leaks.',
     },
+    next: { word: 'HOOK', title: { pt: 'Hook, a regra sem exceção', en: 'Hook, the rule with no exceptions' } },
   },
 };
 

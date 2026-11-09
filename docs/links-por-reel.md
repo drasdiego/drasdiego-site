@@ -89,4 +89,4 @@ bio:
 https://www.drasdiego.com.br/guias/claude-code/tribunal?utm_source=instagram&utm_medium=bio&utm_campaign=guias&utm_content=tribunal
 ```
 
-Atualizado em 09/11/2026. Ao publicar um guia novo, acrescente o bloco dele seguindo o mesmo padrão.
+Atualizado em 09/11/2026. Ao publicar um guia novo, acrescente o bloco dele seguindo o mesmo padrão e, em lib/blog-closing.ts, faça o guia anterior apontar para ele no campo next.
