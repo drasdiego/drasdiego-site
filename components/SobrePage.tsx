@@ -1,3 +1,4 @@
+import Image from 'next/image';
 import Link from 'next/link';
 import type { Lang, Qualification } from '@/types';
 import '../app/paginas.css';
@@ -18,8 +19,8 @@ import { Qualificacoes } from './Qualificacoes';
 const REVALIDATE = 600;
 
 const SOBRE_UI = {
-  pt: { summary: 'Resumo', toc: 'Seções desta página' },
-  en: { summary: 'Summary', toc: 'Sections on this page' },
+  pt: { summary: 'Resumo', toc: 'Seções desta página', photo: 'Retrato de Diego Arruda, de óculos e camisa jeans clara, com os braços cruzados.' },
+  en: { summary: 'Summary', toc: 'Sections on this page', photo: 'Portrait of Diego Arruda, wearing glasses and a light denim shirt, with his arms crossed.' },
 } as const;
 
 async function loadQualifications(): Promise<Qualification[]> {
@@ -66,9 +67,14 @@ export async function SobrePage({ lang }: { lang: Lang }) {
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: sobreStructuredData(lang) }} />
       <QualificationsProvider initial={initial}>
         <div className="wrap blog-page sobre-page">
-          <header className="blog-col">
-            <h1 className="blog-title">{NAV_UI[lang].sobre}</h1>
-            <p className="blog-lead">{d.career} {d.background}</p>
+          <header className="sobre-head">
+            <div className="blog-col">
+              <h1 className="blog-title">{NAV_UI[lang].sobre}</h1>
+              <p className="blog-lead">{d.career} {d.background}</p>
+            </div>
+            <div className="sobre-foto">
+              <Image src="/images/diego.webp" width={640} height={800} alt={ui.photo} priority unoptimized />
+            </div>
           </header>
           <nav className="sobre-toc" aria-label={ui.toc}>
             <ul>
