@@ -142,7 +142,7 @@ function CategoryNav({ lang, current }: { lang: Lang; current?: string }) {
         <li><Link href={root} aria-current={current === undefined ? 'page' : undefined}>{ui.allGuides}</Link></li>
         {CATEGORIES.map((cat) => (
           <li key={cat.slug}>
-            <Link href={`${root}/${cat.slug}`} aria-current={current === cat.slug ? 'page' : undefined}>{cat[lang].name}</Link>
+            <Link href={`${root}/${cat.slug}`} data-area={cat.area} aria-current={current === cat.slug ? 'page' : undefined}>{cat[lang].name}</Link>
           </li>
         ))}
       </ul>

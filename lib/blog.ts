@@ -1,3 +1,4 @@
+import type { Area } from './areas';
 import type { Metadata } from 'next';
 import type { Lang } from '@/types';
 import { SEO, SITE_URL } from './seo';
@@ -47,6 +48,7 @@ export interface Guide {
 
 export interface Category {
   slug: string;
+  area: Area;
   pt: { name: string; desc: string; note: string };
   en: { name: string; desc: string; note: string };
 }
@@ -56,6 +58,7 @@ export const BLOG_HANDLE = '@drasdiegotech';
 export const CATEGORIES: Category[] = [
   {
     slug: 'claude-code',
+    area: 'ia',
     pt: {
       name: 'Claude Code',
       desc: 'Guias práticos para usar o Claude Code, a ferramenta de linha de comando da Anthropic para programar com IA.',
@@ -69,11 +72,13 @@ export const CATEGORIES: Category[] = [
   },
   {
     slug: 'sql',
+    area: 'dados',
     pt: { name: 'SQL', desc: 'Guias práticos de SQL para análise de dados, com exemplos testados.', note: 'Guia por Diego Arruda. Conteúdo educativo e independente.' },
     en: { name: 'SQL', desc: 'Practical SQL guides for data analysis, with tested examples.', note: 'Guide by Diego Arruda. Educational and independent content.' },
   },
   {
     slug: 'github',
+    area: 'software',
     pt: {
       name: 'GitHub',
       desc: 'Guias práticos de GitHub e Git para proteger o seu código e as suas chaves, com base na documentação oficial.',
@@ -87,6 +92,7 @@ export const CATEGORIES: Category[] = [
   },
   {
     slug: 'excel',
+    area: 'dados',
     pt: {
       name: 'Excel',
       desc: 'Guias práticos de Excel e planilhas para análise de dados, com exemplos testados.',

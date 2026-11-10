@@ -8,6 +8,7 @@ import { BLOG_UI } from '@/lib/blog';
 import { PROJETOS, PROJETOS_INTRO, projetoStructuredData } from '@/lib/projetos';
 import type { Projeto, ProjetoBlock, ProjetoFact, ProjetoImage, ProjetoMedia, ProjetoSection } from '@/lib/projetos';
 import { NAV_UI, projetosPath } from '@/lib/site-nav';
+import { tagArea } from '@/lib/areas';
 import { TryAssistant } from './projetos/TryAssistant';
 
 const NEW_TAB: Record<Lang, string> = { pt: 'abre em nova aba', en: 'opens in a new tab' };
@@ -68,7 +69,7 @@ export function ProjetosIndex({ lang }: { lang: Lang }) {
                 <h2><Link className="projeto-card-link" href={`${root}/${p.slug}`}>{t.title}</Link></h2>
                 <p>{t.short}</p>
                 <ul className="projeto-tags" aria-label={lang === 'en' ? 'Technologies' : 'Tecnologias'}>
-                  {t.tags.map((tag) => <li key={tag}>{tag}</li>)}
+                  {t.tags.map((tag) => <li key={tag} data-area={tagArea(tag)}>{tag}</li>)}
                 </ul>
                 {t.media ? (
                   <div className="projeto-card-acoes">
@@ -95,7 +96,7 @@ function Fact({ fact }: { fact: ProjetoFact }) {
       <dt>{fact.label}</dt>
       <dd>
         {fact.chips ? (
-          <ul className="projeto-tags">{fact.chips.map((c) => <li key={c}>{c}</li>)}</ul>
+          <ul className="projeto-tags">{fact.chips.map((c) => <li key={c} data-area={tagArea(c)}>{c}</li>)}</ul>
         ) : fact.href ? (
           <a className="text-link" href={fact.href} target="_blank" rel="noopener noreferrer">{fact.value}</a>
         ) : (
