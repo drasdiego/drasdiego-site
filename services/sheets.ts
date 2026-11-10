@@ -60,8 +60,8 @@ interface FeaturedRule { titles: string[]; institution: string }
 const FEATURED_RULES: FeaturedRule[] = [
   { titles: ['Análise de dados como suporte à tomada de decisão'], institution: 'Enap' },
   { titles: ['Aprendendo com Python'], institution: 'Enap' },
-  { titles: ['Certificação em Ouvidoria'], institution: 'ABBC' },
-  { titles: ['Scrum Foundation Professional Certification - SFPC'], institution: 'Certiprof' },
+  { titles: ['JavaScript e HTML: desenvolva um jogo e pratique lógica de programação'], institution: 'Alura' },
+  { titles: ['Imersão Dev com Google Gemini'], institution: 'Alura' },
   { titles: ['Git e GitHub: compartilhando e colaborando em projetos'], institution: 'Alura' },
   { titles: ['PostgreSQL'], institution: 'Alura' },
   { titles: ['Modelagem de banco de dados relacional: modelagem lógica e física'], institution: 'Alura' },
