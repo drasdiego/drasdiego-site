@@ -19,8 +19,8 @@ import { Qualificacoes } from './Qualificacoes';
 const REVALIDATE = 600;
 
 const SOBRE_UI = {
-  pt: { summary: 'Resumo', toc: 'Seções desta página', photo: 'Retrato de Diego Arruda, de óculos e camisa jeans clara, com os braços cruzados.' },
-  en: { summary: 'Summary', toc: 'Sections on this page', photo: 'Portrait of Diego Arruda, wearing glasses and a light denim shirt, with his arms crossed.' },
+  pt: { summary: 'Resumo', toc: 'Seções desta página', photo: 'Retrato de Diego Arruda, de óculos e camiseta preta, sobre fundo escuro com grafismos em roxo e azul.' },
+  en: { summary: 'Summary', toc: 'Sections on this page', photo: 'Portrait of Diego Arruda, wearing glasses and a black T-shirt, against a dark background with purple and blue graphics.' },
 } as const;
 
 async function loadQualifications(): Promise<Qualification[]> {
@@ -73,7 +73,7 @@ export async function SobrePage({ lang }: { lang: Lang }) {
               <p className="blog-lead">{d.career} {d.background}</p>
             </div>
             <div className="sobre-foto">
-              <Image src="/images/diego.webp" width={640} height={800} alt={ui.photo} priority unoptimized />
+              <Image src="/images/diego-retrato.webp" width={640} height={640} alt={ui.photo} priority unoptimized />
             </div>
           </header>
           <nav className="sobre-toc" aria-label={ui.toc}>
