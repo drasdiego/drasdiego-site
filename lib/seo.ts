@@ -126,7 +126,7 @@ export function buildStructuredData(lang: Lang) {
         '@id': `${SITE_URL}/#person`,
         name: 'Diego Arruda',
         url: SITE_URL,
-        image: `${SITE_URL}/images/diego.webp`,
+        image: `${SITE_URL}/images/diego-retrato.webp`,
         description: s.personDescription,
         jobTitle: s.jobTitle,
         worksFor: { '@type': 'Organization', name: 'Nubank' },
