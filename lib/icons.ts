@@ -23,4 +23,5 @@ export const LINKS = {
   github: 'https://github.com/drasdiego',
   repo: 'https://github.com/drasdiego/drasdiego-site',
   whatsapp: 'https://wa.me/5547991710813',
+  instagram: 'https://www.instagram.com/drasdiegotech/',
 };

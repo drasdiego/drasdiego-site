@@ -29,7 +29,7 @@ export function Hero({ lang }: { lang: Lang }) {
       <div className="wrap hero-inner">
         <div className="hero-intro">
           <h1 className="hero-h1"><span className="sr-only">Diego Arruda</span>{' '}<span className="hero-headline">{d.title}</span></h1>
-          <p className="hero-lead">{d.lead}</p>
+          <p className="hero-lead">{d.heroLead}</p>
           <p className="hero-context">{d.context}</p>
           <div className="hero-cta">
             <Link className="btn btn-primary" href={projetosPath(lang)}>{d.viewProjects}</Link>

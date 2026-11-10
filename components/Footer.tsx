@@ -30,6 +30,7 @@ export function Footer({ lang, blogNote }: { lang: Lang; blogNote: GuideNoteData
             <a href={LINKS.linkedin} target="_blank" rel="noreferrer">LinkedIn</a>
             <a href={LINKS.whatsapp} target="_blank" rel="noreferrer">WhatsApp</a>
             <a href={LINKS.github} target="_blank" rel="noreferrer">GitHub</a>
+            <a href={LINKS.instagram} target="_blank" rel="noreferrer">Instagram</a>
             <a href="#top" aria-label={ui.backToTop}>↑</a>
           </nav>
         </div>
