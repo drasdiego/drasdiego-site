@@ -103,7 +103,7 @@ function Blocks({ blocks, lang }: { blocks: Block[]; lang: Lang }) {
                 {b.items.map((item) => (
                   <div key={item.c} className="opt">
                     <dt><code>{item.c}</code></dt>
-                    <dd>{item.v}</dd>
+                    <dd><Inline text={item.v} /></dd>
                   </div>
                 ))}
               </dl>

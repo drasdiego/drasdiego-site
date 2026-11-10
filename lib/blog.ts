@@ -5,6 +5,7 @@ import { TRIBUNAL } from './blog-tribunal';
 import { REWIND } from './blog-rewind';
 import { JOIN_SOMA } from './blog-join';
 import { CHAVE_VAZADA } from './blog-chave';
+import { HOOK } from './blog-hook';
 import type { BlogMenuData } from './blog-menu';
 
 export type Block =
@@ -82,7 +83,7 @@ export const CATEGORIES: Category[] = [
   },
 ];
 
-export const GUIDES: Guide[] = [TRIBUNAL, REWIND, JOIN_SOMA, CHAVE_VAZADA];
+export const GUIDES: Guide[] = [TRIBUNAL, REWIND, JOIN_SOMA, CHAVE_VAZADA, HOOK];
 
 export const BLOG_UI = {
   pt: {

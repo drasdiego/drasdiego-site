@@ -41,7 +41,14 @@ export const GUIDE_CLOSING: Record<string, GuideClosingData> = {
       pt: 'Agora você sabe tirar uma chave do código, resolver um envio bloqueado e o que fazer, na ordem certa, se ela vazar.',
       en: 'You now know how to keep a key out of your code, resolve a blocked push and what to do, in the right order, if it leaks.',
     },
-    next: { word: 'HOOK', title: { pt: 'Hook, a regra sem exceção', en: 'Hook, the rule with no exceptions' } },
+    next: { word: 'HOOK', title: { pt: 'Hook, a regra que você impõe', en: 'Hook, the rule you enforce' }, category: 'claude-code', slug: 'hook' },
+  },
+  hook: {
+    result: {
+      pt: 'Agora você sabe criar um hook que bloqueia a edição do .env, provar que ele funciona e o que ele não cobre.',
+      en: 'You now know how to create a hook that blocks edits to .env, prove that it works and what it does not cover.',
+    },
+    next: { word: 'PROCV', title: { pt: 'PROCV sem o quarto argumento', en: 'VLOOKUP without the fourth argument' } },
   },
 };
 
