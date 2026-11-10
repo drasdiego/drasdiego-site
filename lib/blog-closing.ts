@@ -48,7 +48,14 @@ export const GUIDE_CLOSING: Record<string, GuideClosingData> = {
       pt: 'Agora você sabe criar um hook que bloqueia a edição do .env, provar que ele funciona e o que ele não cobre.',
       en: 'You now know how to create a hook that blocks edits to .env, prove that it works and what it does not cover.',
     },
-    next: { word: 'PROCV', title: { pt: 'PROCV sem o quarto argumento', en: 'VLOOKUP without the fourth argument' } },
+    next: { word: 'PROCV', title: { pt: 'PROCV sem o quarto argumento', en: 'VLOOKUP without the fourth argument' }, category: 'excel', slug: 'procv' },
+  },
+  procv: {
+    result: {
+      pt: 'Agora você sabe por que o PROCV sem o quarto argumento erra sem avisar, como corrigir com FALSO e como conferir a planilha.',
+      en: 'You now know why VLOOKUP without the fourth argument fails without warning, how to fix it with FALSE and how to check your spreadsheet.',
+    },
+    next: { word: 'SCRIPT', title: { pt: 'Apps Script tem teto', en: 'Apps Script has a ceiling' } },
   },
 };
 

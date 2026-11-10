@@ -6,7 +6,10 @@ import { REWIND } from './blog-rewind';
 import { JOIN_SOMA } from './blog-join';
 import { CHAVE_VAZADA } from './blog-chave';
 import { HOOK } from './blog-hook';
+import { PROCV } from './blog-procv';
 import type { BlogMenuData } from './blog-menu';
+
+export type TableCell = string | { v: string; tone: 'bad' | 'ok' };
 
 export type Block =
   | { k: 'p'; v: string; muted?: boolean }
@@ -15,7 +18,8 @@ export type Block =
   | { k: 'code'; label: string; text: string }
   | { k: 'opts'; items: { c: string; v: string }[] }
   | { k: 'callout'; tone: 'tip' | 'warn' | 'note' | 'example'; v: string }
-  | { k: 'split'; yes: { title: string; items: string[] }; no: { title: string; items: string[] } };
+  | { k: 'split'; yes: { title: string; items: string[] }; no: { title: string; items: string[] } }
+  | { k: 'table'; label: string; head: string[]; rows: TableCell[][] };
 
 export interface Section {
   n?: string;
@@ -81,9 +85,22 @@ export const CATEGORIES: Category[] = [
       note: 'Guide by Diego Arruda. Educational and independent content, not affiliated with GitHub.',
     },
   },
+  {
+    slug: 'excel',
+    pt: {
+      name: 'Excel',
+      desc: 'Guias práticos de Excel e planilhas para análise de dados, com exemplos testados.',
+      note: 'Guia por Diego Arruda. Conteúdo educativo e independente, sem vínculo com a Microsoft.',
+    },
+    en: {
+      name: 'Excel',
+      desc: 'Practical Excel and spreadsheet guides for data analysis, with tested examples.',
+      note: 'Guide by Diego Arruda. Educational and independent content, not affiliated with Microsoft.',
+    },
+  },
 ];
 
-export const GUIDES: Guide[] = [TRIBUNAL, REWIND, JOIN_SOMA, CHAVE_VAZADA, HOOK];
+export const GUIDES: Guide[] = [TRIBUNAL, REWIND, JOIN_SOMA, CHAVE_VAZADA, HOOK, PROCV];
 
 export const BLOG_UI = {
   pt: {
@@ -108,7 +125,7 @@ export const BLOG_UI = {
     copied: 'Copiado',
     copyFail: 'Não foi possível copiar',
     indexTitle: 'Guias',
-    indexLead: 'Guias práticos sobre ferramentas de IA, desenvolvimento de software, SQL e GitHub. Conteúdo educativo e independente.',
+    indexLead: 'Guias práticos sobre ferramentas de IA, desenvolvimento de software, SQL, GitHub e Excel. Conteúdo educativo e independente.',
     categoriesTitle: 'Categorias',
     allGuides: 'Todos',
     guidesTitle: 'Lista de guias',
@@ -141,7 +158,7 @@ export const BLOG_UI = {
     copied: 'Copied',
     copyFail: 'Could not copy',
     indexTitle: 'Guides',
-    indexLead: 'Practical guides on AI tools, software development, SQL and GitHub. Independent educational content.',
+    indexLead: 'Practical guides on AI tools, software development, SQL, GitHub and Excel. Independent educational content.',
     categoriesTitle: 'Categories',
     allGuides: 'All',
     guidesTitle: 'Guide list',

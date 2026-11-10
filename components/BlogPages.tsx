@@ -97,6 +97,25 @@ function Blocks({ blocks, lang }: { blocks: Block[]; lang: Lang }) {
                 </div>
               </div>
             );
+          case 'table':
+            return (
+              <div key={i} className="guide-table" role="region" aria-label={b.label} tabIndex={0}>
+                <table>
+                  <thead>
+                    <tr>{b.head.map((h) => <th key={h} scope="col">{h}</th>)}</tr>
+                  </thead>
+                  <tbody>
+                    {b.rows.map((row, r) => (
+                      <tr key={r}>
+                        {row.map((cell, c) => (typeof cell === 'string'
+                          ? <td key={c}>{cell}</td>
+                          : <td key={c} className={`cell-${cell.tone}`}>{cell.v}</td>))}
+                      </tr>
+                    ))}
+                  </tbody>
+                </table>
+              </div>
+            );
           case 'opts':
             return (
               <dl key={i} className="opts">
