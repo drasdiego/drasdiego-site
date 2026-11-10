@@ -8,7 +8,7 @@ import { THEME_COLORS } from '@/lib/theme';
 export const metadata: Metadata = buildMetadata('en');
 
 export const viewport: Viewport = {
-  themeColor: THEME_COLORS.dark,
+  themeColor: THEME_COLORS.light,
   width: 'device-width',
   initialScale: 1,
   viewportFit: 'cover',

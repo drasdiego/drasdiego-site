@@ -4,7 +4,7 @@ import type { Tweaks } from '@/types';
 export const DEFAULT_TWEAKS: Tweaks = {
   accent: '#7b5cff',
   fontPair: 'Grotesk',
-  dark: true,
+  dark: false,
 };
 
 export const THEME_KEY = 'diego_theme';
@@ -15,7 +15,7 @@ export function useTweaks() {
 
   useEffect(() => {
     try {
-      if (sessionStorage.getItem(THEME_KEY) === 'light') setTweaks((t) => ({ ...t, dark: false }));
+      if (sessionStorage.getItem(THEME_KEY) === 'dark') setTweaks((t) => ({ ...t, dark: true }));
     } catch {}
     setHydrated(true);
   }, []);

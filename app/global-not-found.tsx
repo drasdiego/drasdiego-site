@@ -7,7 +7,7 @@ export const metadata = { title: '404 | Diego Arruda' };
 
 export default function GlobalNotFound() {
   return (
-    <html lang="pt-BR" data-theme="dark" suppressHydrationWarning className={fontVars}>
+    <html lang="pt-BR" data-theme="light" suppressHydrationWarning className={fontVars}>
       <body>
         <script dangerouslySetInnerHTML={{ __html: themeScript }} />
         <main className="wrap" style={{ paddingBlock: 96 }}>
