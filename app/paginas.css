@@ -33,9 +33,9 @@
 .projeto-card-acoes .btn svg{width:16px;height:16px}
 .projeto-card>p{font-size:15px;color:var(--text-2);max-width:60ch}
 .projeto-tags{display:flex;flex-wrap:wrap;gap:8px;list-style:none;margin:0;padding:0}
-.projeto-tags li{font-size:12px;color:var(--text-2);border:1px solid var(--border);border-radius:6px;padding:4px 10px}
+.projeto-tags li{font-size:13px;color:var(--text-2);border:1px solid var(--border);border-radius:6px;padding:4px 10px}
 .projeto-card-foot{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:8px 16px;margin-top:auto;padding-top:14px;border-top:1px solid var(--border)}
-.projeto-status{font-size:12px;color:var(--text-2)}
+.projeto-status{font-size:13px;color:var(--text-3)}
 .projeto-card-cta{display:inline-flex;align-items:center;gap:8px;min-height:44px;font-size:14px;font-weight:500;color:var(--accent)}
 .projeto-card-cta svg{width:16px;height:16px}
 
@@ -43,7 +43,7 @@
 .caso>.blog-col,.caso-corpo{max-width:760px}
 .caso-ficha{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:0 32px;margin:36px 0 0;max-width:760px;border-top:1px solid var(--border)}
 .caso-fact{padding:var(--sp-item) 0;min-width:0;border-bottom:1px solid var(--border)}
-.caso-fact dt{font-size:12px;color:var(--text-2);margin-bottom:6px}
+.caso-fact dt{font-size:13px;color:var(--text-3);margin-bottom:6px}
 .caso-fact dd{font-size:15px;color:var(--text);margin:0}
 .caso-fact dd .text-link{min-height:44px;margin:-11px 0;font-size:15px;text-decoration:underline;text-underline-offset:5px}
 .caso-fact .projeto-tags li{background:var(--bg-2)}
