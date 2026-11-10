@@ -1,4 +1,4 @@
-export const THEME_COLORS = { dark: '#101214', light: '#f8f6f2' } as const;
+export const THEME_COLORS = { dark: '#101214', light: '#f3f7f5' } as const;
 
 export function syncThemeColor(dark: boolean): void {
   const color = dark ? THEME_COLORS.dark : THEME_COLORS.light;
