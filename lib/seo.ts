@@ -10,7 +10,7 @@ export const SEO = {
     path: '',
     title: 'Diego Arruda | Dados e IA para operações reais',
     description:
-      'Estudo Engenharia de Software e atuo como Analista de Ouvidoria no Nubank. Dados, automação e IA aplicados a operações reais, com 18 anos de experiência.',
+      'Transformo processos que travam em sites, painéis de dados e automações. Dados, automação e IA com 18 anos de experiência em operações.',
     keywords: ['Diego Arruda', 'Dados', 'Data Science', 'Inteligência Artificial', 'Analytics', 'Engenharia de Software', 'Power BI', 'SQL', 'Python'],
     locale: 'pt_BR',
     personDescription: 'Engenharia de software, dados e IA aplicada, com 18 anos de carreira em operações e negócios.',
@@ -22,7 +22,7 @@ export const SEO = {
     path: '/en',
     title: 'Diego Arruda | Data and AI for real operations',
     description:
-      'I study Software Engineering and work as an Ombudsman Analyst at Nubank. Data, automation and AI applied to real operations, backed by 18 years of experience.',
+      'I turn processes that get stuck into websites, data dashboards and automations. Data, automation and AI backed by 18 years in operations.',
     keywords: ['Diego Arruda', 'Data', 'Data Science', 'Artificial Intelligence', 'Analytics', 'Software Engineering', 'Power BI', 'SQL', 'Python'],
     locale: 'en_US',
     personDescription: 'Software engineering, data and applied AI, with 18 years of experience in operations and business.',
