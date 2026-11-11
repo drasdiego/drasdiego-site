@@ -1,6 +1,7 @@
 import type { Lang } from '@/types';
 import { LINKS } from './icons';
 import { PRESENTATION } from './presentation';
+import { projetosPath } from './site-nav';
 import { SITE_URL, pagePathUrl } from './seo';
 
 export interface ProjetoFact {
@@ -49,6 +50,11 @@ export interface ProjetoTry {
   note: string;
 }
 
+export interface ProjetoCardActions {
+  demo: ProjetoLink;
+  code: ProjetoLink;
+}
+
 export interface ProjetoMedia {
   alt: string;
   demo: ProjetoLink;
@@ -73,7 +79,7 @@ export interface ProjetoText {
   tags: string[];
   cta: string;
   status: string;
-  imageAlt?: string;
+  cardActions?: ProjetoCardActions;
   facts: ProjetoFact[];
   sections: ProjetoSection[];
   tryIt?: ProjetoTry;
@@ -108,6 +114,7 @@ const CASO_UI = {
     howClosing: 'O assistente funciona em português e inglês e acompanha o tema claro ou escuro do site.',
     decisions: 'Decisões do projeto',
     tryIt: 'Experimente',
+    codeLink: 'Código',
   },
   en: {
     cta: 'Read the case study',
@@ -126,6 +133,7 @@ const CASO_UI = {
     howClosing: 'The assistant works in Portuguese and English and follows the site’s light or dark theme.',
     decisions: 'Project decisions',
     tryIt: 'Try it',
+    codeLink: 'Code',
   },
 } as const;
 
@@ -143,9 +151,10 @@ function assistenteDeCarreira(lang: Lang): ProjetoText {
     tags: [...TECNOLOGIAS],
     cta: u.cta,
     status: u.status,
-    imageAlt: lang === 'en'
-      ? 'Screenshot of the career assistant on this site, in dark theme: the Try it section, with suggested questions and the field to write your own.'
-      : 'Captura de tela do assistente de carreira deste site, em tema escuro: a seção Experimente, com as perguntas sugeridas e o campo para escrever a sua.',
+    cardActions: {
+      demo: { label: u.tryIt, href: `${projetosPath(lang)}/assistente-de-carreira#experimente` },
+      code: { label: u.codeLink, href: LINKS.repo },
+    },
     facts: [
       { label: d.application, value: d.applicationDescription },
       { label: d.technologies, chips: [...TECNOLOGIAS] },
@@ -946,14 +955,6 @@ export const PROJETOS: Projeto[] = [
     slug: 'assistente-de-carreira',
     pt: assistenteDeCarreira('pt'),
     en: assistenteDeCarreira('en'),
-    image: {
-      src: '/images/projetos/assistente-de-carreira.webp',
-      width: 1440,
-      height: 900,
-      cardSrc: '/images/projetos/assistente-de-carreira-800.webp',
-      cardWidth: 800,
-      cardHeight: 500,
-    },
   },
   {
     slug: 'fora-do-digital',

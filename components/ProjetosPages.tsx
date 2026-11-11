@@ -10,6 +10,7 @@ import type { Projeto, ProjetoBlock, ProjetoFact, ProjetoImage, ProjetoMedia, Pr
 import { NAV_UI, projetosPath } from '@/lib/site-nav';
 import { tagArea } from '@/lib/areas';
 import { TryAssistant } from './projetos/TryAssistant';
+import { CapaProjeto } from './projetos/CapaProjeto';
 
 const NEW_TAB: Record<Lang, string> = { pt: 'abre em nova aba', en: 'opens in a new tab' };
 
@@ -19,14 +20,6 @@ function ExternalLink({ lang, href, label, className }: { lang: Lang; href: stri
       {label}
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.7" aria-hidden="true" width="16" height="16"><path d="M7 17 17 7M9 7h8v8" /></svg>
     </a>
-  );
-}
-
-function CardImage({ image, alt }: { image: ProjetoImage; alt: string }) {
-  return (
-    <div className="projeto-card-img">
-      <Image src={image.cardSrc} width={image.cardWidth} height={image.cardHeight} alt={alt} loading="lazy" unoptimized />
-    </div>
   );
 }
 
@@ -65,7 +58,7 @@ export function ProjetosIndex({ lang }: { lang: Lang }) {
             const t = p[lang];
             return (
               <li key={p.slug} className="projeto-card">
-                {p.image ? <CardImage image={p.image} alt={t.media ? t.media.alt : t.imageAlt ?? ''} /> : null}
+                <CapaProjeto lang={lang} projeto={p} />
                 <h2><Link className="projeto-card-link" href={`${root}/${p.slug}`}>{t.title}</Link></h2>
                 <p>{t.short}</p>
                 <ul className="projeto-tags" aria-label={lang === 'en' ? 'Technologies' : 'Tecnologias'}>
@@ -75,6 +68,11 @@ export function ProjetosIndex({ lang }: { lang: Lang }) {
                   <div className="projeto-card-acoes">
                     <ExternalLink lang={lang} href={t.media.demo.href} label={t.media.demo.label} className="btn btn-primary" />
                     <ExternalLink lang={lang} href={t.media.code.href} label={t.media.code.label} className="btn" />
+                  </div>
+                ) : t.cardActions ? (
+                  <div className="projeto-card-acoes">
+                    <Link className="btn btn-primary" href={t.cardActions.demo.href}>{t.cardActions.demo.label}</Link>
+                    <ExternalLink lang={lang} href={t.cardActions.code.href} label={t.cardActions.code.label} className="btn" />
                   </div>
                 ) : null}
                 <div className="projeto-card-foot">
