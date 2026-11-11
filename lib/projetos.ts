@@ -760,6 +760,22 @@ const OUVIDOMETRO: Record<Lang, ProjetoText> = {
         ],
       },
       {
+        id: 'achados',
+        title: 'Principais achados',
+        blocks: [
+          { k: 'p', v: 'Recorte principal: manifestações registradas de setembro de 2025 a agosto de 2026, comparadas com as de setembro de 2024 a agosto de 2025. Os números saem dos arquivos do painel, gerados a partir do arquivo da CGU de 01/09/2026.' },
+          {
+            k: 'list',
+            items: [
+              'O volume cresceu 20,1% e o cumprimento do prazo caiu 0,8 ponto. Foram 1.721.823 manifestações, contra 1.434.183 no período anterior. A parcela respondida no prazo passou de 89,0% para 88,2%. Fonte: painel/kpis.csv, colunas volume e pct_no_prazo.',
+              'Quem recebe resposta espera menos. A mediana do tempo de resposta caiu de 13 para 9 dias e a média, de 20,1 para 16,2 dias. Uma em cada dez respostas ainda leva mais de 36 dias. Fonte: painel/kpis.csv, colunas mediana_dias, tempo_medio_dias e p90_dias.',
+              'O atraso se concentra na esfera municipal. Os órgãos municipais responderam 66,9% no prazo (69,4% no período anterior), contra 90,3% dos federais. Eles recebem 8,6% das manifestações e respondem por 43,9% das 59.426 pendências vencidas em 31/08/2026. Fonte: painel/esferas.csv, colunas volume, pct_no_prazo, pct_no_prazo_ant e pendentes_vencidas.',
+            ],
+          },
+          { k: 'p', v: 'Ressalva: o período mais recente teve menos tempo para ser respondido, então a comparação de pendências entre os dois períodos não é justa e não foi usada.' },
+        ],
+      },
+      {
         id: 'como-foi-construido',
         title: 'Como foi construído',
         blocks: [
@@ -769,7 +785,8 @@ const OUVIDOMETRO: Record<Lang, ProjetoText> = {
               { title: 'Preparar', text: 'Um script em Python baixa o arquivo da CGU, converte os CSVs de Latin-1 para UTF-8 e grava um arquivo Parquet por ano.' },
               { title: 'Agregar', text: 'Outro script agrega a base com DuckDB por mês, esfera, tipo, UF, órgão e assunto e grava o arquivo de dados que alimenta os filtros do painel.' },
               { title: 'Resumir', text: 'Um terceiro script grava o resumo dos últimos 12 meses em JSON e CSV, para quem quiser os números fora do painel.' },
-              { title: 'Painel', text: 'O painel é feito em HTML, CSS e JavaScript, com gráficos em D3. Tem filtros de período, esfera, tipo e UF, clique nas barras para filtrar e busca de órgão, e funciona sem internet.' },
+              { title: 'Painel', text: 'O painel é feito em HTML, CSS e JavaScript, com gráficos em D3. Os filtros de período, com atalhos por ano, esfera, tipo e UF valem para todas as seções. As barras dos gráficos filtram ao clique, a evolução aparece mês a mês no período escolhido ou na história completa, e uma lista suspensa abre os órgãos. Funciona sem internet.' },
+              { title: 'Testar', text: 'São 15 testes em pytest, que rodam no GitHub Actions a cada envio de código. Treze usam uma base sintética criada dentro do próprio teste, e dois conferem a base real da CGU, que só rodam em quem baixou os dados.' },
             ],
           },
         ],
@@ -782,7 +799,7 @@ const OUVIDOMETRO: Record<Lang, ProjetoText> = {
             k: 'decisions',
             items: [
               { title: 'Uma pergunta por seção', text: 'Cada seção responde a uma pergunta de decisão, e não só exibe números.' },
-              { title: 'Cor de alerta', text: 'A cor diz onde olhar primeiro: verde abaixo da média, amarelo até o dobro e vermelho acima do dobro.' },
+              { title: 'Cor de alerta', text: 'A cor diz onde olhar primeiro. Na tabela de órgãos, verde no nível do resultado geral do filtro ou acima, amarelo até 10 pontos abaixo e vermelho mais de 10 pontos abaixo. Nos gráficos de barras, rosa para mais de 10 pontos abaixo do geral.' },
               { title: 'Mediana e percentil 90', text: 'A mediana mostra o caso típico, e o percentil 90 mostra quem espera demais.' },
               { title: 'Pendências com idade', text: 'O painel mostra há quanto tempo cada pendência está vencida, e não só a contagem.' },
               { title: 'Denominador à vista', text: 'Toda proporção traz o denominador, e a data de corte fica visível.' },
@@ -819,7 +836,7 @@ const OUVIDOMETRO: Record<Lang, ProjetoText> = {
               { label: 'CGU, dados abertos de ouvidoria', href: OUV_CGU },
             ],
           },
-          { k: 'p', v: 'Painel independente, sem vínculo com a CGU. Os dados pertencem à CGU. A biblioteca D3 usa a licença ISC.' },
+          { k: 'p', v: 'Painel independente, sem vínculo com a CGU. O código está sob a licença MIT. Os dados vêm da CGU e não estão cobertos por essa licença. A biblioteca D3 usa a licença ISC.' },
         ],
       },
     ],
@@ -891,6 +908,22 @@ const OUVIDOMETRO: Record<Lang, ProjetoText> = {
         ],
       },
       {
+        id: 'achados',
+        title: 'Main findings',
+        blocks: [
+          { k: 'p', v: 'Main window: requests filed from September 2025 to August 2026, compared with those from September 2024 to August 2025. The figures come from the dashboard files, generated from the CGU file of September 1, 2026.' },
+          {
+            k: 'list',
+            items: [
+              'Volume grew 20.1% and deadline compliance fell 0.8 point. There were 1,721,823 requests, against 1,434,183 in the previous period. The share answered within the deadline went from 89.0% to 88.2%. Source: painel/kpis.csv, columns volume and pct_no_prazo.',
+              'Those who get an answer wait less. The median response time fell from 13 to 9 days and the average from 20.1 to 16.2 days. One in ten answers still takes more than 36 days. Source: painel/kpis.csv, columns mediana_dias, tempo_medio_dias and p90_dias.',
+              'The delay is concentrated in the municipal sphere. Municipal bodies answered 66.9% within the deadline (69.4% in the previous period), against 90.3% of federal ones. They receive 8.6% of the requests and account for 43.9% of the 59,426 overdue pending requests as of August 31, 2026. Source: painel/esferas.csv, columns volume, pct_no_prazo, pct_no_prazo_ant and pendentes_vencidas.',
+            ],
+          },
+          { k: 'p', v: 'One caveat: the most recent period had less time to be answered, so comparing pending requests between the two periods would not be fair and was not used.' },
+        ],
+      },
+      {
         id: 'como-foi-construido',
         title: 'How it was built',
         blocks: [
@@ -900,7 +933,8 @@ const OUVIDOMETRO: Record<Lang, ProjetoText> = {
               { title: 'Prepare', text: 'A Python script downloads the CGU file, converts the CSVs from Latin-1 to UTF-8 and writes one Parquet file per year.' },
               { title: 'Aggregate', text: 'Another script aggregates the data with DuckDB by month, sphere, type, state, body and subject and writes the data file that feeds the dashboard filters.' },
               { title: 'Summarize', text: 'A third script writes the summary of the last 12 months to JSON and CSV, for anyone who wants the figures outside the dashboard.' },
-              { title: 'Dashboard', text: 'The dashboard is built with HTML, CSS and JavaScript, with D3 charts. It has filters for period, sphere, type and state, click-to-filter bars and a search for bodies, and it works offline.' },
+              { title: 'Dashboard', text: 'The dashboard is built with HTML, CSS and JavaScript, with D3 charts. The filters for period, with year shortcuts, sphere, type and state apply to every section. Chart bars filter on click, the trend shows month by month over the chosen period or the full history, and a dropdown list opens the bodies. It works offline.' },
+              { title: 'Test', text: 'There are 15 pytest tests, which run on GitHub Actions on every push. Thirteen use a synthetic dataset created inside the test itself, and two check the real CGU data, so they only run for whoever downloaded it.' },
             ],
           },
         ],
@@ -913,7 +947,7 @@ const OUVIDOMETRO: Record<Lang, ProjetoText> = {
             k: 'decisions',
             items: [
               { title: 'One question per section', text: 'Each section answers a decision question instead of only showing numbers.' },
-              { title: 'Alert color', text: 'Color tells you where to look first: green below the average, yellow up to twice the average and red above that.' },
+              { title: 'Alert color', text: 'Color tells you where to look first. In the table of bodies, green at the overall result for the current filter or above, yellow up to 10 points below and red more than 10 points below. In the bar charts, pink for more than 10 points below the overall result.' },
               { title: 'Median and 90th percentile', text: 'The median shows the typical case, and the 90th percentile shows who waits too long.' },
               { title: 'Pending requests with age', text: 'The dashboard shows how long each pending request has been overdue, not just the count.' },
               { title: 'Denominator in view', text: 'Every proportion shows its denominator, and the cutoff date stays visible.' },
@@ -950,7 +984,7 @@ const OUVIDOMETRO: Record<Lang, ProjetoText> = {
               { label: 'CGU, open ombudsman data (in Portuguese)', href: OUV_CGU },
             ],
           },
-          { k: 'p', v: 'Independent dashboard, not affiliated with CGU. The data belongs to CGU. The D3 library uses the ISC license.' },
+          { k: 'p', v: 'Independent dashboard, not affiliated with CGU. The code is under the MIT license. The data comes from CGU and is not covered by that license. The D3 library uses the ISC license.' },
         ],
       },
     ],
