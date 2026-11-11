@@ -1,5 +1,5 @@
 .hero{padding:56px 0 0}
-.hero-inner{align-items:center;grid-template-columns:minmax(0,1fr) minmax(0,440px);gap:56px}
+.hero-inner{align-items:center;grid-template-columns:minmax(0,1fr) minmax(0,560px);gap:48px}
 .hero-carrossel{display:grid;gap:14px;min-width:0}
 .hero-palco{position:relative;aspect-ratio:1200/627;border:1px solid var(--border);border-radius:var(--radius-lg);overflow:hidden;background:var(--bg-2);box-shadow:var(--shadow)}
 .hero-capa{position:absolute;inset:0;display:block;opacity:0;visibility:hidden;transition:opacity .5s ease}
@@ -51,7 +51,7 @@
 .featured-panel{border-left:0;border-top:1px solid var(--border)}
 .featured-shot{border-left:0;border-top:1px solid var(--border);padding:22px}
 .hero-inner{grid-template-columns:minmax(0,1fr);gap:36px}
-.hero-carrossel{max-width:520px}
+.hero-carrossel{max-width:100%}
 }
 @media(max-width:760px){
 .hero{padding:40px 0 0}
