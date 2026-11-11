@@ -31,7 +31,7 @@ export const PRESENTATION = {
     assistantNote: 'As respostas são geradas por IA e podem conter imprecisões. Os canais de contato estão no rodapé.',
     experienceTitle: 'Experiência em operações que orienta o código.', experienceSub: 'Entender processos, investigar problemas e trabalhar com decisões que afetam pessoas.',
     moreBackground: 'Ver trajetória e competências', educationTitle: 'Formação e qualificações em dados, IA e engenharia de software.', educationSub: 'Aprofundamento técnico apoiado pela experiência profissional.',
-    contactTitle: 'Contato: vamos conversar sobre engenharia de software, dados e IA.', contactDescription: 'Para conexões profissionais ou uma conversa sobre desenvolvimento, dados e IA aplicada.',
+    contactTitle: 'Tem um projeto em mente?', contactDescription: 'Conte o que precisa: um site, um painel de dados, uma automação ou IA. Eu retorno pelo e-mail que você informar.',
     footer: 'Engenharia de Software, dados e IA aplicada.', skip: 'Ir para o conteúdo',
   },
   en: {
@@ -66,7 +66,7 @@ export const PRESENTATION = {
     assistantNote: 'AI-generated answers may contain inaccuracies. Contact options are in the footer.',
     experienceTitle: 'Operations experience that shapes my code.', experienceSub: 'Understanding processes, investigating problems and working with decisions that affect people.',
     moreBackground: 'Explore my journey and skills', educationTitle: 'Education and qualifications in data, AI and software engineering.', educationSub: 'Technical learning grounded in professional experience.',
-    contactTitle: 'Contact: let’s talk about software engineering, data and AI.', contactDescription: 'For professional connections or a conversation about development, data and applied AI.',
+    contactTitle: 'Have a project in mind?', contactDescription: 'Tell me what you need: a website, a data dashboard, an automation or AI. I will reply to the email you provide.',
     footer: 'Software Engineering, data and applied AI.', skip: 'Skip to content',
   },
 };

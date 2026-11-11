@@ -4,6 +4,7 @@ import { PRESENTATION } from '@/lib/presentation';
 import { Hero } from './Hero';
 import { FeaturedProject } from './home/FeaturedProject';
 import { RecentGuides } from './home/RecentGuides';
+import { Servicos } from './home/Servicos';
 import { Contato } from './Contato';
 
 export function Portfolio({ initialLang }: { initialLang: Lang }) {
@@ -14,6 +15,7 @@ export function Portfolio({ initialLang }: { initialLang: Lang }) {
   return (
     <>
       <Hero lang={lang} />
+      <Servicos lang={lang} />
       <FeaturedProject lang={lang} />
       <RecentGuides lang={lang} />
       <Contato lang={lang} t={{ ...t, contact: { ...t.contact, h2: d.contactTitle, p: d.contactDescription } }} />

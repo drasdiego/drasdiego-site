@@ -3,7 +3,7 @@
 import { useEffect, useRef, useState } from 'react';
 import Link from 'next/link';
 import type { Lang } from '@/types';
-import { CONTACT_LIMITS, normalizeContact, validateContact } from '@/lib/contato';
+import { CONTACT_LIMITS, CONTACT_SUBJECTS, normalizeContact, validateContact } from '@/lib/contato';
 import type { ContactField, ContactFieldError } from '@/lib/contato';
 import { privacyPath } from '@/lib/site-nav';
 
@@ -11,6 +11,8 @@ const FORM_UI = {
   pt: {
     nome: 'Nome',
     email: 'E-mail',
+    assunto: 'Assunto',
+    assuntos: { site: 'Site ou página', painel: 'Painel de dados', 'automacao-ia': 'Automação ou IA', outro: 'Outro' },
     mensagem: 'Mensagem',
     mensagemDica: 'Conte o contexto do projeto',
     armadilha: 'Não preencha este campo',
@@ -35,6 +37,12 @@ const FORM_UI = {
         too_long: `O e-mail pode ter até ${CONTACT_LIMITS.emailMax} caracteres.`,
         invalid: 'Informe um e-mail válido, como nome@exemplo.com.',
       },
+      assunto: {
+        required: 'Escolha o assunto.',
+        too_short: 'Escolha o assunto.',
+        too_long: 'Escolha o assunto.',
+        invalid: 'Escolha o assunto.',
+      },
       mensagem: {
         required: 'Escreva sua mensagem.',
         too_short: `A mensagem precisa ter pelo menos ${CONTACT_LIMITS.mensagemMin} caracteres.`,
@@ -46,6 +54,8 @@ const FORM_UI = {
   en: {
     nome: 'Name',
     email: 'Email',
+    assunto: 'Subject',
+    assuntos: { site: 'Website or page', painel: 'Data dashboard', 'automacao-ia': 'Automation or AI', outro: 'Other' },
     mensagem: 'Message',
     mensagemDica: 'Tell me about the project',
     armadilha: 'Do not fill in this field',
@@ -70,6 +80,12 @@ const FORM_UI = {
         too_long: `Your email can have up to ${CONTACT_LIMITS.emailMax} characters.`,
         invalid: 'Enter a valid email, such as name@example.com.',
       },
+      assunto: {
+        required: 'Choose a subject.',
+        too_short: 'Choose a subject.',
+        too_long: 'Choose a subject.',
+        invalid: 'Choose a subject.',
+      },
       mensagem: {
         required: 'Write your message.',
         too_short: `Your message needs at least ${CONTACT_LIMITS.mensagemMin} characters.`,
@@ -83,13 +99,13 @@ const FORM_UI = {
 type Errors = Partial<Record<ContactField, ContactFieldError>>;
 type Status = { kind: 'ok' | 'error'; text: string } | null;
 
-const FIELDS: ContactField[] = ['nome', 'email', 'mensagem'];
+const FIELDS: ContactField[] = ['nome', 'email', 'assunto', 'mensagem'];
 const REQUEST_TIMEOUT_MS = 15_000;
 
 export function ContatoForm({ lang }: { lang: Lang }) {
   const ui = FORM_UI[lang];
   const formRef = useRef<HTMLFormElement>(null);
-  const [values, setValues] = useState({ nome: '', email: '', mensagem: '', website: '' });
+  const [values, setValues] = useState({ nome: '', email: '', assunto: '', mensagem: '', website: '' });
   const [errors, setErrors] = useState<Errors>({});
   const [status, setStatus] = useState<Status>(null);
   const [sending, setSending] = useState(false);
@@ -141,7 +157,7 @@ export function ContatoForm({ lang }: { lang: Lang }) {
       });
       const data = (await res.json().catch(() => null)) as { ok?: boolean; error?: string; fields?: Errors } | null;
       if (res.ok && data?.ok === true) {
-        setValues({ nome: '', email: '', mensagem: '', website: '' });
+        setValues({ nome: '', email: '', assunto: '', mensagem: '', website: '' });
         setErrors({});
         setStatus({ kind: 'ok', text: ui.sucesso });
       } else if (res.status === 429) {
@@ -210,6 +226,25 @@ export function ContatoForm({ lang }: { lang: Lang }) {
         />
         {errorText('email')}
       </div>
+      <fieldset className={`contato-campo contato-assunto${errors.assunto ? ' tem-erro' : ''}`} aria-describedby={describedBy('assunto')}>
+        <legend>{ui.assunto}</legend>
+        <div className="contato-opcoes">
+          {CONTACT_SUBJECTS.map((subject) => (
+            <label className="contato-opcao" key={subject}>
+              <input
+                type="radio"
+                name="assunto"
+                value={subject}
+                required
+                checked={values.assunto === subject}
+                onChange={update('assunto')}
+              />
+              <span>{ui.assuntos[subject]}</span>
+            </label>
+          ))}
+        </div>
+        {errorText('assunto')}
+      </fieldset>
       <div className="contato-campo">
         <label htmlFor="contato-mensagem">{ui.mensagem}</label>
         <p className="contato-dica" id="contato-mensagem-dica">{ui.mensagemDica}</p>

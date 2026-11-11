@@ -140,3 +140,12 @@
 .sobre-foto{aspect-ratio:1;overflow:hidden;border-radius:50%;border:1px solid var(--border)}
 .sobre-foto img{display:block;width:100%;height:100%;object-fit:cover}
 @media(max-width:760px){.sobre-head{grid-template-columns:minmax(0,1fr) 104px;align-items:start;gap:18px}}
+.contato-assunto{border:0;margin:0;padding:0;min-width:0}
+.contato-assunto legend{padding:0;margin-bottom:8px;font-size:14px;font-weight:500;color:var(--text)}
+.contato-opcoes{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}
+.contato-assunto .contato-opcao{display:flex;align-items:center;gap:10px;min-height:48px;padding:10px 14px;border:1px solid var(--border-strong);border-radius:6px;background:var(--bg);font-size:15px;font-weight:400;cursor:pointer}
+.contato-assunto .contato-opcao:has(input:checked){border-color:var(--accent);background:var(--accent-soft)}
+.contato-assunto .contato-opcao input{width:18px;height:18px;min-height:0;margin:0;padding:0;flex:none;accent-color:var(--accent);scroll-margin-top:48px}
+.contato-assunto .contato-opcao input:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+.contato-assunto.tem-erro .contato-opcao{border-color:var(--no)}
+@media(max-width:420px){.contato-opcoes{grid-template-columns:minmax(0,1fr)}}

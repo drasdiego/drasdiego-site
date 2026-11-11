@@ -9,17 +9,17 @@ import { ContatoForm } from './ContatoForm';
 
 export const CONTATO_UI = {
   pt: {
-    title: 'Tem um projeto de dados ou IA?',
+    title: 'Tem um projeto em mente?',
     lead: 'Conte o contexto e eu retorno pelo e-mail que você informar. Se preferir, fale direto pelo LinkedIn ou pelo WhatsApp.',
-    description: 'Tem um projeto de dados ou IA? Envie uma mensagem pelo formulário ou fale direto com Diego Arruda pelo LinkedIn, WhatsApp ou GitHub.',
+    description: 'Tem um projeto em mente? Site, painel de dados, automação ou IA. Envie uma mensagem pelo formulário ou fale direto com Diego Arruda pelo LinkedIn, WhatsApp ou GitHub.',
     formTitle: 'Enviar mensagem',
     channelsTitle: 'Contato direto',
     newTab: 'abre em nova aba',
   },
   en: {
-    title: 'Have a data or AI project?',
+    title: 'Have a project in mind?',
     lead: 'Tell me the context and I will reply to the email you provide. If you prefer, reach out directly on LinkedIn or WhatsApp.',
-    description: 'Have a data or AI project? Send a message through the form or reach Diego Arruda directly on LinkedIn, WhatsApp or GitHub.',
+    description: 'Have a project in mind? Website, data dashboard, automation or AI. Send a message through the form or reach Diego Arruda directly on LinkedIn, WhatsApp or GitHub.',
     formTitle: 'Send a message',
     channelsTitle: 'Direct contact',
     newTab: 'opens in a new tab',
