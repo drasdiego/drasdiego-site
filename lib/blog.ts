@@ -9,6 +9,7 @@ import { CHAVE_VAZADA } from './blog-chave';
 import { HOOK } from './blog-hook';
 import { PROCV } from './blog-procv';
 import { APPS_SCRIPT_TETO } from './blog-script';
+import { PLUGIN_RODA_CODIGO } from './blog-plugin';
 import type { BlogMenuData } from './blog-menu';
 
 export type TableCell = string | { v: string; tone: 'bad' | 'ok' };
@@ -121,7 +122,7 @@ export const CATEGORIES: Category[] = [
   },
 ];
 
-export const GUIDES: Guide[] = [TRIBUNAL, REWIND, JOIN_SOMA, CHAVE_VAZADA, HOOK, PROCV, APPS_SCRIPT_TETO];
+export const GUIDES: Guide[] = [TRIBUNAL, REWIND, JOIN_SOMA, CHAVE_VAZADA, HOOK, PROCV, APPS_SCRIPT_TETO, PLUGIN_RODA_CODIGO];
 
 export const BLOG_UI = {
   pt: {

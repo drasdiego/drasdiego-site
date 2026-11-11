@@ -62,6 +62,14 @@ export const GUIDE_CLOSING: Record<string, GuideClosingData> = {
       pt: 'Agora você sabe montar um script que processa a planilha em lotes, para antes do teto de seis minutos e continua sozinho de onde parou.',
       en: 'You now know how to build a script that processes the spreadsheet in batches, stops before the six-minute ceiling and carries on by itself from where it stopped.',
     },
+    next: { word: 'PLUGIN', title: { pt: 'Plugin roda código de verdade', en: 'A plugin really does run code' }, category: 'claude-code', slug: 'plugin-roda-codigo' },
+  },
+  'plugin-roda-codigo': {
+    result: {
+      pt: 'Agora você sabe o que um plugin instalado pode rodar na sua máquina e como revisar um plugin antes de instalar, conferir o que ficou e remover o que você não confia mais.',
+      en: 'You now know what an installed plugin can run on your machine and how to review a plugin before you install it, check what was installed and remove one you no longer trust.',
+    },
+    next: { word: 'SERIES', title: { pt: 'Selic direto do Banco Central', en: 'The Selic rate straight from the Central Bank' } },
   },
 };
 
