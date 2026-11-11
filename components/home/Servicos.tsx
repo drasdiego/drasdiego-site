@@ -18,6 +18,7 @@ export function Servicos({ lang }: { lang: Lang }) {
               <p>{o.desc}</p>
               <p className="servico-exemplo">
                 {ui.exampleLabel}{' '}
+                {o.before}
                 {o.href ? <Link className="inline-link" href={o.href}>{o.example}</Link> : o.example}
               </p>
             </li>

@@ -66,6 +66,19 @@ A rota pública do chat pode gerar custo e consumir cota, por isso têm proteç�
 
 O limite por IP no código vale por instância do servidor e não substitui a regra de rate limit no firewall da hospedagem.
 
+## Licença
+
+O código deste repositório está sob a licença MIT, no arquivo [LICENSE](LICENSE). Você pode usar, copiar, alterar e redistribuir o código, mantendo o aviso de direitos autorais.
+
+A licença cobre apenas o código. Não estão cobertos, e seguem reservados a Diego Arruda:
+
+- os textos do site, dos guias e dos estudos de caso;
+- as imagens, capturas de tela e a imagem de compartilhamento;
+- o nome, a marca e a identidade visual, incluindo "Diego Arruda", "DRASDIEGO" e "@drasdiegotech";
+- os dados pessoais e profissionais publicados.
+
+Para reaproveitar o código, troque esse conteúdo pelo seu. Bibliotecas de terceiros seguem as licenças dos próprios autores.
+
 ## Autor
 
 Diego Arruda

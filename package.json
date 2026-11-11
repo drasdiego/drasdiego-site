@@ -2,6 +2,7 @@
   "name": "drasdiego-portfolio",
   "version": "1.0.0",
   "private": true,
+  "license": "MIT",
   "description": "Portfólio pessoal de Diego Arruda. Dados, IA e Engenharia de Software. Next.js + TypeScript.",
   "scripts": {
     "dev": "next dev",

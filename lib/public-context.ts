@@ -94,7 +94,7 @@ export function contextFor(lang: Lang): string {
     `${profile.projectName}. ${profile.projectDescription}`,
     ...profile.details.map(item => `${item.title}: ${item.text}`),
     text.services,
-    ...servicos.offers.map(o => `${o.title}: ${o.desc} ${exemplo}: ${o.example}${o.href ? ` (${o.href})` : ''}.`),
+    ...servicos.offers.map(o => `${o.title}: ${o.desc} ${exemplo}: ${o.before ?? ''}${o.example}${o.href ? ` (${o.href})` : ''}.`),
     servicos.ai,
     text.tech,
     ...site.tech.cats.map(item => `${item.name}: ${item.items.join(', ')}.`),

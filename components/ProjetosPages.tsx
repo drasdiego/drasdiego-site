@@ -65,7 +65,7 @@ export function ProjetosIndex({ lang }: { lang: Lang }) {
             const t = p[lang];
             return (
               <li key={p.slug} className="projeto-card">
-                {p.image && t.media ? <CardImage image={p.image} alt={t.media.alt} /> : null}
+                {p.image ? <CardImage image={p.image} alt={t.media ? t.media.alt : t.imageAlt ?? ''} /> : null}
                 <h2><Link className="projeto-card-link" href={`${root}/${p.slug}`}>{t.title}</Link></h2>
                 <p>{t.short}</p>
                 <ul className="projeto-tags" aria-label={lang === 'en' ? 'Technologies' : 'Tecnologias'}>

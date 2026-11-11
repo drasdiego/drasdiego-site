@@ -73,6 +73,7 @@ export interface ProjetoText {
   tags: string[];
   cta: string;
   status: string;
+  imageAlt?: string;
   facts: ProjetoFact[];
   sections: ProjetoSection[];
   tryIt?: ProjetoTry;
@@ -142,6 +143,9 @@ function assistenteDeCarreira(lang: Lang): ProjetoText {
     tags: [...TECNOLOGIAS],
     cta: u.cta,
     status: u.status,
+    imageAlt: lang === 'en'
+      ? 'Screenshot of the career assistant on this site, in dark theme: the Try it section, with suggested questions and the field to write your own.'
+      : 'Captura de tela do assistente de carreira deste site, em tema escuro: a seção Experimente, com as perguntas sugeridas e o campo para escrever a sua.',
     facts: [
       { label: d.application, value: d.applicationDescription },
       { label: d.technologies, chips: [...TECNOLOGIAS] },
@@ -942,6 +946,14 @@ export const PROJETOS: Projeto[] = [
     slug: 'assistente-de-carreira',
     pt: assistenteDeCarreira('pt'),
     en: assistenteDeCarreira('en'),
+    image: {
+      src: '/images/projetos/assistente-de-carreira.webp',
+      width: 1440,
+      height: 900,
+      cardSrc: '/images/projetos/assistente-de-carreira-800.webp',
+      cardWidth: 800,
+      cardHeight: 500,
+    },
   },
   {
     slug: 'fora-do-digital',

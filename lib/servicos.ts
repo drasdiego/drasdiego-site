@@ -7,6 +7,7 @@ export interface Oferta {
   area: ServicoArea;
   title: string;
   desc: string;
+  before?: string;
   example: string;
   href: string | null;
 }
@@ -29,7 +30,7 @@ export function servicosUI(lang: Lang): ServicosUI {
       sub: 'Three kinds of projects, each with real work you can open and check.',
       exampleLabel: 'Example:',
       offers: [
-        { area: 'software', title: 'Websites and pages', desc: 'Fast, accessible sites that are easy to maintain, with an English version when you need one.', example: 'Brasa Alta, a concept website for a fictional burger restaurant', href: `${projetos}/brasa-alta` },
+        { area: 'software', title: 'Websites and pages', desc: 'Fast, accessible sites that are easy to maintain, with an English version when you need one.', before: 'this website, in two languages, and ', example: 'Brasa Alta, a concept website for a fictional burger restaurant', href: `${projetos}/brasa-alta` },
         { area: 'dados', title: 'Data dashboards', desc: 'Data from spreadsheets or public sources organized into a dashboard that answers the questions that matter.', example: 'Fora do Digital, a dashboard on internet access in Brazil', href: `${projetos}/fora-do-digital` },
         { area: 'automacao', title: 'Automations and AI', desc: 'Repetitive routines turned into automations, and assistants that answer based on your own information.', example: 'the career assistant on this website', href: `${projetos}/assistente-de-carreira` },
       ],
@@ -43,7 +44,7 @@ export function servicosUI(lang: Lang): ServicosUI {
     sub: 'Três tipos de projeto, cada um com um trabalho real que você pode abrir e conferir.',
     exampleLabel: 'Exemplo:',
     offers: [
-      { area: 'software', title: 'Sites e páginas', desc: 'Sites rápidos, acessíveis e fáceis de manter, com versão em inglês quando precisar.', example: 'Brasa Alta, site conceitual de uma hamburgueria fictícia', href: `${projetos}/brasa-alta` },
+      { area: 'software', title: 'Sites e páginas', desc: 'Sites rápidos, acessíveis e fáceis de manter, com versão em inglês quando precisar.', before: 'este site, em dois idiomas, e o ', example: 'Brasa Alta, site conceitual de uma hamburgueria fictícia', href: `${projetos}/brasa-alta` },
       { area: 'dados', title: 'Painéis de dados', desc: 'Dados de planilhas ou de fontes públicas organizados num painel que responde às perguntas que importam.', example: 'Fora do Digital, painel sobre acesso à internet no Brasil', href: `${projetos}/fora-do-digital` },
       { area: 'automacao', title: 'Automações e IA', desc: 'Rotinas repetitivas que viram automação e assistentes que respondem com base nas suas informações.', example: 'o assistente de carreira deste site', href: `${projetos}/assistente-de-carreira` },
     ],
