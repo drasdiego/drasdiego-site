@@ -88,7 +88,7 @@ export async function SobrePage({ lang }: { lang: Lang }) {
                   <h2 className="section-title" id="resumo-titulo">{ui.summary}</h2>
                 </div>
                 <div className="sobre-resumo">
-                  <p className="sobre-resumo-lead">{d.lead}</p>
+                  <p className="sobre-resumo-lead">{d.heroLead}</p>
                   <p className="sobre-resumo-ctx">{d.context}</p>
                   <div className="sobre-resumo-cta">
                     <Link className="btn btn-primary" href={`${projetosPath(lang)}/assistente-de-carreira`}>{d.projectLink}</Link>

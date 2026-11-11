@@ -2,6 +2,7 @@ import type { Lang } from '@/types';
 import { CONTENT } from './content';
 import { PRESENTATION } from './presentation';
 import { CATEGORIES, blogRoot, guidesIn, sortGuides } from './blog';
+import { servicosUI } from './servicos';
 
 const LABELS = {
   pt: {
@@ -10,6 +11,7 @@ const LABELS = {
     exp: 'EXPERIÊNCIA PROFISSIONAL PUBLICADA',
     edu: 'FORMAÇÃO ACADÊMICA PUBLICADA',
     project: 'PROJETO EM DESTAQUE',
+    services: 'SERVIÇOS PUBLICADOS (seção O que construo do Início). Pedidos de orçamento ou de projeto vão para a página de contato, com o campo Assunto.',
     tech: 'TECNOLOGIAS PUBLICADAS',
     limits: 'LIMITES DAS INFORMAÇÕES PROFISSIONAIS',
     limitsTools:
@@ -22,10 +24,10 @@ const LABELS = {
     map: 'MAPA DO SITE',
     guides: 'GUIAS PUBLICADOS',
     mapLines: [
-      'Início (/): apresentação, projeto em destaque, guias recentes e contato.',
+      'Início (/): apresentação, serviços (O que construo), projetos em destaque, guias recentes e contato.',
       'Projetos (/projetos): estudos de caso. O primeiro é o assistente de carreira (/projetos/assistente-de-carreira).',
       'Guias (/guias): guias práticos e educativos escritos pelo Diego, organizados por categoria. Não são experiência profissional.',
-      'Sobre (/sobre): resumo, experiência profissional, formação, trajetória, dados e IA e tecnologias.',
+      'Sobre (/sobre): resumo, experiência profissional, formação, dados e IA e tecnologias.',
       'Contato (/contato): formulário para enviar uma mensagem, com resposta pelo e-mail informado, além de LinkedIn, WhatsApp e GitHub. Os mesmos canais aparecem no rodapé de todas as páginas e na seção de contato do Início.',
       'Privacidade (/privacidade): aviso de privacidade do site.',
     ],
@@ -38,6 +40,7 @@ const LABELS = {
     exp: 'PUBLISHED PROFESSIONAL EXPERIENCE',
     edu: 'PUBLISHED ACADEMIC BACKGROUND',
     project: 'FEATURED PROJECT',
+    services: 'PUBLISHED SERVICES (the What I build section on the home page). Requests for a quote or a project go to the contact page, which has a Subject field.',
     tech: 'PUBLISHED TECHNOLOGIES',
     limits: 'LIMITS OF THE PROFESSIONAL INFORMATION',
     limitsTools:
@@ -50,10 +53,10 @@ const LABELS = {
     map: 'SITE MAP',
     guides: 'PUBLISHED GUIDES',
     mapLines: [
-      'Home (/en): introduction, featured project, latest guides and contact.',
+      'Home (/en): introduction, services (What I build), featured projects, latest guides and contact.',
       'Projects (/en/projetos): case studies. The first is the career assistant (/en/projetos/assistente-de-carreira).',
       'Guides (/en/guias): practical, educational guides written by Diego, organized by category. They are not professional experience.',
-      'About (/en/sobre): summary, professional experience, education, journey, data and AI, and technologies.',
+      'About (/en/sobre): summary, professional experience, education, data and AI, and technologies.',
       'Contact (/en/contato): form to send a message, with a reply to the email provided, plus LinkedIn, WhatsApp and GitHub. The same channels appear in the footer of every page and in the contact section of the home page.',
       'Privacy (/en/privacidade): the website privacy notice.',
     ],
@@ -75,6 +78,8 @@ export function contextFor(lang: Lang): string {
   const text = LABELS[l];
   const site = CONTENT[l];
   const profile = PRESENTATION[l];
+  const servicos = servicosUI(l);
+  const exemplo = l === 'en' ? 'Example' : 'Exemplo';
   return [
     text.name,
     profile.lead,
@@ -88,6 +93,9 @@ export function contextFor(lang: Lang): string {
     text.project,
     `${profile.projectName}. ${profile.projectDescription}`,
     ...profile.details.map(item => `${item.title}: ${item.text}`),
+    text.services,
+    ...servicos.offers.map(o => `${o.title}: ${o.desc} ${exemplo}: ${o.example}${o.href ? ` (${o.href})` : ''}.`),
+    servicos.ai,
     text.tech,
     ...site.tech.cats.map(item => `${item.name}: ${item.items.join(', ')}.`),
     text.limits,
