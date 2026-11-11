@@ -20,7 +20,7 @@ export const PRIVACIDADE_UI = {
     title: 'Aviso de privacidade',
     description: 'Como o site de Diego Arruda trata os dados do formulário de contato e do assistente, e o que fica guardado no seu navegador.',
     lead: 'Este aviso explica, de forma direta, quais dados este site recebe, para que servem e por quanto tempo ficam guardados.',
-    updated: 'Atualizado em 9 de novembro de 2026',
+    updated: 'Atualizado em 11 de novembro de 2026',
     signature: 'Diego Arruda',
     newTab: 'abre em nova aba',
   },
@@ -28,7 +28,7 @@ export const PRIVACIDADE_UI = {
     title: 'Privacy notice',
     description: 'How Diego Arruda’s website handles data from the contact form and the assistant, and what is stored in your browser.',
     lead: 'This notice explains, in plain terms, which data this website receives, what it is used for and how long it is kept.',
-    updated: 'Last updated November 9, 2026',
+    updated: 'Last updated November 11, 2026',
     signature: 'Diego Arruda',
     newTab: 'opens in a new tab',
   },
@@ -48,7 +48,7 @@ const SECTIONS: Record<Lang, PrivacySection[]> = {
       id: 'formulario',
       title: 'Formulário de contato',
       items: [
-        ['Dados: nome, e-mail e mensagem.'],
+        ['Dados: nome, e-mail, assunto escolhido e mensagem.'],
         ['Finalidade: responder ao seu contato.'],
         ['Base legal: atender a um pedido seu, como titular dos dados (art. 7º, V, da LGPD).'],
         ['Onde ficam: em uma planilha privada na conta Google de Diego. Cada envio gera um aviso por e-mail para ele.'],
@@ -75,7 +75,7 @@ const SECTIONS: Record<Lang, PrivacySection[]> = {
       items: [
         ['O site conta visitas com o Vercel Web Analytics, de forma anônima e agregada, sem cookies de terceiros. A medição registra a página visitada, a página de origem, parâmetros de campanha do endereço (como utm_source), país e cidade aproximados, sistema, navegador e tipo de aparelho. Ela não liga a visita a você nem ao seu endereço IP: o visitante é contado por um código gerado a partir da requisição, descartado depois de 24 horas.'],
         ['O site não usa publicidade nem outras ferramentas de medição ou rastreamento.'],
-        ['Se você escolher o tema claro, essa escolha fica no armazenamento da sessão do navegador (sessionStorage) e é apagada quando você fecha a aba.'],
+        ['Se você escolher o tema escuro, essa escolha fica no armazenamento da sessão do navegador (sessionStorage) e é apagada quando você fecha a aba.'],
         ['Na página Sobre, a lista de cursos vem de uma planilha pública no Google Sheets. Algumas páginas de projeto mostram um painel publicado no GitHub Pages. Ao carregar esses conteúdos, seu navegador se conecta ao Google ou ao GitHub, que recebem dados técnicos comuns, como o endereço IP.'],
         ['A Vercel, que hospeda o site, pode registrar dados técnicos de acesso, como endereço IP e navegador, para operar e proteger o serviço.'],
       ],
@@ -103,7 +103,7 @@ const SECTIONS: Record<Lang, PrivacySection[]> = {
       id: 'formulario',
       title: 'Contact form',
       items: [
-        ['Data: name, email and message.'],
+        ['Data: name, email, chosen subject and message.'],
         ['Purpose: replying to your message.'],
         ['Legal basis: fulfilling a request made by you, as the data subject (art. 7, V, of the LGPD, the Brazilian data protection law).'],
         ['Where it is stored: in a private spreadsheet in Diego’s Google account. Each message also sends him an email alert.'],
@@ -130,7 +130,7 @@ const SECTIONS: Record<Lang, PrivacySection[]> = {
       items: [
         ['The website counts visits with Vercel Web Analytics, anonymously and in aggregate, without third-party cookies. It records the page visited, the referring page, campaign parameters in the address (such as utm_source), approximate country and city, operating system, browser and device type. It does not tie the visit to you or to your IP address: the visitor is counted by a code generated from the request, discarded after 24 hours.'],
         ['The website does not use advertising or any other measurement or tracking tools.'],
-        ['If you choose the light theme, that choice is kept in the browser’s session storage (sessionStorage) and is deleted when you close the tab.'],
+        ['If you choose the dark theme, that choice is kept in the browser’s session storage (sessionStorage) and is deleted when you close the tab.'],
         ['On the About page, the list of courses comes from a public Google Sheets spreadsheet. Some project pages show a panel published on GitHub Pages. To load this content, your browser connects to Google or GitHub, which receive common technical data such as your IP address.'],
         ['Vercel, which hosts the website, may record technical access data, such as IP address and browser, to run and protect the service.'],
       ],

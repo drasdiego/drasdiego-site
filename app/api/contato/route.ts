@@ -23,7 +23,8 @@ function webhookConfig(): { url: string; secret: string } | null {
   if (!url || !secret) return null;
   try {
     const parsed = new URL(url);
-    if (parsed.protocol !== 'https:' && parsed.protocol !== 'http:') return null;
+    const local = parsed.hostname === 'localhost' || parsed.hostname === '127.0.0.1';
+    if (parsed.protocol !== 'https:' && !(parsed.protocol === 'http:' && local)) return null;
   } catch {
     return null;
   }
