@@ -126,8 +126,8 @@ const PT: SiteContent = {
   asst: {
     title: 'Assistente do Diego', sub: 'IA · responde sobre a carreira',
     placeholder: 'Pergunte sobre experiência, projetos…',
-    greet: 'Olá! Sou o assistente do Diego. Posso falar sobre a trajetória, experiência, tecnologias e projetos dele. O que você quer saber?',
-    chips: ['Experiência com dados?', 'Onde trabalha hoje?', 'Quais tecnologias domina?', 'Projetos de IA'],
+    greet: 'Olá! Sou o assistente do Diego. Posso falar sobre o que ele constrói, a trajetória, a experiência, as tecnologias e os projetos dele. O que você quer saber?',
+    chips: ['Experiência com dados?', 'O que ele constrói?', 'Quais tecnologias domina?', 'Projetos de IA'],
   },
 };
 
@@ -212,8 +212,8 @@ const EN: SiteContent = {
   asst: {
     title: "Diego’s Assistant", sub: 'AI · answers about his career',
     placeholder: 'Ask about experience, projects…',
-    greet: "Hi! I’m Diego’s assistant. I can talk about his journey, experience, technologies and projects. What would you like to know?",
-    chips: ['Data experience?', 'Where does he work now?', 'Which technologies?', 'AI projects'],
+    greet: "Hi! I’m Diego’s assistant. I can talk about what he builds, his journey, experience, technologies and projects. What would you like to know?",
+    chips: ['Data experience?', 'What does he build?', 'Which technologies?', 'AI projects'],
   },
 };
 
