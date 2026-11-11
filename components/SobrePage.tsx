@@ -11,7 +11,6 @@ import { SEO, SITE_URL, pagePathUrl } from '@/lib/seo';
 import { NAV_UI, contactPath, projetosPath } from '@/lib/site-nav';
 import { QUAL_SEED, fetchQualificationsServer } from '@/services/sheets';
 import { Experiencia } from './Experiencia';
-import { Trajetoria } from './Trajetoria';
 import { DataAI } from './DataAI';
 import { Tecnologias } from './Tecnologias';
 import { Qualificacoes } from './Qualificacoes';
@@ -58,7 +57,6 @@ export async function SobrePage({ lang }: { lang: Lang }) {
     { id: 'resumo', label: ui.summary },
     { id: 'experiencia', label: t.nav.exp },
     { id: 'formacao', label: t.nav.cert },
-    { id: 'trajetoria', label: t.nav.traj },
     { id: 'dados', label: t.nav.data },
     { id: 'tecnologias', label: t.nav.tech },
   ];
@@ -101,7 +99,6 @@ export async function SobrePage({ lang }: { lang: Lang }) {
             </section>
             <Experiencia t={{ ...t, exp: { ...t.exp, title: d.experienceTitle, sub: d.experienceSub } }} />
             <Qualificacoes t={{ ...t, quals: { ...t.quals, title: d.educationTitle, sub: d.educationSub } }} />
-            <Trajetoria t={t} />
             <DataAI t={t} />
             <Tecnologias t={t} />
           </div>

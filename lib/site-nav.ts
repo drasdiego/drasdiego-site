@@ -84,9 +84,10 @@ export function activeNavKey(pathname: string): NavKey | null {
   return null;
 }
 
-const LEGACY_SOBRE = new Set(['experiencia', 'formacao', 'trajetoria', 'dados', 'tecnologias']);
+const LEGACY_SOBRE = new Set(['experiencia', 'formacao', 'dados', 'tecnologias']);
 
 export function legacyAnchorTarget(lang: Lang, id: string): string | null {
+  if (id === 'trajetoria') return `${sobrePath(lang)}#experiencia`;
   if (LEGACY_SOBRE.has(id)) return `${sobrePath(lang)}#${id}`;
   if (id === 'projetos') return projetosPath(lang);
   return null;
