@@ -55,7 +55,13 @@ export const GUIDE_CLOSING: Record<string, GuideClosingData> = {
       pt: 'Agora você sabe por que o PROCV sem o quarto argumento erra sem avisar, como corrigir com FALSO e como conferir a planilha.',
       en: 'You now know why VLOOKUP without the fourth argument fails without warning, how to fix it with FALSE and how to check your spreadsheet.',
     },
-    next: { word: 'SCRIPT', title: { pt: 'Apps Script tem teto', en: 'Apps Script has a ceiling' } },
+    next: { word: 'SCRIPT', title: { pt: 'Apps Script tem teto', en: 'Apps Script has a ceiling' }, category: 'google-workspace', slug: 'apps-script-teto' },
+  },
+  'apps-script-teto': {
+    result: {
+      pt: 'Agora você sabe montar um script que processa a planilha em lotes, para antes do teto de seis minutos e continua sozinho de onde parou.',
+      en: 'You now know how to build a script that processes the spreadsheet in batches, stops before the six-minute ceiling and carries on by itself from where it stopped.',
+    },
   },
 };
 

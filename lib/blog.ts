@@ -8,6 +8,7 @@ import { JOIN_SOMA } from './blog-join';
 import { CHAVE_VAZADA } from './blog-chave';
 import { HOOK } from './blog-hook';
 import { PROCV } from './blog-procv';
+import { APPS_SCRIPT_TETO } from './blog-script';
 import type { BlogMenuData } from './blog-menu';
 
 export type TableCell = string | { v: string; tone: 'bad' | 'ok' };
@@ -104,9 +105,23 @@ export const CATEGORIES: Category[] = [
       note: 'Guide by Diego Arruda. Educational and independent content, not affiliated with Microsoft.',
     },
   },
+  {
+    slug: 'google-workspace',
+    area: 'automacao',
+    pt: {
+      name: 'Google Workspace',
+      desc: 'Guias práticos de Apps Script e Google Planilhas para automatizar tarefas, com código testado.',
+      note: 'Guia por Diego Arruda. Conteúdo educativo e independente, sem vínculo com o Google.',
+    },
+    en: {
+      name: 'Google Workspace',
+      desc: 'Practical Apps Script and Google Sheets guides for automating tasks, with tested code.',
+      note: 'Guide by Diego Arruda. Educational and independent content, not affiliated with Google.',
+    },
+  },
 ];
 
-export const GUIDES: Guide[] = [TRIBUNAL, REWIND, JOIN_SOMA, CHAVE_VAZADA, HOOK, PROCV];
+export const GUIDES: Guide[] = [TRIBUNAL, REWIND, JOIN_SOMA, CHAVE_VAZADA, HOOK, PROCV, APPS_SCRIPT_TETO];
 
 export const BLOG_UI = {
   pt: {
@@ -131,7 +146,7 @@ export const BLOG_UI = {
     copied: 'Copiado',
     copyFail: 'Não foi possível copiar',
     indexTitle: 'Guias',
-    indexLead: 'Guias práticos sobre ferramentas de IA, desenvolvimento de software, SQL, GitHub e Excel. Conteúdo educativo e independente.',
+    indexLead: 'Guias práticos sobre ferramentas de IA, desenvolvimento de software, SQL, GitHub, Excel e Google Workspace. Conteúdo educativo e independente.',
     categoriesTitle: 'Categorias',
     allGuides: 'Todos',
     guidesTitle: 'Lista de guias',
@@ -164,7 +179,7 @@ export const BLOG_UI = {
     copied: 'Copied',
     copyFail: 'Could not copy',
     indexTitle: 'Guides',
-    indexLead: 'Practical guides on AI tools, software development, SQL, GitHub and Excel. Independent educational content.',
+    indexLead: 'Practical guides on AI tools, software development, SQL, GitHub, Excel and Google Workspace. Independent educational content.',
     categoriesTitle: 'Categories',
     allGuides: 'All',
     guidesTitle: 'Guide list',
