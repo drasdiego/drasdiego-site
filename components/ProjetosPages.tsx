@@ -10,7 +10,6 @@ import type { Projeto, ProjetoBlock, ProjetoFact, ProjetoImage, ProjetoMedia, Pr
 import { NAV_UI, projetosPath } from '@/lib/site-nav';
 import { tagArea } from '@/lib/areas';
 import { TryAssistant } from './projetos/TryAssistant';
-import { CapaProjeto } from './projetos/CapaProjeto';
 
 const NEW_TAB: Record<Lang, string> = { pt: 'abre em nova aba', en: 'opens in a new tab' };
 
@@ -58,7 +57,13 @@ export function ProjetosIndex({ lang }: { lang: Lang }) {
             const t = p[lang];
             return (
               <li key={p.slug} className="projeto-card">
-                <CapaProjeto lang={lang} projeto={p} />
+                <div className="projeto-capa">
+                  {p.capa ? (
+                    <Image src={p.capa.src} width={p.capa.width} height={p.capa.height} alt="" loading="lazy" unoptimized />
+                  ) : (
+                    <Image src={`${root}/${p.slug}/capa.png`} width={1200} height={630} alt="" loading="lazy" unoptimized />
+                  )}
+                </div>
                 <h2><Link className="projeto-card-link" href={`${root}/${p.slug}`}>{t.title}</Link></h2>
                 <p>{t.short}</p>
                 <ul className="projeto-tags" aria-label={lang === 'en' ? 'Technologies' : 'Tecnologias'}>
