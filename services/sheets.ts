@@ -247,7 +247,7 @@ export const QUAL_SEED: Qualification[] = markFeatured([
     ['Power BI Desktop: tratamento no Power Query', 'Alura', '2024'],
     ['Git e GitHub: compartilhando e colaborando em projetos', 'Alura', '2025'],
     ['Lógica de Programação com JavaScript', 'Alura', '2025'],
-    ['JavaScript e HTML', 'Alura', '2025'],
+    ['JavaScript e HTML: desenvolva um jogo e pratique lógica de programação', 'Alura', '2025'],
     ['SQL: a linguagem dos bancos de dados', 'Escola Conquer', '2024'],
     ['Metabase', 'Udemy', '2024'],
     ['Lógica de Programação e Algoritmos', 'Udemy', '2023'],

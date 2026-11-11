@@ -7,9 +7,6 @@
 .sobre-body>.section:first-child{padding-top:calc(var(--sp-head) * 1.5)}
 .exp-row{padding:var(--sp-item) 0}
 .exp-list .exp-row:last-child{border-bottom:0}
-.tl-item:last-child{border-bottom:0}
-.tl-yr{color:var(--text-2)}
-.tl-co{font-size:14px}
 .cap-ic{color:var(--text-2)}
 .sobre-body>.section>.wrap{padding-inline:0;max-width:none}
 .sobre-resumo{max-width:720px}

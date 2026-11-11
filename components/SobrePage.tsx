@@ -43,7 +43,13 @@ function sobreStructuredData(lang: Lang): string {
     description: s.personDescription,
     inLanguage: s.htmlLang,
     isPartOf: { '@id': `${SITE_URL}/#website` },
-    mainEntity: { '@id': `${SITE_URL}/#person` },
+    mainEntity: {
+      '@type': 'Person',
+      '@id': `${SITE_URL}/#person`,
+      name: 'Diego Arruda',
+      jobTitle: s.jobTitle,
+      worksFor: { '@type': 'Organization', name: 'Nubank' },
+    },
   };
   return JSON.stringify(data).replace(/</g, '\\u003c');
 }

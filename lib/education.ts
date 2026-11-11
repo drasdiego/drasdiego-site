@@ -56,11 +56,6 @@ const MONTH_LONG: Record<Lang, string[]> = {
   en: ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'],
 };
 
-const MONTH_SHORT: Record<Lang, string[]> = {
-  pt: ['jan', 'fev', 'mar', 'abr', 'mai', 'jun', 'jul', 'ago', 'set', 'out', 'nov', 'dez'],
-  en: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'],
-};
-
 const COUNT_PT = ['nenhuma', 'uma', 'duas', 'três', 'quatro', 'cinco', 'seis'];
 
 function periodOf(d: Degree, lang: Lang): string {
@@ -100,16 +95,6 @@ export function academicFor(lang: Lang): AcademicItem[] {
     done: d.done,
     ic: d.ic,
   }));
-}
-
-export function milestoneFor(id: Degree['id'], lang: Lang): { yr: string; role: string; co: string; now: boolean } {
-  const l = normLang(lang);
-  const d = DEGREES.find(item => item.id === id);
-  if (!d || !d.since) throw new Error(`Formação sem data de início: ${id}`);
-  const sep = l === 'en' ? ' ' : '/';
-  const yr = `${MONTH_SHORT[l][d.since.month - 1]}${sep}${d.since.year} · ${l === 'en' ? 'now' : 'agora'}`;
-  const state = l === 'en' ? 'in progress' : 'em andamento';
-  return { yr, role: d.short[l], co: `${d.org} · ${state}`, now: false };
 }
 
 export function educationList(lang: Lang): string {

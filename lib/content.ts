@@ -1,19 +1,13 @@
 import type { Lang, AcademicItem, ContactLine, CategoryId } from '@/types';
-import { academicFor, milestoneFor } from './education';
+import { academicFor } from './education';
 
 export interface TechCat { key: string; name: string; desc: string; items: string[] }
-export interface Milestone { yr: string; role: string; co: string; now: boolean }
 export interface ExpRow { yr: string; role: string; co: string; desc: string }
 export interface Capability { ic: string; h: string; p: string }
 
 export interface SiteContent {
-  nav: { traj: string; exp: string; data: string; proj: string; tech: string; cert: string; contact: string };
-  cta: { talk: string; resume: string; linkedin: string; whatsapp: string; github: string };
-  traj: {
-    idx: string; eyebrow: string; title: string; sub: string;
-    growthTitle: string; growthSpan: string; growthLegend: string[];
-    milestones: Milestone[];
-  };
+  nav: { exp: string; data: string; proj: string; tech: string; cert: string; contact: string };
+  cta: { talk: string; linkedin: string; whatsapp: string; github: string };
   exp: { idx: string; eyebrow: string; title: string; sub: string; rows: ExpRow[] };
   data: { idx: string; eyebrow: string; title: string; sub: string; caps: Capability[] };
   tech: { idx: string; eyebrow: string; title: string; sub: string; cats: TechCat[]; allLabel: string; allDesc: string };
@@ -46,22 +40,8 @@ const techCatsEN: TechCat[] = [
 ];
 
 const PT: SiteContent = {
-  nav: { traj: 'Trajetória', exp: 'Experiência', data: 'Dados & IA', proj: 'Projetos', tech: 'Tecnologias', cert: 'Formação', contact: 'Contato' },
-  cta: { talk: 'Vamos conversar', resume: 'Trajetória', linkedin: 'LinkedIn', whatsapp: 'WhatsApp', github: 'GitHub' },
-  traj: {
-    idx: '01', eyebrow: 'Trajetória',
-    title: 'Trajetória de operações a engenharia de software, dados e IA.',
-    sub: 'Minha transição para dados não começou do zero. É o resultado de anos resolvendo problemas reais com processos, indicadores e decisões críticas.',
-    growthTitle: 'Foco profissional', growthSpan: 'operação → dados & IA',
-    growthLegend: ['Operações & negócio', 'Dados, IA & engenharia'],
-    milestones: [
-      milestoneFor('mba', 'pt'),
-      { yr: 'dez/2024 · agora', role: 'Analista de Ouvidoria', co: 'Nubank · causa raiz e melhoria de processos', now: true },
-      { yr: '2023 · 2024', role: 'Analista de Operações & Suporte Financeiro', co: 'isaac · RD Station', now: false },
-      { yr: '2020 · 2022', role: 'Supervisor de Operações', co: 'MadeiraMadeira · liderança & qualidade', now: false },
-      { yr: '2008 · 2020', role: 'Início & base operacional', co: 'Electrolux · Saúde · Rumo', now: false },
-    ],
-  },
+  nav: { exp: 'Experiência', data: 'Dados & IA', proj: 'Projetos', tech: 'Tecnologias', cert: 'Formação', contact: 'Contato' },
+  cta: { talk: 'Vamos conversar', linkedin: 'LinkedIn', whatsapp: 'WhatsApp', github: 'GitHub' },
   exp: {
     idx: '02', eyebrow: 'Experiência',
     title: 'Setores regulados, decisões de alto impacto.',
@@ -132,22 +112,8 @@ const PT: SiteContent = {
 };
 
 const EN: SiteContent = {
-  nav: { traj: 'Journey', exp: 'Experience', data: 'Data & AI', proj: 'Projects', tech: 'Stack', cert: 'Education', contact: 'Contact' },
-  cta: { talk: "Let’s talk", resume: 'Journey', linkedin: 'LinkedIn', whatsapp: 'WhatsApp', github: 'GitHub' },
-  traj: {
-    idx: '01', eyebrow: 'Journey',
-    title: 'Career path from operations to software engineering, data and AI.',
-    sub: "My move into data didn’t start from zero. It’s the result of years solving real problems with processes, metrics and critical decisions.",
-    growthTitle: 'Professional focus', growthSpan: 'operations → data & AI',
-    growthLegend: ['Operations & business', 'Data, AI & engineering'],
-    milestones: [
-      milestoneFor('mba', 'en'),
-      { yr: 'Dec 2024 · now', role: 'Ombudsman Analyst', co: 'Nubank · root-cause analysis and process improvement', now: true },
-      { yr: '2023 · 2024', role: 'Operations & Financial Support Analyst', co: 'isaac · RD Station', now: false },
-      { yr: '2020 · 2022', role: 'Operations Supervisor', co: 'MadeiraMadeira · leadership & quality', now: false },
-      { yr: '2008 · 2020', role: 'Start & operational base', co: 'Electrolux · Healthcare · Rumo', now: false },
-    ],
-  },
+  nav: { exp: 'Experience', data: 'Data & AI', proj: 'Projects', tech: 'Stack', cert: 'Education', contact: 'Contact' },
+  cta: { talk: "Let’s talk", linkedin: 'LinkedIn', whatsapp: 'WhatsApp', github: 'GitHub' },
   exp: {
     idx: '02', eyebrow: 'Experience',
     title: 'Regulated sectors, high-impact decisions.',

@@ -128,8 +128,6 @@ export function buildStructuredData(lang: Lang) {
         url: SITE_URL,
         image: `${SITE_URL}/images/diego-retrato.webp`,
         description: s.personDescription,
-        jobTitle: s.jobTitle,
-        worksFor: { '@type': 'Organization', name: 'Nubank' },
         knowsAbout: [...s.knowsAbout],
         address: { '@type': 'PostalAddress', addressLocality: 'Balneário Camboriú', addressRegion: 'SC', addressCountry: 'BR' },
         alumniOf: completedOrgs().map(name => ({ '@type': 'EducationalOrganization', name })),

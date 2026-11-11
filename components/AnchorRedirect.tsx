@@ -20,7 +20,8 @@ export function AnchorRedirect({ lang }: { lang: Lang }) {
       if (document.getElementById(id)) return;
       const target = legacyAnchorTarget(lang, id);
       if (!target) return;
-      if (target.split('#')[0] === pathname) return;
+      const [path, hash] = target.split('#');
+      if (path === pathname && (!hash || hash === id)) return;
       router.replace(target);
     };
     check();

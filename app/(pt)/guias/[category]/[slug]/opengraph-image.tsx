@@ -1,13 +1,18 @@
-import { GUIDES } from '@/lib/blog';
+import { GUIDES, findGuide } from '@/lib/blog';
 import { GUIDE_OG_SIZE, guideOgImage } from '@/lib/og-guia';
 
-export const alt = 'Guia prático de Diego Arruda.';
 export const size = GUIDE_OG_SIZE;
 export const contentType = 'image/png';
 export const dynamicParams = false;
 
 export function generateStaticParams() {
-  return GUIDES.map((g) => ({ category: g.category, slug: g.slug }));
+  return GUIDES.map((g) => ({ category: g.category, slug: g.slug, __metadata_id__: 'guia' }));
+}
+
+export async function generateImageMetadata({ params }: { params: Promise<{ category: string; slug: string }> }) {
+  const { category, slug } = await params;
+  const guide = findGuide(category, slug);
+  return [{ id: 'guia', alt: guide ? `Guia de Diego Arruda: ${guide.pt.title}` : 'Guia prático de Diego Arruda.', size: GUIDE_OG_SIZE, contentType: 'image/png' }];
 }
 
 export default async function OpenGraphImage({ params }: { params: Promise<{ category: string; slug: string }> }) {
