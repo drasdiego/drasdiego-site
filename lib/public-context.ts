@@ -25,7 +25,7 @@ const LABELS = {
     guides: 'GUIAS PUBLICADOS',
     mapLines: [
       'Início (/): apresentação, serviços (O que construo), projetos em destaque, guias recentes e contato.',
-      'Projetos (/projetos): estudos de caso. O primeiro é o assistente de carreira (/projetos/assistente-de-carreira).',
+      'Projetos (/projetos): estudos de caso de projetos pessoais, que não são projetos dos empregadores: o assistente de carreira (/projetos/assistente-de-carreira), o Fora do Digital (/projetos/fora-do-digital), o Brasa Alta, site conceitual de uma hamburgueria fictícia (/projetos/brasa-alta), e o Ouvidômetro, painel com dados abertos da CGU sobre ouvidorias públicas (/projetos/ouvidometro).',
       'Guias (/guias): guias práticos e educativos escritos pelo Diego, organizados por categoria. Não são experiência profissional.',
       'Sobre (/sobre): resumo, experiência profissional, formação, dados e IA e tecnologias.',
       'Contato (/contato): formulário para enviar uma mensagem, com resposta pelo e-mail informado, além de LinkedIn, WhatsApp e GitHub. Os mesmos canais aparecem no rodapé de todas as páginas e na seção de contato do Início.',
@@ -54,7 +54,7 @@ const LABELS = {
     guides: 'PUBLISHED GUIDES',
     mapLines: [
       'Home (/en): introduction, services (What I build), featured projects, latest guides and contact.',
-      'Projects (/en/projetos): case studies. The first is the career assistant (/en/projetos/assistente-de-carreira).',
+      'Projects (/en/projetos): case studies of personal projects, which are not employer projects: the career assistant (/en/projetos/assistente-de-carreira), Fora do Digital (/en/projetos/fora-do-digital), Brasa Alta, a concept website for a fictional burger restaurant (/en/projetos/brasa-alta), and Ouvidômetro, a dashboard with CGU open data on public ombudsman offices (/en/projetos/ouvidometro).',
       'Guides (/en/guias): practical, educational guides written by Diego, organized by category. They are not professional experience.',
       'About (/en/sobre): summary, professional experience, education, data and AI, and technologies.',
       'Contact (/en/contato): form to send a message, with a reply to the email provided, plus LinkedIn, WhatsApp and GitHub. The same channels appear in the footer of every page and in the contact section of the home page.',

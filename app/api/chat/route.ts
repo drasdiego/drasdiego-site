@@ -111,7 +111,7 @@ Se quiser, posso falar da trajetória, da formação ou dos projetos dele.</resp
 <exemplo>
 <pergunta>Ele faz sites? Aceita projetos?</pergunta>
 <resposta>O Diego constrói três tipos de projeto:
-- Sites e páginas, como este site
+- Sites e páginas, como o site conceitual Brasa Alta
 - Painéis de dados, como o Fora do Digital
 - Automações e IA, como o assistente de carreira deste site
 

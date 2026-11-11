@@ -445,6 +445,498 @@ const FORA_DO_DIGITAL: Record<Lang, ProjetoText> = {
   },
 };
 
+const BA_DEMO = 'https://portfolio-brasa-alta.pages.dev/';
+const BA_CODE = 'https://github.com/drasdiego/portfolio-brasa-alta';
+const BA_PESQUISA = 'https://github.com/drasdiego/portfolio-brasa-alta/blob/main/pesquisa-cardapio.md';
+
+const BRASA_ALTA: Record<Lang, ProjetoText> = {
+  pt: {
+    title: 'Brasa Alta',
+    short: 'Site conceitual de uma hamburgueria fictícia na brasa, com cardápio, busca, pedido montável e atendimento simulado por mensagem.',
+    lead: 'Site conceitual de uma hamburgueria fictícia na brasa, com cardápio, busca, pedido montável e atendimento simulado por mensagem. Brasa Alta é uma marca fictícia: marca, imagens e vídeo foram criados com IA, o endereço e os preços são fictícios e nenhuma mensagem sai do site.',
+    tags: ['HTML', 'CSS', 'JavaScript'],
+    cta: 'Ver estudo de caso',
+    status: 'Publicado na Cloudflare Pages',
+    facts: [
+      { label: 'Aplicação', value: 'Site de restaurante com cardápio, busca e pedido montável' },
+      { label: 'Tecnologias', chips: ['HTML', 'CSS', 'JavaScript'] },
+      { label: 'Marca e imagens', value: 'Marca fictícia. Marca, fotos e vídeo gerados com IA' },
+      { label: 'Código', value: 'Repositório público no GitHub', href: BA_CODE },
+      { label: 'Status', value: 'Publicado na Cloudflare Pages' },
+    ],
+    media: {
+      alt: 'Captura de tela do site Brasa Alta. No topo, um aviso de que é um projeto de portfólio com marca e imagens criadas com IA. Abaixo, o menu com Cardápio, Na casa e Endereço e o botão Bandeja. Sobre a imagem de um hambúrguer na grelha, o título Brasa Alta, o horário de funcionamento e o botão Montar meu pedido.',
+      demo: { label: 'Ver site', href: BA_DEMO },
+      code: { label: 'Código', href: BA_CODE },
+      embedTitle: 'Site Brasa Alta',
+      mobileNote: 'Em telas pequenas o site não é incorporado aqui. Abra a versão completa em outra aba.',
+    },
+    sections: [
+      {
+        id: 'o-projeto',
+        title: 'O projeto',
+        blocks: [
+          { k: 'p', v: 'O Brasa Alta mostra como eu construo um site de restaurante completo: o visitante lê o cardápio, busca um item, monta o pedido e vê como seria o atendimento por mensagem.' },
+          { k: 'p', v: 'A marca é fictícia e foi criada para este projeto. O endereço e os preços também são fictícios, com referência em hamburguerias artesanais da região Sul do Brasil em 2026. O envio do pedido é uma simulação: nenhuma mensagem sai do site.' },
+        ],
+      },
+      {
+        id: 'o-que-o-site-faz',
+        title: 'O que o site faz',
+        blocks: [
+          {
+            k: 'list',
+            items: [
+              'Cardápio de 51 itens em 9 categorias, gerado a partir de uma lista de dados, com barra de categorias fixa que acompanha a rolagem.',
+              'Busca sem acento e sem diferenciar maiúsculas, por nome, descrição, categoria e etiqueta.',
+              'Bandeja de pedido: o botão Adicionar vira controle de quantidade, os chopes têm seletor de 300 e 500 ml, e o total, a observação e a forma de retirada aparecem em tempo real. No celular, a bandeja é uma folha arrastável.',
+              'Envio simulado: o pedido vira uma conversa com resposta da casa, que muda conforme o horário de Brasília, a forma de retirada e a presença de bebida alcoólica.',
+              'Chat com respostas prontas: horário calculado na hora, endereço, tempo de retirada, opções vegetarianas e chopes, tudo lido dos mesmos dados do cardápio.',
+              'Desfazer por 10 segundos, com atalho de teclado (Ctrl+Z ou Cmd+Z).',
+            ],
+          },
+        ],
+      },
+      {
+        id: 'decisoes',
+        title: 'Decisões de design',
+        blocks: [
+          {
+            k: 'decisions',
+            items: [
+              { title: 'Conceito', text: 'O papel kraft da bandeja vira a página. O vídeo da grelha abre o site e o cardápio aparece logo na primeira rolagem.' },
+              { title: 'Tipografia', text: 'Big Shoulders Display nos títulos, condensada como um letreiro pintado, e Archivo no texto. As fontes são servidas pelo próprio site.' },
+              { title: 'Movimento', text: 'Trechos do vídeo viram fotos vivas que só tocam quando estão na tela, e um disco voa até a bandeja ao adicionar um item. Tudo para quando o sistema está com a preferência de reduzir movimento.' },
+              { title: 'Cara de produto', text: 'Linhas de cardápio impresso em vez de cartões, estados reais (vazio, removido, desfazer, nada encontrado) e textos escritos como um cardápio de verdade.' },
+            ],
+          },
+        ],
+      },
+      {
+        id: 'acessibilidade',
+        title: 'Acessibilidade e qualidade',
+        blocks: [
+          {
+            k: 'list',
+            items: [
+              'Contraste verificado por par de cores (WCAG), alvos de toque de 44 px, foco visível e uma única região de anúncio para leitor de tela.',
+              'Testado no Chrome em 320, 360, 390, 768 e 1440 px e em paisagem, sem rolagem horizontal e sem erros no console.',
+              'Revisão independente em três rodadas.',
+            ],
+          },
+        ],
+      },
+      {
+        id: 'como-foi-construido',
+        title: 'Como foi construído',
+        blocks: [
+          {
+            k: 'steps',
+            items: [
+              { title: 'Página', text: 'HTML, CSS e JavaScript puros, sem framework e sem dependência externa em tempo de execução.' },
+              { title: 'Dados', text: 'O cardápio, a busca, a bandeja e o chat leem a mesma lista de dados.' },
+              { title: 'Imagens', text: 'Marca, fotos e vídeo foram gerados com IA. A pesquisa de preços e de cardápio que embasou os valores está no repositório.' },
+              { title: 'Publicação', text: 'O site está hospedado na Cloudflare Pages.' },
+            ],
+          },
+        ],
+      },
+      {
+        id: 'links',
+        title: 'Links',
+        blocks: [
+          {
+            k: 'links',
+            items: [
+              { label: 'Site publicado', href: BA_DEMO },
+              { label: 'Código no GitHub', href: BA_CODE },
+              { label: 'Pesquisa de cardápio e preços', href: BA_PESQUISA, note: 'O que embasou os valores fictícios' },
+            ],
+          },
+          { k: 'p', v: 'As fontes Big Shoulders Display e Archivo usam a licença SIL Open Font License.' },
+        ],
+      },
+    ],
+  },
+  en: {
+    title: 'Brasa Alta',
+    short: 'A concept website for a fictional wood-fired burger restaurant, with a menu, search, a build-your-order tray and simulated customer service by message.',
+    lead: 'A concept website for a fictional wood-fired burger restaurant, with a menu, search, a build-your-order tray and simulated customer service by message. Brasa Alta is a fictional brand: the brand, images and video were created with AI, the address and prices are fictional and no message ever leaves the site.',
+    tags: ['HTML', 'CSS', 'JavaScript'],
+    cta: 'Read the case study',
+    status: 'Published on Cloudflare Pages',
+    facts: [
+      { label: 'Purpose', value: 'Restaurant website with a menu, search and a build-your-order tray' },
+      { label: 'Technologies', chips: ['HTML', 'CSS', 'JavaScript'] },
+      { label: 'Brand and images', value: 'Fictional brand. Brand, photos and video generated with AI' },
+      { label: 'Code', value: 'Public repository on GitHub', href: BA_CODE },
+      { label: 'Status', value: 'Published on Cloudflare Pages' },
+    ],
+    media: {
+      alt: 'Screenshot of the Brasa Alta website. At the top, a notice that it is a portfolio project with a brand and images created with AI. Below, the menu with Cardápio, Na casa and Endereço and the Bandeja button. Over the image of a burger on the grill, the title Brasa Alta, the opening hours and the Montar meu pedido button.',
+      demo: { label: 'View site', href: BA_DEMO },
+      code: { label: 'Code', href: BA_CODE },
+      embedTitle: 'Brasa Alta website',
+      mobileNote: 'On small screens the site is not embedded here. Open the full version in a new tab.',
+    },
+    sections: [
+      {
+        id: 'o-projeto',
+        title: 'The project',
+        blocks: [
+          { k: 'p', v: 'Brasa Alta shows how I build a complete restaurant website: the visitor reads the menu, searches for an item, builds the order and sees what customer service by message would look like.' },
+          { k: 'p', v: 'The brand is fictional and was created for this project. The address and prices are also fictional, based on craft burger restaurants in southern Brazil in 2026. Sending the order is a simulation: no message ever leaves the site.' },
+        ],
+      },
+      {
+        id: 'o-que-o-site-faz',
+        title: 'What the site does',
+        blocks: [
+          {
+            k: 'list',
+            items: [
+              'A menu of 51 items in 9 categories, generated from a data list, with a fixed category bar that follows the scroll.',
+              'Search that ignores accents and letter case, by name, description, category and tag.',
+              'Order tray: the Adicionar (add) button becomes a quantity control, draft beers have a 300 and 500 ml selector, and the total, the note and the pickup option update in real time. On mobile, the tray is a draggable sheet.',
+              'Simulated sending: the order becomes a conversation with a reply from the restaurant, which changes with Brasília time, the pickup option and whether there is an alcoholic drink.',
+              'Chat with ready-made answers: opening hours calculated on the spot, address, pickup time, vegetarian options and draft beers, all read from the same menu data.',
+              'Undo for 10 seconds, with a keyboard shortcut (Ctrl+Z or Cmd+Z).',
+            ],
+          },
+        ],
+      },
+      {
+        id: 'decisoes',
+        title: 'Design decisions',
+        blocks: [
+          {
+            k: 'decisions',
+            items: [
+              { title: 'Concept', text: 'The kraft paper of the tray becomes the page. The grill video opens the site and the menu appears on the very first scroll.' },
+              { title: 'Typography', text: 'Big Shoulders Display for headings, condensed like a painted sign, and Archivo for text. The fonts are served by the site itself.' },
+              { title: 'Motion', text: 'Clips from the video become live photos that only play while on screen, and a disc flies to the tray when you add an item. Everything stops when the system is set to reduce motion.' },
+              { title: 'Product feel', text: 'Printed-menu lines instead of cards, real states (empty, removed, undo, nothing found) and copy written like a real menu.' },
+            ],
+          },
+        ],
+      },
+      {
+        id: 'acessibilidade',
+        title: 'Accessibility and quality',
+        blocks: [
+          {
+            k: 'list',
+            items: [
+              'Contrast checked per color pair (WCAG), 44 px touch targets, visible focus and a single announcement region for screen readers.',
+              'Tested in Chrome at 320, 360, 390, 768 and 1440 px and in landscape, with no horizontal scrolling and no console errors.',
+              'Independent review in three rounds.',
+            ],
+          },
+        ],
+      },
+      {
+        id: 'como-foi-construido',
+        title: 'How it was built',
+        blocks: [
+          {
+            k: 'steps',
+            items: [
+              { title: 'Page', text: 'Plain HTML, CSS and JavaScript, with no framework and no external runtime dependency.' },
+              { title: 'Data', text: 'The menu, the search, the tray and the chat read the same data list.' },
+              { title: 'Images', text: 'The brand, photos and video were generated with AI. The price and menu research behind the values is in the repository.' },
+              { title: 'Publishing', text: 'The site is hosted on Cloudflare Pages.' },
+            ],
+          },
+        ],
+      },
+      {
+        id: 'links',
+        title: 'Links',
+        blocks: [
+          {
+            k: 'links',
+            items: [
+              { label: 'Published site', href: BA_DEMO, note: 'The site is in Portuguese' },
+              { label: 'Code on GitHub', href: BA_CODE },
+              { label: 'Menu and price research', href: BA_PESQUISA, note: 'What the fictional values are based on, in Portuguese' },
+            ],
+          },
+          { k: 'p', v: 'The Big Shoulders Display and Archivo fonts use the SIL Open Font License.' },
+        ],
+      },
+    ],
+  },
+};
+
+const OUV_DEMO = 'https://drasdiego.github.io/ouvidometro/painel/#painel';
+const OUV_CODE = 'https://github.com/drasdiego/ouvidometro';
+const OUV_CGU = 'https://www.gov.br/cgu/pt-br/acesso-a-informacao/dados-abertos/arquivos/ouvidoria';
+
+const OUVIDOMETRO: Record<Lang, ProjetoText> = {
+  pt: {
+    title: 'Ouvidômetro',
+    short: 'Painel interativo sobre prazo e atraso nas manifestações de ouvidoria registradas no Fala.BR, com dados abertos da Controladoria-Geral da União (CGU).',
+    lead: 'Painel interativo sobre prazo e atraso nas manifestações de ouvidoria registradas no Fala.BR, a plataforma de ouvidoria do governo federal, com dados abertos da Controladoria-Geral da União (CGU). Ele mede como os órgãos públicos respondem ao cidadão: quanto tempo levam, quanto fica fora do prazo e onde as pendências se acumulam.',
+    tags: ['Dados', 'Python', 'DuckDB', 'D3', 'JavaScript'],
+    cta: 'Ver estudo de caso',
+    status: 'Publicado no GitHub Pages',
+    facts: [
+      { label: 'Aplicação', value: 'Painel interativo sobre prazo de resposta em ouvidorias públicas' },
+      { label: 'Tecnologias', chips: ['Python', 'DuckDB', 'HTML', 'CSS', 'JavaScript', 'D3'] },
+      { label: 'Dados', value: 'Arquivo público de manifestações de ouvidoria da CGU, de janeiro de 2015 a agosto de 2026' },
+      { label: 'Código', value: 'Repositório público no GitHub', href: OUV_CODE },
+      { label: 'Status', value: 'Publicado no GitHub Pages' },
+    ],
+    media: {
+      alt: 'Captura de tela do painel Ouvidômetro, em tema escuro. À esquerda, o título e a pergunta sobre se os órgãos públicos respondem ao cidadão no prazo que a lei manda. À direita, uma grade de 10 por 10 pontos, em que os pontos em magenta representam as manifestações que ficaram fora do prazo.',
+      demo: { label: 'Ver painel', href: OUV_DEMO },
+      code: { label: 'Código', href: OUV_CODE },
+      embedTitle: 'Painel Ouvidômetro',
+      mobileNote: 'Em telas pequenas o painel não é incorporado aqui. Abra a versão completa em outra aba.',
+    },
+    sections: [
+      {
+        id: 'problema',
+        title: 'O problema',
+        blocks: [
+          { k: 'p', v: 'O painel mede como os órgãos públicos respondem às manifestações dos cidadãos. A pergunta de fundo é a de quem gere uma ouvidoria pública: onde agir primeiro.' },
+          {
+            k: 'list',
+            items: [
+              'O prazo da lei é cumprido, e isso melhorou?',
+              'Quanto tempo o cidadão espera pela resposta?',
+              'O que está pendente com o prazo vencido?',
+              'Em que esfera, tipo, UF e assunto o prazo mais estoura?',
+              'Quais órgãos precisam de atenção primeiro?',
+              'A demanda foi atendida, e o atraso pesa na satisfação?',
+            ],
+          },
+        ],
+      },
+      {
+        id: 'base-legal',
+        title: 'Base legal',
+        blocks: [
+          { k: 'p', v: 'O painel confronta os dados com as regras de ouvidoria do setor público.' },
+          {
+            k: 'list',
+            items: [
+              'Decreto 9.492/2018, art. 18: resposta conclusiva em 30 dias, prorrogável uma vez por mais 30, com justificativa. O pedido de complementação suspende o prazo.',
+              'Decreto 9.492/2018, art. 3º: definições de reclamação, denúncia, elogio, sugestão e solicitação.',
+              'Decreto 9.492/2018, art. 16: uso obrigatório do e-Ouv (hoje Fala.BR) pelos órgãos federais.',
+              'Lei 13.460/2017: direitos do usuário de serviços públicos e medição anual da satisfação.',
+            ],
+          },
+          { k: 'p', v: 'O próprio painel traz uma tabela que liga cada regra ao indicador que a confere e uma seção de dúvidas frequentes.' },
+        ],
+      },
+      {
+        id: 'fonte-dos-dados',
+        title: 'Fonte dos dados',
+        blocks: [
+          { k: 'p', v: 'Os dados vêm do arquivo público de manifestações de ouvidoria da CGU, atualizado todo mês. O arquivo usado foi gerado em 01/09/2026 e traz um CSV por ano, com datas de registro, prazo e resposta, tipo, órgão, assunto, situação, esfera e pesquisa de satisfação.' },
+          { k: 'p', v: 'O recorte vai de janeiro de 2015 a 31/08/2026, com 8.752.496 manifestações. O recorte principal do painel são os últimos 12 meses completos, comparados aos 12 anteriores.' },
+          { k: 'p', v: 'Os dados brutos não vão para o repositório, só os indicadores agregados.' },
+        ],
+      },
+      {
+        id: 'como-foi-construido',
+        title: 'Como foi construído',
+        blocks: [
+          {
+            k: 'steps',
+            items: [
+              { title: 'Preparar', text: 'Um script em Python baixa o arquivo da CGU, converte os CSVs de Latin-1 para UTF-8 e grava um arquivo Parquet por ano.' },
+              { title: 'Agregar', text: 'Outro script agrega a base com DuckDB por mês, esfera, tipo, UF, órgão e assunto e grava o arquivo de dados que alimenta os filtros do painel.' },
+              { title: 'Resumir', text: 'Um terceiro script grava o resumo dos últimos 12 meses em JSON e CSV, para quem quiser os números fora do painel.' },
+              { title: 'Painel', text: 'O painel é feito em HTML, CSS e JavaScript, com gráficos em D3. Tem filtros de período, esfera, tipo e UF, clique nas barras para filtrar e busca de órgão, e funciona sem internet.' },
+            ],
+          },
+        ],
+      },
+      {
+        id: 'decisoes',
+        title: 'Como o painel foi pensado',
+        blocks: [
+          {
+            k: 'decisions',
+            items: [
+              { title: 'Uma pergunta por seção', text: 'Cada seção responde a uma pergunta de decisão, e não só exibe números.' },
+              { title: 'Cor de alerta', text: 'A cor diz onde olhar primeiro: verde abaixo da média, amarelo até o dobro e vermelho acima do dobro.' },
+              { title: 'Mediana e percentil 90', text: 'A mediana mostra o caso típico, e o percentil 90 mostra quem espera demais.' },
+              { title: 'Pendências com idade', text: 'O painel mostra há quanto tempo cada pendência está vencida, e não só a contagem.' },
+              { title: 'Denominador à vista', text: 'Toda proporção traz o denominador, e a data de corte fica visível.' },
+              { title: 'Ranking por taxa', text: 'Os órgãos são ordenados por taxa, com volume mínimo, para não punir quem recebe mais manifestações.' },
+            ],
+          },
+        ],
+      },
+      {
+        id: 'limitacoes',
+        title: 'Limitações',
+        blocks: [
+          {
+            k: 'list',
+            items: [
+              'O campo de dias de atraso do arquivo só vem preenchido para manifestações sem resposta. Por isso o atraso foi calculado pelas datas.',
+              'Nos meses mais recentes há mais manifestações em aberto, então a mediana e o percentil 90 de dias ficam um pouco abaixo do real.',
+              'A pesquisa de satisfação é opcional: no período, menos de 4% das manifestações têm resposta, com peso maior de quem ficou insatisfeito.',
+              'Os campos de perfil do manifestante têm mais de 80% de vazios e ficaram fora.',
+              'A base inclui estados e municípios que aderiram ao Fala.BR, e não todos os órgãos do país.',
+            ],
+          },
+        ],
+      },
+      {
+        id: 'links',
+        title: 'Links',
+        blocks: [
+          {
+            k: 'links',
+            items: [
+              { label: 'Painel publicado', href: OUV_DEMO },
+              { label: 'Código no GitHub', href: OUV_CODE, note: 'Com o passo a passo para reproduzir cada número' },
+              { label: 'CGU, dados abertos de ouvidoria', href: OUV_CGU },
+            ],
+          },
+          { k: 'p', v: 'Painel independente, sem vínculo com a CGU. Os dados pertencem à CGU. A biblioteca D3 usa a licença ISC.' },
+        ],
+      },
+    ],
+  },
+  en: {
+    title: 'Ouvidômetro',
+    short: 'An interactive dashboard on deadlines and delays in ombudsman requests filed on Fala.BR, built with open data from Brazil’s Office of the Comptroller General (CGU).',
+    lead: 'An interactive dashboard on deadlines and delays in ombudsman requests filed on Fala.BR, the Brazilian federal government’s ombudsman platform, built with open data from the Office of the Comptroller General (CGU). It measures how public bodies respond to citizens: how long they take, how much goes past the deadline and where pending requests pile up.',
+    tags: ['Data', 'Python', 'DuckDB', 'D3', 'JavaScript'],
+    cta: 'Read the case study',
+    status: 'Published on GitHub Pages',
+    facts: [
+      { label: 'Purpose', value: 'Interactive dashboard on response deadlines in public ombudsman offices' },
+      { label: 'Technologies', chips: ['Python', 'DuckDB', 'HTML', 'CSS', 'JavaScript', 'D3'] },
+      { label: 'Data', value: 'CGU public file of ombudsman requests, from January 2015 to August 2026' },
+      { label: 'Code', value: 'Public repository on GitHub', href: OUV_CODE },
+      { label: 'Status', value: 'Published on GitHub Pages' },
+    ],
+    media: {
+      alt: 'Screenshot of the Ouvidômetro dashboard in dark theme. On the left, the title and the question about whether public bodies respond to citizens within the legal deadline. On the right, a 10 by 10 grid of dots, where magenta dots represent the requests that went past the deadline.',
+      demo: { label: 'View dashboard', href: OUV_DEMO },
+      code: { label: 'Code', href: OUV_CODE },
+      embedTitle: 'Ouvidômetro dashboard',
+      mobileNote: 'On small screens the dashboard is not embedded here. Open the full version in a new tab.',
+    },
+    sections: [
+      {
+        id: 'problema',
+        title: 'The problem',
+        blocks: [
+          { k: 'p', v: 'The dashboard measures how public bodies respond to requests from citizens. The underlying question is the one a public ombudsman manager asks: where to act first.' },
+          {
+            k: 'list',
+            items: [
+              'Is the legal deadline met, and has that improved?',
+              'How long does the citizen wait for a response?',
+              'What is pending past the deadline?',
+              'In which sphere of government, request type, state and subject is the deadline missed most?',
+              'Which bodies need attention first?',
+              'Was the request resolved, and does the delay weigh on satisfaction?',
+            ],
+          },
+        ],
+      },
+      {
+        id: 'base-legal',
+        title: 'Legal basis',
+        blocks: [
+          { k: 'p', v: 'The dashboard checks the data against Brazil’s public-sector ombudsman rules.' },
+          {
+            k: 'list',
+            items: [
+              'Decree 9,492/2018, article 18: a conclusive response within 30 days, extendable once for another 30, with justification. A request for more information suspends the deadline.',
+              'Decree 9,492/2018, article 3: definitions of complaint, report, compliment, suggestion and request.',
+              'Decree 9,492/2018, article 16: mandatory use of e-Ouv (now Fala.BR) by federal bodies.',
+              'Law 13,460/2017: rights of users of public services and yearly measurement of satisfaction.',
+            ],
+          },
+          { k: 'p', v: 'The dashboard itself has a table linking each rule to the indicator that checks it, and a frequently asked questions section.' },
+        ],
+      },
+      {
+        id: 'fonte-dos-dados',
+        title: 'Data source',
+        blocks: [
+          { k: 'p', v: 'The data comes from CGU’s public file of ombudsman requests, updated every month. The file used was generated on September 1, 2026 and has one CSV per year, with filing, deadline and response dates, type, body, subject, status, sphere of government and satisfaction survey.' },
+          { k: 'p', v: 'The dataset runs from January 2015 to August 31, 2026, with 8,752,496 requests. The dashboard’s main window is the last 12 full months, compared with the previous 12.' },
+          { k: 'p', v: 'The raw data does not go into the repository, only the aggregated indicators.' },
+        ],
+      },
+      {
+        id: 'como-foi-construido',
+        title: 'How it was built',
+        blocks: [
+          {
+            k: 'steps',
+            items: [
+              { title: 'Prepare', text: 'A Python script downloads the CGU file, converts the CSVs from Latin-1 to UTF-8 and writes one Parquet file per year.' },
+              { title: 'Aggregate', text: 'Another script aggregates the data with DuckDB by month, sphere, type, state, body and subject and writes the data file that feeds the dashboard filters.' },
+              { title: 'Summarize', text: 'A third script writes the summary of the last 12 months to JSON and CSV, for anyone who wants the figures outside the dashboard.' },
+              { title: 'Dashboard', text: 'The dashboard is built with HTML, CSS and JavaScript, with D3 charts. It has filters for period, sphere, type and state, click-to-filter bars and a search for bodies, and it works offline.' },
+            ],
+          },
+        ],
+      },
+      {
+        id: 'decisoes',
+        title: 'How the dashboard was designed',
+        blocks: [
+          {
+            k: 'decisions',
+            items: [
+              { title: 'One question per section', text: 'Each section answers a decision question instead of only showing numbers.' },
+              { title: 'Alert color', text: 'Color tells you where to look first: green below the average, yellow up to twice the average and red above that.' },
+              { title: 'Median and 90th percentile', text: 'The median shows the typical case, and the 90th percentile shows who waits too long.' },
+              { title: 'Pending requests with age', text: 'The dashboard shows how long each pending request has been overdue, not just the count.' },
+              { title: 'Denominator in view', text: 'Every proportion shows its denominator, and the cutoff date stays visible.' },
+              { title: 'Ranking by rate', text: 'Bodies are ranked by rate, with a minimum volume, so that those receiving more requests are not penalized.' },
+            ],
+          },
+        ],
+      },
+      {
+        id: 'limitacoes',
+        title: 'Limitations',
+        blocks: [
+          {
+            k: 'list',
+            items: [
+              'The file’s days-overdue field is only filled in for requests without a response. That is why the delay was calculated from the dates.',
+              'In the most recent months more requests are still open, so the median and 90th percentile of days are slightly below the real values.',
+              'The satisfaction survey is optional: in the period, fewer than 4% of requests have an answer, weighted toward people who were dissatisfied.',
+              'The requester profile fields are more than 80% empty and were left out.',
+              'The dataset includes the states and municipalities that joined Fala.BR, not every public body in the country.',
+            ],
+          },
+        ],
+      },
+      {
+        id: 'links',
+        title: 'Links',
+        blocks: [
+          {
+            k: 'links',
+            items: [
+              { label: 'Published dashboard', href: OUV_DEMO, note: 'The dashboard is in Portuguese' },
+              { label: 'Code on GitHub', href: OUV_CODE, note: 'With the steps to reproduce every figure, in Portuguese' },
+              { label: 'CGU, open ombudsman data (in Portuguese)', href: OUV_CGU },
+            ],
+          },
+          { k: 'p', v: 'Independent dashboard, not affiliated with CGU. The data belongs to CGU. The D3 library uses the ISC license.' },
+        ],
+      },
+    ],
+  },
+};
+
 export const PROJETOS: Projeto[] = [
   {
     slug: 'assistente-de-carreira',
@@ -464,6 +956,34 @@ export const PROJETOS: Projeto[] = [
       cardHeight: 500,
     },
     schema: { repo: FDD_CODE, language: ['JavaScript', 'Python'] },
+  },
+  {
+    slug: 'brasa-alta',
+    pt: BRASA_ALTA.pt,
+    en: BRASA_ALTA.en,
+    image: {
+      src: '/images/projetos/brasa-alta.webp',
+      width: 1440,
+      height: 900,
+      cardSrc: '/images/projetos/brasa-alta-800.webp',
+      cardWidth: 800,
+      cardHeight: 500,
+    },
+    schema: { repo: BA_CODE, language: ['JavaScript', 'HTML', 'CSS'] },
+  },
+  {
+    slug: 'ouvidometro',
+    pt: OUVIDOMETRO.pt,
+    en: OUVIDOMETRO.en,
+    image: {
+      src: '/images/projetos/ouvidometro.webp',
+      width: 1440,
+      height: 900,
+      cardSrc: '/images/projetos/ouvidometro-800.webp',
+      cardWidth: 800,
+      cardHeight: 500,
+    },
+    schema: { repo: OUV_CODE, language: ['Python', 'JavaScript'] },
   },
 ];
 
