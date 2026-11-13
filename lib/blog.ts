@@ -11,6 +11,7 @@ import { PROCV } from './blog-procv';
 import { APPS_SCRIPT_TETO } from './blog-script';
 import { PLUGIN_RODA_CODIGO } from './blog-plugin';
 import { DESCRICAO_DA_SKILL } from './blog-descricao';
+import { PARADOXO_DE_SIMPSON } from './blog-simpson';
 import type { BlogMenuData } from './blog-menu';
 
 export type TableCell = string | { v: string; tone: 'bad' | 'ok' };
@@ -88,6 +89,20 @@ export const CATEGORIES: Category[] = [
     },
   },
   {
+    slug: 'dados',
+    area: 'dados',
+    pt: {
+      name: 'Dados',
+      desc: 'Guias práticos para ler números com cuidado e montar as contas você mesmo, com exemplos conferidos.',
+      note: 'Guia por Diego Arruda. Conteúdo educativo e independente.',
+    },
+    en: {
+      name: 'Data',
+      desc: 'Practical guides for reading numbers carefully and building the calculations yourself, with checked examples.',
+      note: 'Guide by Diego Arruda. Educational and independent content.',
+    },
+  },
+  {
     slug: 'sql',
     area: 'dados',
     pt: { name: 'SQL', desc: 'Guias práticos de SQL para análise de dados, com exemplos testados.', note: 'Guia por Diego Arruda. Conteúdo educativo e independente.' },
@@ -137,7 +152,7 @@ export const CATEGORIES: Category[] = [
   },
 ];
 
-export const GUIDES: Guide[] = [TRIBUNAL, REWIND, JOIN_SOMA, CHAVE_VAZADA, HOOK, PROCV, APPS_SCRIPT_TETO, PLUGIN_RODA_CODIGO, DESCRICAO_DA_SKILL];
+export const GUIDES: Guide[] = [TRIBUNAL, REWIND, JOIN_SOMA, CHAVE_VAZADA, HOOK, PROCV, APPS_SCRIPT_TETO, PLUGIN_RODA_CODIGO, DESCRICAO_DA_SKILL, PARADOXO_DE_SIMPSON];
 
 export const BLOG_UI = {
   pt: {

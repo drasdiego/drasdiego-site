@@ -76,7 +76,13 @@ export const GUIDE_CLOSING: Record<string, GuideClosingData> = {
       pt: 'Agora você sabe como o Codex escolhe uma skill, como escrever uma descrição com escopo claro e como testar em qual pedido a skill entra.',
       en: 'You now know how Codex picks a skill, how to write a description with a clear scope and how to test which request the skill steps into.',
     },
-    next: { word: 'SERIES', title: { pt: 'Selic direto do Banco Central', en: 'The Selic rate straight from the Central Bank' } },
+    next: { word: 'SIMPSON', title: { pt: 'Paradoxo de Simpson na prática', en: 'Simpson’s paradox in practice' }, category: 'dados', slug: 'paradoxo-de-simpson' },
+  },
+  'paradoxo-de-simpson': {
+    result: {
+      pt: 'Agora você sabe por que um total pode esconder o que acontece dentro de cada grupo, e tem uma planilha para conferir isso com as suas próprias fórmulas.',
+      en: 'You now know why a total can hide what happens inside each group, and you have a spreadsheet to check it with your own formulas.',
+    },
   },
 };
 
