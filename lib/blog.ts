@@ -12,6 +12,7 @@ import { APPS_SCRIPT_TETO } from './blog-script';
 import { PLUGIN_RODA_CODIGO } from './blog-plugin';
 import { DESCRICAO_DA_SKILL } from './blog-descricao';
 import { PARADOXO_DE_SIMPSON } from './blog-simpson';
+import { SKILLS_DEMAIS } from './blog-lotado';
 import type { BlogMenuData } from './blog-menu';
 
 export type TableCell = string | { v: string; tone: 'bad' | 'ok' };
@@ -152,7 +153,7 @@ export const CATEGORIES: Category[] = [
   },
 ];
 
-export const GUIDES: Guide[] = [TRIBUNAL, REWIND, JOIN_SOMA, CHAVE_VAZADA, HOOK, PROCV, APPS_SCRIPT_TETO, PLUGIN_RODA_CODIGO, DESCRICAO_DA_SKILL, PARADOXO_DE_SIMPSON];
+export const GUIDES: Guide[] = [TRIBUNAL, REWIND, JOIN_SOMA, CHAVE_VAZADA, HOOK, PROCV, APPS_SCRIPT_TETO, PLUGIN_RODA_CODIGO, DESCRICAO_DA_SKILL, PARADOXO_DE_SIMPSON, SKILLS_DEMAIS];
 
 export const BLOG_UI = {
   pt: {

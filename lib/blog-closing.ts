@@ -83,6 +83,13 @@ export const GUIDE_CLOSING: Record<string, GuideClosingData> = {
       pt: 'Agora você sabe por que um total pode esconder o que acontece dentro de cada grupo, e tem uma planilha para conferir isso com as suas próprias fórmulas.',
       en: 'You now know why a total can hide what happens inside each group, and you have a spreadsheet to check it with your own formulas.',
     },
+    next: { word: 'LOTADO', title: { pt: 'Skills demais no Claude Code', en: 'Too many skills in Claude Code' }, category: 'claude-code', slug: 'skills-demais' },
+  },
+  'skills-demais': {
+    result: {
+      pt: 'Agora você sabe por que skill demais atrapalha, como medir o tamanho da lista, achar as que você não usa e decidir entre deixar só o nome ou desligar.',
+      en: 'You now know why too many skills get in the way, how to measure the listing, find the ones you never use and choose between keeping only the name and turning a skill off.',
+    },
   },
 };
 
