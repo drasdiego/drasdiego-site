@@ -9,6 +9,26 @@ Regras:
 - Nunca colocar na URL nome, usuário do Instagram, e-mail, ID do contato nem variável do ManyChat.
 - O site não grava, não repassa e não repete esses parâmetros em links internos, formulários ou eventos próprios. O Vercel Web Analytics registra os parâmetros de campanha da URL de forma anônima, mas o plano Hobby não mostra relatório de UTM.
 
+## Como escrever a descrição de uma skill do Codex
+
+dm:
+
+```
+https://www.drasdiego.com.br/guias/codex/descricao-da-skill?utm_source=instagram&utm_medium=dm&utm_campaign=guias&utm_content=descricao-da-skill
+```
+
+story:
+
+```
+https://www.drasdiego.com.br/guias/codex/descricao-da-skill?utm_source=instagram&utm_medium=story&utm_campaign=guias&utm_content=descricao-da-skill
+```
+
+bio:
+
+```
+https://www.drasdiego.com.br/guias/codex/descricao-da-skill?utm_source=instagram&utm_medium=bio&utm_campaign=guias&utm_content=descricao-da-skill
+```
+
 ## Como revisar um plugin do Claude Code antes de instalar
 
 dm:

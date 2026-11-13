@@ -66,7 +66,7 @@ function Blocks({ blocks, lang }: { blocks: Block[]; lang: Lang }) {
           case 'ul':
             return <ul key={i} className="guide-list">{b.items.map((item) => <li key={item}><Inline text={item} /></li>)}</ul>;
           case 'ol':
-            return <ol key={i} className="guide-list">{b.items.map((item) => <li key={item}><Inline text={item} /></li>)}</ol>;
+            return <ol key={i} className="guide-list" start={b.start}>{b.items.map((item) => <li key={item}><Inline text={item} /></li>)}</ol>;
           case 'code':
             return (
               <div key={i} className="codeblock">

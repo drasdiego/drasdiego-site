@@ -69,6 +69,13 @@ export const GUIDE_CLOSING: Record<string, GuideClosingData> = {
       pt: 'Agora você sabe o que um plugin instalado pode rodar na sua máquina e como revisar um plugin antes de instalar, conferir o que ficou e remover o que você não confia mais.',
       en: 'You now know what an installed plugin can run on your machine and how to review a plugin before you install it, check what was installed and remove one you no longer trust.',
     },
+    next: { word: 'DESCRIÇÃO', title: { pt: 'O que faz o Codex escolher uma skill', en: 'What makes Codex pick a skill' }, category: 'codex', slug: 'descricao-da-skill' },
+  },
+  'descricao-da-skill': {
+    result: {
+      pt: 'Agora você sabe como o Codex escolhe uma skill, como escrever uma descrição com escopo claro e como testar em qual pedido a skill entra.',
+      en: 'You now know how Codex picks a skill, how to write a description with a clear scope and how to test which request the skill steps into.',
+    },
     next: { word: 'SERIES', title: { pt: 'Selic direto do Banco Central', en: 'The Selic rate straight from the Central Bank' } },
   },
 };

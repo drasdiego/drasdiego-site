@@ -10,6 +10,7 @@ import { HOOK } from './blog-hook';
 import { PROCV } from './blog-procv';
 import { APPS_SCRIPT_TETO } from './blog-script';
 import { PLUGIN_RODA_CODIGO } from './blog-plugin';
+import { DESCRICAO_DA_SKILL } from './blog-descricao';
 import type { BlogMenuData } from './blog-menu';
 
 export type TableCell = string | { v: string; tone: 'bad' | 'ok' };
@@ -17,7 +18,7 @@ export type TableCell = string | { v: string; tone: 'bad' | 'ok' };
 export type Block =
   | { k: 'p'; v: string; muted?: boolean }
   | { k: 'h3'; v: string }
-  | { k: 'ul' | 'ol'; items: string[] }
+  | { k: 'ul' | 'ol'; items: string[]; start?: number }
   | { k: 'code'; label: string; text: string }
   | { k: 'opts'; items: { c: string; v: string }[] }
   | { k: 'callout'; tone: 'tip' | 'warn' | 'note' | 'example'; v: string }
@@ -73,6 +74,20 @@ export const CATEGORIES: Category[] = [
     },
   },
   {
+    slug: 'codex',
+    area: 'ia',
+    pt: {
+      name: 'Codex',
+      desc: 'Guias práticos para usar o Codex, o agente de programação da OpenAI, com exemplos prontos.',
+      note: 'Guia por Diego Arruda. Conteúdo educativo e independente, sem vínculo com a OpenAI.',
+    },
+    en: {
+      name: 'Codex',
+      desc: 'Practical guides for using Codex, OpenAI’s coding agent, with ready-made examples.',
+      note: 'Guide by Diego Arruda. Educational and independent content, not affiliated with OpenAI.',
+    },
+  },
+  {
     slug: 'sql',
     area: 'dados',
     pt: { name: 'SQL', desc: 'Guias práticos de SQL para análise de dados, com exemplos testados.', note: 'Guia por Diego Arruda. Conteúdo educativo e independente.' },
@@ -122,7 +137,7 @@ export const CATEGORIES: Category[] = [
   },
 ];
 
-export const GUIDES: Guide[] = [TRIBUNAL, REWIND, JOIN_SOMA, CHAVE_VAZADA, HOOK, PROCV, APPS_SCRIPT_TETO, PLUGIN_RODA_CODIGO];
+export const GUIDES: Guide[] = [TRIBUNAL, REWIND, JOIN_SOMA, CHAVE_VAZADA, HOOK, PROCV, APPS_SCRIPT_TETO, PLUGIN_RODA_CODIGO, DESCRICAO_DA_SKILL];
 
 export const BLOG_UI = {
   pt: {
