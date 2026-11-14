@@ -4,9 +4,12 @@ Código do portfólio profissional de Diego Arruda, publicado em [www.drasdiego.
 
 ## O que o site tem
 
-- Versões em português e inglês, com tema escuro como padrão e opção de alternar para o claro.
+- Versões em português e inglês, com tema claro como padrão e opção de alternar para o escuro.
 - Assistente de carreira com IA, por texto (Claude), com entrada de perguntas por microfone no navegador. Quando a IA está indisponível, ele responde a partir de uma base de conhecimento local, sem quebrar a conversa.
 - Qualificações e certificados lidos de uma planilha pública do Google Sheets, com uma lista local como reserva.
+- Seção Guias, com 11 guias práticos em 7 categorias, nos dois idiomas, cada um com blocos de código copiáveis e imagem de compartilhamento própria.
+- Estudos de caso dos projetos, com a demonstração de cada um aberta na própria página.
+- Página de contato com formulário, que grava as mensagens numa planilha privada, e página de privacidade.
 - Metadados para busca e compartilhamento: `sitemap`, `robots` e imagem Open Graph.
 
 ## Tecnologias
@@ -24,8 +27,10 @@ Código do portfólio profissional de Diego Arruda, publicado em [www.drasdiego.
 | `app/` | Páginas e rotas. `app/api/chat` conecta o assistente ao Claude. |
 | `components/` | Seções do site e o painel do assistente. |
 | `hooks/` | Hooks de interface (tema, rolagem, qualificações). |
-| `lib/` | Conteúdo, base de conhecimento do assistente e proteções das rotas de IA. |
+| `lib/` | Conteúdo, guias, projetos, base de conhecimento do assistente e proteções das rotas de IA. |
 | `services/` | Leitura da planilha de qualificações. |
+| `docs/` | Notas de apoio, como os links por reel dos guias. |
+| `types/` | Tipos compartilhados do TypeScript. |
 
 ## Como rodar
 
@@ -55,7 +60,7 @@ npm run build
 
 ## Segurança das rotas de IA
 
-A rota pública do chat pode gerar custo e consumir cota, por isso têm proteções:
+A rota pública do chat pode gerar custo e consumir cota, por isso tem proteções:
 
 - Conferem os cabeçalhos Origin e Referer, o que bloqueia o uso a partir de outros sites em navegadores. Scripts fora do navegador podem forjar esses cabeçalhos, então o controle real contra abuso é a regra de limite de requisições do firewall da hospedagem e o limite mensal de gasto na conta do provedor de IA.
 - Aceitam apenas requisições com Content-Type JSON.
