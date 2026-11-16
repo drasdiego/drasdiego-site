@@ -205,6 +205,8 @@ function assistenteDeCarreira(lang: Lang): ProjetoText {
 }
 
 const FDD_DEMO = 'https://drasdiego.github.io/fora-do-digital/';
+const FDD_DEMO_PT = `${FDD_DEMO}?lang=pt`;
+const FDD_DEMO_EN = `${FDD_DEMO}?lang=en`;
 const FDD_CODE = 'https://github.com/drasdiego/fora-do-digital';
 const FDD_METHOD = 'https://github.com/drasdiego/fora-do-digital/blob/main/docs/METODOLOGIA.md';
 const FDD_IBGE_2025 = 'https://biblioteca.ibge.gov.br/visualizacao/livros/liv102290_informativo.pdf';
@@ -227,8 +229,8 @@ const FORA_DO_DIGITAL: Record<Lang, ProjetoText> = {
       { label: 'Licença', value: 'MIT. Os dados pertencem ao IBGE.' },
     ],
     media: {
-      alt: 'Captura de tela do painel Fora do Digital, em tema escuro. À esquerda, o título e a pergunta sobre quem ainda está fora da internet no Brasil. À direita, uma grade de 10 por 10 pontos, em que os pontos em magenta representam as pessoas que não usaram a internet. Abaixo, os primeiros cartões de indicadores.',
-      demo: { label: 'Ver painel', href: FDD_DEMO },
+      alt: 'Captura de tela do painel Fora do Digital, em tema escuro. À esquerda, o título e a pergunta sobre quem ainda está fora da internet no Brasil. À direita, uma grade de 10 por 10 pontos, em que os pontos em coral representam as pessoas que não usaram a internet. Abaixo, os primeiros cartões de indicadores.',
+      demo: { label: 'Ver painel', href: FDD_DEMO_PT },
       code: { label: 'Código', href: FDD_CODE },
       embedTitle: 'Painel Fora do Digital',
       mobileNote: 'Em telas pequenas o painel não é incorporado aqui. Abra a versão completa em outra aba.',
@@ -250,13 +252,14 @@ const FORA_DO_DIGITAL: Record<Lang, ProjetoText> = {
           {
             k: 'list',
             items: [
-              'Indicadores principais com tendência: pessoas que usaram a internet, pessoas sem internet (em milhões e em percentual), domicílios com internet, pessoas com celular para uso pessoal e pessoas de 60 anos ou mais online.',
+              'Seis indicadores principais com tendência: pessoas que usaram a internet, pessoas sem internet (em milhões e em percentual), domicílios com internet, pessoas com celular para uso pessoal, pessoas de 60 anos ou mais online e área rural online.',
               'Evolução do uso da internet nas áreas urbana e rural.',
               'Recortes de 2025 por região, área, idade, instrução, sexo e cor ou raça, um de cada vez.',
               'Motivos para não usar a internet, de pessoas e de domicílios, e motivos para não ter celular.',
               'Finalidades de uso da internet e equipamentos usados para acessar.',
               'Destaque com o rendimento médio mensal real per capita dos domicílios com e sem internet. A renda aparece só nesse destaque, não como recorte.',
               'Simulador "Sua base de clientes", tabela alternativa em cada gráfico e download dos dados em CSV.',
+              'Painel em português e inglês, com seletor PT e EN no topo.',
             ],
           },
         ],
@@ -311,11 +314,11 @@ const FORA_DO_DIGITAL: Record<Lang, ProjetoText> = {
             items: [
               { title: 'Gerar', text: 'O script gerar_dados.py valida o JSON, calcula os derivados e gera o arquivo que o painel lê.' },
               { title: 'Validar', text: 'O script validar_dados.py aplica as regras de qualidade dos dados.' },
-              { title: 'Testar', text: 'Testes automatizados, escritos com unittest, cobrem o validador e o gerador.' },
+              { title: 'Testar', text: 'Testes automatizados, escritos com unittest, cobrem o validador, o gerador e o dicionário de traduções, que falha quando um rótulo fica sem versão em inglês.' },
               { title: 'Repetir no CI', text: 'A validação contínua, feita com GitHub Actions (o serviço do GitHub que roda verificações automáticas), repete esses passos e confere, com a opção --check, se o arquivo gerado está atualizado.' },
             ],
           },
-          { k: 'p', v: 'Limitações: a PNAD Contínua é uma pesquisa por amostra, então os percentuais têm margem de erro. O IBGE revisa a série a cada divulgação: os pontos de 2016 (urbano e rural) e de 2023 vêm do informativo de 2024 e podem diferir da série revisada. Os anos sem dado não são interpolados. Os recortes são mostrados um de cada vez, porque não dá para combinar perfis sem os microdados. As leituras para atendimento são recomendações do projeto, não resultados da pesquisa.' },
+          { k: 'p', v: 'Limitações: a PNAD Contínua é uma pesquisa por amostra, então os percentuais são estimativas com margem de erro, que o informativo não traz em todas as quebras. O IBGE revisa a série a cada divulgação: os pontos de 2016 (urbano e rural) e de 2023 vêm do informativo de 2024 e podem diferir um pouco da série revisada; nos gráficos eles aparecem com marcador vazado. Os anos sem dado não são interpolados. Os recortes são mostrados um de cada vez, porque não dá para combinar perfis sem os microdados, e as listas de idade, instrução e cor ou raça são parciais. Os motivos não somam 100%, porque o restante não está nos dados do projeto. O simulador é uma estimativa simples, de um perfil por vez, só para pessoas de 10 anos ou mais. As leituras para atendimento são recomendações do projeto, não resultados da pesquisa.' },
         ],
       },
       {
@@ -325,7 +328,7 @@ const FORA_DO_DIGITAL: Record<Lang, ProjetoText> = {
           {
             k: 'links',
             items: [
-              { label: 'Painel publicado', href: FDD_DEMO },
+              { label: 'Painel publicado', href: FDD_DEMO_PT },
               { label: 'Código no GitHub', href: FDD_CODE },
               { label: 'Metodologia', href: FDD_METHOD, note: 'Como cada número foi obtido e calculado' },
               { label: 'IBGE, PNAD Contínua, informativo de 2025 (PDF)', href: FDD_IBGE_2025 },
@@ -340,21 +343,21 @@ const FORA_DO_DIGITAL: Record<Lang, ProjetoText> = {
   en: {
     title: 'Fora do Digital',
     short: 'An open, interactive dashboard on who is still offline in Brazil, built with official data from IBGE (the Brazilian Institute of Geography and Statistics).',
-    lead: 'An open, interactive dashboard on internet access in Brazil. It uses official data from the PNAD Contínua TIC (the ICT module of the Continuous National Household Sample Survey), run by IBGE (the Brazilian Institute of Geography and Statistics), from the 2024 and 2025 reports. The central question: who is still offline, and what does that mean for people who design 100% digital customer service?',
+    lead: 'An open, interactive dashboard on internet access in Brazil. It uses official data from the PNAD Contínua TIC (the ICT module of the Continuous National Household Sample Survey), run by IBGE (the Brazilian Institute of Geography and Statistics), from the 2024 and 2025 bulletins. The central question: who is still offline, and what does that mean for people who design 100% digital customer service?',
     tags: ['Data', 'IBGE', 'Data visualization', 'JavaScript', 'Python'],
     cta: 'Read the case study',
     status: 'Published on GitHub Pages',
     facts: [
       { label: 'Purpose', value: 'Open, interactive dashboard on internet access in Brazil' },
       { label: 'Technologies', chips: ['HTML', 'CSS', 'JavaScript', 'Python'] },
-      { label: 'Data', value: 'IBGE PNAD Contínua TIC, 2024 and 2025 reports' },
+      { label: 'Data', value: 'IBGE PNAD Contínua TIC, 2024 and 2025 bulletins' },
       { label: 'Code', value: 'Public repository on GitHub', href: FDD_CODE },
       { label: 'Status', value: 'Published on GitHub Pages' },
       { label: 'License', value: 'MIT. The data belongs to IBGE.' },
     ],
     media: {
-      alt: 'Screenshot of the Fora do Digital dashboard in dark theme. On the left, the title and the question about who is still offline in Brazil. On the right, a 10 by 10 grid of dots, where magenta dots represent the people who did not use the internet. Below, the first indicator cards.',
-      demo: { label: 'View dashboard', href: FDD_DEMO },
+      alt: 'Screenshot of the Fora do Digital dashboard in dark theme. On the left, the title and the question about who is still offline in Brazil. On the right, a 10 by 10 grid of dots, where coral dots represent the people who did not use the internet. Below, the first indicator cards.',
+      demo: { label: 'View dashboard', href: FDD_DEMO_EN },
       code: { label: 'Code', href: FDD_CODE },
       embedTitle: 'Fora do Digital dashboard',
       mobileNote: 'On small screens the dashboard is not embedded here. Open the full version in a new tab.',
@@ -376,13 +379,14 @@ const FORA_DO_DIGITAL: Record<Lang, ProjetoText> = {
           {
             k: 'list',
             items: [
-              'Headline indicators with trends: people who used the internet, people without internet (in millions and as a percentage), households with internet, people with a mobile phone for personal use and people aged 60 or over who are online.',
+              'Six headline indicators with trends: people who used the internet, people without internet (in millions and as a percentage), households with internet, people with a mobile phone for personal use, people aged 60 or older who are online and rural area online.',
               'How internet use has changed in urban and rural areas.',
               '2025 breakdowns by region, area, age, education, sex and color or race, one at a time.',
               'Reasons for not using the internet, for people and for households, and reasons for not having a mobile phone.',
               'What the internet is used for and which devices are used to get online.',
               'A highlight with the real average monthly per capita income of households with and without internet. Income appears only in that highlight, not as a breakdown.',
-              'A "Sua base de clientes" (your customer base) simulator, an alternative table for every chart and a CSV download of the data.',
+              'A "Your customer base" simulator, a view as table option for every chart and a CSV download of the data.',
+              'The dashboard is available in Portuguese and English, with a PT and EN switch at the top.',
             ],
           },
         ],
@@ -391,8 +395,8 @@ const FORA_DO_DIGITAL: Record<Lang, ProjetoText> = {
         id: 'fonte-dos-dados',
         title: 'Data source',
         blocks: [
-          { k: 'p', v: 'The data is official and comes from the PNAD Contínua (the Continuous National Household Sample Survey), the IBGE (Brazilian Institute of Geography and Statistics) survey that measures internet access. The dashboard uses the ICT (Information and Communication Technology) module, from the 2024 and 2025 reports.' },
-          { k: 'p', v: 'The figures were transcribed from the reports into a data file, and every series, breakdown and block points to the source it came from. The data belongs to IBGE.' },
+          { k: 'p', v: 'The data is official and comes from the PNAD Contínua (the Continuous National Household Sample Survey), the IBGE (Brazilian Institute of Geography and Statistics) survey that measures internet access. The dashboard uses the ICT (information and communication technologies) module, from the 2024 and 2025 bulletins.' },
+          { k: 'p', v: 'The figures were transcribed from the bulletins into a data file, and every series, breakdown and block points to the source it came from. The data belongs to IBGE.' },
           { k: 'p', v: 'The project uses only IBGE publications as sources.' },
         ],
       },
@@ -437,11 +441,11 @@ const FORA_DO_DIGITAL: Record<Lang, ProjetoText> = {
             items: [
               { title: 'Generate', text: 'The gerar_dados.py script validates the JSON, calculates the derived values and generates the file the dashboard reads.' },
               { title: 'Validate', text: 'The validar_dados.py script applies the data quality rules.' },
-              { title: 'Test', text: 'Automated tests, written with unittest, cover the validator and the generator.' },
+              { title: 'Test', text: 'Automated tests, written with unittest, cover the validator, the generator and the translation dictionary, which fails when a label has no English version.' },
               { title: 'Repeat in CI', text: 'Continuous validation, run with GitHub Actions (the GitHub service that runs automated checks), repeats these steps and uses the --check option to confirm the generated file is up to date.' },
             ],
           },
-          { k: 'p', v: 'Limitations: the PNAD Contínua is a sample survey, so the percentages have a margin of error. IBGE revises the series with each release: the 2016 points (urban and rural) and the 2023 points come from the 2024 report and may differ from the revised series. Years without data are not interpolated. Breakdowns are shown one at a time, because profiles cannot be combined without the microdata. The readings for customer service are recommendations from the project, not survey results.' },
+          { k: 'p', v: 'Limitations: the PNAD Contínua is a sample survey, so the percentages are estimates with a margin of error, which the bulletin does not report for every breakdown. IBGE revises the series with each release: the 2016 points (urban and rural) and the 2023 points come from the 2024 bulletin and may differ slightly from the revised series, and the charts show them with a hollow marker. Years without data are not interpolated. Breakdowns are shown one at a time, because profiles cannot be combined without the microdata, and the age, education and color or race lists are partial. The reasons do not add up to 100%, because the rest is not in the project data. The simulator is a simple estimate, one profile at a time, and only for people aged 10 or older. The interpretations for customer service are recommendations from the project, not survey results.' },
         ],
       },
       {
@@ -451,11 +455,11 @@ const FORA_DO_DIGITAL: Record<Lang, ProjetoText> = {
           {
             k: 'links',
             items: [
-              { label: 'Published dashboard', href: FDD_DEMO, note: 'The dashboard is in Portuguese' },
+              { label: 'Published dashboard', href: FDD_DEMO_EN },
               { label: 'Code on GitHub', href: FDD_CODE },
               { label: 'Methodology', href: FDD_METHOD, note: 'How each figure was obtained and calculated, in Portuguese' },
-              { label: 'IBGE, PNAD Contínua, 2025 report (PDF, in Portuguese)', href: FDD_IBGE_2025 },
-              { label: 'IBGE, PNAD Contínua, 2024 report (PDF, in Portuguese)', href: FDD_IBGE_2024 },
+              { label: 'IBGE, PNAD Contínua, 2025 bulletin (PDF, in Portuguese)', href: FDD_IBGE_2025 },
+              { label: 'IBGE, PNAD Contínua, 2024 bulletin (PDF, in Portuguese)', href: FDD_IBGE_2024 },
             ],
           },
           { k: 'p', v: 'MIT license. The data belongs to IBGE.' },
@@ -688,7 +692,9 @@ const BRASA_ALTA: Record<Lang, ProjetoText> = {
   },
 };
 
-const OUV_DEMO = 'https://drasdiego.github.io/ouvidometro/painel/#painel';
+const OUV_DEMO = 'https://drasdiego.github.io/ouvidometro/painel/';
+const OUV_DEMO_PT = `${OUV_DEMO}?lang=pt#painel`;
+const OUV_DEMO_EN = `${OUV_DEMO}?lang=en#painel`;
 const OUV_CODE = 'https://github.com/drasdiego/ouvidometro';
 const OUV_CGU = 'https://www.gov.br/cgu/pt-br/acesso-a-informacao/dados-abertos/arquivos/ouvidoria';
 
@@ -708,8 +714,8 @@ const OUVIDOMETRO: Record<Lang, ProjetoText> = {
       { label: 'Status', value: 'Publicado no GitHub Pages' },
     ],
     media: {
-      alt: 'Captura de tela do painel Ouvidômetro, em tema escuro. À esquerda, o título e a pergunta sobre se os órgãos públicos respondem ao cidadão no prazo que a lei manda. À direita, uma grade de 10 por 10 pontos, em que os pontos em magenta representam as manifestações que ficaram fora do prazo.',
-      demo: { label: 'Ver painel', href: OUV_DEMO },
+      alt: 'Captura de tela do painel Ouvidômetro, em tema escuro. À esquerda, o título e a pergunta sobre se os órgãos públicos respondem ao cidadão no prazo que a lei manda. À direita, uma grade de 10 por 10 pontos, em que os pontos em destaque representam as manifestações que ficaram fora do prazo.',
+      demo: { label: 'Ver painel', href: OUV_DEMO_PT },
       code: { label: 'Código', href: OUV_CODE },
       embedTitle: 'Painel Ouvidômetro',
       mobileNote: 'Em telas pequenas o painel não é incorporado aqui. Abra a versão completa em outra aba.',
@@ -741,10 +747,11 @@ const OUVIDOMETRO: Record<Lang, ProjetoText> = {
           {
             k: 'list',
             items: [
-              'Decreto 9.492/2018, art. 18: resposta conclusiva em 30 dias, prorrogável uma vez por mais 30, com justificativa. O pedido de complementação suspende o prazo.',
+              'Decreto 9.492/2018, art. 18: resposta conclusiva em 30 dias, prorrogável uma vez por mais 30, com justificativa, o que deixa o teto em 60 dias. O pedido de complementação suspende o prazo, e sem resposta em 30 dias a manifestação é arquivada.',
               'Decreto 9.492/2018, art. 3º: definições de reclamação, denúncia, elogio, sugestão e solicitação.',
+              'Decreto 9.492/2018, art. 23, § 2º: relatos de irregularidade, mesmo anônimos, seguem para o órgão competente.',
               'Decreto 9.492/2018, art. 16: uso obrigatório do e-Ouv (hoje Fala.BR) pelos órgãos federais.',
-              'Lei 13.460/2017: direitos do usuário de serviços públicos e medição anual da satisfação.',
+              'Lei 13.460/2017: direitos do usuário de serviços públicos, medição anual da satisfação e vigência em etapas, conforme o porte do ente.',
             ],
           },
           { k: 'p', v: 'O próprio painel traz uma tabela que liga cada regra ao indicador que a confere e uma seção de dúvidas frequentes.' },
@@ -755,7 +762,7 @@ const OUVIDOMETRO: Record<Lang, ProjetoText> = {
         title: 'Fonte dos dados',
         blocks: [
           { k: 'p', v: 'Os dados vêm do arquivo público de manifestações de ouvidoria da CGU, atualizado todo mês. O arquivo usado foi gerado em 01/09/2026 e traz um CSV por ano, com datas de registro, prazo e resposta, tipo, órgão, assunto, situação, esfera e pesquisa de satisfação.' },
-          { k: 'p', v: 'O recorte vai de janeiro de 2015 a 31/08/2026, com 8.752.496 manifestações. O recorte principal do painel são os últimos 12 meses completos, comparados aos 12 anteriores.' },
+          { k: 'p', v: 'O recorte vai de janeiro de 2015 a 31/08/2026, com 8.752.496 manifestações. Os números deste estudo de caso vêm do resumo dos últimos 12 meses completos, comparados aos 12 anteriores, gravado em kpis.csv e indicadores.json. O painel abre numa janela mais larga, de janeiro de 2025 a agosto de 2026, e o filtro de período é por ano, então os valores da abertura dele não são os mesmos.' },
           { k: 'p', v: 'Os dados brutos não vão para o repositório, só os indicadores agregados.' },
         ],
       },
@@ -799,9 +806,9 @@ const OUVIDOMETRO: Record<Lang, ProjetoText> = {
             k: 'decisions',
             items: [
               { title: 'Uma pergunta por seção', text: 'Cada seção responde a uma pergunta de decisão, e não só exibe números.' },
-              { title: 'Cor de alerta', text: 'A cor diz onde olhar primeiro. Na tabela de órgãos, verde no nível do resultado geral do filtro ou acima, amarelo até 10 pontos abaixo e vermelho mais de 10 pontos abaixo. Nos gráficos de barras, rosa para mais de 10 pontos abaixo do geral.' },
-              { title: 'Mediana e percentil 90', text: 'A mediana mostra o caso típico, e o percentil 90 mostra quem espera demais.' },
-              { title: 'Pendências com idade', text: 'O painel mostra há quanto tempo cada pendência está vencida, e não só a contagem.' },
+              { title: 'Cor de alerta', text: 'A cor diz onde olhar primeiro. Na tabela de órgãos, verde no nível do resultado geral do filtro ou acima, amarelo até 10 pontos abaixo e vermelho mais de 10 pontos abaixo. Nos gráficos de barras, as barras mais de 10 pontos abaixo do geral ficam em destaque.' },
+              { title: 'Tempo por faixa', text: 'O painel mostra o tempo médio e o gráfico por faixa, até 30 dias, de 31 a 60 e mais de 60. A mediana e o percentil 90, que mostram o caso típico e quem espera demais, ficam nos arquivos de resumo kpis.csv e indicadores.json.' },
+              { title: 'Pendência com idade', text: 'Além da contagem, o painel diz quantas pendências foram registradas há mais de 60 dias.' },
               { title: 'Denominador à vista', text: 'Toda proporção traz o denominador, e a data de corte fica visível.' },
               { title: 'Ranking por taxa', text: 'Os órgãos são ordenados por taxa, com volume mínimo, para não punir quem recebe mais manifestações.' },
             ],
@@ -831,33 +838,33 @@ const OUVIDOMETRO: Record<Lang, ProjetoText> = {
           {
             k: 'links',
             items: [
-              { label: 'Painel publicado', href: OUV_DEMO },
+              { label: 'Painel publicado', href: OUV_DEMO_PT },
               { label: 'Código no GitHub', href: OUV_CODE, note: 'Com o passo a passo para reproduzir cada número' },
               { label: 'CGU, dados abertos de ouvidoria', href: OUV_CGU },
             ],
           },
-          { k: 'p', v: 'Painel independente, sem vínculo com a CGU. O código está sob a licença MIT. Os dados vêm da CGU e não estão cobertos por essa licença. A biblioteca D3 usa a licença ISC.' },
+          { k: 'p', v: 'Projeto pessoal e independente, que não é produto oficial da CGU nem de nenhum órgão público. O código está sob a licença MIT. Os dados vêm da CGU, não estão cobertos por essa licença e devem citar a CGU como fonte quando reaproveitados. A biblioteca D3 usa a licença ISC.' },
         ],
       },
     ],
   },
   en: {
     title: 'Ouvidômetro',
-    short: 'An interactive dashboard on deadlines and delays in ombudsman requests filed on Fala.BR, built with open data from Brazil’s Office of the Comptroller General (CGU).',
-    lead: 'An interactive dashboard on deadlines and delays in ombudsman requests filed on Fala.BR, the Brazilian federal government’s ombudsman platform, built with open data from the Office of the Comptroller General (CGU). It measures how public bodies respond to citizens: how long they take, how much goes past the deadline and where pending requests pile up.',
+    short: 'An interactive dashboard on deadlines and delays in ombudsman submissions registered on Fala.BR, built with open data from Brazil’s Office of the Comptroller General (CGU).',
+    lead: 'An interactive dashboard on deadlines and delays in ombudsman submissions registered on Fala.BR, the Brazilian federal government’s ombudsman platform, built with open data from the Office of the Comptroller General (CGU). It measures how public agencies respond to citizens: how long they take, how much goes past the deadline and where overdue pending submissions pile up.',
     tags: ['Data', 'Python', 'DuckDB', 'D3', 'JavaScript'],
     cta: 'Read the case study',
     status: 'Published on GitHub Pages',
     facts: [
       { label: 'Purpose', value: 'Interactive dashboard on response deadlines in public ombudsman offices' },
       { label: 'Technologies', chips: ['Python', 'DuckDB', 'HTML', 'CSS', 'JavaScript', 'D3'] },
-      { label: 'Data', value: 'CGU public file of ombudsman requests, from January 2015 to August 2026' },
+      { label: 'Data', value: 'CGU public file of ombudsman submissions, from January 2015 to August 2026' },
       { label: 'Code', value: 'Public repository on GitHub', href: OUV_CODE },
       { label: 'Status', value: 'Published on GitHub Pages' },
     ],
     media: {
-      alt: 'Screenshot of the Ouvidômetro dashboard in dark theme. On the left, the title and the question about whether public bodies respond to citizens within the legal deadline. On the right, a 10 by 10 grid of dots, where magenta dots represent the requests that went past the deadline.',
-      demo: { label: 'View dashboard', href: OUV_DEMO },
+      alt: 'Screenshot of the Ouvidômetro dashboard in dark theme. On the left, the title and the question about whether public bodies respond to citizens within the legal deadline. On the right, a 10 by 10 grid of dots, where the highlighted dots represent the submissions that went past the deadline.',
+      demo: { label: 'View dashboard', href: OUV_DEMO_EN },
       code: { label: 'Code', href: OUV_CODE },
       embedTitle: 'Ouvidômetro dashboard',
       mobileNote: 'On small screens the dashboard is not embedded here. Open the full version in a new tab.',
@@ -867,16 +874,16 @@ const OUVIDOMETRO: Record<Lang, ProjetoText> = {
         id: 'problema',
         title: 'The problem',
         blocks: [
-          { k: 'p', v: 'The dashboard measures how public bodies respond to requests from citizens. The underlying question is the one a public ombudsman manager asks: where to act first.' },
+          { k: 'p', v: 'The dashboard measures how public agencies respond to submissions from citizens. The underlying question is the one a public ombudsman manager asks: where to act first.' },
           {
             k: 'list',
             items: [
               'Is the legal deadline met, and has that improved?',
               'How long does the citizen wait for a response?',
-              'What is pending past the deadline?',
-              'In which sphere of government, request type, state and subject is the deadline missed most?',
-              'Which bodies need attention first?',
-              'Was the request resolved, and does the delay weigh on satisfaction?',
+              'What is pending with an expired deadline?',
+              'At which government level, type, state and subject is the deadline missed most?',
+              'Which agencies need attention first?',
+              'Was the request fulfilled, and does lateness weigh on satisfaction?',
             ],
           },
         ],
@@ -889,10 +896,11 @@ const OUVIDOMETRO: Record<Lang, ProjetoText> = {
           {
             k: 'list',
             items: [
-              'Decree 9,492/2018, article 18: a conclusive response within 30 days, extendable once for another 30, with justification. A request for more information suspends the deadline.',
-              'Decree 9,492/2018, article 3: definitions of complaint, report, compliment, suggestion and request.',
-              'Decree 9,492/2018, article 16: mandatory use of e-Ouv (now Fala.BR) by federal bodies.',
-              'Law 13,460/2017: rights of users of public services and yearly measurement of satisfaction.',
+              'Decree No. 9,492/2018, art. 18: a final response within 30 days, extendable once for another 30, with justification, so the ceiling is 60 days. A request for additional information suspends the deadline, and with no reply within 30 days the submission is closed.',
+              'Decree No. 9,492/2018, art. 3: definitions of complaint, report, praise, suggestion and request for action.',
+              'Decree No. 9,492/2018, art. 23, paragraph 2: reports of wrongdoing, even anonymous ones, are forwarded to the competent agency.',
+              'Decree No. 9,492/2018, art. 16: mandatory use of e-Ouv (now Fala.BR) by federal agencies.',
+              'Law No. 13,460/2017: rights of users of public services, yearly measurement of satisfaction and entry into force in stages, by the size of the entity.',
             ],
           },
           { k: 'p', v: 'The dashboard itself has a table linking each rule to the indicator that checks it, and a frequently asked questions section.' },
@@ -902,8 +910,8 @@ const OUVIDOMETRO: Record<Lang, ProjetoText> = {
         id: 'fonte-dos-dados',
         title: 'Data source',
         blocks: [
-          { k: 'p', v: 'The data comes from CGU’s public file of ombudsman requests, updated every month. The file used was generated on September 1, 2026 and has one CSV per year, with filing, deadline and response dates, type, body, subject, status, sphere of government and satisfaction survey.' },
-          { k: 'p', v: 'The dataset runs from January 2015 to August 31, 2026, with 8,752,496 requests. The dashboard’s main window is the last 12 full months, compared with the previous 12.' },
+          { k: 'p', v: 'The data comes from CGU’s public file of ombudsman submissions, updated every month. The file used was generated on September 1, 2026 and has one CSV per year, with registration, deadline and response dates, submission type, agency, subject, status, government level, satisfaction survey and the profile fields of the person who filed it.' },
+          { k: 'p', v: 'The dataset runs from January 2015 to August 31, 2026, with 8,752,496 submissions. The figures in this case study come from the summary of the last 12 full months, compared with the previous 12, stored in kpis.csv and indicadores.json. The dashboard opens on a wider window, from January 2025 to August 2026, and its period filter works by year, so the figures on its opening screen are not the same.' },
           { k: 'p', v: 'The raw data does not go into the repository, only the aggregated indicators.' },
         ],
       },
@@ -911,16 +919,16 @@ const OUVIDOMETRO: Record<Lang, ProjetoText> = {
         id: 'achados',
         title: 'Main findings',
         blocks: [
-          { k: 'p', v: 'Main window: requests filed from September 2025 to August 2026, compared with those from September 2024 to August 2025. The figures come from the dashboard files, generated from the CGU file of September 1, 2026.' },
+          { k: 'p', v: 'Main window: submissions registered from September 2025 to August 2026, compared with those from September 2024 to August 2025. The figures come from the dashboard files, generated from the CGU file of September 1, 2026.' },
           {
             k: 'list',
             items: [
-              'Volume grew 20.1% and deadline compliance fell 0.8 point. There were 1,721,823 requests, against 1,434,183 in the previous period. The share answered within the deadline went from 89.0% to 88.2%. Source: painel/kpis.csv, columns volume and pct_no_prazo.',
+              'Volume grew 20.1% and the share answered on time fell 0.8 point. There were 1,721,823 submissions, against 1,434,183 in the previous period. The share answered on time went from 89.0% to 88.2%. Source: painel/kpis.csv, columns volume and pct_no_prazo.',
               'Those who get an answer wait less. The median response time fell from 13 to 9 days and the average from 20.1 to 16.2 days. One in ten answers still takes more than 36 days. Source: painel/kpis.csv, columns mediana_dias, tempo_medio_dias and p90_dias.',
-              'The delay is concentrated in the municipal sphere. Municipal bodies answered 66.9% within the deadline (69.4% in the previous period), against 90.3% of federal ones. They receive 8.6% of the requests and account for 43.9% of the 59,426 overdue pending requests as of August 31, 2026. Source: painel/esferas.csv, columns volume, pct_no_prazo, pct_no_prazo_ant and pendentes_vencidas.',
+              'The delay is concentrated at the municipal level. Municipal agencies answered 66.9% on time (69.4% in the previous period), against 90.3% of federal ones. They receive 8.6% of the submissions and account for 43.9% of the 59,426 overdue pending submissions as of August 31, 2026. Source: painel/esferas.csv, columns volume, pct_no_prazo, pct_no_prazo_ant and pendentes_vencidas.',
             ],
           },
-          { k: 'p', v: 'One caveat: the most recent period had less time to be answered, so comparing pending requests between the two periods would not be fair and was not used.' },
+          { k: 'p', v: 'One caveat: the most recent period had less time to be answered, so comparing overdue pending submissions between the two periods would not be fair and was not used.' },
         ],
       },
       {
@@ -931,9 +939,9 @@ const OUVIDOMETRO: Record<Lang, ProjetoText> = {
             k: 'steps',
             items: [
               { title: 'Prepare', text: 'A Python script downloads the CGU file, converts the CSVs from Latin-1 to UTF-8 and writes one Parquet file per year.' },
-              { title: 'Aggregate', text: 'Another script aggregates the data with DuckDB by month, sphere, type, state, body and subject and writes the data file that feeds the dashboard filters.' },
+              { title: 'Aggregate', text: 'Another script aggregates the data with DuckDB by month, government level, submission type, state, agency and subject and writes the data file that feeds the dashboard filters.' },
               { title: 'Summarize', text: 'A third script writes the summary of the last 12 months to JSON and CSV, for anyone who wants the figures outside the dashboard.' },
-              { title: 'Dashboard', text: 'The dashboard is built with HTML, CSS and JavaScript, with D3 charts. The filters for period, with year shortcuts, sphere, type and state apply to every section. Chart bars filter on click, the trend shows month by month over the chosen period or the full history, and a dropdown list opens the bodies. It works offline.' },
+              { title: 'Dashboard', text: 'The dashboard is built with HTML, CSS and JavaScript, with D3 charts. The filters for period, with year shortcuts, government level, submission type and state apply to every section. Chart bars filter on click, the trend shows month by month over the chosen period or the full history, and a dropdown list opens the agencies. It works offline.' },
               { title: 'Test', text: 'There are 15 pytest tests, which run on GitHub Actions on every push. Thirteen use a synthetic dataset created inside the test itself, and two check the real CGU data, so they only run for whoever downloaded it.' },
             ],
           },
@@ -947,11 +955,11 @@ const OUVIDOMETRO: Record<Lang, ProjetoText> = {
             k: 'decisions',
             items: [
               { title: 'One question per section', text: 'Each section answers a decision question instead of only showing numbers.' },
-              { title: 'Alert color', text: 'Color tells you where to look first. In the table of bodies, green at the overall result for the current filter or above, yellow up to 10 points below and red more than 10 points below. In the bar charts, pink for more than 10 points below the overall result.' },
-              { title: 'Median and 90th percentile', text: 'The median shows the typical case, and the 90th percentile shows who waits too long.' },
-              { title: 'Pending requests with age', text: 'The dashboard shows how long each pending request has been overdue, not just the count.' },
+              { title: 'Alert color', text: 'Color tells you where to look first. In the table of agencies, green at the overall result for the current filter or above, yellow up to 10 points below and red more than 10 points below. In the bar charts, the bars more than 10 points below the overall result are highlighted.' },
+              { title: 'Time by band', text: 'The dashboard shows the average time and the chart by band, up to 30 days, 31 to 60 and more than 60. The median and the 90th percentile, which show the typical case and who waits too long, are in the summary files kpis.csv and indicadores.json.' },
+              { title: 'Pending with age', text: 'Besides the count, the dashboard says how many pending submissions were registered more than 60 days ago.' },
               { title: 'Denominator in view', text: 'Every proportion shows its denominator, and the cutoff date stays visible.' },
-              { title: 'Ranking by rate', text: 'Bodies are ranked by rate, with a minimum volume, so that those receiving more requests are not penalized.' },
+              { title: 'Ranking by rate', text: 'Agencies are ranked by rate, with a minimum volume of 300 submissions, so that those receiving more are not penalized. The dashboard shows the first 20 agencies and 15 subjects.' },
             ],
           },
         ],
@@ -963,9 +971,9 @@ const OUVIDOMETRO: Record<Lang, ProjetoText> = {
           {
             k: 'list',
             items: [
-              'The file’s days-overdue field is only filled in for requests without a response. That is why the delay was calculated from the dates.',
-              'In the most recent months more requests are still open, so the median and 90th percentile of days are slightly below the real values.',
-              'The satisfaction survey is optional: in the period, fewer than 4% of requests have an answer, weighted toward people who were dissatisfied.',
+              'The file’s days-overdue field is only filled in for submissions without a response. That is why the delay was calculated from the dates.',
+              'In the most recent months more submissions are still open, so the median and 90th percentile of days are slightly below the real values.',
+              'The satisfaction survey is optional: in the period, fewer than 4% of submissions have an answer, weighted toward people who were dissatisfied.',
               'The requester profile fields are more than 80% empty and were left out.',
               'The dataset includes the states and municipalities that joined Fala.BR, not every public body in the country.',
             ],
@@ -979,12 +987,12 @@ const OUVIDOMETRO: Record<Lang, ProjetoText> = {
           {
             k: 'links',
             items: [
-              { label: 'Published dashboard', href: OUV_DEMO, note: 'The dashboard is in Portuguese' },
+              { label: 'Published dashboard', href: OUV_DEMO_EN },
               { label: 'Code on GitHub', href: OUV_CODE, note: 'With the steps to reproduce every figure, in Portuguese' },
               { label: 'CGU, open ombudsman data (in Portuguese)', href: OUV_CGU },
             ],
           },
-          { k: 'p', v: 'Independent dashboard, not affiliated with CGU. The code is under the MIT license. The data comes from CGU and is not covered by that license. The D3 library uses the ISC license.' },
+          { k: 'p', v: 'A personal, independent project, not an official product of the CGU or of any public agency. The code is under the MIT license. The data comes from the CGU, is not covered by that license and must credit the CGU as the source when reused. The D3 library uses the ISC license.' },
         ],
       },
     ],
