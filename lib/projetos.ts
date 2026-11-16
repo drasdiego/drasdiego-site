@@ -86,16 +86,9 @@ export interface ProjetoText {
   media?: ProjetoMedia;
 }
 
-export interface ProjetoCapa {
-  src: string;
-  width: number;
-  height: number;
-}
-
 export interface Projeto {
   slug: string;
   image?: ProjetoImage;
-  capa?: ProjetoCapa;
   schema?: { repo: string; language: string | string[] };
   pt: ProjetoText;
   en: ProjetoText;
@@ -1007,7 +1000,6 @@ export const PROJETOS: Projeto[] = [
   },
   {
     slug: 'fora-do-digital',
-    capa: { src: '/images/projetos/capa-fora-do-digital.webp', width: 1200, height: 627 },
     pt: FORA_DO_DIGITAL.pt,
     en: FORA_DO_DIGITAL.en,
     image: {
@@ -1022,7 +1014,6 @@ export const PROJETOS: Projeto[] = [
   },
   {
     slug: 'brasa-alta',
-    capa: { src: '/images/projetos/capa-brasa-alta.webp', width: 1200, height: 627 },
     pt: BRASA_ALTA.pt,
     en: BRASA_ALTA.en,
     image: {
@@ -1037,7 +1028,6 @@ export const PROJETOS: Projeto[] = [
   },
   {
     slug: 'ouvidometro',
-    capa: { src: '/images/projetos/capa-ouvidometro.webp', width: 1200, height: 627 },
     pt: OUVIDOMETRO.pt,
     en: OUVIDOMETRO.en,
     image: {

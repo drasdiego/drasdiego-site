@@ -18,9 +18,9 @@ export function Hero({ lang }: { lang: Lang }) {
   const slides: HeroSlide[] = PROJETOS.map((projeto) => ({
     slug: projeto.slug,
     href: pagePath(lang, `/projetos/${projeto.slug}`),
-    src: projeto.capa ? projeto.capa.src : `${raiz}/${projeto.slug}/capa.png`,
-    width: projeto.capa ? projeto.capa.width : 1200,
-    height: projeto.capa ? projeto.capa.height : 630,
+    src: `${raiz}/${projeto.slug}/capa.png`,
+    width: 1200,
+    height: 630,
     title: projeto[lang].title,
     label: ABRIR[lang](projeto[lang].title),
   }));

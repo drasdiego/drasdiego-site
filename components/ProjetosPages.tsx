@@ -58,11 +58,7 @@ export function ProjetosIndex({ lang }: { lang: Lang }) {
             return (
               <li key={p.slug} className="projeto-card">
                 <div className="projeto-capa">
-                  {p.capa ? (
-                    <Image src={p.capa.src} width={p.capa.width} height={p.capa.height} alt="" loading="lazy" unoptimized />
-                  ) : (
-                    <Image src={`${root}/${p.slug}/capa.png`} width={1200} height={630} alt="" loading="lazy" unoptimized />
-                  )}
+                  <Image src={`${root}/${p.slug}/capa.png`} width={1200} height={630} alt="" loading="lazy" unoptimized />
                 </div>
                 <h2><Link className="projeto-card-link" href={`${root}/${p.slug}`}>{t.title}</Link></h2>
                 <p>{t.short}</p>

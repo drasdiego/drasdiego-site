@@ -18,6 +18,14 @@ export function projetoOgAlt(lang: Lang, slug: string): string {
   return lang === 'en' ? `Project by Diego Arruda: ${projeto.en.title}` : `Projeto de Diego Arruda: ${projeto.pt.title}`;
 }
 
+function resumir(texto: string, limite: number): string {
+  if (texto.length <= limite) return texto;
+  const corte = texto.slice(0, limite);
+  const espaco = corte.lastIndexOf(' ');
+  const base = espaco > limite - 30 ? corte.slice(0, espaco) : corte;
+  return `${base.replace(/[,.;:]$/, '')}...`;
+}
+
 export function projetoOgImage(lang: Lang, slug: string): ImageResponse {
   const projeto = findProjeto(slug);
   const text = projeto ? projeto[lang] : null;
@@ -27,7 +35,8 @@ export function projetoOgImage(lang: Lang, slug: string): ImageResponse {
   const color = (area && AREA_COLOR[area]) || '#b3a0ff';
   const fontSize = title.length > 60 ? 54 : title.length > 40 ? 62 : 70;
   const summary = text ? text.short : '';
-  const line = summary.length > 150 ? `${summary.slice(0, 147).trimEnd()}...` : summary;
+  const line = resumir(summary, 170);
+  const lineSize = line.length > 120 ? 26 : 28;
   return new ImageResponse(
     <div style={{ width: '100%', height: '100%', background: '#0b0a1f', color: '#f4f2ff', padding: '68px 76px', display: 'flex', flexDirection: 'column', justifyContent: 'space-between', fontFamily: 'sans-serif' }}>
       <div style={{ display: 'flex', alignItems: 'center', fontSize: 28, color: '#cbc8e8' }}>
@@ -36,7 +45,7 @@ export function projetoOgImage(lang: Lang, slug: string): ImageResponse {
       </div>
       <div style={{ display: 'flex', flexDirection: 'column' }}>
         <div style={{ display: 'flex', fontSize, lineHeight: 1.12, letterSpacing: '-2px', maxWidth: 1000 }}>{title}</div>
-        {line ? <div style={{ display: 'flex', marginTop: 24, fontSize: 28, lineHeight: 1.4, color: '#cbc8e8', maxWidth: 980 }}>{line}</div> : null}
+        {line ? <div style={{ display: 'flex', marginTop: 24, fontSize: lineSize, lineHeight: 1.4, color: '#cbc8e8', maxWidth: 980 }}>{line}</div> : null}
       </div>
       <div style={{ display: 'flex', justifyContent: 'space-between', fontSize: 24 }}>
         <div style={{ display: 'flex', color: '#f4f2ff' }}>Diego Arruda</div>
