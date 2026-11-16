@@ -5,7 +5,7 @@ import '../app/paginas.css';
 import '../app/blog.css';
 import '../app/espaco.css';
 import { BLOG_UI } from '@/lib/blog';
-import { PROJETOS, PROJETOS_INTRO, projetoStructuredData } from '@/lib/projetos';
+import { PROJETOS, PROJETOS_INTRO, imagemSrc, projetoStructuredData } from '@/lib/projetos';
 import type { Projeto, ProjetoBlock, ProjetoFact, ProjetoImage, ProjetoMedia, ProjetoSection } from '@/lib/projetos';
 import { NAV_UI, projetosPath } from '@/lib/site-nav';
 import { tagArea } from '@/lib/areas';
@@ -34,7 +34,7 @@ function Painel({ lang, media, image }: { lang: Lang; media: ProjetoMedia; image
       />
       <div className="caso-painel-mobile">
         {image ? (
-          <Image src={image.src} width={image.width} height={image.height} alt={media.alt} loading="lazy" unoptimized />
+          <Image src={imagemSrc(image, lang)} width={image.width} height={image.height} alt={media.alt} loading="lazy" unoptimized />
         ) : null}
         <p>{media.mobileNote}</p>
         <ExternalLink lang={lang} href={media.demo.href} label={media.demo.label} className="btn btn-primary" />

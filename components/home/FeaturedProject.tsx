@@ -4,7 +4,7 @@ import Image from 'next/image';
 import Link from 'next/link';
 import type { Lang } from '@/types';
 import { PRESENTATION } from '@/lib/presentation';
-import { PROJETOS } from '@/lib/projetos';
+import { PROJETOS, imagemCardSrc } from '@/lib/projetos';
 import { pagePath, projetosPath } from '@/lib/site-nav';
 import { Icon } from '../Icon';
 
@@ -58,7 +58,7 @@ export function FeaturedProject({ lang }: { lang: Lang }) {
               </div>
             </div>
             <div className="featured-shot">
-              <Image src={painel.image.cardSrc} width={painel.image.cardWidth} height={painel.image.cardHeight} alt={pt.media.alt} loading="lazy" unoptimized />
+              <Image src={imagemCardSrc(painel.image, lang)} width={painel.image.cardWidth} height={painel.image.cardHeight} alt={pt.media.alt} loading="lazy" unoptimized />
             </div>
           </article>
         ) : null}

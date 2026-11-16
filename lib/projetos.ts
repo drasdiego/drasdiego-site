@@ -70,6 +70,16 @@ export interface ProjetoImage {
   cardSrc: string;
   cardWidth: number;
   cardHeight: number;
+  srcEn?: string;
+  cardSrcEn?: string;
+}
+
+export function imagemSrc(image: ProjetoImage, lang: Lang): string {
+  return lang === 'en' && image.srcEn ? image.srcEn : image.src;
+}
+
+export function imagemCardSrc(image: ProjetoImage, lang: Lang): string {
+  return lang === 'en' && image.cardSrcEn ? image.cardSrcEn : image.cardSrc;
 }
 
 export interface ProjetoText {
@@ -1003,12 +1013,14 @@ export const PROJETOS: Projeto[] = [
     pt: FORA_DO_DIGITAL.pt,
     en: FORA_DO_DIGITAL.en,
     image: {
-      src: '/images/projetos/fora-do-digital.webp',
-      width: 1600,
-      height: 1000,
-      cardSrc: '/images/projetos/fora-do-digital-800.webp',
+      src: '/images/projetos/fora-do-digital-pt.webp',
+      width: 1440,
+      height: 900,
+      cardSrc: '/images/projetos/fora-do-digital-800-pt.webp',
       cardWidth: 800,
       cardHeight: 500,
+      srcEn: '/images/projetos/fora-do-digital-en.webp',
+      cardSrcEn: '/images/projetos/fora-do-digital-800-en.webp',
     },
     schema: { repo: FDD_CODE, language: ['JavaScript', 'Python'] },
   },
@@ -1031,12 +1043,14 @@ export const PROJETOS: Projeto[] = [
     pt: OUVIDOMETRO.pt,
     en: OUVIDOMETRO.en,
     image: {
-      src: '/images/projetos/ouvidometro.webp',
+      src: '/images/projetos/ouvidometro-pt.webp',
       width: 1440,
       height: 900,
-      cardSrc: '/images/projetos/ouvidometro-800.webp',
+      cardSrc: '/images/projetos/ouvidometro-800-pt.webp',
       cardWidth: 800,
       cardHeight: 500,
+      srcEn: '/images/projetos/ouvidometro-en.webp',
+      cardSrcEn: '/images/projetos/ouvidometro-800-en.webp',
     },
     schema: { repo: OUV_CODE, language: ['Python', 'JavaScript'] },
   },
