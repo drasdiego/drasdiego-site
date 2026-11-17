@@ -9,6 +9,26 @@ Regras:
 - Nunca colocar na URL nome, usuário do Instagram, e-mail, ID do contato nem variável do ManyChat.
 - O site não grava, não repassa e não repete esses parâmetros em links internos, formulários ou eventos próprios. O Vercel Web Analytics registra os parâmetros de campanha da URL de forma anônima, mas o plano Hobby não mostra relatório de UTM.
 
+## BETWEEN e o dia 31 que some
+
+dm:
+
+```
+https://www.drasdiego.com.br/guias/dados/between-dia-31?utm_source=instagram&utm_medium=dm&utm_campaign=guias&utm_content=between-dia-31
+```
+
+story:
+
+```
+https://www.drasdiego.com.br/guias/dados/between-dia-31?utm_source=instagram&utm_medium=story&utm_campaign=guias&utm_content=between-dia-31
+```
+
+bio:
+
+```
+https://www.drasdiego.com.br/guias/dados/between-dia-31?utm_source=instagram&utm_medium=bio&utm_campaign=guias&utm_content=between-dia-31
+```
+
 ## Skills demais no Claude Code
 
 dm:
@@ -229,4 +249,4 @@ bio:
 https://www.drasdiego.com.br/guias/claude-code/tribunal?utm_source=instagram&utm_medium=bio&utm_campaign=guias&utm_content=tribunal
 ```
 
-Atualizado em 11/11/2026. Ao publicar um guia novo, acrescente o bloco dele seguindo o mesmo padrão e, em lib/blog-closing.ts, faça o guia anterior apontar para ele no campo next.
+Atualizado em 16/11/2026. Ao publicar um guia novo, acrescente o bloco dele seguindo o mesmo padrão e, em lib/blog-closing.ts, faça o guia anterior apontar para ele no campo next.

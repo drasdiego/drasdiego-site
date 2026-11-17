@@ -90,7 +90,13 @@ export const GUIDE_CLOSING: Record<string, GuideClosingData> = {
       pt: 'Agora você sabe por que skill demais atrapalha, como medir o tamanho da lista, achar as que você não usa e decidir entre deixar só o nome ou desligar.',
       en: 'You now know why too many skills get in the way, how to measure the listing, find the ones you never use and choose between keeping only the name and turning a skill off.',
     },
-    next: { word: 'IGNORAR', title: { pt: 'O .gitignore não desrastreia o que já subiu', en: 'Gitignore does not untrack what you already committed' } },
+    next: { word: 'DATAS', title: { pt: 'BETWEEN e o dia 31 que some', en: 'BETWEEN and the missing 31st' }, category: 'dados', slug: 'between-dia-31' },
+  },
+  'between-dia-31': {
+    result: {
+      pt: 'Agora você sabe por que o BETWEEN perde as vendas do dia 31 quando a coluna guarda data e hora, e tem um teste pronto para conferir isso no seu próprio banco.',
+      en: 'You now know why BETWEEN loses the sales of the 31st when the column stores date and time, and you have a ready-made test to check it on your own database.',
+    },
   },
 };
 
