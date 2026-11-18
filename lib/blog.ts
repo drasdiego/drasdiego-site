@@ -14,6 +14,12 @@ import { DESCRICAO_DA_SKILL } from './blog-descricao';
 import { PARADOXO_DE_SIMPSON } from './blog-simpson';
 import { SKILLS_DEMAIS } from './blog-lotado';
 import { BETWEEN_DIA_31 } from './blog-datas';
+import { VERCEL_HOBBY } from './blog-hobby';
+import { LIMIT_BIGQUERY_CUSTO } from './blog-custo';
+import { GITIGNORE_NAO_DESRASTREIA } from './blog-ignorar';
+import { DATA_BRASILEIRA_PANDAS } from './blog-diames';
+import { CRON_ACTIONS } from './blog-agenda';
+import { PAINEL_STATUS_LINE } from './blog-painel';
 import type { BlogMenuData } from './blog-menu';
 
 export type TableCell = string | { v: string; tone: 'bad' | 'ok' };
@@ -152,9 +158,23 @@ export const CATEGORIES: Category[] = [
       note: 'Guide by Diego Arruda. Educational and independent content, not affiliated with Google.',
     },
   },
+  {
+    slug: 'deploy',
+    area: 'software',
+    pt: {
+      name: 'Deploy',
+      desc: 'Guias práticos para publicar e hospedar projetos, com os termos de uso e os limites de cada plano conferidos na documentação oficial.',
+      note: 'Guia por Diego Arruda. Conteúdo educativo e independente, sem vínculo com a Vercel.',
+    },
+    en: {
+      name: 'Deploy',
+      desc: 'Practical guides for shipping and hosting projects, with each plan’s terms and limits checked against the official documentation.',
+      note: 'Guide by Diego Arruda. Educational and independent content, not affiliated with Vercel.',
+    },
+  },
 ];
 
-export const GUIDES: Guide[] = [TRIBUNAL, REWIND, JOIN_SOMA, CHAVE_VAZADA, HOOK, PROCV, APPS_SCRIPT_TETO, PLUGIN_RODA_CODIGO, DESCRICAO_DA_SKILL, PARADOXO_DE_SIMPSON, SKILLS_DEMAIS, BETWEEN_DIA_31];
+export const GUIDES: Guide[] = [TRIBUNAL, REWIND, JOIN_SOMA, CHAVE_VAZADA, HOOK, PROCV, APPS_SCRIPT_TETO, PLUGIN_RODA_CODIGO, DESCRICAO_DA_SKILL, PARADOXO_DE_SIMPSON, SKILLS_DEMAIS, BETWEEN_DIA_31, VERCEL_HOBBY, LIMIT_BIGQUERY_CUSTO, GITIGNORE_NAO_DESRASTREIA, DATA_BRASILEIRA_PANDAS, CRON_ACTIONS, PAINEL_STATUS_LINE];
 
 export const BLOG_UI = {
   pt: {

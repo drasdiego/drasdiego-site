@@ -17,7 +17,19 @@ function Inline({ text }: { text: string }) {
       {parts.map((part, i) => {
         if (part.startsWith('`') && part.endsWith('`')) return <code key={i}>{part.slice(1, -1)}</code>;
         const link = /^\[([^\]]+)\]\(([^)]+)\)$/.exec(part);
-        if (link) return <a key={i} className="inline-link" href={link[2]} target="_blank" rel="noreferrer">{link[1]}</a>;
+        if (link) {
+          const interno = link[2].startsWith('/');
+          return (
+            <a
+              key={i}
+              className="inline-link"
+              href={link[2]}
+              {...(interno ? {} : { target: '_blank', rel: 'noreferrer' })}
+            >
+              {link[1]}
+            </a>
+          );
+        }
         return <span key={i}>{part}</span>;
       })}
     </>

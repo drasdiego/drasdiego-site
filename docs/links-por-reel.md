@@ -9,6 +9,126 @@ Regras:
 - Nunca colocar na URL nome, usuário do Instagram, e-mail, ID do contato nem variável do ManyChat.
 - O site não grava, não repassa e não repete esses parâmetros em links internos, formulários ou eventos próprios. O Vercel Web Analytics registra os parâmetros de campanha da URL de forma anônima, mas o plano Hobby não mostra relatório de UTM.
 
+## O painel do Claude Code
+
+dm:
+
+```
+https://www.drasdiego.com.br/guias/claude-code/painel-status-line?utm_source=instagram&utm_medium=dm&utm_campaign=guias&utm_content=painel-status-line
+```
+
+story:
+
+```
+https://www.drasdiego.com.br/guias/claude-code/painel-status-line?utm_source=instagram&utm_medium=story&utm_campaign=guias&utm_content=painel-status-line
+```
+
+bio:
+
+```
+https://www.drasdiego.com.br/guias/claude-code/painel-status-line?utm_source=instagram&utm_medium=bio&utm_campaign=guias&utm_content=painel-status-line
+```
+
+## O cron do GitHub Actions nao e um relogio
+
+dm:
+
+```
+https://www.drasdiego.com.br/guias/github/cron-actions-nao-e-relogio?utm_source=instagram&utm_medium=dm&utm_campaign=guias&utm_content=cron-actions-nao-e-relogio
+```
+
+story:
+
+```
+https://www.drasdiego.com.br/guias/github/cron-actions-nao-e-relogio?utm_source=instagram&utm_medium=story&utm_campaign=guias&utm_content=cron-actions-nao-e-relogio
+```
+
+bio:
+
+```
+https://www.drasdiego.com.br/guias/github/cron-actions-nao-e-relogio?utm_source=instagram&utm_medium=bio&utm_campaign=guias&utm_content=cron-actions-nao-e-relogio
+```
+
+## Data brasileira no pandas
+
+dm:
+
+```
+https://www.drasdiego.com.br/guias/dados/data-brasileira-pandas?utm_source=instagram&utm_medium=dm&utm_campaign=guias&utm_content=data-brasileira-pandas
+```
+
+story:
+
+```
+https://www.drasdiego.com.br/guias/dados/data-brasileira-pandas?utm_source=instagram&utm_medium=story&utm_campaign=guias&utm_content=data-brasileira-pandas
+```
+
+bio:
+
+```
+https://www.drasdiego.com.br/guias/dados/data-brasileira-pandas?utm_source=instagram&utm_medium=bio&utm_campaign=guias&utm_content=data-brasileira-pandas
+```
+
+## .gitignore nao desrastreia o que ja subiu
+
+dm:
+
+```
+https://www.drasdiego.com.br/guias/github/gitignore-nao-desrastreia?utm_source=instagram&utm_medium=dm&utm_campaign=guias&utm_content=gitignore-nao-desrastreia
+```
+
+story:
+
+```
+https://www.drasdiego.com.br/guias/github/gitignore-nao-desrastreia?utm_source=instagram&utm_medium=story&utm_campaign=guias&utm_content=gitignore-nao-desrastreia
+```
+
+bio:
+
+```
+https://www.drasdiego.com.br/guias/github/gitignore-nao-desrastreia?utm_source=instagram&utm_medium=bio&utm_campaign=guias&utm_content=gitignore-nao-desrastreia
+```
+
+## LIMIT 10 no BigQuery nao baixa a conta
+
+dm:
+
+```
+https://www.drasdiego.com.br/guias/dados/limit-bigquery-custo?utm_source=instagram&utm_medium=dm&utm_campaign=guias&utm_content=limit-bigquery-custo
+```
+
+story:
+
+```
+https://www.drasdiego.com.br/guias/dados/limit-bigquery-custo?utm_source=instagram&utm_medium=story&utm_campaign=guias&utm_content=limit-bigquery-custo
+```
+
+bio:
+
+```
+https://www.drasdiego.com.br/guias/dados/limit-bigquery-custo?utm_source=instagram&utm_medium=bio&utm_campaign=guias&utm_content=limit-bigquery-custo
+```
+
+## Vercel gratis e so pessoal
+
+dm:
+
+```
+https://www.drasdiego.com.br/guias/deploy/vercel-hobby-so-pessoal?utm_source=instagram&utm_medium=dm&utm_campaign=guias&utm_content=vercel-hobby-so-pessoal
+```
+
+story:
+
+```
+https://www.drasdiego.com.br/guias/deploy/vercel-hobby-so-pessoal?utm_source=instagram&utm_medium=story&utm_campaign=guias&utm_content=vercel-hobby-so-pessoal
+```
+
+bio:
+
+```
+https://www.drasdiego.com.br/guias/deploy/vercel-hobby-so-pessoal?utm_source=instagram&utm_medium=bio&utm_campaign=guias&utm_content=vercel-hobby-so-pessoal
+```
+
 ## BETWEEN e o dia 31 que some
 
 dm:
@@ -249,4 +369,4 @@ bio:
 https://www.drasdiego.com.br/guias/claude-code/tribunal?utm_source=instagram&utm_medium=bio&utm_campaign=guias&utm_content=tribunal
 ```
 
-Atualizado em 16/11/2026. Ao publicar um guia novo, acrescente o bloco dele seguindo o mesmo padrão e, em lib/blog-closing.ts, faça o guia anterior apontar para ele no campo next.
+Atualizado em 18/11/2026.

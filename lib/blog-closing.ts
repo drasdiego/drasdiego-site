@@ -97,6 +97,48 @@ export const GUIDE_CLOSING: Record<string, GuideClosingData> = {
       pt: 'Agora você sabe por que o BETWEEN perde as vendas do dia 31 quando a coluna guarda data e hora, e tem um teste pronto para conferir isso no seu próprio banco.',
       en: 'You now know why BETWEEN loses the sales of the 31st when the column stores date and time, and you have a ready-made test to check it on your own database.',
     },
+    next: { word: 'HOBBY', title: { pt: 'Vercel grátis é só pessoal?', en: 'Vercel’s free plan is for personal use' }, category: 'deploy', slug: 'vercel-hobby-so-pessoal' },
+  },
+  'vercel-hobby-so-pessoal': {
+    result: {
+      pt: 'Agora você tem um checklist para conferir se o seu projeto cabe no plano Hobby da Vercel, sabe onde ver o plano do time e onde desligar o uso do seu conteúdo para treino de IA.',
+      en: 'You now have a checklist to see whether your project fits Vercel’s Hobby plan, you know where to check your team’s plan and where to turn off the use of your content for AI training.',
+    },
+    next: { word: 'CUSTO', title: { pt: 'LIMIT 10 no BigQuery não baixa a conta', en: 'LIMIT 10 in BigQuery does not lower the bill' }, category: 'dados', slug: 'limit-bigquery-custo' },
+  },
+  'limit-bigquery-custo': {
+    result: {
+      pt: 'Agora você sabe por que o LIMIT não diminui o que o BigQuery cobra numa tabela sem cluster e como estimar o custo antes de rodar a consulta.',
+      en: 'You now know why LIMIT does not reduce what BigQuery charges on a table without clustering, and how to estimate the cost before you run the query.',
+    },
+    next: { word: 'IGNORAR', title: { pt: '.gitignore não desrastreia o que já subiu', en: '.gitignore does not untrack what is already tracked' }, category: 'github', slug: 'gitignore-nao-desrastreia' },
+  },
+  'gitignore-nao-desrastreia': {
+    result: {
+      pt: 'Agora você sabe por que o .gitignore não para de acompanhar o que já foi registrado, tem o teste pronto para rodar e o git rm --cached passo a passo.',
+      en: 'You now know why .gitignore does not stop tracking what is already in, you have the ready-made test and git rm --cached step by step.',
+    },
+    next: { word: 'DIAMES', title: { pt: 'Data brasileira no pandas', en: 'Brazilian dates in pandas' }, category: 'dados', slug: 'data-brasileira-pandas' },
+  },
+  'data-brasileira-pandas': {
+    result: {
+      pt: 'Agora você sabe como o pandas troca dia e mês sem avisar, as três formas de ler data brasileira e como conferir a coluna depois de converter.',
+      en: 'You now know how pandas swaps day and month without warning, the three ways to read Brazilian dates and how to check the column after converting.',
+    },
+    next: { word: 'AGENDA', title: { pt: 'O cron do GitHub Actions não é um relógio', en: 'The GitHub Actions cron is not a clock' }, category: 'github', slug: 'cron-actions-nao-e-relogio' },
+  },
+  'cron-actions-nao-e-relogio': {
+    result: {
+      pt: 'Agora você tem um workflow com cron, fuso e minuto quebrado, a conta de UTC para Brasília e as regras de atraso, descarte e desativação em 60 dias.',
+      en: 'You now have a workflow with cron, time zone and an off-the-hour minute, the UTC to Brasília conversion and the rules on delay, dropped runs and the 60-day shutdown.',
+    },
+    next: { word: 'PAINEL', title: { pt: 'O painel do Claude Code', en: 'The Claude Code status line' }, category: 'claude-code', slug: 'painel-status-line' },
+  },
+  'painel-status-line': {
+    result: {
+      pt: 'Agora você tem o script pronto da barra do Claude Code, sabe ligar de dois jeitos, o que cada campo quer dizer e o que fazer se a barra não aparecer.',
+      en: 'You now have the ready-made Claude Code status line script, two ways to turn it on, what each field means and what to do if the line does not show up.',
+    },
   },
 };
 
