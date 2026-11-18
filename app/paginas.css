@@ -96,6 +96,7 @@
 
 .contato-layout{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,300px);gap:48px;align-items:start;margin-top:var(--sp-head);max-width:1040px}
 .contato-form-card{padding:28px;border:1px solid var(--border);border-radius:var(--radius-lg);background:var(--surface)}
+.contato-limite{margin:20px 0 0;font-size:14px;color:var(--text-3)}
 .contato-form{position:relative;display:grid;gap:22px}
 .contato-campo{display:grid;gap:8px}
 .contato-campo label{font-size:14px;font-weight:500;color:var(--text)}

@@ -18,6 +18,7 @@ export interface ServicosUI {
   exampleLabel: string;
   offers: Oferta[];
   ai: string;
+  limite: string;
   cta: string;
   contact: string;
 }
@@ -35,6 +36,7 @@ export function servicosUI(lang: Lang): ServicosUI {
         { area: 'automacao', title: 'Automations and AI', desc: 'Repetitive routines turned into automations, and assistants that answer based on your own information.', example: 'the career assistant on this website', href: `${projetos}/assistente-de-carreira` },
       ],
       ai: 'I use AI to speed up development. I review and test every delivery myself before it reaches you.',
+      limite: 'I do not work with financial institutions and I do not offer ombudsman services.',
       cta: 'Have a project in mind?',
       contact: contactPath(lang),
     };
@@ -49,6 +51,7 @@ export function servicosUI(lang: Lang): ServicosUI {
       { area: 'automacao', title: 'Automações e IA', desc: 'Rotinas repetitivas que viram automação e assistentes que respondem com base nas suas informações.', example: 'o assistente de carreira deste site', href: `${projetos}/assistente-de-carreira` },
     ],
     ai: 'Uso IA para acelerar o desenvolvimento. Cada entrega é revisada e testada por mim antes de chegar a você.',
+    limite: 'Não atendo instituições financeiras e não ofereço serviços de ouvidoria.',
     cta: 'Tem um projeto em mente?',
     contact: contactPath(lang),
   };

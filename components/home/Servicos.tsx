@@ -25,7 +25,10 @@ export function Servicos({ lang }: { lang: Lang }) {
           ))}
         </ul>
         <div className="servicos-rodape">
-          <p className="servicos-ia">{ui.ai}</p>
+          <div className="servicos-notas">
+            <p className="servicos-ia">{ui.ai}</p>
+            <p className="servicos-limite">{ui.limite}</p>
+          </div>
           <Link className="btn btn-primary" href={ui.contact}>{ui.cta}</Link>
         </div>
       </div>

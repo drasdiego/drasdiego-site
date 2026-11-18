@@ -13,6 +13,7 @@ export const CONTATO_UI = {
     lead: 'Conte o contexto e eu retorno pelo e-mail que você informar. Se preferir, fale direto pelo LinkedIn ou pelo WhatsApp.',
     description: 'Tem um projeto em mente? Site, painel de dados, automação ou IA. Envie uma mensagem pelo formulário ou fale direto com Diego Arruda pelo LinkedIn, WhatsApp ou GitHub.',
     formTitle: 'Enviar mensagem',
+    limit: 'Não atendo instituições financeiras e não ofereço serviços de ouvidoria.',
     channelsTitle: 'Contato direto',
     newTab: 'abre em nova aba',
   },
@@ -21,6 +22,7 @@ export const CONTATO_UI = {
     lead: 'Tell me the context and I will reply to the email you provide. If you prefer, reach out directly on LinkedIn or WhatsApp.',
     description: 'Have a project in mind? Website, data dashboard, automation or AI. Send a message through the form or reach Diego Arruda directly on LinkedIn, WhatsApp or GitHub.',
     formTitle: 'Send a message',
+    limit: 'I do not work with financial institutions and I do not offer ombudsman services.',
     channelsTitle: 'Direct contact',
     newTab: 'opens in a new tab',
   },
@@ -43,6 +45,7 @@ export function ContatoPage({ lang }: { lang: Lang }) {
         <section className="contato-form-card" aria-labelledby="contato-form-titulo">
           <h2 className="sr-only" id="contato-form-titulo">{ui.formTitle}</h2>
           <ContatoForm lang={lang} />
+          <p className="contato-limite">{ui.limit}</p>
         </section>
         <section className="contato-canais" aria-labelledby="contato-canais-titulo">
           <h2 id="contato-canais-titulo">{ui.channelsTitle}</h2>

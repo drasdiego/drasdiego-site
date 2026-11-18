@@ -19,7 +19,7 @@ export function Experiencia({ t }: { t: SiteContent }) {
               <div className="exp-main">
                 <h3>{r.co}</h3>
                 <p className="experience-role">{r.role}</p>
-                <p>{r.desc}</p>
+                {r.desc ? <p>{r.desc}</p> : null}
               </div>
             </Reveal>
           ))}
