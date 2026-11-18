@@ -4,7 +4,20 @@ export interface GuideNoteData {
   handle: string;
 }
 
+export interface BlogMenuCategory {
+  slug: string;
+  name: string;
+  href: string;
+  count: string;
+  allInLabel: string;
+  guides: { title: string; href: string }[];
+}
+
 export interface BlogMenuData {
   label: string;
-  categories: { name: string; href: string; guides: { title: string; href: string }[] }[];
+  topicsLabel: string;
+  guidesLabel: string;
+  allLabel: string;
+  allHref: string;
+  categories: BlogMenuCategory[];
 }

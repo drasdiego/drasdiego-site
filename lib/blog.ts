@@ -199,9 +199,13 @@ export const BLOG_UI = {
     copied: 'Copiado',
     copyFail: 'Não foi possível copiar',
     indexTitle: 'Guias',
-    indexLead: 'Guias práticos sobre ferramentas de IA, desenvolvimento de software, SQL, GitHub, Excel e Google Workspace. Conteúdo educativo e independente.',
+    indexLead: 'Guias práticos sobre ferramentas de IA, desenvolvimento de software, dados, SQL, GitHub, Excel, Google Workspace e deploy. Conteúdo educativo e independente.',
     categoriesTitle: 'Categorias',
     allGuides: 'Todos',
+    menuTopics: 'Assuntos',
+    menuGuides: 'Guias',
+    menuAll: 'Ver todos os guias',
+    menuAllIn: (name: string) => `Ver todos sobre ${name}`,
     guidesTitle: 'Lista de guias',
     guideCount: (n: number) => (n === 1 ? '1 guia' : `${n} guias`),
     published: 'Publicado em',
@@ -232,9 +236,13 @@ export const BLOG_UI = {
     copied: 'Copied',
     copyFail: 'Could not copy',
     indexTitle: 'Guides',
-    indexLead: 'Practical guides on AI tools, software development, SQL, GitHub, Excel and Google Workspace. Independent educational content.',
+    indexLead: 'Practical guides on AI tools, software development, data, SQL, GitHub, Excel, Google Workspace and deployment. Independent educational content.',
     categoriesTitle: 'Categories',
     allGuides: 'All',
+    menuTopics: 'Topics',
+    menuGuides: 'Guides',
+    menuAll: 'View all guides',
+    menuAllIn: (name: string) => `View all about ${name}`,
     guidesTitle: 'Guide list',
     guideCount: (n: number) => (n === 1 ? '1 guide' : `${n} guides`),
     published: 'Published on',
@@ -255,13 +263,24 @@ export function blogPaths(sub: string): { pt: string; en: string } {
 
 export function buildBlogMenu(lang: Lang): BlogMenuData {
   const root = blogRoot(lang);
+  const ui = BLOG_UI[lang];
   return {
-    label: BLOG_UI[lang].menu,
-    categories: CATEGORIES.map((cat) => ({
-      name: cat[lang].name,
-      href: `${root}/${cat.slug}`,
-      guides: guidesIn(cat.slug).map((g) => ({ title: g[lang].title, href: `${root}/${cat.slug}/${g.slug}` })),
-    })),
+    label: ui.menu,
+    topicsLabel: ui.menuTopics,
+    guidesLabel: ui.menuGuides,
+    allLabel: ui.menuAll,
+    allHref: root,
+    categories: CATEGORIES.map((cat) => {
+      const guides = guidesIn(cat.slug);
+      return {
+        slug: cat.slug,
+        name: cat[lang].name,
+        href: `${root}/${cat.slug}`,
+        count: ui.guideCount(guides.length),
+        allInLabel: ui.menuAllIn(cat[lang].name),
+        guides: guides.map((g) => ({ title: g[lang].short, href: `${root}/${cat.slug}/${g.slug}` })),
+      };
+    }),
   };
 }
 
