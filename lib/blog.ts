@@ -20,6 +20,9 @@ import { GITIGNORE_NAO_DESRASTREIA } from './blog-ignorar';
 import { DATA_BRASILEIRA_PANDAS } from './blog-diames';
 import { CRON_ACTIONS } from './blog-agenda';
 import { PAINEL_STATUS_LINE } from './blog-painel';
+import { TARGET_BLOQUEIO } from './blog-target';
+import { CLAUDE_ENTREVISTA } from './blog-entrevista';
+import { HUMANIZER_TEXTO } from './blog-humano';
 import type { BlogMenuData } from './blog-menu';
 
 export type TableCell = string | { v: string; tone: 'bad' | 'ok' };
@@ -171,10 +174,51 @@ export const CATEGORIES: Category[] = [
       desc: 'Practical guides for shipping and hosting projects, with each plan’s terms and limits checked against the official documentation.',
       note: 'Guide by Diego Arruda. Educational and independent content, not affiliated with Vercel.',
     },
+  },  {
+    slug: 'carreira',
+    area: 'software',
+    pt: {
+      name: 'Carreira',
+      desc: 'Guias práticos sobre certificação, documentação profissional e decisões de carreira em tecnologia, com as regras conferidas na fonte oficial.',
+      note: 'Guia por Diego Arruda. Conteúdo educativo e independente.',
+    },
+    en: {
+      name: 'Career',
+      desc: 'Practical guides on certification, professional records and career decisions in tech, with the rules checked against the official source.',
+      note: 'Guide by Diego Arruda. Educational and independent content.',
+    },
+  },
+  {
+    slug: 'automacao',
+    area: 'automacao',
+    pt: {
+      name: 'Automação',
+      desc: 'Guias práticos de automação de rotinas com ferramentas de fluxo, com os limites de cada licença conferidos na documentação oficial.',
+      note: 'Guia por Diego Arruda. Conteúdo educativo e independente.',
+    },
+    en: {
+      name: 'Automation',
+      desc: 'Practical guides on automating routines with workflow tools, with each licence’s limits checked against the official documentation.',
+      note: 'Guide by Diego Arruda. Educational and independent content.',
+    },
+  },
+  {
+    slug: 'seguranca',
+    area: 'software',
+    pt: {
+      name: 'Segurança',
+      desc: 'Guias práticos sobre proteger código, contas e dados no dia a dia, com base na documentação oficial de cada ferramenta.',
+      note: 'Guia por Diego Arruda. Conteúdo educativo e independente. Não é orientação jurídica.',
+    },
+    en: {
+      name: 'Security',
+      desc: 'Practical guides on protecting code, accounts and data day to day, based on each tool’s official documentation.',
+      note: 'Guide by Diego Arruda. Educational and independent content. Not legal advice.',
+    },
   },
 ];
 
-export const GUIDES: Guide[] = [TRIBUNAL, REWIND, JOIN_SOMA, CHAVE_VAZADA, HOOK, PROCV, APPS_SCRIPT_TETO, PLUGIN_RODA_CODIGO, DESCRICAO_DA_SKILL, PARADOXO_DE_SIMPSON, SKILLS_DEMAIS, BETWEEN_DIA_31, VERCEL_HOBBY, LIMIT_BIGQUERY_CUSTO, GITIGNORE_NAO_DESRASTREIA, DATA_BRASILEIRA_PANDAS, CRON_ACTIONS, PAINEL_STATUS_LINE];
+export const GUIDES: Guide[] = [TRIBUNAL, REWIND, JOIN_SOMA, CHAVE_VAZADA, HOOK, PROCV, APPS_SCRIPT_TETO, PLUGIN_RODA_CODIGO, DESCRICAO_DA_SKILL, PARADOXO_DE_SIMPSON, SKILLS_DEMAIS, BETWEEN_DIA_31, VERCEL_HOBBY, LIMIT_BIGQUERY_CUSTO, GITIGNORE_NAO_DESRASTREIA, DATA_BRASILEIRA_PANDAS, CRON_ACTIONS, PAINEL_STATUS_LINE, TARGET_BLOQUEIO, CLAUDE_ENTREVISTA, HUMANIZER_TEXTO];
 
 export const BLOG_UI = {
   pt: {

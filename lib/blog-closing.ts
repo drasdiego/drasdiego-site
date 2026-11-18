@@ -139,6 +139,27 @@ export const GUIDE_CLOSING: Record<string, GuideClosingData> = {
       pt: 'Agora você tem o script pronto da barra do Claude Code, sabe ligar de dois jeitos, o que cada campo quer dizer e o que fazer se a barra não aparecer.',
       en: 'You now have the ready-made Claude Code status line script, two ways to turn it on, what each field means and what to do if the line does not show up.',
     },
+    next: { word: 'TARGET', title: { pt: 'Seu workflow pode parar em dezembro', en: 'Your workflow may stop in December' }, category: 'github', slug: 'pull-request-target-bloqueio' },
+  },
+  'pull-request-target-bloqueio': {
+    result: {
+      pt: 'Agora você sabe o que muda no pull_request_target em dezembro, quais repositórios são afetados e como conferir os seus workflows antes da data.',
+      en: 'You now know what changes for pull_request_target in December, which repositories are affected and how to check your workflows before the date.',
+    },
+    next: { word: 'ENTREVISTA', title: { pt: 'Deixe o Claude te entrevistar', en: 'Let Claude interview you' }, category: 'claude-code', slug: 'claude-te-entrevista-spec' },
+  },
+  'claude-te-entrevista-spec': {
+    result: {
+      pt: 'Agora você tem o pedido pronto para o Claude te entrevistar antes de escrever, e sabe por que a sessão precisa começar limpa.',
+      en: 'You now have the ready-made prompt for Claude to interview you before writing, and you know why the session needs a clean start.',
+    },
+    next: { word: 'HUMANO', title: { pt: 'Claude escrevendo igual gente', en: 'Claude writing like a person' }, category: 'claude-code', slug: 'humanizer-texto-de-ia' },
+  },
+  'humanizer-texto-de-ia': {
+    result: {
+      pt: 'Agora você sabe instalar e usar o Humanizer, o que ele reescreve e o que ele não resolve sozinho.',
+      en: 'You now know how to install and use Humanizer, what it rewrites and what it does not solve on its own.',
+    },
   },
 };
 

@@ -9,6 +9,66 @@ Regras:
 - Nunca colocar na URL nome, usuário do Instagram, e-mail, ID do contato nem variável do ManyChat.
 - O site não grava, não repassa e não repete esses parâmetros em links internos, formulários ou eventos próprios. O Vercel Web Analytics registra os parâmetros de campanha da URL de forma anônima, mas o plano Hobby não mostra relatório de UTM.
 
+## Deixe o Claude te entrevistar
+
+dm:
+
+```
+https://www.drasdiego.com.br/guias/claude-code/claude-te-entrevista-spec?utm_source=instagram&utm_medium=dm&utm_campaign=guias&utm_content=claude-te-entrevista-spec
+```
+
+story:
+
+```
+https://www.drasdiego.com.br/guias/claude-code/claude-te-entrevista-spec?utm_source=instagram&utm_medium=story&utm_campaign=guias&utm_content=claude-te-entrevista-spec
+```
+
+bio:
+
+```
+https://www.drasdiego.com.br/guias/claude-code/claude-te-entrevista-spec?utm_source=instagram&utm_medium=bio&utm_campaign=guias&utm_content=claude-te-entrevista-spec
+```
+
+## Claude escrevendo igual gente
+
+dm:
+
+```
+https://www.drasdiego.com.br/guias/claude-code/humanizer-texto-de-ia?utm_source=instagram&utm_medium=dm&utm_campaign=guias&utm_content=humanizer-texto-de-ia
+```
+
+story:
+
+```
+https://www.drasdiego.com.br/guias/claude-code/humanizer-texto-de-ia?utm_source=instagram&utm_medium=story&utm_campaign=guias&utm_content=humanizer-texto-de-ia
+```
+
+bio:
+
+```
+https://www.drasdiego.com.br/guias/claude-code/humanizer-texto-de-ia?utm_source=instagram&utm_medium=bio&utm_campaign=guias&utm_content=humanizer-texto-de-ia
+```
+
+## Seu workflow pode parar em dezembro
+
+dm:
+
+```
+https://www.drasdiego.com.br/guias/github/pull-request-target-bloqueio?utm_source=instagram&utm_medium=dm&utm_campaign=guias&utm_content=pull-request-target-bloqueio
+```
+
+story:
+
+```
+https://www.drasdiego.com.br/guias/github/pull-request-target-bloqueio?utm_source=instagram&utm_medium=story&utm_campaign=guias&utm_content=pull-request-target-bloqueio
+```
+
+bio:
+
+```
+https://www.drasdiego.com.br/guias/github/pull-request-target-bloqueio?utm_source=instagram&utm_medium=bio&utm_campaign=guias&utm_content=pull-request-target-bloqueio
+```
+
 ## O painel do Claude Code
 
 dm:
