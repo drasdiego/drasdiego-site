@@ -161,6 +161,12 @@ export const GUIDE_CLOSING: Record<string, GuideClosingData> = {
       en: 'You now know how to install and use Humanizer, what it rewrites and what it does not solve on its own.',
     },
   },
+  'revisor-que-nao-edita': {
+    result: {
+      pt: 'Agora você tem o arquivo do revisor pronto, sabe por que a trava vale só para o subagente e por que o Bash fica fora da lista.',
+      en: 'You now have the ready made reviewer file, you know why the lock applies only to the subagent and why Bash stays off the list.',
+    },
+  },
 };
 
 export const CLOSING_UI = {
