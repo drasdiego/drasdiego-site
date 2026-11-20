@@ -160,11 +160,33 @@ export const GUIDE_CLOSING: Record<string, GuideClosingData> = {
       pt: 'Agora você sabe instalar e usar o Humanizer, o que ele reescreve e o que ele não resolve sozinho.',
       en: 'You now know how to install and use Humanizer, what it rewrites and what it does not solve on its own.',
     },
+    next: { word: 'REVISOR', title: { pt: 'Revisor que não pode editar', en: 'A reviewer that cannot edit' }, category: 'claude-code', slug: 'revisor-que-nao-edita' },
   },
   'revisor-que-nao-edita': {
     result: {
       pt: 'Agora você tem o arquivo do revisor pronto, sabe por que a trava vale só para o subagente e por que o Bash fica fora da lista.',
       en: 'You now have the ready made reviewer file, you know why the lock applies only to the subagent and why Bash stays off the list.',
+    },
+    next: { word: 'RENOVA', title: { pt: 'Renovar certificação Microsoft é grátis', en: 'Renewing a Microsoft certification is free' }, category: 'carreira', slug: 'renovar-certificacao-microsoft' },
+  },
+  'renovar-certificacao-microsoft': {
+    result: {
+      pt: 'Agora você sabe o caminho da renovação gratuita, os prazos, as tentativas e o que acontece se a certificação vencer.',
+      en: 'You now know the free renewal path, the deadlines, the attempts and what happens if the certification expires.',
+    },
+    next: { word: 'SCANNER', title: { pt: 'Essa skill é segura?', en: 'Is this skill safe?' }, category: 'claude-code', slug: 'skill-segura-scanner' },
+  },
+  'skill-segura-scanner': {
+    result: {
+      pt: 'Agora você sabe ler os arquivos de uma skill antes de instalar, como escanear, como ler a nota e o que o scanner não alcança.',
+      en: 'You now know how to read a skill files before installing, how to scan it, how to read the score and what the scanner does not reach.',
+    },
+    next: { word: 'TOKENS', title: { pt: 'Para onde foram seus tokens', en: 'Where did your tokens go' }, category: 'claude-code', slug: 'tokens-claude-code' },
+  },
+  'tokens-claude-code': {
+    result: {
+      pt: 'Agora você sabe por que a conversa inteira vai a cada pedido, como medir o uso e cinco hábitos para gastar menos.',
+      en: 'You now know why the whole conversation goes with every request, how to measure usage and five habits to spend less.',
     },
   },
 };

@@ -9,6 +9,66 @@ Regras:
 - Nunca colocar na URL nome, usuário do Instagram, e-mail, ID do contato nem variável do ManyChat.
 - O site não grava, não repassa e não repete esses parâmetros em links internos, formulários ou eventos próprios. O Vercel Web Analytics registra os parâmetros de campanha da URL de forma anônima, mas o plano Hobby não mostra relatório de UTM.
 
+## Para onde foram seus tokens
+
+dm:
+
+```
+https://www.drasdiego.com.br/guias/claude-code/tokens-claude-code?utm_source=instagram&utm_medium=dm&utm_campaign=guias&utm_content=tokens-claude-code
+```
+
+story:
+
+```
+https://www.drasdiego.com.br/guias/claude-code/tokens-claude-code?utm_source=instagram&utm_medium=story&utm_campaign=guias&utm_content=tokens-claude-code
+```
+
+bio:
+
+```
+https://www.drasdiego.com.br/guias/claude-code/tokens-claude-code?utm_source=instagram&utm_medium=bio&utm_campaign=guias&utm_content=tokens-claude-code
+```
+
+## Essa skill é segura?
+
+dm:
+
+```
+https://www.drasdiego.com.br/guias/claude-code/skill-segura-scanner?utm_source=instagram&utm_medium=dm&utm_campaign=guias&utm_content=skill-segura-scanner
+```
+
+story:
+
+```
+https://www.drasdiego.com.br/guias/claude-code/skill-segura-scanner?utm_source=instagram&utm_medium=story&utm_campaign=guias&utm_content=skill-segura-scanner
+```
+
+bio:
+
+```
+https://www.drasdiego.com.br/guias/claude-code/skill-segura-scanner?utm_source=instagram&utm_medium=bio&utm_campaign=guias&utm_content=skill-segura-scanner
+```
+
+## Renovar certificação Microsoft é grátis
+
+dm:
+
+```
+https://www.drasdiego.com.br/guias/carreira/renovar-certificacao-microsoft?utm_source=instagram&utm_medium=dm&utm_campaign=guias&utm_content=renovar-certificacao-microsoft
+```
+
+story:
+
+```
+https://www.drasdiego.com.br/guias/carreira/renovar-certificacao-microsoft?utm_source=instagram&utm_medium=story&utm_campaign=guias&utm_content=renovar-certificacao-microsoft
+```
+
+bio:
+
+```
+https://www.drasdiego.com.br/guias/carreira/renovar-certificacao-microsoft?utm_source=instagram&utm_medium=bio&utm_campaign=guias&utm_content=renovar-certificacao-microsoft
+```
+
 ## Revisor que não pode editar
 
 dm:
