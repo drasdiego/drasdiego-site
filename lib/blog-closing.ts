@@ -195,6 +195,90 @@ export const GUIDE_CLOSING: Record<string, GuideClosingData> = {
       pt: 'Agora você sabe onde o n8n é grátis, o que a licença permite e não permite, o que fica fora da edição Community e o que passa a ser seu ao hospedar.',
       en: 'You now know where n8n is free, what the license allows and does not allow, what is left out of the Community edition and what becomes yours when you host it.',
     },
+    next: { word: 'APELIDO', title: { pt: 'WHERE não enxerga o apelido', en: 'WHERE does not see the alias' }, category: 'dados', slug: 'where-apelido' },
+  },
+  'where-apelido': {
+    result: {
+      pt: 'Agora você sabe por que o apelido do SELECT não existe no WHERE, a ordem em que a consulta é processada e três jeitos de filtrar que funcionam.',
+      en: 'You now know why the SELECT alias does not exist in the WHERE clause, the order a query is processed in and three ways to filter that work.',
+    },
+    next: { word: 'HORAS', title: { pt: 'Codespaces: como contar as horas', en: 'Codespaces: how to count your hours' }, category: 'github', slug: 'codespaces-horas-contadas' },
+  },
+  'codespaces-horas-contadas': {
+    result: {
+      pt: 'Agora você sabe quantas horas a conta gratuita inclui, por que máquina maior gasta mais rápido, o que cobra parado e como acompanhar o uso.',
+      en: 'You now know how many hours the free account includes, why a bigger machine burns the quota faster, what costs while idle and how to track usage.',
+    },
+    next: { word: 'REGRAS', title: { pt: 'CLAUDE.md gigante atrapalha', en: 'A giant CLAUDE.md gets in the way' }, category: 'claude-code', slug: 'claude-md-enxuto' },
+  },
+  'claude-md-enxuto': {
+    result: {
+      pt: 'Agora você sabe por que o arquivo grande reduz a obediência, como enxugar o CLAUDE.md e onde colocar a regra que precisa valer sempre.',
+      en: 'You now know why a large file reduces adherence, how to trim CLAUDE.md and where to put the rule that must always hold.',
+    },
+    next: { word: 'JANELA', title: { pt: 'last_value devolve a própria linha', en: 'last_value returns the row itself' }, category: 'dados', slug: 'last-value-janela' },
+  },
+  'last-value-janela': {
+    result: {
+      pt: 'Agora você sabe por que o last_value devolve a própria linha, como a moldura da janela muda o resultado e como escrever a moldura certa.',
+      en: 'You now know why last_value returns the row itself, how the window frame changes the result and how to write the right frame.',
+    },
+    next: { word: 'FILTRO', title: { pt: 'Filtro bidirecional no Power BI', en: 'Bidirectional filter in Power BI' }, category: 'dados', slug: 'power-bi-filtro-bidirecional' },
+  },
+  'power-bi-filtro-bidirecional': {
+    result: {
+      pt: 'Agora você sabe o que o filtro bidirecional faz, o que a Microsoft recomenda, como achar os relacionamentos em Both e duas saídas melhores.',
+      en: 'You now know what the bidirectional filter does, what Microsoft recommends, how to find relationships set to Both and two better ways out.',
+    },
+    next: { word: 'MAPEIA', title: { pt: 'Seu projeto vira um mapa', en: 'Your project becomes a map' }, category: 'claude-code', slug: 'mapa-do-codigo-graphify' },
+  },
+  'mapa-do-codigo-graphify': {
+    result: {
+      pt: 'Agora você sabe conferir uma ferramenta antes de instalar, gerar o mapa só com o código, ler o que ele mostra e tirar o hook quando quiser.',
+      en: 'You now know how to check a tool before installing it, generate the map from code only, read what it shows and remove the hook whenever you want.',
+    },
+    next: { word: 'ROTINA', title: { pt: 'Claude com notebook fechado', en: 'Claude with the laptop closed' }, category: 'claude-code', slug: 'claude-code-tarefa-agendada' },
+  },
+  'claude-code-tarefa-agendada': {
+    result: {
+      pt: 'Agora você sabe onde cada opção roda, o que conferir antes de deixar uma tarefa sozinha, como criar a primeira e como parar.',
+      en: 'You now know where each option runs, what to check before leaving a task on its own, how to create the first one and how to stop it.',
+    },
+    next: { word: 'AUTORIA', title: { pt: 'Autor do que a IA criou', en: 'Author of what AI created' }, category: 'seguranca', slug: 'autoria-ia' },
+  },
+  'autoria-ia': {
+    result: {
+      pt: 'Agora você sabe o que o Copyright Office dos EUA escreveu sobre obra feita com IA e o que guardar do seu processo de criação.',
+      en: 'You now know what the US Copyright Office wrote about work made with AI and what to keep from your own creative process.',
+    },
+    next: { word: 'GOAL', title: { pt: '/goal até o teste passar', en: '/goal until the tests pass' }, category: 'claude-code', slug: 'goal-ate-o-teste-passar' },
+  },
+  'goal-ate-o-teste-passar': {
+    result: {
+      pt: 'Agora você tem condições prontas para o Claude trabalhar até o teste passar, e sabe ver o estado e cancelar quando quiser.',
+      en: 'You now have ready-made conditions so Claude works until the tests pass, and you know how to check the state and cancel it.',
+    },
+    next: { word: 'DOCATUAL', title: { pt: 'Menos API inventada', en: 'Fewer invented APIs' }, category: 'claude-code', slug: 'documentacao-atual' },
+  },
+  'documentacao-atual': {
+    result: {
+      pt: 'Agora você sabe por que a IA inventa API e como pôr a documentação atual dentro do pedido, com o cuidado de não mandar o que é confidencial.',
+      en: 'You now know why AI invents APIs and how to put current docs inside your prompt, while keeping confidential material out of it.',
+    },
+    next: { word: 'GOSTO', title: { pt: 'Site com menos cara de IA', en: 'A site with less of the AI look' }, category: 'claude-code', slug: 'site-menos-cara-de-ia' },
+  },
+  'site-menos-cara-de-ia': {
+    result: {
+      pt: 'Agora você tem um pedido com o seu gosto, para o site sair com menos cara de template de IA.',
+      en: 'You now have a prompt that carries your own taste, so the site comes out with less of the AI template look.',
+    },
+    next: { word: 'BANCO', title: { pt: 'Supabase pausa seu projeto grátis', en: 'Supabase pauses free projects' }, category: 'deploy', slug: 'supabase-pausa-projeto' },
+  },
+  'supabase-pausa-projeto': {
+    result: {
+      pt: 'Agora você sabe por que o projeto grátis é pausado, como conferir, como restaurar e o que fazer para não ser pego de surpresa.',
+      en: 'You now know why a free project gets paused, how to check it, how to restore it and what to do so it does not catch you by surprise.',
+    },
   },
 };
 
