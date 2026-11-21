@@ -188,6 +188,13 @@ export const GUIDE_CLOSING: Record<string, GuideClosingData> = {
       pt: 'Agora você sabe por que a conversa inteira vai a cada pedido, como medir o uso e cinco hábitos para gastar menos.',
       en: 'You now know why the whole conversation goes with every request, how to measure usage and five habits to spend less.',
     },
+    next: { word: 'COMUNIDADE', title: { pt: 'n8n grátis, com pegadinha', en: 'n8n is free, with a catch' }, category: 'automacao', slug: 'n8n-gratis-licenca' },
+  },
+  'n8n-gratis-licenca': {
+    result: {
+      pt: 'Agora você sabe onde o n8n é grátis, o que a licença permite e não permite, o que fica fora da edição Community e o que passa a ser seu ao hospedar.',
+      en: 'You now know where n8n is free, what the license allows and does not allow, what is left out of the Community edition and what becomes yours when you host it.',
+    },
   },
 };
 
