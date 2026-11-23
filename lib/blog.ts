@@ -41,6 +41,7 @@ import { DOCUMENTACAO_ATUAL } from './blog-docatual';
 import { SITE_MENOS_CARA_DE_IA } from './blog-gosto';
 import { SUPABASE_PAUSA } from './blog-banco';
 import type { BlogMenuData } from './blog-menu';
+import { keywordIndex } from './search';
 
 export type TableCell = string | { v: string; tone: 'bad' | 'ok' };
 
@@ -267,6 +268,11 @@ export const BLOG_UI = {
     menuGuides: 'Guias',
     menuAll: 'Ver todos os guias',
     menuAllIn: (name: string) => `Ver todos sobre ${name}`,
+    searchLabel: 'Buscar guia por palavra-chave',
+    searchPlaceholder: 'Digite aqui ou procure o guia por palavra-chave',
+    searchEmpty: 'Nenhum guia encontrado. Tente outra palavra-chave.',
+    searchOne: '1 guia encontrado',
+    searchMany: '{n} guias encontrados',
     guidesTitle: 'Lista de guias',
     guideCount: (n: number) => (n === 1 ? '1 guia' : `${n} guias`),
     published: 'Publicado em',
@@ -304,6 +310,11 @@ export const BLOG_UI = {
     menuGuides: 'Guides',
     menuAll: 'View all guides',
     menuAllIn: (name: string) => `View all about ${name}`,
+    searchLabel: 'Search guides by keyword',
+    searchPlaceholder: 'Type here or find a guide by keyword',
+    searchEmpty: 'No guides found. Try another keyword.',
+    searchOne: '1 guide found',
+    searchMany: '{n} guides found',
     guidesTitle: 'Guide list',
     guideCount: (n: number) => (n === 1 ? '1 guide' : `${n} guides`),
     published: 'Published on',
@@ -331,6 +342,11 @@ export function buildBlogMenu(lang: Lang): BlogMenuData {
     guidesLabel: ui.menuGuides,
     allLabel: ui.menuAll,
     allHref: root,
+    searchLabel: ui.searchLabel,
+    searchPlaceholder: ui.searchPlaceholder,
+    searchEmpty: ui.searchEmpty,
+    searchOne: ui.searchOne,
+    searchMany: ui.searchMany,
     categories: CATEGORIES.map((cat) => {
       const guides = guidesIn(cat.slug);
       return {
@@ -339,7 +355,11 @@ export function buildBlogMenu(lang: Lang): BlogMenuData {
         href: `${root}/${cat.slug}`,
         count: ui.guideCount(guides.length),
         allInLabel: ui.menuAllIn(cat[lang].name),
-        guides: guides.map((g) => ({ title: g[lang].short, href: `${root}/${cat.slug}/${g.slug}` })),
+        guides: guides.map((g) => ({
+          title: g[lang].short,
+          href: `${root}/${cat.slug}/${g.slug}`,
+          hay: keywordIndex([g[lang].title, g[lang].short, g[lang].lead, ...g[lang].facts, cat[lang].name, ...g[lang].sections.map((section) => section.title)]),
+        })),
       };
     }),
   };

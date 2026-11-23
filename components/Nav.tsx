@@ -10,7 +10,9 @@ import type { BlogMenuData } from '@/lib/blog-menu';
 import { NAV_UI, activeNavKey, contactPath, homePath, projetosPath, sobrePath, switchLangPath } from '@/lib/site-nav';
 import { LINKS } from '@/lib/icons';
 import { Icon } from './Icon';
+import type { SearchEntry } from '@/lib/search';
 import { BlogMenu } from './BlogMenu';
+import { SiteSearch } from './SiteSearch';
 import { useScrolled } from '@/hooks/useScrolled';
 import { scrollToId } from '@/lib/utils';
 
@@ -20,12 +22,14 @@ export function Nav({
   dark,
   toggleTheme,
   blogMenu,
+  searchExtra,
 }: {
   t: SiteContent;
   lang: Lang;
   dark: boolean;
   toggleTheme: () => void;
   blogMenu: BlogMenuData;
+  searchExtra: SearchEntry[];
 }) {
   const ui = NAV_UI[lang];
   const scrolled = useScrolled(14);
@@ -44,6 +48,8 @@ export function Nav({
     if (!menu) return;
     const onKeyDown = (event: KeyboardEvent) => {
       if (event.key !== 'Escape') return;
+      const active = document.activeElement;
+      if (active instanceof HTMLInputElement && active.type === 'search' && active.value) return;
       setMenu(false);
       menuButton.current?.focus();
     };
@@ -80,6 +86,7 @@ export function Nav({
           </svg>
         )}
       </button>
+      <SiteSearch lang={lang} menu={blogMenu} extra={searchExtra} />
     </>
   );
 

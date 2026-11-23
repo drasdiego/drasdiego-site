@@ -1,24 +1,39 @@
 'use client';
 
-import { useEffect, useId, useRef, useState } from 'react';
+import { useEffect, useId, useMemo, useRef, useState } from 'react';
 import Link from 'next/link';
-import { usePathname } from 'next/navigation';
+import { usePathname, useRouter } from 'next/navigation';
 import type { BlogMenuData } from '@/lib/blog-menu';
+import { matchEntries, normalizeText } from '@/lib/search';
 
 export function BlogMenu({ data, active = false }: { data: BlogMenuData; active?: boolean }) {
   const pathname = usePathname();
+  const router = useRouter();
   const panelId = useId();
   const tabPrefix = useId();
   const [open, setOpen] = useState(false);
   const [wide, setWide] = useState(false);
   const [current, setCurrent] = useState(0);
   const [expanded, setExpanded] = useState<string | null>(null);
+  const [query, setQuery] = useState('');
   const box = useRef<HTMLDivElement>(null);
+  const field = useRef<HTMLInputElement>(null);
+  const found = useRef<HTMLUListElement>(null);
   const button = useRef<HTMLButtonElement>(null);
   const tabs = useRef<(HTMLButtonElement | null)[]>([]);
   const moveFocus = useRef(false);
 
   const categories = data.categories.filter((cat) => cat.guides.length > 0);
+  const searching = normalizeText(query) !== '';
+  const results = useMemo(
+    () =>
+      matchEntries(
+        categories.flatMap((cat) => cat.guides.map((guide) => ({ ...guide, category: cat.name, label: cat.name }))),
+        query,
+      ),
+    [categories, query],
+  );
+  const status = !searching ? '' : results.length === 0 ? data.searchEmpty : results.length === 1 ? data.searchOne : data.searchMany.replace('{n}', String(results.length));
 
   useEffect(() => {
     setOpen(false);
@@ -36,6 +51,12 @@ export function BlogMenu({ data, active = false }: { data: BlogMenuData; active?
     if (!open) return;
     const onKeyDown = (event: KeyboardEvent) => {
       if (event.key !== 'Escape') return;
+      const input = field.current;
+      if (input && document.activeElement === input && input.value) {
+        event.preventDefault();
+        setQuery('');
+        return;
+      }
       setOpen(false);
       button.current?.focus();
     };
@@ -63,6 +84,7 @@ export function BlogMenu({ data, active = false }: { data: BlogMenuData; active?
       if (!value) {
         setCurrent(0);
         setExpanded(null);
+        setQuery('');
       }
       return !value;
     });
@@ -81,6 +103,31 @@ export function BlogMenu({ data, active = false }: { data: BlogMenuData; active?
     event.preventDefault();
     moveFocus.current = true;
     setCurrent(next);
+  };
+
+  const onFieldKeyDown = (event: React.KeyboardEvent<HTMLInputElement>) => {
+    if (event.key === 'Enter' && searching && results[0]) {
+      event.preventDefault();
+      router.push(results[0].href);
+      close();
+    } else if (event.key === 'ArrowDown') {
+      const first = found.current?.querySelector<HTMLAnchorElement>('a');
+      if (first) {
+        event.preventDefault();
+        first.focus();
+      }
+    }
+  };
+
+  const onFoundKeyDown = (event: React.KeyboardEvent<HTMLUListElement>) => {
+    if (event.key !== 'ArrowDown' && event.key !== 'ArrowUp') return;
+    const all = Array.from(found.current?.querySelectorAll<HTMLAnchorElement>('a') ?? []);
+    const index = all.findIndex((node) => node === document.activeElement);
+    if (index < 0) return;
+    event.preventDefault();
+    if (event.key === 'ArrowDown') all[Math.min(index + 1, all.length - 1)]?.focus();
+    else if (index === 0) field.current?.focus();
+    else all[index - 1]?.focus();
   };
 
   const selected = categories[current] ?? categories[0];
@@ -109,7 +156,45 @@ export function BlogMenu({ data, active = false }: { data: BlogMenuData; active?
         </svg>
       </button>
       <div id={panelId} className="blog-menu-panel" hidden={!open}>
-        {wide && selected ? (
+        <div className="blog-menu-search">
+          <div className="search-field">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.7" strokeLinecap="round" aria-hidden="true">
+              <circle cx="11" cy="11" r="6.5" />
+              <path d="m16 16 4.5 4.5" />
+            </svg>
+            <input
+              ref={field}
+              type="search"
+              value={query}
+              onChange={(event) => setQuery(event.target.value)}
+              onKeyDown={onFieldKeyDown}
+              placeholder={data.searchPlaceholder}
+              aria-label={data.searchLabel}
+              enterKeyHint="search"
+              autoComplete="off"
+              spellCheck={false}
+            />
+          </div>
+        </div>
+        <p className="sr-only" role="status">{status}</p>
+        {searching ? (
+          <div className="blog-menu-list blog-menu-found">
+            {results.length === 0 ? (
+              <p className="search-empty">{data.searchEmpty}</p>
+            ) : (
+              <ul ref={found} onKeyDown={onFoundKeyDown}>
+                {results.map((guide) => (
+                  <li key={guide.href}>
+                    <Link href={guide.href} onClick={close}>
+                      <span>{guide.title}</span>
+                      <span className="search-kind">{guide.category}</span>
+                    </Link>
+                  </li>
+                ))}
+              </ul>
+            )}
+          </div>
+        ) : wide && selected ? (
           <div className="blog-menu-cols">
             <div className="blog-menu-topics" role="tablist" aria-orientation="vertical" aria-label={data.topicsLabel}>
               <p className="blog-menu-head">{data.topicsLabel}</p>

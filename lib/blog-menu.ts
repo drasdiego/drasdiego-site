@@ -4,13 +4,19 @@ export interface GuideNoteData {
   handle: string;
 }
 
+export interface BlogMenuGuide {
+  title: string;
+  href: string;
+  hay: string;
+}
+
 export interface BlogMenuCategory {
   slug: string;
   name: string;
   href: string;
   count: string;
   allInLabel: string;
-  guides: { title: string; href: string }[];
+  guides: BlogMenuGuide[];
 }
 
 export interface BlogMenuData {
@@ -19,5 +25,10 @@ export interface BlogMenuData {
   guidesLabel: string;
   allLabel: string;
   allHref: string;
+  searchLabel: string;
+  searchPlaceholder: string;
+  searchEmpty: string;
+  searchOne: string;
+  searchMany: string;
   categories: BlogMenuCategory[];
 }
