@@ -6,6 +6,7 @@ const U_BEST = 'https://code.claude.com/docs/en/best-practices.md';
 export const GOAL_ATE_O_TESTE: Guide = {
   slug: 'goal-ate-o-teste-passar',
   category: 'claude-code',
+  keyword: 'GOAL',
   published: '2026-11-21',
   pt: {
     title: "/goal: condições prontas para o Claude trabalhar até o teste passar",

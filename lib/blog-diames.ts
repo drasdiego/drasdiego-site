@@ -19,6 +19,7 @@ const ok = (v: string): TableCell => ({ v, tone: 'ok' });
 export const DATA_BRASILEIRA_PANDAS: Guide = {
   slug: 'data-brasileira-pandas',
   category: 'dados',
+  keyword: 'DIAMES',
   published: '2026-11-18',
   pt: {
     title: 'Data brasileira no pandas: por que 3 de abril vira 4 de março',

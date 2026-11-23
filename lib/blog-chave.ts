@@ -32,6 +32,7 @@ const URL_IGNORE = 'https://docs.github.com/en/get-started/git-basics/ignoring-f
 export const CHAVE_VAZADA: Guide = {
   slug: 'chave-vazada',
   category: 'github',
+  keyword: 'CHAVE',
   published: '2026-11-09',
   pt: {
     title: 'Chave vazada no GitHub',

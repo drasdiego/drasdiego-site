@@ -7,6 +7,7 @@ const U_HOOKS = 'https://code.claude.com/docs/en/hooks-guide';
 export const CLAUDE_MD_ENXUTO: Guide = {
   slug: 'claude-md-enxuto',
   category: 'claude-code',
+  keyword: 'REGRAS',
   published: '2026-11-21',
   pt: {
     title: 'CLAUDE.md gigante atrapalha: como deixar o arquivo curto e as regras mais obedecidas',

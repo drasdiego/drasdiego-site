@@ -40,7 +40,7 @@ import { GOAL_ATE_O_TESTE } from './blog-goal';
 import { DOCUMENTACAO_ATUAL } from './blog-docatual';
 import { SITE_MENOS_CARA_DE_IA } from './blog-gosto';
 import { SUPABASE_PAUSA } from './blog-banco';
-import type { BlogMenuData } from './blog-menu';
+import type { BlogMenuData, GuideListData } from './blog-menu';
 import { keywordIndex } from './search';
 
 export type TableCell = string | { v: string; tone: 'bad' | 'ok' };
@@ -74,6 +74,7 @@ export interface GuideText {
 export interface Guide {
   slug: string;
   category: string;
+  keyword: string;
   published: string;
   pt: GuideText;
   en: GuideText;
@@ -270,9 +271,20 @@ export const BLOG_UI = {
     menuAllIn: (name: string) => `Ver todos sobre ${name}`,
     searchLabel: 'Buscar guia por palavra-chave',
     searchPlaceholder: 'Digite aqui ou procure o guia por palavra-chave',
-    searchEmpty: 'Nenhum guia encontrado. Tente outra palavra-chave.',
+    searchEmpty: 'Nenhum guia encontrado. Tente a palavra-chave do reel, como ROTINA.',
     searchOne: '1 guia encontrado',
     searchMany: '{n} guias encontrados',
+    keywordLabel: 'Palavra-chave do reel',
+    keywordShort: 'Palavra-chave',
+    listSearchLabel: 'Buscar na lista de guias',
+    listSearchPlaceholder: 'Digite aqui ou procure o guia pela palavra-chave (ex.: ROTINA)',
+    listClear: 'Limpar busca',
+    listTotal: '{n} guias',
+    listTotalOne: '1 guia',
+    listFound: '{n} guias encontrados',
+    listFoundOne: '1 guia encontrado',
+    listEmpty: 'Nenhum guia encontrado',
+    listEmptyTip: 'Tente a palavra-chave do reel, como ROTINA.',
     guidesTitle: 'Lista de guias',
     guideCount: (n: number) => (n === 1 ? '1 guia' : `${n} guias`),
     published: 'Publicado em',
@@ -312,9 +324,20 @@ export const BLOG_UI = {
     menuAllIn: (name: string) => `View all about ${name}`,
     searchLabel: 'Search guides by keyword',
     searchPlaceholder: 'Type here or find a guide by keyword',
-    searchEmpty: 'No guides found. Try another keyword.',
+    searchEmpty: 'No guides found. Try the reel keyword, such as ROTINA.',
     searchOne: '1 guide found',
     searchMany: '{n} guides found',
+    keywordLabel: 'Reel keyword',
+    keywordShort: 'Keyword',
+    listSearchLabel: 'Search the guide list',
+    listSearchPlaceholder: 'Type here or find the guide by its keyword (e.g. ROTINA)',
+    listClear: 'Clear search',
+    listTotal: '{n} guides',
+    listTotalOne: '1 guide',
+    listFound: '{n} guides found',
+    listFoundOne: '1 guide found',
+    listEmpty: 'No guides found',
+    listEmptyTip: 'Try the reel keyword, such as ROTINA.',
     guidesTitle: 'Guide list',
     guideCount: (n: number) => (n === 1 ? '1 guide' : `${n} guides`),
     published: 'Published on',
@@ -333,7 +356,56 @@ export function blogPaths(sub: string): { pt: string; en: string } {
   return { pt: `/guias${sub}`, en: `/en/guias${sub}` };
 }
 
+function assertKeywords(): void {
+  const seen = new Set<string>();
+  for (const guide of GUIDES) {
+    if (!/^[A-Z0-9]+$/.test(guide.keyword) || seen.has(guide.keyword)) {
+      throw new Error(`Palavra-chave invalida ou repetida no guia ${guide.category}/${guide.slug}`);
+    }
+    seen.add(guide.keyword);
+  }
+}
+
+function guideHay(g: Guide, lang: Lang, categoryName: string): string {
+  const t = g[lang];
+  return keywordIndex([g.keyword, t.title, t.short, t.description, t.lead, ...t.facts, categoryName, ...t.sections.map((section) => section.title)]);
+}
+
+export function buildGuideList(lang: Lang): GuideListData {
+  const ui = BLOG_UI[lang];
+  const root = blogRoot(lang);
+  return {
+    searchLabel: ui.listSearchLabel,
+    placeholder: ui.listSearchPlaceholder,
+    clearLabel: ui.listClear,
+    keywordShort: ui.keywordShort,
+    total: ui.listTotal,
+    totalOne: ui.listTotalOne,
+    found: ui.listFound,
+    foundOne: ui.listFoundOne,
+    empty: ui.listEmpty,
+    emptyTip: ui.listEmptyTip,
+    items: sortGuides(GUIDES).map((g) => {
+      const cat = findCategory(g.category);
+      const categoryName = cat ? cat[lang].name : g.category;
+      return {
+        href: `${root}/${g.category}/${g.slug}`,
+        tag: categoryName,
+        area: cat ? cat.area : '',
+        title: g[lang].title,
+        lead: g[lang].lead,
+        date: g.published,
+        dateLabel: formatDate(g.published, lang),
+        keyword: g.keyword,
+        keywordShort: ui.keywordShort,
+        hay: guideHay(g, lang, categoryName),
+      };
+    }),
+  };
+}
+
 export function buildBlogMenu(lang: Lang): BlogMenuData {
+  assertKeywords();
   const root = blogRoot(lang);
   const ui = BLOG_UI[lang];
   return {
@@ -347,6 +419,7 @@ export function buildBlogMenu(lang: Lang): BlogMenuData {
     searchEmpty: ui.searchEmpty,
     searchOne: ui.searchOne,
     searchMany: ui.searchMany,
+    keywordShort: ui.keywordShort,
     categories: CATEGORIES.map((cat) => {
       const guides = guidesIn(cat.slug);
       return {
@@ -358,7 +431,8 @@ export function buildBlogMenu(lang: Lang): BlogMenuData {
         guides: guides.map((g) => ({
           title: g[lang].short,
           href: `${root}/${cat.slug}/${g.slug}`,
-          hay: keywordIndex([g[lang].title, g[lang].short, g[lang].lead, ...g[lang].facts, cat[lang].name, ...g[lang].sections.map((section) => section.title)]),
+          keyword: g.keyword,
+          hay: guideHay(g, lang, cat[lang].name),
         })),
       };
     }),

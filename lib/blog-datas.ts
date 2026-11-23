@@ -18,6 +18,7 @@ const URL_SQLITE = 'https://www.sqlite.org/datatype3.html';
 export const BETWEEN_DIA_31: Guide = {
   slug: 'between-dia-31',
   category: 'dados',
+  keyword: 'DATAS',
   published: '2026-11-16',
   pt: {
     title: 'BETWEEN e o dia 31 que some',

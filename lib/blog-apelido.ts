@@ -3,6 +3,7 @@ import type { Guide } from './blog';
 export const WHERE_APELIDO: Guide = {
   slug: 'where-apelido',
   category: 'dados',
+  keyword: 'APELIDO',
   published: '2026-11-21',
   pt: {
     title: "WHERE não enxerga o apelido: por que a coluna não existe e como filtrar nos três bancos testados",

@@ -11,6 +11,7 @@ const URL_BERKELEY = 'https://doi.org/10.1126/science.187.4175.398';
 export const PARADOXO_DE_SIMPSON: Guide = {
   slug: 'paradoxo-de-simpson',
   category: 'dados',
+  keyword: 'SIMPSON',
   published: '2026-11-13',
   pt: {
     title: 'Paradoxo de Simpson na prática',

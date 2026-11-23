@@ -25,7 +25,7 @@ export function keywordIndex(parts: string[]): string {
   return Array.from(seen).join(' ');
 }
 
-export function matchEntries<T extends { title: string; hay: string; label?: string }>(items: T[], query: string): T[] {
+export function matchEntries<T extends { title: string; hay: string; label?: string; keyword?: string }>(items: T[], query: string): T[] {
   const tokens = normalizeText(query).split(' ').filter(Boolean);
   if (tokens.length === 0) return [];
   const scored: { item: T; score: number; index: number }[] = [];
@@ -33,10 +33,12 @@ export function matchEntries<T extends { title: string; hay: string; label?: str
     const item = items[index];
     const title = normalizeText(item.title);
     const label = item.label ? normalizeText(item.label) : '';
+    const keyword = item.keyword ? normalizeText(item.keyword) : '';
     let score = 0;
     let all = true;
     for (const token of tokens) {
-      if (title.includes(token)) score += 3;
+      if (keyword.includes(token)) score += 4;
+      else if (title.includes(token)) score += 3;
       else if (label.includes(token)) score += 2;
       else if (item.hay.includes(token)) score += 1;
       else {

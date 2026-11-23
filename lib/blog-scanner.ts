@@ -7,6 +7,7 @@ const U_DOCS = 'https://docs.nvidia.com/skills/scanning-agent-skills';
 export const SKILL_SEGURA_SCANNER: Guide = {
   slug: 'skill-segura-scanner',
   category: 'claude-code',
+  keyword: 'SCANNER',
   published: '2026-11-20',
   pt: {
     title: 'Essa skill é segura? Como escanear antes de instalar e o que o scanner não garante',

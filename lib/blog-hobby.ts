@@ -16,6 +16,7 @@ const URL_AJUDA = 'https://vercel.com/help';
 export const VERCEL_HOBBY: Guide = {
   slug: 'vercel-hobby-so-pessoal',
   category: 'deploy',
+  keyword: 'HOBBY',
   published: '2026-11-18',
   pt: {
     title: 'Vercel grátis é só pessoal? O checklist do seu projeto',

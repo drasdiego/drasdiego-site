@@ -10,6 +10,7 @@ const URL_EVENTOS = 'https://docs.github.com/en/actions/reference/workflows-and-
 export const TARGET_BLOQUEIO: Guide = {
   slug: 'pull-request-target-bloqueio',
   category: 'github',
+  keyword: 'TARGET',
   published: '2026-11-19',
   pt: {
     title: 'Seu workflow pode parar em dezembro: o que muda com o pull_request_target e como conferir os seus',

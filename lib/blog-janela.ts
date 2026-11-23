@@ -3,6 +3,7 @@ import type { Guide } from './blog';
 export const LAST_VALUE_JANELA: Guide = {
   slug: 'last-value-janela',
   category: 'dados',
+  keyword: 'JANELA',
   published: '2026-11-21',
   pt: {
     title: "last_value devolve a própria linha: como a moldura da janela muda o resultado",

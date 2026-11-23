@@ -43,6 +43,7 @@ const LABEL_YAML_EN = 'agents/openai.yaml file';
 export const DESCRICAO_DA_SKILL: Guide = {
   slug: 'descricao-da-skill',
   category: 'codex',
+  keyword: 'DESCRICAO',
   published: '2026-11-13',
   pt: {
     title: 'Como escrever a descrição de uma skill do Codex',

@@ -10,6 +10,7 @@ const URL_BOAS_PRATICAS = 'https://code.claude.com/docs/en/best-practices';
 export const CLAUDE_ENTREVISTA: Guide = {
   slug: 'claude-te-entrevista-spec',
   category: 'claude-code',
+  keyword: 'ENTREVISTA',
   published: '2026-11-19',
   pt: {
     title: 'Deixe o Claude te entrevistar: o pedido pronto para relatório e automação',

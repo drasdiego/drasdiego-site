@@ -6,9 +6,9 @@ import { usePathname, useRouter } from 'next/navigation';
 import type { Lang } from '@/types';
 import type { BlogMenuData } from '@/lib/blog-menu';
 import { NAV_UI } from '@/lib/site-nav';
-import { matchEntries, normalizeText, type SearchEntry } from '@/lib/search';
+import { matchEntries, normalizeText } from '@/lib/search';
 
-export function SiteSearch({ lang, menu, extra }: { lang: Lang; menu: BlogMenuData; extra: SearchEntry[] }) {
+export function SiteSearch({ lang, menu }: { lang: Lang; menu: BlogMenuData }) {
   const ui = NAV_UI[lang];
   const router = useRouter();
   const pathname = usePathname();
@@ -20,18 +20,13 @@ export function SiteSearch({ lang, menu, extra }: { lang: Lang; menu: BlogMenuDa
   const field = useRef<HTMLInputElement>(null);
   const list = useRef<HTMLUListElement>(null);
 
-  const entries = useMemo<SearchEntry[]>(() => {
-    const guides: SearchEntry[] = menu.categories.flatMap((cat) =>
-      cat.guides.map((guide) => ({ title: guide.title, href: guide.href, kind: 'guide' as const, hay: guide.hay, label: cat.name })),
-    );
-    return [...extra, ...guides];
-  }, [menu, extra]);
-
+  const entries = useMemo(
+    () => menu.categories.flatMap((cat) => cat.guides.map((guide) => ({ ...guide, category: cat.name, label: cat.name }))),
+    [menu],
+  );
   const searching = normalizeText(query) !== '';
   const results = useMemo(() => matchEntries(entries, query), [entries, query]);
-  const shown = searching ? results : extra.filter((entry) => entry.kind === 'page');
-  const status = !searching ? '' : results.length === 0 ? ui.searchEmpty : results.length === 1 ? ui.searchOne : ui.searchMany.replace('{n}', String(results.length));
-  const kindLabel = { page: ui.kindPage, project: ui.kindProject, guide: ui.kindGuide };
+  const status = !searching ? '' : results.length === 0 ? menu.searchEmpty : results.length === 1 ? menu.searchOne : menu.searchMany.replace('{n}', String(results.length));
 
   useEffect(() => {
     setOpen(false);
@@ -46,12 +41,6 @@ export function SiteSearch({ lang, menu, extra }: { lang: Lang; menu: BlogMenuDa
     if (!open) return;
     const onKeyDown = (event: KeyboardEvent) => {
       if (event.key !== 'Escape') return;
-      const input = field.current;
-      if (input && document.activeElement === input && input.value) {
-        event.preventDefault();
-        setQuery('');
-        return;
-      }
       setOpen(false);
       button.current?.focus();
     };
@@ -130,22 +119,24 @@ export function SiteSearch({ lang, menu, extra }: { lang: Lang; menu: BlogMenuDa
           />
         </div>
         <p className="sr-only" role="status">{status}</p>
-        {searching && results.length === 0 ? (
-          <p className="search-empty">{ui.searchEmpty}</p>
+        {!searching ? (
+          <p className="search-empty">{ui.searchHint}</p>
+        ) : results.length === 0 ? (
+          <p className="search-empty">{menu.searchEmpty}</p>
         ) : (
-          <>
-            {!searching && <p className="search-head">{ui.searchShortcuts}</p>}
-            <ul ref={list} className="search-results" onKeyDown={onListKeyDown}>
-              {shown.map((entry) => (
-                <li key={entry.href}>
-                  <Link href={entry.href} onClick={() => setOpen(false)}>
-                    <span>{entry.title}</span>
-                    <span className="search-kind">{kindLabel[entry.kind]}</span>
-                  </Link>
-                </li>
-              ))}
-            </ul>
-          </>
+          <ul ref={list} className="search-results" onKeyDown={onListKeyDown}>
+            {results.map((guide) => (
+              <li key={guide.href}>
+                <Link href={guide.href} onClick={() => setOpen(false)}>
+                  <span>{guide.title}</span>
+                  <span className="search-meta">
+                    <span>{guide.category}</span>
+                    <span className="search-key" aria-label={`${menu.keywordShort}: ${guide.keyword}`}>{guide.keyword}</span>
+                  </span>
+                </Link>
+              </li>
+            ))}
+          </ul>
         )}
       </div>
     </div>

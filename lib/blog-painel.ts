@@ -16,6 +16,7 @@ const URL_STATUSLINE = 'https://code.claude.com/docs/en/statusline';
 export const PAINEL_STATUS_LINE: Guide = {
   slug: 'painel-status-line',
   category: 'claude-code',
+  keyword: 'PAINEL',
   published: '2026-11-18',
   pt: {
     title: 'O painel do Claude Code: veja quanto da conversa ainda cabe, com um script pronto',

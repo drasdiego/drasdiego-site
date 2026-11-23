@@ -24,6 +24,7 @@ const ok = (v: string): TableCell => ({ v, tone: 'ok' });
 export const PROCV: Guide = {
   slug: 'procv',
   category: 'excel',
+  keyword: 'PROCV',
   published: '2026-11-10',
   pt: {
     title: 'PROCV sem o quarto argumento',

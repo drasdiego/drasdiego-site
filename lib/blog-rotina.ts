@@ -6,6 +6,7 @@ const U_AGE = 'https://code.claude.com/docs/en/scheduled-tasks.md';
 export const TAREFA_AGENDADA: Guide = {
   slug: 'claude-code-tarefa-agendada',
   category: 'claude-code',
+  keyword: 'ROTINA',
   published: '2026-11-21',
   pt: {
     title: 'Claude com notebook fechado: a primeira tarefa, com segurança',

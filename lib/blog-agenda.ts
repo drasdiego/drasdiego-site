@@ -15,6 +15,7 @@ const URL_SCHEMA = 'https://json.schemastore.org/github-workflow.json';
 export const CRON_ACTIONS: Guide = {
   slug: 'cron-actions-nao-e-relogio',
   category: 'github',
+  keyword: 'AGENDA',
   published: '2026-11-18',
   pt: {
     title: 'O cron do GitHub Actions não é um relógio: o exemplo pronto para copiar',

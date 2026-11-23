@@ -8,6 +8,7 @@ const U_LISTA = 'https://aka.ms/CertRenewalList';
 export const RENOVA_CERTIFICACAO: Guide = {
   slug: 'renovar-certificacao-microsoft',
   category: 'carreira',
+  keyword: 'RENOVA',
   published: '2026-11-20',
   pt: {
     title: 'Renovar certificação Microsoft é grátis: o caminho, os prazos e o que fazer se vencer',

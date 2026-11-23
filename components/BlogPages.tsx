@@ -1,11 +1,12 @@
 import Link from 'next/link';
 import type { Lang } from '@/types';
-import { BLOG_UI, CATEGORIES, GUIDES, blogRoot, blogStructuredData, formatDate, guidesIn, sortGuides } from '@/lib/blog';
+import { BLOG_UI, CATEGORIES, blogRoot, blogStructuredData, buildGuideList, formatDate, guidesIn, sortGuides } from '@/lib/blog';
 import type { Block, Category, Guide, Section } from '@/lib/blog';
 import '@/app/blog.css';
 import '@/app/espaco.css';
 import { CopyButton } from './CopyButton';
 import { GuideCard } from './GuideCard';
+import { GuideSearchList } from './GuideSearchList';
 import { GuideToc } from './GuideToc';
 import { GUIDE_CLOSING } from '@/lib/blog-closing';
 import { GuideClosing } from './GuideClosing';
@@ -190,7 +191,7 @@ export function BlogHomePage({ lang }: { lang: Lang }) {
           <p className="blog-lead">{ui.indexLead}</p>
         </div>
         <CategoryNav lang={lang} />
-        <GuideCards lang={lang} guides={sortGuides(GUIDES)} />
+        <GuideSearchList data={buildGuideList(lang)} heading={ui.guidesTitle} />
       </div>
     </>
   );
@@ -241,6 +242,7 @@ export function BlogGuidePage({ lang, category, guide }: { lang: Lang; category:
         <header className="blog-col">
           <h1 className="blog-title">{g.title}</h1>
           <p className="blog-lead">{g.lead}</p>
+          <p className="blog-keyword">{ui.keywordLabel}: <strong>{guide.keyword}</strong></p>
           <ul className="blog-facts" aria-label={lang === 'en' ? 'Highlights' : 'Destaques'}>
             {g.facts.map((f) => <li key={f}>{f}</li>)}
           </ul>

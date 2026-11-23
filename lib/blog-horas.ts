@@ -3,6 +3,7 @@ import type { Guide } from './blog';
 export const CODESPACES_HORAS: Guide = {
   slug: 'codespaces-horas-contadas',
   category: 'github',
+  keyword: 'HORAS',
   published: '2026-11-21',
   pt: {
     title: "Codespaces: como contar as horas e não gastar a cota à toa",

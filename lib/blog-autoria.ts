@@ -3,6 +3,7 @@ import type { Guide } from './blog';
 export const AUTORIA_IA: Guide = {
   slug: 'autoria-ia',
   category: 'seguranca',
+  keyword: 'AUTORIA',
   published: '2026-11-21',
   pt: {
     title: "Autor do que a IA criou: o que o Copyright Office dos EUA escreveu e o que guardar",

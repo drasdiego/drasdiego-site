@@ -25,6 +25,7 @@ const LABEL_ORCAMENTO_EN = 'Budget setting (JSON)';
 export const SKILLS_DEMAIS: Guide = {
   slug: 'skills-demais',
   category: 'claude-code',
+  keyword: 'LOTADO',
   published: '2026-11-13',
   pt: {
     title: 'Skills demais no Claude Code',

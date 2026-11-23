@@ -3,6 +3,7 @@ import type { Guide } from './blog';
 export const DOCUMENTACAO_ATUAL: Guide = {
   slug: 'documentacao-atual',
   category: 'claude-code',
+  keyword: 'DOCATUAL',
   published: '2026-11-21',
   pt: {
     title: 'Menos API inventada: ponha a documentação atual no pedido',

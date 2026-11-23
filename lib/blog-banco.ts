@@ -3,6 +3,7 @@ import type { Guide } from './blog';
 export const SUPABASE_PAUSA: Guide = {
   slug: "supabase-pausa-projeto",
   category: "deploy",
+  keyword: "BANCO",
   published: "2026-11-21",
   pt: {
     title: "Supabase pausa seu projeto grátis: como conferir, restaurar e se proteger",

@@ -12,6 +12,7 @@ const URL_SKILLS = 'https://platform.claude.com/docs/en/agents-and-tools/agent-s
 export const HUMANIZER_TEXTO: Guide = {
   slug: 'humanizer-texto-de-ia',
   category: 'claude-code',
+  keyword: 'HUMANO',
   published: '2026-11-19',
   pt: {
     title: 'Claude escrevendo igual gente: como usar o Humanizer e o que ele não faz',

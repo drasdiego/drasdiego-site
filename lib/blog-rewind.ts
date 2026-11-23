@@ -3,6 +3,7 @@ import type { Guide } from './blog';
 export const REWIND: Guide = {
   slug: 'rewind',
   category: 'claude-code',
+  keyword: 'DESFAZER',
   published: '2026-11-07',
   pt: {
     title: 'Esc duas vezes não desfaz tudo',

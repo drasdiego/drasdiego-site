@@ -7,6 +7,7 @@ const U_TOOLS = 'https://code.claude.com/docs/en/tools-reference';
 export const REVISOR_NAO_EDITA: Guide = {
   slug: 'revisor-que-nao-edita',
   category: 'claude-code',
+  keyword: 'REVISOR',
   published: '2026-11-20',
   pt: {
     title: 'Revisor que não pode editar: o arquivo do subagente pronto para copiar',

@@ -3,6 +3,7 @@ import type { Guide } from './blog';
 export const SITE_MENOS_CARA_DE_IA: Guide = {
   slug: 'site-menos-cara-de-ia',
   category: 'claude-code',
+  keyword: 'GOSTO',
   published: '2026-11-21',
   pt: {
     title: "Site com menos cara de IA: um pedido com o seu gosto",

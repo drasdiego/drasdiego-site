@@ -3,6 +3,7 @@ import type { Guide } from './blog';
 export const TRIBUNAL: Guide = {
   slug: 'tribunal',
   category: 'claude-code',
+  keyword: 'TRIBUNAL',
   published: '2026-11-07',
   pt: {
     title: 'Tribunal de 12 Claudes',

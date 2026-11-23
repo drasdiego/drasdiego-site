@@ -12,6 +12,7 @@ const URL_REFERENCE = 'https://code.claude.com/docs/en/hooks';
 export const HOOK: Guide = {
   slug: 'hook',
   category: 'claude-code',
+  keyword: 'HOOK',
   published: '2026-11-10',
   pt: {
     title: 'Hook, a regra que você impõe',

@@ -12,6 +12,7 @@ const URL_PROPS = 'https://developers.google.com/apps-script/reference/propertie
 export const APPS_SCRIPT_TETO: Guide = {
   slug: 'apps-script-teto',
   category: 'google-workspace',
+  keyword: 'SCRIPT',
   published: '2026-11-11',
   pt: {
     title: 'Apps Script tem teto',

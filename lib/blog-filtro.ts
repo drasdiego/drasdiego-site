@@ -3,6 +3,7 @@ import type { Guide } from './blog';
 export const POWER_BI_FILTRO: Guide = {
   slug: 'power-bi-filtro-bidirecional',
   category: 'dados',
+  keyword: 'FILTRO',
   published: '2026-11-21',
   pt: {
     title: "Filtro bidirecional: o teste para achar e trocar no seu Power BI",

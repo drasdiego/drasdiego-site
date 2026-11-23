@@ -21,6 +21,7 @@ const LABEL_SESSAO_EN = 'Command (type inside a Claude Code session)';
 export const PLUGIN_RODA_CODIGO: Guide = {
   slug: 'plugin-roda-codigo',
   category: 'claude-code',
+  keyword: 'PLUGIN',
   published: '2026-11-11',
   pt: {
     title: 'Como revisar um plugin do Claude Code antes de instalar',

@@ -20,6 +20,7 @@ const URL_REMEDIATING = 'https://docs.github.com/en/code-security/tutorials/reme
 export const GITIGNORE_NAO_DESRASTREIA: Guide = {
   slug: 'gitignore-nao-desrastreia',
   category: 'github',
+  keyword: 'IGNORAR',
   published: '2026-11-18',
   pt: {
     title: '.gitignore não desrastreia o que já subiu: o teste pronto para rodar',

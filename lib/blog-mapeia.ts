@@ -3,6 +3,7 @@ import type { Guide } from './blog';
 export const MAPA_DO_CODIGO: Guide = {
   slug: 'mapa-do-codigo-graphify',
   category: 'claude-code',
+  keyword: 'MAPEIA',
   published: '2026-11-21',
   pt: {
     title: "Seu projeto vira um mapa: do jeito seguro",

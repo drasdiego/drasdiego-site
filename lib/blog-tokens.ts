@@ -9,6 +9,7 @@ const U_USAGE = 'https://platform.claude.com/usage';
 export const TOKENS_CLAUDE_CODE: Guide = {
   slug: 'tokens-claude-code',
   category: 'claude-code',
+  keyword: 'TOKENS',
   published: '2026-11-21',
   pt: {
     title: 'Para onde foram seus tokens: por que a conversa inteira vai a cada pedido e como usar menos',

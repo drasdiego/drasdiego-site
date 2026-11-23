@@ -18,6 +18,7 @@ const URL_BQ_CLI = 'https://docs.cloud.google.com/bigquery/docs/reference/bq-cli
 export const LIMIT_BIGQUERY_CUSTO: Guide = {
   slug: 'limit-bigquery-custo',
   category: 'dados',
+  keyword: 'CUSTO',
   published: '2026-11-18',
   pt: {
     title: 'LIMIT 10 no BigQuery não baixa a conta: como estimar o custo antes de rodar',

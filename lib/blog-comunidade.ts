@@ -12,6 +12,7 @@ const DOCKER_RUN = "docker run -it --rm --name n8n -p 5678:5678 -v n8n_data:/hom
 export const N8N_GRATIS_LICENCA: Guide = {
   slug: 'n8n-gratis-licenca',
   category: 'automacao',
+  keyword: 'COMUNIDADE',
   published: '2026-11-20',
   pt: {
     title: 'n8n grátis, com pegadinha: checagem de licença antes de usar',

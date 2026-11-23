@@ -187,7 +187,10 @@ export function BlogMenu({ data, active = false }: { data: BlogMenuData; active?
                   <li key={guide.href}>
                     <Link href={guide.href} onClick={close}>
                       <span>{guide.title}</span>
-                      <span className="search-kind">{guide.category}</span>
+                      <span className="search-meta">
+                        <span>{guide.category}</span>
+                        <span className="search-key">{guide.keyword}</span>
+                      </span>
                     </Link>
                   </li>
                 ))}

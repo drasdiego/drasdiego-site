@@ -13,6 +13,7 @@ const DOCS = 'https://www.postgresql.org/docs/16/queries-table-expressions.html'
 export const JOIN_SOMA: Guide = {
   slug: 'join-multiplica-a-soma',
   category: 'sql',
+  keyword: 'JOIN',
   published: '2026-11-08',
   pt: {
     title: 'JOIN que multiplica a soma',
