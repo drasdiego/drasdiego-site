@@ -1,4 +1,6 @@
 /** @type {import('next').NextConfig} */
+const linksCurtos = require('./lib/links-curtos.json');
+
 const contentSecurityPolicy = [
   "default-src 'self'",
   "script-src 'self' 'unsafe-inline'",
@@ -40,6 +42,11 @@ const nextConfig = {
       { source: '/blog/:path*', destination: '/guias/:path*', permanent: true },
       { source: '/en/blog', destination: '/en/guias', permanent: true },
       { source: '/en/blog/:path*', destination: '/en/guias/:path*', permanent: true },
+      ...Object.entries(linksCurtos).map(([chave, destino]) => ({
+        source: `/g/${chave}`,
+        destination: destino,
+        permanent: false,
+      })),
     ];
   },
   async headers() {
